@@ -21,11 +21,11 @@ class SplashView extends GetView<SplashController> {
                     child: Image.asset(
                   "assets/images/splash.gif",
                   width: Get.width,
-                  height: Get.height * 0.6,
+                  height: Get.height * 0.5,
                 )),
                 Positioned(
                   bottom:30,
-                  child: Text('MADE BY UBI',style: TextStyle(color: Colors.white,letterSpacing:4,fontSize: 19,fontFamily: GoogleFonts.alata().fontFamily),))
+                  child: Text('MADE BY UBI',style: TextStyle(color: Colors.white,letterSpacing:4,fontSize: 16,fontFamily: GoogleFonts.alata().fontFamily),))
               ],
             )));
   }
