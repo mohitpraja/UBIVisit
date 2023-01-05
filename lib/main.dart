@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:visitantapp/core/allpages.dart';
 import 'package:visitantapp/core/routes.dart';
 import 'firebase_options.dart';
-
+    
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
