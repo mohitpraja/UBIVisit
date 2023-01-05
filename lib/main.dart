@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 import 'package:get/get.dart';
 =======
@@ -16,10 +17,19 @@ Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
 =======
+=======
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:visitantapp/core/allpages.dart';
+import 'core/routes.dart';
+>>>>>>> df41ff84324b11cf6bbf274201af048934872f91
 import 'package:get/get.dart';
 import 'package:visitantapp/core/allpages.dart';
 import 'package:visitantapp/core/routes.dart';
 import 'firebase_options.dart';
+
+
+
+
 
 Future<void> main() async {
 >>>>>>> Stashed changes
@@ -38,10 +48,10 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       title: 'UBIVisit',
 =======
@@ -62,14 +72,20 @@ class MyApp extends StatelessWidget {
 
 =======
       title: 'UBIVisit',
+=======
+>>>>>>> df41ff84324b11cf6bbf274201af048934872f91
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
-      initialRoute: Routes.otp,
+      title: "UBIVisit",
+      initialRoute: Routes.splash,
       getPages: allpage,
     );
-  }
+  } 
 }
+<<<<<<< HEAD
 >>>>>>> 4ade13a8bfe7a582d0dc4ea6e9c228503da6db9e
 >>>>>>> Stashed changes
+=======
+
+
+
+>>>>>>> df41ff84324b11cf6bbf274201af048934872f91

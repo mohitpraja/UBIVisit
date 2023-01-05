@@ -33,7 +33,11 @@ dependencies:
   firebase_core: ^2.4.1
   flutter:
     sdk: flutter
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+  path_provider: ^2.0.11
+>>>>>>> df41ff84324b11cf6bbf274201af048934872f91
   flutter_launcher_icons: ^0.11.0
   get: ^4.6.5
   google_fonts: ^3.0.1
@@ -55,12 +59,16 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
 
 =======
 >>>>>>> Stashed changes
+=======
+
+>>>>>>> df41ff84324b11cf6bbf274201af048934872f91
 flutter_icons:
   android: "launcher_icon"
   ios: true
