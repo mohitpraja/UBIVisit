@@ -25,7 +25,7 @@ class SplashView extends GetView<SplashController> {
                 )),
                 Positioned(
                   bottom:30,
-                  child: Text('MADE BY UBI',style: TextStyle(color: Colors.white,letterSpacing:4,fontSize: 15,fontFamily: GoogleFonts.alata().fontFamily),))
+                  child: Text('MADE BY UBI',style: TextStyle(color: Colors.white,fontSize: 15,fontFamily: GoogleFonts.alata().fontFamily),))
               ],
             )));
   }
