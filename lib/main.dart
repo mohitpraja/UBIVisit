@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:visitantapp/core/routes.dart';
+import 'core/allpages.dart';
+
+
+
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +16,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'new project',
-      theme: ThemeData(
-
-        primarySwatch: Colors.blue,
-      ),
-
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: RoutesConstant.signup,
+      getPages: allpages,
     );
   }
 }
