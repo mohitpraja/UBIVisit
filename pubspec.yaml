@@ -33,19 +33,42 @@ dependencies:
   firebase_core: ^2.4.1
   flutter:
     sdk: flutter
+<<<<<<< Updated upstream
   flutter_launcher_icons: ^0.11.0
   get: ^4.6.5
   google_fonts: ^3.0.1
   pinput: ^2.2.21
+=======
+<<<<<<< HEAD
+  get: ^4.6.5
+  google_fonts: ^3.0.1
+  path_provider: ^2.0.11
+=======
+  flutter_launcher_icons: ^0.11.0
+  get: ^4.6.5
+  google_fonts: ^3.0.1
+  pinput: ^2.2.21
+>>>>>>> 4ade13a8bfe7a582d0dc4ea6e9c228503da6db9e
+>>>>>>> Stashed changes
 
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> Stashed changes
 flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/images/appicon.png"
+<<<<<<< Updated upstream
+=======
+>>>>>>> 4ade13a8bfe7a582d0dc4ea6e9c228503da6db9e
+>>>>>>> Stashed changes
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
