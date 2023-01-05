@@ -1,9 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:visitantapp/core/allpages.dart';
+import 'core/routes.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/allpages.dart';
 import 'package:visitantapp/core/routes.dart';
 import 'firebase_options.dart';
+
+
+
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,17 +24,16 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'UBIVisit',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
-      initialRoute: Routes.otp,
+      title: "UBIVisit",
+      initialRoute: Routes.splash,
       getPages: allpage,
     );
-  }
+  } 
 }
+
+
+
