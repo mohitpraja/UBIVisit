@@ -7,7 +7,6 @@ import 'package:visitantapp/features/otp/controller/otp_controller.dart';
 
 class OtpView extends GetView<OtpController> {
   const OtpView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
