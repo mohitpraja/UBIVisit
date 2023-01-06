@@ -8,29 +8,27 @@ import 'package:visitantapp/features/login/binding/login_binding.dart';
 import 'package:visitantapp/features/login/view/login_view.dart';
 import 'package:visitantapp/features/otp/binding/otp_binding.dart';
 import 'package:visitantapp/features/otp/view/otp_view.dart';
+import 'package:visitantapp/features/splash/binding/splash_binding.dart';
+import 'package:visitantapp/features/splash/view/splash_view.dart';
 
-List<GetPage> allpage=[
+List<GetPage> allpage = [
+  GetPage(name: Routes.otp, page: () => const OtpView(), binding: OtpBinding()),
   GetPage(
-    name: Routes.otp,
-    page: () => const OtpView(),
-    binding: OtpBinding()
-  ),
+      name: Routes.introduction,
+      page: () => const IntroductionView(),
+      binding: IntroductionBinding()),
   GetPage(
-    name: Routes.introduction,
-    page: () => IntroductionView(),
-    binding: IntroductionBinding()
-  ),
-
-
-  GetPage(name: Routes.login,
-      page:() =>LoginView(),
-    binding: LoginBinding()
-  )
-
+      name: Routes.login,
+      page: () => const LoginView(),
+      binding: LoginBinding()),
   GetPage(
     name: Routes.forgot,
-    page: () => ForgotView(),
+    page: () => const ForgotView(),
     binding: ForgotBinding(),
   ),
-
+  GetPage(
+    name: Routes.splash,
+    page: () => const SplashView(),
+    binding: SplashBinding(),
+  ),
 ];

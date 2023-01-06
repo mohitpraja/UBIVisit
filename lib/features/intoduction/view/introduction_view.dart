@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:visitantapp/core/routes.dart';
 import 'package:visitantapp/features/intoduction/controller/introduction_controller.dart';
 
-import '../../../core/routes.dart';
-
 class IntroductionView extends GetView<IntroductionController> {
+  const IntroductionView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +36,10 @@ class IntroductionView extends GetView<IntroductionController> {
                 decoration: controller.pageDecoration),
             PageViewModel(
                 title: "Visitor Meeting",
-                image: Image.asset('assets/images/intro1.png',width: 220,),
+                image: Image.asset(
+                  'assets/images/intro1.png',
+                  width: 220,
+                ),
                 bodyWidget: Column(
                   children: [
                     Text(

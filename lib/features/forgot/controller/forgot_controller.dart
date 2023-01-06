@@ -1,7 +1,3 @@
 import 'package:get/get.dart';
 
-class ForgotController extends GetxController{
-
-
-
-}
+class ForgotController extends GetxController {}

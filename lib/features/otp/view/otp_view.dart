@@ -116,7 +116,9 @@ class OtpView extends GetView<OtpController> {
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.w600),
                           )),
-                          const SizedBox(height: 10,),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       CustomButton(
                         title: 'Verify',
                         onpress: () {},
