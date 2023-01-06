@@ -15,11 +15,11 @@ class CustomButton extends GetView {
         color: Colors.indigo,
         shape: const StadiumBorder(),
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(13.5),
           child: Text(
             title,
             style:
-                const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+                const TextStyle(color: Colors.white, fontWeight: FontWeight.w600,fontSize: 16),
           ),
         ),
       ),
