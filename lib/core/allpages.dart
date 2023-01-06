@@ -4,6 +4,8 @@ import 'package:visitantapp/features/forgot/binding/forgot_binding.dart';
 import 'package:visitantapp/features/forgot/view/forgot_view.dart';
 import 'package:visitantapp/features/intoduction/binding/introduction_binding.dart';
 import 'package:visitantapp/features/intoduction/view/introduction_view.dart';
+import 'package:visitantapp/features/login/binding/login_binding.dart';
+import 'package:visitantapp/features/login/view/login_view.dart';
 import 'package:visitantapp/features/otp/binding/otp_binding.dart';
 import 'package:visitantapp/features/otp/view/otp_view.dart';
 
@@ -18,9 +20,17 @@ List<GetPage> allpage=[
     page: () => IntroductionView(),
     binding: IntroductionBinding()
   ),
+
+
+  GetPage(name: Routes.login,
+      page:() =>LoginView(),
+    binding: LoginBinding()
+  )
+
   GetPage(
     name: Routes.forgot,
     page: () => ForgotView(),
     binding: ForgotBinding(),
   ),
+
 ];
