@@ -7,7 +7,7 @@ class OtpController extends GetxController {
     width: 40,
     height: 40,
     textStyle: const TextStyle(
-      fontSize: 22,
+      fontSize: 20,
       color: Color.fromRGBO(30, 60, 87, 1),
     ),
     decoration: BoxDecoration(

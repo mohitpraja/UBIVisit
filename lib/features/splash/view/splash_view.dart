@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:visitantapp/core/global.dart';
 import '../controller/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
@@ -12,7 +13,7 @@ class SplashView extends GetView<SplashController> {
         body: Container(
             width: Get.width,
             height: Get.height,
-            color: Colors.indigo,
+            color: GloabalColor.customColor,
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -23,7 +24,7 @@ class SplashView extends GetView<SplashController> {
                   height: Get.height * 0.5,
                 )),
                 Positioned(
-                    bottom: 30,
+                    bottom: 35,
                     child: Text(
                       'MADE BY UBI',
                       style: TextStyle(

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 import 'package:visitantapp/components/custombutton.dart';
+import 'package:visitantapp/core/global.dart';
 import 'package:visitantapp/features/otp/controller/otp_controller.dart';
 
 class OtpView extends GetView<OtpController> {
@@ -16,7 +17,7 @@ class OtpView extends GetView<OtpController> {
           children: [
             Container(
               width: Get.width,
-              color: Colors.indigo,
+              color:GloabalColor.customColor,
               child: Column(
                 children: [
                   const SizedBox(
