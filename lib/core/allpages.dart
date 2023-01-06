@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:visitantapp/core/routes.dart';
+import 'package:visitantapp/features/admindash/binding/admindash_binding.dart';
+import 'package:visitantapp/features/admindash/view/admindash_view.dart';
 import 'package:visitantapp/features/forgot/binding/forgot_binding.dart';
 import 'package:visitantapp/features/forgot/view/forgot_view.dart';
 import 'package:visitantapp/features/intoduction/binding/introduction_binding.dart';
@@ -30,5 +32,10 @@ List<GetPage> allpage = [
     name: Routes.splash,
     page: () => const SplashView(),
     binding: SplashBinding(),
+  ),
+  GetPage(
+    name: Routes.admindash,
+    page: () => const AdminDashView(),
+    binding: AdminDashBinding(),
   ),
 ];

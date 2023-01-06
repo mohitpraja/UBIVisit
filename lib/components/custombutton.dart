@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:visitantapp/core/global.dart';
 
 class CustomButton extends GetView {
   final String title;
@@ -12,7 +13,7 @@ class CustomButton extends GetView {
       width: Get.width,
       child: MaterialButton(
         onPressed: onpress,
-        color: Colors.indigo,
+        color:GloabalColor.customColor,
         shape: const StadiumBorder(),
         child: Padding(
           padding: const EdgeInsets.all(13.5),

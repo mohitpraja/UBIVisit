@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visitantapp/components/custombutton.dart';
+import 'package:visitantapp/core/global.dart';
 import 'package:visitantapp/features/login/controller/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -72,7 +73,7 @@ class LoginView extends GetView<LoginController> {
                       Text(
                         "Forgot Password?",
                         style: TextStyle(
-                            color: Colors.indigo,
+                            color: GloabalColor.customColor,
                             fontFamily: GoogleFonts.alata().fontFamily,
                             fontSize: 15),
                       ),
