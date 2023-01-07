@@ -16,7 +16,7 @@ class CustomButton extends GetView {
         color:GloabalColor.customColor,
         shape: const StadiumBorder(),
         child: Padding(
-          padding: const EdgeInsets.all(13.5),
+          padding: const EdgeInsets.all(12),
           child: Text(
             title,
             style: const TextStyle(
