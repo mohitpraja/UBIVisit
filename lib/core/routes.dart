@@ -8,4 +8,5 @@ class Routes {
   static String signup = '/view_signup.dart';
   static String addemployee = '/view_addemployee.dart';
 
+  static String welcome = '/welcome_view.dart';
 }

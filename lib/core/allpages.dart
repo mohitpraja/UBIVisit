@@ -43,13 +43,4 @@ List<GetPage> allpage = [
     page: () => const AdminDashView(),
     binding: AdminDashBinding(),
   ),
-
-  GetPage(name: Routes.signup,
-    page: ()=> SignupView(),
-    binding: SignUpBinding(),
-  ),
-  GetPage(name: Routes.addemployee,
-    page: ()=> AddEmployeeView(),
-    binding: AddEmployeeBinding(),
-  ),
 ];
