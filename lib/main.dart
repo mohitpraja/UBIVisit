@@ -1,11 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-
-import 'core/allpages.dart';
-import 'core/global.dart';
-import 'core/routes.dart';
+import 'package:get/get.dart';
+import 'package:visitantapp/core/allpages.dart';
+import 'package:visitantapp/core/global.dart';
+import 'package:visitantapp/core/routes.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
