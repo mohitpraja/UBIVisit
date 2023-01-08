@@ -12,6 +12,9 @@ import 'package:visitantapp/features/otp/binding/otp_binding.dart';
 import 'package:visitantapp/features/otp/view/otp_view.dart';
 import 'package:visitantapp/features/splash/binding/splash_binding.dart';
 import 'package:visitantapp/features/splash/view/splash_view.dart';
+import 'package:visitantapp/features/welcome/view/welcome_view.dart';
+
+import '../features/welcome/binding/welcome_binding.dart';
 
 List<GetPage> allpage = [
   GetPage(name: Routes.otp, page: () => const OtpView(), binding: OtpBinding()),
@@ -37,5 +40,10 @@ List<GetPage> allpage = [
     name: Routes.admindash,
     page: () => const AdminDashView(),
     binding: AdminDashBinding(),
+  ),
+  GetPage(
+    name: Routes.welcome,
+    page: () => const WelcomeView(),
+    binding: WelcomeBinding(),
   ),
 ];
