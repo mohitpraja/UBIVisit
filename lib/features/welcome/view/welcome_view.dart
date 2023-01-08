@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/customfont.dart';
+import 'package:visitantapp/core/routes.dart';
 
 class WelcomeView extends GetView {
   const WelcomeView({super.key});
@@ -50,7 +51,9 @@ class WelcomeView extends GetView {
                                       backgroundColor: Colors.white,
                                       shape: const StadiumBorder(),
                                       elevation: 0),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.toNamed(Routes.login);
+                                  },
                                   child: Padding(
                                     padding: const EdgeInsets.all(11),
                                     child: Text(
