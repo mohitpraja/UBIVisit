@@ -4,7 +4,6 @@ import 'package:visitantapp/features/admindash/otherpages/adminvisitorlist/contr
 class AdminVisitorListBinding extends Bindings{
   @override
   void dependencies() {
-    // TODO: implement dependencies
     Get.put(AdminVisitorListController());
   }
 

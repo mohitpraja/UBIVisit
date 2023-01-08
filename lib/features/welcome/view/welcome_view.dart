@@ -55,7 +55,7 @@ class WelcomeView extends GetView {
                                     Get.toNamed(Routes.login);
                                   },
                                   child: Padding(
-                                    padding: const EdgeInsets.all(11),
+                                    padding: const EdgeInsets.all(10),
                                     child: Text(
                                       'Login',
                                       style: TextStyle(
@@ -75,7 +75,9 @@ class WelcomeView extends GetView {
                                       backgroundColor: Colors.white,
                                       shape: const StadiumBorder(),
                                       elevation: 0),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.toNamed(Routes.signup);
+                                  },
                                   child: Padding(
                                     padding: const EdgeInsets.all(11),
                                     child: Text(

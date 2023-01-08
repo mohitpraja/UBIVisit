@@ -14,16 +14,24 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-         onTap: () => Get.focusScope!.unfocus(),
+        onTap: () => Get.focusScope!.unfocus(),
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(14.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                IconButton(
+                  onPressed: () => Get.back(),
+                  icon: const Icon(Icons.arrow_back),
+                  color: Colors.black54,
+                ),
                 Image.asset(
                   "assets/images/login.png",
-                  width: 230,
-                  height: 230,
+                  width: 280,
                 ),
                 Form(
                   child: Column(
@@ -33,7 +41,7 @@ class LoginView extends GetView<LoginController> {
                         style: TextStyle(
                             color: Colors.black54,
                             fontSize: 25,
-                            fontFamily:CustomFonts.alata),
+                            fontFamily: CustomFonts.alata),
                       ),
                       Text(
                         "Login in to your existant account",
@@ -69,7 +77,7 @@ class LoginView extends GetView<LoginController> {
                             hintText: "Enter Password ",
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
-                              borderSide: const BorderSide(color:Colors.grey),
+                              borderSide: const BorderSide(color: Colors.grey),
                             ),
                           ),
                         ),
@@ -137,20 +145,23 @@ class LoginView extends GetView<LoginController> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
+                        children: [
+                          const Text(
                             "Don't have an account? ",
                             style: TextStyle(
                               color: Colors.black54,
                               fontSize: 16,
                             ),
                           ),
-                          Text(
-                            'Signup',
-                            style: TextStyle(
-                                color: Colors.indigo,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w600),
+                          InkWell(
+                            onTap: () => Get.toNamed(Routes.signup),
+                            child: const Text(
+                              'Signup',
+                              style: TextStyle(
+                                  color: Colors.indigo,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           )
                         ],
                       ),

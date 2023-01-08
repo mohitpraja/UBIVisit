@@ -2,69 +2,63 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/features/admindash/otherpages/adminvisitorlist/controller/adminvisitorlist_controller.dart';
 
-class AdminVisitorListView extends GetView<AdminVisitorListController>{
+class AdminVisitorListView extends GetView<AdminVisitorListController> {
   const AdminVisitorListView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Visitor's List"),
+        title: const Text("Visitor's List"),
       ),
       body: Center(
         child: ListView.builder(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             itemCount: 7,
-            itemBuilder:(context, index) {
+            itemBuilder: (context, index) {
               return Stack(
                 children: [
                   SizedBox(
-
                     height: 150,
                     width: 500,
                     child: Card(
-                      margin: EdgeInsets.all(5),
+                      margin: const EdgeInsets.all(5),
                       elevation: 30,
                       color: Colors.black12,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          CircleAvatar(backgroundColor: Colors.grey,radius: 60,
-                            child: Icon(Icons.camera_enhance_outlined,color: Colors.white10,size:80,),
-
-
+                          const CircleAvatar(
+                            backgroundColor: Colors.grey,
+                            radius: 60,
+                            child: Icon(
+                              Icons.camera_enhance_outlined,
+                              color: Colors.white10,
+                              size: 80,
+                            ),
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                children: [
-                                  Text('Name :'),
-                                  Text('xyz')
-                                ],
+                                children: const [Text('Name :'), Text('xyz')],
                               ),
                               Row(
-                                children: [
+                                children: const [
                                   Text('Purpose :'),
                                   Text('for internship')
                                 ],
                               ),
                               Row(
-                                children: [
-                                  Text('Meet to :'),
-                                  Text('demo')
-                                ],
+                                children: const [Text('Meet to :'), Text('demo')],
                               ),
                             ],
                           )
                         ],
                       ),
-
                     ),
                   ),
-
-
                   Positioned(
                     right: 0,
                     left: 240,
@@ -73,25 +67,15 @@ class AdminVisitorListView extends GetView<AdminVisitorListController>{
                       height: 30,
                       width: 80,
                       color: Colors.indigo,
-
-                      child: Text("08-01-2023",style: TextStyle(color: Colors.white,fontSize: 14),textAlign:TextAlign.center),
+                      child: const Text("08-01-2023",
+                          style: TextStyle(color: Colors.white, fontSize: 14),
+                          textAlign: TextAlign.center),
                     ),
                   ),
-
                 ],
               );
-
-
             }),
-
-
       ),
-
-
-
-
-
     );
   }
-
 }

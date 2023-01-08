@@ -12,6 +12,8 @@ import 'package:visitantapp/features/login/binding/login_binding.dart';
 import 'package:visitantapp/features/login/view/login_view.dart';
 import 'package:visitantapp/features/otp/binding/otp_binding.dart';
 import 'package:visitantapp/features/otp/view/otp_view.dart';
+import 'package:visitantapp/features/signup/binding/signup_binding.dart';
+import 'package:visitantapp/features/signup/view/signup_view.dart';
 import 'package:visitantapp/features/splash/binding/splash_binding.dart';
 import 'package:visitantapp/features/splash/view/splash_view.dart';
 import 'package:visitantapp/features/welcome/view/welcome_view.dart';
@@ -46,7 +48,7 @@ List<GetPage> allpage = [
   ),
   GetPage(
     name: Routes.adminvisitorlist,
-    page: () => AdminVisitorListView(),
+    page: () => const AdminVisitorListView(),
     binding: AdminVisitorListBinding(),
   ),
 
@@ -55,5 +57,10 @@ GetPage(
     name: Routes.welcome,
     page: () => const WelcomeView(),
     binding: WelcomeBinding(),
+  ),
+GetPage(
+    name: Routes.signup,
+    page: () =>  const SignupView(),
+    binding: SignupBinding(),
   ),
 ];

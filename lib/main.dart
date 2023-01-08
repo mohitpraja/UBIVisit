@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch:GloabalColor.customMaterialColor,
       ),
-      initialRoute: Routes.adminvisitorlist,
+      initialRoute: Routes.splash,
       getPages: allpage,
     );
   }
