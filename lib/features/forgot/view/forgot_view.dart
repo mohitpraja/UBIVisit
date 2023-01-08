@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/components/custombutton.dart';
-import 'package:visitantapp/core/routes.dart';
+import 'package:visitantapp/core/customfont.dart';
 import 'package:visitantapp/features/forgot/controller/forgot_controller.dart';
 
 class ForgotView extends GetView<ForgotController> {
@@ -23,7 +23,7 @@ class ForgotView extends GetView<ForgotController> {
                     height: 15,
                   ),
                   IconButton(
-                      onPressed: () => Get.toNamed(Routes.forgot),
+                      onPressed: () => Get.back(),
                       icon: const Icon(
                         Icons.arrow_back,
                         color: Colors.black54,
@@ -43,18 +43,19 @@ class ForgotView extends GetView<ForgotController> {
                   const Padding(padding: EdgeInsets.only(top: 40)),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
                         'Forgot Your Password ?',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
+                            fontFamily: CustomFonts.alata,
                             color: Colors.black54),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Text(
+                      const Text(
                         'Enter your email address to retrieve your password',
                         textAlign: TextAlign.center,
                         style: TextStyle(
