@@ -5,4 +5,5 @@ class Routes {
   static String login = '/login_view.dart';
   static String forgot = '/forgot_view.dart';
   static String splash = '/splash_view.dart';
+  static String adminvisitorlist = '/adminvisitorlist_view.dart';
 }

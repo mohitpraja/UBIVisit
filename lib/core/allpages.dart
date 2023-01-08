@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:visitantapp/core/routes.dart';
 import 'package:visitantapp/features/admindash/binding/admindash_binding.dart';
+import 'package:visitantapp/features/admindash/otherpages/adminvisitorlist/binding/adminvisitorlist_binding.dart';
+import 'package:visitantapp/features/admindash/otherpages/adminvisitorlist/view/adminvisitorlist_view.dart';
 import 'package:visitantapp/features/admindash/view/admindash_view.dart';
 import 'package:visitantapp/features/forgot/binding/forgot_binding.dart';
 import 'package:visitantapp/features/forgot/view/forgot_view.dart';
@@ -12,6 +14,7 @@ import 'package:visitantapp/features/otp/binding/otp_binding.dart';
 import 'package:visitantapp/features/otp/view/otp_view.dart';
 import 'package:visitantapp/features/splash/binding/splash_binding.dart';
 import 'package:visitantapp/features/splash/view/splash_view.dart';
+
 
 List<GetPage> allpage = [
   GetPage(name: Routes.otp, page: () => const OtpView(), binding: OtpBinding()),
@@ -38,4 +41,11 @@ List<GetPage> allpage = [
     page: () => const AdminDashView(),
     binding: AdminDashBinding(),
   ),
+  GetPage(
+    name: Routes.adminvisitorlist,
+    page: () => AdminVisitorListView(),
+    binding: AdminVisitorListBinding(),
+  ),
+
+
 ];
