@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
-class AddEmployeeView extends StatefulWidget {
-  const AddEmployeeView({Key? key}) : super(key: key);
+import '../addemploye_controller/add_employe_controller.dart';
 
-  @override
-  State<AddEmployeeView> createState() => _AddEmployeeViewState();
-}
+class AddEmployeeView extends GetView<AddEmployeeController> {
+  const AddEmployeeView({super.key});
 
-class _AddEmployeeViewState extends State<AddEmployeeView> {
-  bool _obsecureText = true;
 
 
   @override
@@ -21,7 +19,7 @@ class _AddEmployeeViewState extends State<AddEmployeeView> {
           child: Column(
             children: [
               Image.asset(
-                "assets/profile_icon-png",
+                "assets/images/addemployee.png",
                 height: 50,
                 width: 60,
               ),
@@ -43,6 +41,8 @@ class _AddEmployeeViewState extends State<AddEmployeeView> {
 
                         const SizedBox(height: 25,),
                         TextFormField(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          obscureText: false,
                           decoration:
                           InputDecoration(filled: true,
                             fillColor: Colors.grey.shade400,
@@ -50,10 +50,18 @@ class _AddEmployeeViewState extends State<AddEmployeeView> {
                             hintText: "Name:",
                             prefixIcon: Icon(Icons.person),
                           ),
+                            validator: (value) {
+                              if (value == null ||value.length<5)
+                                return 'Name must be more than 5 charater';
+                              else
+                                return null;
+                            }
                         ),
 
                         const SizedBox(height: 21,),
                         TextFormField(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          obscureText: false,
                           decoration:
                           InputDecoration(filled: true,
                             fillColor: Colors.grey.shade400,
@@ -61,11 +69,21 @@ class _AddEmployeeViewState extends State<AddEmployeeView> {
                             hintText: "Email:",
                             prefixIcon: Icon(Icons.email_outlined),
                           ),
+                            validator: (value){
+                              Pattern pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                              RegExp regex = new RegExp(pattern.toString());
+                              if (!regex.hasMatch(value!))
+                                return 'Enter Valid Email';
+                              else
+                                return null;
+                            }
                         ),
 
 
                         const SizedBox(height: 21,),
                         TextFormField(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          obscureText: false,
                           decoration:
                           InputDecoration(filled: true,
                             fillColor:  Colors.grey.shade400,
@@ -73,10 +91,19 @@ class _AddEmployeeViewState extends State<AddEmployeeView> {
                             hintText: "Phone: ",
                             prefixIcon: Icon(Icons.phone),
                           ),
+                            validator:(value) {
+                              // Indian Mobile number are of 10 digit only
+                              if (value == null ||value.length<10)
+                                return 'Mobile Number must be of 10 digit';
+                              else
+                                return null;
+                            }
                         ),
 
                         const SizedBox(height: 21,),
                         TextFormField(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          obscureText: false,
                           decoration:
                           InputDecoration(filled: true,
                             fillColor:  Colors.grey.shade400,
@@ -84,75 +111,110 @@ class _AddEmployeeViewState extends State<AddEmployeeView> {
                             hintText: "Role: ",
                             prefixIcon: Icon(Icons.list_alt),
                           ),
+                            validator: (value) {
+                              if (value == null ||value.length<5)
+                                return 'Enter your role';
+                              else
+                                return null;
+                            }
                         ),
 
+
+                      const SizedBox(height: 21,),
+                       Obx(() => TextFormField(
+                         autovalidateMode: AutovalidateMode.onUserInteraction,
+                         obscureText: controller.isPassword.value,
+                         decoration:
+                         InputDecoration(filled: true,
+                           fillColor: Colors.grey.shade400,
+                           border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+                           hintText: "Enter Password",
+                           prefixIcon: Icon(Icons.lock_outline),
+                           suffixIcon: IconButton(
+                             icon: controller.isPassword.value
+                               ? const Icon(Icons.visibility)
+                               : const Icon(Icons.visibility_off),
+                               onPressed: () {
+                               controller.showPassword();
+                               },
+
+                           ),
+                      ),
+                           validator: (value){
+                             if (value == null ||value.length<8) {
+                               return "Password must be of 8 characters";
+                             }
+                             return null;
+                           }
+                       ),),
+
+
                         const SizedBox(height: 21,),
-                        TextFormField(
-                          obscureText: _obsecureText,
+                        Obx(() => TextFormField(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          obscureText: controller.isPassword.value,
                           decoration:
                           InputDecoration(filled: true,
                             fillColor: Colors.grey.shade400,
                             border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
-                            hintText: "Enter Password",
-                            prefixIcon: Icon(Icons.lock_outline),
-                            suffixIcon: IconButton(
-                              onPressed: (){
-                                setState(() {
-                                  _obsecureText =! _obsecureText;
-                                });
-                              }, icon: Icon(_obsecureText? Icons.visibility: Icons.visibility_off),),
-                          ),
-                        ),
-                        const SizedBox(height: 21,),
-                        TextFormField(  obscureText: _obsecureText,
-                          decoration:
-                          InputDecoration(filled: true,
-                            fillColor:Colors.grey.shade400,
-                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
                             hintText: "Confirm Password",
                             prefixIcon: Icon(Icons.lock_outline),
                             suffixIcon: IconButton(
-                              onPressed: (){
-                                setState(() {
-                                  _obsecureText =! _obsecureText;
-                                });
-                              }, icon: Icon(_obsecureText? Icons.visibility: Icons.visibility_off),),
+                              icon: controller.isPassword.value
+                                  ? const Icon(Icons.visibility)
+                                  : const Icon(Icons.visibility_off),
+                              onPressed: () {
+                                controller.showPassword();
+                              },
+
+                            ),
                           ),
-                        ),
+                            validator: (value){
+
+                              if(value == null ||value.length<8){
+                                return "Enter same password again";
+                              }
+                              return null;
+                            }
+                        ),),
+
                         const SizedBox(
                           height: 25,
 
                         ),
                         Center(
-                          child: ElevatedButton(
-                            style: ButtonStyle(
+                            child: ElevatedButton(
+                             style: ButtonStyle(
                               shape: MaterialStateProperty.all(RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),),
                               padding: MaterialStateProperty.all
                                 (EdgeInsets.symmetric(vertical: 15, horizontal: 100,),),
                               backgroundColor: MaterialStateProperty.all(Colors.indigo),
-                            ),
-                            onPressed: (){
+                                ),
+                                onPressed: (){
 
-                            },
-                            child: Text("Save",
+                               },
+                                child: Text("Save",
                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25,
                                 color:Colors.white, ),),
                           ),
                         ),
-                          ],
-                        )
 
 
 
+
+                          ]
                     ),
                   ),
-                  )
+                  ),
+              ),
             ],
           ),
         ),
     );
   }
-}
 
+
+
+}
