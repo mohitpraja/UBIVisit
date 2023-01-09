@@ -4,8 +4,9 @@ import 'package:pinput/pinput.dart';
 
 class OtpController extends GetxController {
   final defaultPinTheme = PinTheme(
-    width: 40,
-    height: 40,
+    width: 42,
+    height: 42,
+  
     textStyle: const TextStyle(
       fontSize: 20,
       color: Color.fromRGBO(30, 60, 87, 1),

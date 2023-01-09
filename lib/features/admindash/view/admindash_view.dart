@@ -13,21 +13,24 @@ class AdminDashView extends GetView <AdminDashController>{
              body: controller.adminallpages[controller.selectedindex.value],
               bottomNavigationBar: CurvedNavigationBar(
                 backgroundColor: Colors.white,
-                color:GloabalColor.customColor,
+                color:GlobalColor.customColor,
                 onTap: (value) {
                   controller.selectIndex(value);
                 },
-                items: const [
+                items: [
                   Icon(
                     Icons.home,
+                    size:Get.height*0.04,
                     color: Colors.white,
               ),
               Icon(
                 Icons.list,
+                size:Get.height*0.04,
                 color: Colors.white,
               ),
               Icon(
                 Icons.person,
+                size:Get.height*0.04,
                 color: Colors.white,
               ),
             ],

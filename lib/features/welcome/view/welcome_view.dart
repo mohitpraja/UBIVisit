@@ -10,40 +10,39 @@ class WelcomeView extends GetView {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        height: Get.height,
         color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(height:50,),
+            SizedBox(height:Get.height*0.05,),
              Padding(
-               padding: const EdgeInsets.only(left: 20),
+               padding: EdgeInsets.only(left: Get.width*0.05),
                child: Text('Welcome',style: TextStyle(
-                fontSize: 25,
+                fontSize:Get.height*0.04,
                 fontWeight: FontWeight.w500,
                 fontFamily: CustomFonts.alata,
                 color: Colors.black54
 
             ),),
              ),
-             const SizedBox(height: 30,),
-            Image.asset('assets/images/welcome.png',),
+             SizedBox(height:Get.height*0.05,),
+            Image.asset('assets/images/welcome.png',height:Get.height*0.35,),
             SizedBox(
               child: Stack(
                 children: [
                   Positioned(
                     child: Container(
                       width: Get.width,
-                      height: 400,
                       color: Colors.indigo,
                       child: Container(
                         margin: const EdgeInsets.all(15),
+                      height:Get.height*0.45,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const SizedBox(
-                              height: 60,
-                            ),
+                            SizedBox(height:Get.height*0.1,),
                             SizedBox(
                               width: Get.width,
                               child: ElevatedButton(
@@ -60,14 +59,14 @@ class WelcomeView extends GetView {
                                       'Login',
                                       style: TextStyle(
                                           color: Colors.indigo,
-                                          fontSize: 17,
+                                          fontSize: Get.height*0.02,
                                           fontWeight: FontWeight.w500,
                                           fontFamily: CustomFonts.alata
                                           ),
                                     ),
                                   )),
                             ),
-                            const SizedBox(height: 20,),
+                             SizedBox(height:Get.height*0.02,),
                             SizedBox(
                               width: Get.width,
                               child: ElevatedButton(
@@ -84,7 +83,7 @@ class WelcomeView extends GetView {
                                       'Signup for Admin',
                                       style: TextStyle(
                                           color: Colors.indigo,
-                                          fontSize: 17,
+                                          fontSize:Get.height*0.02,
                                           fontWeight: FontWeight.w500,
                                           fontFamily: CustomFonts.alata),
                                     ),
@@ -96,10 +95,9 @@ class WelcomeView extends GetView {
                     ),
                   ),
                   Positioned(
-                    top: -10,
+                    top: -5,
                     child: SizedBox(
                         width: Get.width,
-                        height: 150,
                         child: Image.asset(
                           'assets/images/welcomewave.png',
                           fit: BoxFit.fill,

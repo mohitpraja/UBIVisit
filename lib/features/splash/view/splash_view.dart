@@ -13,7 +13,7 @@ class SplashView extends GetView<SplashController> {
         body: Container(
             width: Get.width,
             height: Get.height,
-            color: GloabalColor.customColor,
+            color: GlobalColor.customColor,
             child: Stack(
               alignment: Alignment.center,
               children: [

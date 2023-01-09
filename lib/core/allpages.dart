@@ -3,8 +3,8 @@ import 'package:visitantapp/core/routes.dart';
 import 'package:visitantapp/features/addvisitor/binding/addvisitor_binding.dart';
 import 'package:visitantapp/features/addvisitor/view/addvisitor_view.dart';
 import 'package:visitantapp/features/admindash/binding/admindash_binding.dart';
-import 'package:visitantapp/features/admindash/otherpages/adminvisitorlist/binding/adminvisitorlist_binding.dart';
-import 'package:visitantapp/features/admindash/otherpages/adminvisitorlist/view/adminvisitorlist_view.dart';
+import 'package:visitantapp/features/admindash/admin/adminvisitorlist/binding/adminvisitorlist_binding.dart';
+import 'package:visitantapp/features/admindash/admin/adminvisitorlist/view/adminvisitorlist_view.dart';
 import 'package:visitantapp/features/admindash/view/admindash_view.dart';
 import 'package:visitantapp/features/forgot/binding/forgot_binding.dart';
 import 'package:visitantapp/features/forgot/view/forgot_view.dart';
@@ -69,7 +69,7 @@ GetPage(
 
   GetPage(
     name: Routes.addvisitor,
-    page: () =>  AddvisitorView(),
+    page: () =>  const AddvisitorView(),
     binding: AddvisitorBinding(),
   ),
 

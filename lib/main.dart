@@ -24,9 +24,9 @@ class MyApp extends StatelessWidget {
       title: 'UBIVisit',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch:GloabalColor.customMaterialColor,
+        primarySwatch:GlobalColor.customMaterialColor,
       ),
-      initialRoute: Routes.addvisitor,
+      initialRoute: Routes.splash,
       getPages: allpage,
     );
   }
