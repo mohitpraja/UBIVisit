@@ -5,7 +5,6 @@ import 'package:visitantapp/core/allpages.dart';
 import 'package:visitantapp/core/global.dart';
 import 'package:visitantapp/core/routes.dart';
 import 'firebase_options.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch:GloabalColor.customMaterialColor,
       ),
-      initialRoute: Routes.splash,
+      initialRoute: Routes.addvisitor,
       getPages: allpage,
     );
   }
