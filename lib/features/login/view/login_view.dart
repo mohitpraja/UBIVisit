@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/core/customfont.dart';
-import 'package:visitantapp/core/global.dart';
+import 'package:visitantapp/core/global/customfont.dart';
+import 'package:visitantapp/core/global/global.dart';
 import 'package:visitantapp/core/routes.dart';
 import 'package:visitantapp/features/login/controller/login_controller.dart';
 
@@ -42,16 +42,16 @@ class LoginView extends GetView<LoginController> {
                         Column(
                           children: [
                             Text(
-                              "Welcome Back!!!",
+                              "Welcome !!!",
                               style: TextStyle(
                                   color: Colors.black54,
-                                  fontSize: Get.height * 0.03,
+                                  fontSize:25,
                                   fontFamily: CustomFonts.alata),
                             ),
                             Text(
-                              "Login in to your existant account",
+                              "Login to your existing account",
                               style: TextStyle(
-                                  fontSize: Get.height * 0.018,
+                                  fontSize: 16,
                                   color: Colors.grey,
                                   fontFamily: CustomFonts.alata),
                             ),
@@ -67,10 +67,10 @@ class LoginView extends GetView<LoginController> {
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide:
                                       const BorderSide(color: Colors.grey))),
                         ),
@@ -85,10 +85,10 @@ class LoginView extends GetView<LoginController> {
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide:
                                       const BorderSide(color: Colors.grey))),
                         ),
@@ -102,7 +102,10 @@ class LoginView extends GetView<LoginController> {
                                 style: TextStyle(
                                     color: GlobalColor.customColor,
                                     fontFamily: CustomFonts.alata,
-                                    fontSize: Get.height * 0.018),
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 1,
+
+                                    fontSize:16),
                               ),
                             ),
                           ],
@@ -143,12 +146,12 @@ class LoginView extends GetView<LoginController> {
                             label: Padding(
                               padding: const EdgeInsets.symmetric(vertical:10),
                               child: Text(
-                                'Google',
+                                'login with Google',
                                 style: TextStyle(
                                     color: GlobalColor.customColor,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize: Get.height * 0.02,
+                                    fontSize:16,
                                     fontFamily: CustomFonts.alata),
                               ),
                             ),
@@ -172,7 +175,7 @@ class LoginView extends GetView<LoginController> {
                               style: TextStyle(
                                 color: Colors.black54,
                                 fontWeight: FontWeight.w500,
-                                fontSize:Get.height*0.02,
+                                fontSize:16,
                                 fontFamily: CustomFonts.alata
                               ),
                             ),
@@ -183,7 +186,7 @@ class LoginView extends GetView<LoginController> {
                                 style: TextStyle(
                                     color: Colors.indigo,
                                     fontWeight: FontWeight.w600,
-                                     fontSize:Get.height*0.021,
+                                     fontSize:17,
                                 fontFamily: CustomFonts.alata
                                     ),
                               ),

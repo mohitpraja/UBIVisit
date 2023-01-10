@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/core/customfont.dart';
-import 'package:visitantapp/core/global.dart';
+import 'package:visitantapp/core/global/customfont.dart';
+import 'package:visitantapp/core/global/global.dart';
 import 'package:visitantapp/features/forgot/controller/forgot_controller.dart';
 
 class ForgotView extends GetView<ForgotController> {
@@ -37,10 +37,11 @@ class ForgotView extends GetView<ForgotController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'Forgot Your Password ?',
+                        'Forgot Password ?',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: Get.height * 0.035,
+                            fontSize:30,
                             fontFamily: CustomFonts.alata,
                             color: Colors.black54),
                       ),
@@ -52,7 +53,7 @@ class ForgotView extends GetView<ForgotController> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            fontSize: Get.height * 0.0185,
+                            fontSize: 16,
                             fontFamily: CustomFonts.alata,
                             color: Colors.black45),
                       ),
@@ -68,10 +69,10 @@ class ForgotView extends GetView<ForgotController> {
                         focusedBorder: OutlineInputBorder(
                           borderSide:
                               BorderSide(color: GlobalColor.customColor),
-                          borderRadius: BorderRadius.circular(25),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                         enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25),
+                            borderRadius: BorderRadius.circular(10),
                             borderSide: const BorderSide(color: Colors.grey))),
                   ),
                   CustomButton(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/core/customfont.dart';
-import 'package:visitantapp/core/global.dart';
+import 'package:visitantapp/core/global/customfont.dart';
+import 'package:visitantapp/core/global/global.dart';
 import 'package:visitantapp/core/routes.dart';
 
 class SignupView extends GetView {
@@ -13,17 +13,21 @@ class SignupView extends GetView {
     return Scaffold(
        appBar:AppBar(
         elevation: 0,
+        titleSpacing: 1,
         backgroundColor: Colors.white,
         leading: IconButton(onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back),color: Colors.black54,),
       ),
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),
-        child: SingleChildScrollView(
-          child: Container(
-            color: Colors.white,
+        child: Container(
+          color: Colors.white,
+          height: Get.height,
+          child: SingleChildScrollView(
+            
             child: Container(
+            color: Colors.white,
               margin: const EdgeInsets.symmetric(horizontal:12),
-              height: Get.height*0.8,
+              height: Get.height*0.75,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -37,7 +41,8 @@ class SignupView extends GetView {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black54,
-                            fontSize: Get.height*0.03,
+                            fontSize:28,
+                            fontWeight: FontWeight.normal,
                             fontFamily: CustomFonts.alata),
                       ),
                       Text(
@@ -45,7 +50,7 @@ class SignupView extends GetView {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.grey,
-                            fontSize:Get.height*0.02,
+                            fontSize:15,
                             fontFamily: CustomFonts.alata),
                       ),
                     ],
@@ -67,10 +72,10 @@ class SignupView extends GetView {
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide:
                                       const BorderSide(color: Colors.grey))),
                         ),
@@ -85,10 +90,10 @@ class SignupView extends GetView {
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide:
                                       const BorderSide(color: Colors.grey))),
                         ),
@@ -105,10 +110,10 @@ class SignupView extends GetView {
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide:
                                       const BorderSide(color: Colors.grey))),
                         ),
@@ -123,10 +128,10 @@ class SignupView extends GetView {
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide:
                                       const BorderSide(color: Colors.grey))),
                         ),
@@ -141,10 +146,10 @@ class SignupView extends GetView {
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
+                                borderRadius: BorderRadius.circular(10),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(10),
                                   borderSide:
                                       const BorderSide(color: Colors.grey))),
                         ),
@@ -160,7 +165,7 @@ class SignupView extends GetView {
                             Text(
                               'Already have an account? ',
                               style: TextStyle(
-                                  fontSize:Get.height*0.02,
+                                  fontSize:16,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: CustomFonts.alata,
                                   color: Colors.black54),
@@ -170,7 +175,7 @@ class SignupView extends GetView {
                               child: Text(
                                 'Login here ',
                                 style: TextStyle(
-                                    fontSize: Get.height*0.021,
+                                    fontSize: 17,
                                     fontWeight: FontWeight.w500,
                                     fontFamily: CustomFonts.alata,
                                     color: GlobalColor.customColor),

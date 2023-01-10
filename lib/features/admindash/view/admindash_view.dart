@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:visitantapp/core/global.dart';
+import 'package:visitantapp/core/global/global.dart';
 import 'package:visitantapp/features/admindash/controller/admindash_controller.dart';
 
 class AdminDashView extends GetView <AdminDashController>{
