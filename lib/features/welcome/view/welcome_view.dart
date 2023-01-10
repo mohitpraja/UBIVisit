@@ -28,7 +28,6 @@ class WelcomeView extends GetView {
               child: SizedBox(
                   width: Get.width,
                   height: Get.height * 0.58,
-                  // color: Colors.red,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
