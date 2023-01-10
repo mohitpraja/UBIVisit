@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:visitantapp/core/routes.dart';
+import 'package:visitantapp/features/addemployee/binding/addemployee_binding.dart';
+import 'package:visitantapp/features/addemployee/view/addemploye_view.dart';
 import 'package:visitantapp/features/addvisitor/binding/addvisitor_binding.dart';
 import 'package:visitantapp/features/addvisitor/view/addvisitor_view.dart';
 import 'package:visitantapp/features/admindash/binding/admindash_binding.dart';
@@ -66,5 +68,10 @@ List<GetPage> allpage = [
     name: Routes.addvisitor,
     page: () => const AddvisitorView(),
     binding: AddvisitorBinding(),
+  ),
+  GetPage(
+    name: Routes.addemployee,
+    page: () => const AddEmployeeView(),
+    binding: AddEmployeeBinding(),
   ),
 ];

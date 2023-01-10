@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/core/customfont.dart';
-import 'package:visitantapp/core/global.dart';
+import 'package:visitantapp/core/global/customfont.dart';
+import 'package:visitantapp/core/global/global.dart';
 import 'package:visitantapp/features/otp/controller/otp_controller.dart';
 
 class OtpView extends GetView<OtpController> {
