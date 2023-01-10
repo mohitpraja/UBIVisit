@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:visitantapp/components/custombutton.dart';
+import 'package:visitantapp/core/components/custombutton.dart';
 import 'package:visitantapp/core/customfont.dart';
 import 'package:visitantapp/core/global.dart';
 
@@ -13,11 +13,12 @@ class AdminHomeView extends GetView {
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
+        toolbarHeight: 60,
         elevation: 0,
         title: Text(
           'Dashboard',
           style: TextStyle(
-              fontSize: 20, fontFamily: GoogleFonts.alata().fontFamily),
+              fontSize:Get.height*0.03, fontFamily: CustomFonts.alata),
         ),
       ),
       drawer: Drawer(
@@ -29,7 +30,7 @@ class AdminHomeView extends GetView {
               height: Get.height * 0.2,
               child: DrawerHeader(
                 decoration: BoxDecoration(
-                  color: GloabalColor.customColor,
+                  color: GlobalColor.customColor,
                 ),
                 child: Container(
                   margin: const EdgeInsets.only(top: 10),
@@ -44,14 +45,14 @@ class AdminHomeView extends GetView {
                             'Your name',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 24,
+                                fontSize:Get.height*0.03,
                                 fontFamily: CustomFonts.alata),
                           ),
                           Text(
                             '1234567890',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 15,
+                                fontSize: Get.height*0.02,
                                 fontFamily: CustomFonts.alata),
                           ),
                         ],
@@ -109,7 +110,7 @@ class AdminHomeView extends GetView {
           children: [
             Container(
               height: Get.height * 0.24,
-              color: GloabalColor.customColor,
+              color: GlobalColor.customColor,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -136,7 +137,7 @@ class AdminHomeView extends GetView {
                                     style: TextStyle(
                                         color: Colors.black54,
                                         fontWeight: FontWeight.w500,
-                                        fontSize: 17.5,
+                                        fontSize:Get.height*0.023,
                                         fontFamily: CustomFonts.alata),
                                   ),
                                   const SizedBox(
@@ -147,7 +148,7 @@ class AdminHomeView extends GetView {
                                     style: TextStyle(
                                         color: Colors.black54,
                                         fontWeight: FontWeight.w500,
-                                        fontSize: 15,
+                                        fontSize:Get.height*0.02,
                                         fontFamily: CustomFonts.alata),
                                   )
                                 ],
@@ -176,8 +177,8 @@ class AdminHomeView extends GetView {
                   decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(25),
-                          topRight: Radius.circular(25))),
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30))),
                   child: Container(
                     margin: const EdgeInsets.all(10),
                     child: Column(
@@ -187,26 +188,33 @@ class AdminHomeView extends GetView {
                         ),
                         CustomButton(
                           title: 'Add Employee',
-                          onpress: () {},
+                          onPress: () {},
                         ),
                         const SizedBox(
                           height: 15,
                         ),
                         SizedBox(
                           width: Get.width,
-                          child: MaterialButton(
+                          child: ElevatedButton(
                             onPressed: () {},
-                            color: Colors.grey,
-                            shape: const StadiumBorder(),
-                            child: const Padding(
-                              padding: EdgeInsets.all(12),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical:10),
                               child: Text(
                                 'Add Guard',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: GlobalColor.customColor,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 16),
+                                    letterSpacing: 1,
+                                    fontSize: Get.height * 0.02,
+                                    fontFamily: CustomFonts.alata),
                               ),
+                            ),
+                            
+                          
+                            style: ElevatedButton.styleFrom(
+                              shape: const StadiumBorder(
+                                  side: BorderSide(color: Colors.indigo)),
+                              backgroundColor: Colors.white,
                             ),
                           ),
                         ),

@@ -78,7 +78,7 @@ class IntroductionView extends GetView<IntroductionController> {
           ],
 
           onDone: () {
-            Get.toNamed(Routes.otp);
+            Get.toNamed(Routes.welcome);
           },
           // scrollPhysics: BouncingScrollPhysics(),
           autoScrollDuration: 8000,

@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
 import 'package:visitantapp/core/routes.dart';
+import 'package:visitantapp/features/addvisitor/binding/addvisitor_binding.dart';
+import 'package:visitantapp/features/addvisitor/view/addvisitor_view.dart';
 import 'package:visitantapp/features/admindash/binding/admindash_binding.dart';
+import 'package:visitantapp/features/admindash/admin/adminvisitorlist/binding/adminvisitorlist_binding.dart';
+import 'package:visitantapp/features/admindash/admin/adminvisitorlist/view/adminvisitorlist_view.dart';
 import 'package:visitantapp/features/admindash/view/admindash_view.dart';
 import 'package:visitantapp/features/forgot/binding/forgot_binding.dart';
 import 'package:visitantapp/features/forgot/view/forgot_view.dart';
@@ -10,14 +14,13 @@ import 'package:visitantapp/features/login/binding/login_binding.dart';
 import 'package:visitantapp/features/login/view/login_view.dart';
 import 'package:visitantapp/features/otp/binding/otp_binding.dart';
 import 'package:visitantapp/features/otp/view/otp_view.dart';
+import 'package:visitantapp/features/signup/binding/signup_binding.dart';
+import 'package:visitantapp/features/signup/view/signup_view.dart';
 import 'package:visitantapp/features/splash/binding/splash_binding.dart';
 import 'package:visitantapp/features/splash/view/splash_view.dart';
-import 'package:visitantapp/features/welcome/binding/welcome_binding.dart';
 import 'package:visitantapp/features/welcome/view/welcome_view.dart';
-import '../features/addemployee/addemploye_binding/add_employe_binding.dart';
-import '../features/addemployee/addemploye_view/add_employe_view.dart';
-import '../features/signup/signupbinding/signup_binding.dart';
-import '../features/signup/signupview/signup_view.dart';
+
+import '../features/welcome/binding/welcome_binding.dart';
 
 List<GetPage> allpage = [
   GetPage(name: Routes.otp, page: () => const OtpView(), binding: OtpBinding()),
@@ -45,16 +48,23 @@ List<GetPage> allpage = [
     binding: AdminDashBinding(),
   ),
   GetPage(
+    name: Routes.adminvisitorlist,
+    page: () => const AdminVisitorListView(),
+    binding: AdminVisitorListBinding(),
+  ),
+  GetPage(
     name: Routes.welcome,
     page: () => const WelcomeView(),
     binding: WelcomeBinding(),
   ),
-  GetPage(name: Routes.signup,
-    page: ()=> SignupView(),
-    binding: SignUpBinding(),
+  GetPage(
+    name: Routes.signup,
+    page: () => const SignupView(),
+    binding: SignupBinding(),
   ),
-  GetPage(name: Routes.addemployee,
-    page: ()=> AddEmployeeView(),
-    binding: AddEmployeeBinding(),
+  GetPage(
+    name: Routes.addvisitor,
+    page: () => const AddvisitorView(),
+    binding: AddvisitorBinding(),
   ),
 ];

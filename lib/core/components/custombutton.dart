@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:visitantapp/core/customfont.dart';
 import 'package:visitantapp/core/global.dart';
 
 class CustomButton extends GetView {
   final String title;
-  final VoidCallback onpress;
-  const CustomButton({super.key, required this.title, required this.onpress});
+  final VoidCallback onPress;
+  const CustomButton({super.key, required this.title, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: Get.width,
       child: MaterialButton(
-        onPressed: onpress,
-        color:GloabalColor.customColor,
+        onPressed: onPress,
+        color:GlobalColor.customColor,
         shape: const StadiumBorder(),
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(10),
           child: Text(
             title,
-            style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16),
+            style: TextStyle(
+                color: Colors.white, letterSpacing: 1,fontWeight: FontWeight.w600, fontSize:Get.height*0.02,fontFamily: CustomFonts.alata),
           ),
         ),
       ),

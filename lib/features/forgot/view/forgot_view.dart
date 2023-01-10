@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:visitantapp/components/custombutton.dart';
-import 'package:visitantapp/core/routes.dart';
+import 'package:visitantapp/core/components/custombutton.dart';
+import 'package:visitantapp/core/customfont.dart';
+import 'package:visitantapp/core/global.dart';
 import 'package:visitantapp/features/forgot/controller/forgot_controller.dart';
 
 class ForgotView extends GetView<ForgotController> {
@@ -14,74 +15,68 @@ class ForgotView extends GetView<ForgotController> {
         onTap: () => Get.focusScope!.unfocus(),
         child: SingleChildScrollView(
           child: Container(
+            height: Get.height * 0.8,
             margin: const EdgeInsets.all(12),
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
                   IconButton(
-                      onPressed: () => Get.toNamed(Routes.forgot),
+                      onPressed: () => Get.back(),
                       icon: const Icon(
                         Icons.arrow_back,
                         color: Colors.black54,
-                        size: 30,
                       )),
-                  const SizedBox(
-                    height: 50,
+                  Image.asset(
+                    'assets/images/forgot.png',
+                    height: Get.height * 0.3,
+                    fit: BoxFit.cover,
                   ),
-                  Container(
-                    height: 250,
-                    width: 300,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/forgot.png'),
-                            fit: BoxFit.cover)),
-                  ),
-                  const Padding(padding: EdgeInsets.only(top: 40)),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
                         'Forgot Your Password ?',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 25,
+                            fontSize: Get.height * 0.035,
+                            fontFamily: CustomFonts.alata,
                             color: Colors.black54),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: Get.height * 0.01,
                       ),
                       Text(
                         'Enter your email address to retrieve your password',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            fontSize: Get.height * 0.0185,
+                            fontFamily: CustomFonts.alata,
                             color: Colors.black45),
                       ),
                     ],
                   ),
-                  const Padding(padding: EdgeInsets.only(top: 40)),
-                  SizedBox(
-                      height: 50,
-                      width: Get.width,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          filled: true,
-                          prefixIcon: const Icon(Icons.email),
-                          hintText: 'Enter email address',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: const BorderSide(color: Colors.grey)),
+                  TextFormField(
+                    style: const TextStyle(color: Colors.black54),
+                    decoration: InputDecoration(
+                        filled: true,
+                        hintStyle: const TextStyle(color: Colors.black54),
+                        hintText: 'Enter email address',
+                        prefixIcon: const Icon(Icons.email),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: GlobalColor.customColor),
+                          borderRadius: BorderRadius.circular(25),
                         ),
-                      )),
-                  const Padding(padding: EdgeInsets.only(top: 40)),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25),
+                            borderSide: const BorderSide(color: Colors.grey))),
+                  ),
                   CustomButton(
                     title: 'Reset Password',
-                    onpress: () {},
+                    onPress: () {},
                   )
                 ],
               ),

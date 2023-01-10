@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
-import 'package:visitantapp/components/custombutton.dart';
+import 'package:visitantapp/core/components/custombutton.dart';
+import 'package:visitantapp/core/customfont.dart';
 import 'package:visitantapp/core/global.dart';
 import 'package:visitantapp/features/otp/controller/otp_controller.dart';
 
@@ -11,45 +11,49 @@ class OtpView extends GetView<OtpController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:AppBar(
+        elevation: 0,
+        leading: IconButton(onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back)),
+      ),
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),
         child: Stack(
           children: [
-            Container(
-              width: Get.width,
-              color:GloabalColor.customColor,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  Image.asset(
-                    'assets/images/password.png',
-                    width: 150,
-                    height: 80,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    'OTP Verification',
-                    style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: GoogleFonts.alata().fontFamily),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const Text(
-                    'Please enter the OTP send to your mobile number',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
+            Positioned(
+              top: 0,
+              child: Container(
+                width: Get.width,
+                height: Get.height,
+                color:GlobalColor.customColor,
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/password.png',
+                      height:Get.height*0.12,
+                    ),
+                   SizedBox(height:Get.height*0.015,),
+                   
+                    Text(
+                      'OTP Verification',
+                      style: TextStyle(
+                          fontSize: Get.height*0.035,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: CustomFonts.alata),
+                    ),
+                   SizedBox(height:Get.height*0.002,),
+                    
+                    Text(
+                      'Please enter the OTP send to your mobile number',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: Get.height*0.018,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: CustomFonts.alata
+                          ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Positioned(
@@ -71,59 +75,58 @@ class OtpView extends GetView<OtpController> {
                 child: Container(
                   margin: const EdgeInsets.all(15),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    SizedBox(
+                      height:Get.height*0.4,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          const Text(
-                            '+91 1234567890',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black54),
-                          ),
-                          IconButton(
+                            Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '+91 1234567890',
+                              style: TextStyle(
+                                  fontSize: Get.height*0.03,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black54),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.edit),
+                              color: Colors.black54,
+                            ),
+                          ],
+                        ),
+                       
+                        Pinput(
+                          length: 6,
+                          pinAnimationType: PinAnimationType.fade,
+                          defaultPinTheme: controller.defaultPinTheme,
+                        ),
+                       
+                        Text(
+                          "Didn't recieve an OTP",
+                          style: TextStyle(color: Colors.black54,fontSize:Get.height*0.02,fontWeight: FontWeight.w500 ),
+                        ),
+                       
+                        TextButton(
                             onPressed: () {},
-                            icon: const Icon(Icons.edit),
-                            color: Colors.black54,
-                          ),
+                            child: const Text(
+                              'Resend OTP',
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.w600),
+                            )),
+                       
+                        CustomButton(
+                          title: 'Verify',
+                          onPress: () {},
+                        )
                         ],
                       ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Pinput(
-                        length: 6,
-                        pinAnimationType: PinAnimationType.fade,
-                        defaultPinTheme: controller.defaultPinTheme,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Text(
-                        "Didn't recieve an OTP",
-                        style: TextStyle(color: Colors.black54),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            'Resend OTP',
-                            style: TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.w600),
-                          )),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      CustomButton(
-                        title: 'Verify',
-                        onpress: () {},
-                      )
+                    ),
+                    
                     ],
                   ),
                 ),
