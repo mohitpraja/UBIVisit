@@ -18,16 +18,15 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
         margin: EdgeInsets.all(10),
         height: Get.height,
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
+             mainAxisAlignment: MainAxisAlignment.spaceAround,
                      children: [
                        Image.asset(
                             "assets/images/addemployee.png",
                            height: 50,
                            width: 60,
                                       ),
-
-
-
 
                         Container(
                           alignment:Alignment.center,
@@ -57,7 +56,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                             }
                         ),
 
-                        const SizedBox(height: 18,),
+                        const SizedBox(height: 12,),
                         TextFormField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           obscureText: false ,
@@ -79,7 +78,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                         ),
 
 
-                        const SizedBox(height: 18,),
+                        const SizedBox(height: 12,),
                         TextFormField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           obscureText: false,
@@ -99,7 +98,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                             }
                         ),
 
-                        const SizedBox(height: 18,),
+                        const SizedBox(height: 12,),
                         TextFormField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           obscureText: false,
@@ -119,7 +118,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                         ),
 
 
-                      const SizedBox(height: 18,),
+                      const SizedBox(height: 12,),
                        Obx(() => TextFormField(
                          autovalidateMode: AutovalidateMode.onUserInteraction,
                          obscureText: controller.isPassword.value,
@@ -147,7 +146,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                        ),),
 
 
-                        const SizedBox(height: 18,),
+                        const SizedBox(height: 12,),
                         Obx(() => TextFormField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           obscureText: controller.isPassword.value,
@@ -175,10 +174,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                             }
                         ),),
 
-                        const SizedBox(
-                          height: 22,
-
-                        ),
+                        const SizedBox(height: 17, ),
                         Center(
                             child: SizedBox(
                               width: Get.width*.8,
@@ -202,10 +198,6 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                             ),
                         ),
                        SizedBox(height: Get.height*.1,)
-
-
-
-
                           ]
 
                   ),
