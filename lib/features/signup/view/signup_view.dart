@@ -125,8 +125,9 @@ class SignupView extends GetView <SignupController>{
                       CustomButton(
                         title: 'Signup',
                         onPress: () {
-                         if(GlobalFunction.formkey.currentState!.validate()){
-                          Get.toNamed(Routes.otp);
+                         if(GlobalFunction.formValid()){
+                           print("fyy");
+                           GlobalFunction.CheckConnection();
                          }
 
                         },
