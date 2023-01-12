@@ -79,7 +79,7 @@ List<GetPage> allpage = [
 
   GetPage(
     name: Routes.visitoranalysis,
-    page: () => VisitorAnalysisView(),
+    page: () => const VisitorAnalysisView(),
     binding: VisitorAnalysisBinding(),
   ),
 ];

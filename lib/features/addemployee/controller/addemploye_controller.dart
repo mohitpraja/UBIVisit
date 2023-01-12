@@ -18,7 +18,7 @@ class AddEmployeeController extends GetxController {
      isPassword.value=true;
    }
   }
- SignUpAPI() async {
+ signUpAPI() async {
   var isValide = formkey.currentState?.validate();
   if (isValide == true) {
    Get.snackbar("alert", "Add employee successful",

@@ -4,30 +4,32 @@ import 'package:visitantapp/core/components/custombutton.dart';
 import 'package:visitantapp/core/global/customfont.dart';
 import 'package:visitantapp/core/global/global.dart';
 import 'package:visitantapp/core/routes.dart';
+import 'package:visitantapp/features/admindash/admin/adminhome/controller/adminhome_controller.dart';
 
-class AdminHomeView extends GetView {
+class AdminHomeView extends GetView <AdminHomeController>{
   const AdminHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        titleSpacing: 0,
-        toolbarHeight: 60,
-        elevation: 0,
-        title: Text(
-          'Dashboard',
-          style: TextStyle(fontSize: 23, fontFamily: CustomFonts.alata),
-        ),
-      ),
-      drawer: Drawer(
-        width: Get.width * 0.75,
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            SizedBox(
-              height: Get.height * 0.2,
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            titleSpacing: 0,
+            toolbarHeight: 60,
+            backgroundColor:GlobalColor.customColor,
+            elevation: 0,
+            title: Text(
+              'Dashboard',
+              style: TextStyle(fontSize: 23, fontFamily: CustomFonts.alata),
+            ),
+          ),
+          drawer: Drawer(
+            width: Get.width * 0.75,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                SizedBox(
+              height: 160,
               child: DrawerHeader(
                 decoration: BoxDecoration(
                   color: GlobalColor.customColor,
@@ -69,51 +71,218 @@ class AdminHomeView extends GetView {
                 ),
               ),
             ),
-            const ListTile(
-              leading: Icon(Icons.home),
-              minLeadingWidth: 5,
-              title: Text('Home'),
-            ),
-            const ListTile(
-              leading: Icon(Icons.notes),
-              minLeadingWidth: 5,
-              title: Text('Visitor List'),
-            ),
-            const ListTile(
-              leading: Icon(Icons.account_circle),
-              minLeadingWidth: 5,
-              title: Text('Profile'),
-            ),
-            const ListTile(
-              leading: Icon(Icons.play_circle_fill),
-              minLeadingWidth: 5,
-              title: Text('Tutorial'),
-            ),
-            const ListTile(
-              leading: Icon(Icons.people),
-              minLeadingWidth: 5,
-              title: Text('Manage Users'),
-            ),
-            ExpansionTile(
-              leading: Icon(Icons.settings),
+            ListTile(
+              leading: const Icon(Icons.home),
+              horizontalTitleGap: 0,
               title: Text(
-                'Setting',
-                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+                'Home',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
               ),
-              
-              children: <Widget>[
-                ListTile(
-                  title: Text(
-                    'description',
-                    style: TextStyle(fontWeight: FontWeight.w700),
+            ),
+            ListTile(
+              leading: const Icon(Icons.notes),
+              horizontalTitleGap: 0,
+              title: Text(
+                'Visitor List',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.account_circle),
+              horizontalTitleGap: 0,
+              title: Text(
+                'Profile',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.play_circle_fill),
+              horizontalTitleGap: 0,
+              title: Text(
+                'Tutorial',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.people),
+              horizontalTitleGap: 0,
+              title: Text(
+                'Manage Users',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              ),
+            ),
+            ListTileTheme(
+              horizontalTitleGap: 0,
+              child: ExpansionTile(
+                
+                title: Text(
+                  'Setting',
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: CustomFonts.alata),
+                ),
+                leading: const Icon(Icons.settings),
+                children: [
+                  SizedBox(
+                    width: Get.width*0.5,
+                    child: Column(
+                      children: [
+                      Text('Themes', style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: CustomFonts.alata),),
+                      const Divider(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            InkWell(
+                              onTap: () {
+
+                              },
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                    border: Border.all(width: 0.2),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: const Center(
+                                    child: Icon(
+                                  Icons.sunny,
+                                  color: Colors.black54,
+                                )),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                
+                              },
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                    border: Border.all(width: 0.2),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: const Center(
+                                    child: Icon(
+                                  Icons.dark_mode,
+                                  color: Colors.black54,
+                                )),
+                              ),
+                            )
+                          ],
+                        ),
+                         const SizedBox(height: 10,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            GlobalColor.customColor=Colors.teal;
+                            GlobalColor.customMaterialColor=Colors.teal;
+                            Get.back();
+                            Get.offAllNamed(Routes.admindash);
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: const BoxDecoration(
+                                color: Colors.teal, shape: BoxShape.circle),
+                          ),
+                        ),
+                        InkWell(
+                           onTap: () {
+                            GlobalColor.customColor=Colors.deepOrange;
+                            GlobalColor.customMaterialColor=Colors.deepOrange;
+                             Get.back();
+                            Get.offAllNamed(Routes.admindash,predicate:(route) =>false,);
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: const BoxDecoration(
+                                color: Colors.deepOrange, shape: BoxShape.circle),
+                          ),
+                        ),
+                        InkWell(
+                           onTap: () {
+                            GlobalColor.customColor=Colors.blue;
+                            GlobalColor.customMaterialColor=Colors.blue;
+                              Get.back();
+                            Get.offAllNamed(Routes.admindash);
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: const BoxDecoration(
+                                color: Colors.blue, shape: BoxShape.circle),
+                          ),
+                        ),
+                        InkWell(
+                           onTap: () {
+                            GlobalColor.customColor=Colors.green;
+                            GlobalColor.customMaterialColor=Colors.green;
+                             Get.back();
+                            Get.offAllNamed(Routes.admindash);
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: const BoxDecoration(
+                                color: Colors.green, shape: BoxShape.circle),
+                          ),
+                        ),
+                        InkWell(
+                           onTap: () {
+                            GlobalColor.customColor=Colors.pink;
+                            GlobalColor.customMaterialColor=Colors.pink;
+                             Get.back();
+                            Get.offAllNamed(Routes.admindash);
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: const BoxDecoration(
+                                color: Colors.pink, shape: BoxShape.circle),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10,),
+                      ],
+                    ),
                   ),
-                )
-              ],
+                 
+
+                ],
+              ),
             ),
             ListTile(
               leading: const Icon(Icons.exit_to_app),
               minLeadingWidth: 5,
-              title: const Text('Logout'),
+              title: Text(
+                'Logout',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              ),
               onTap: () {
                 // dashhomecont.islogout();
               },
@@ -137,7 +306,7 @@ class AdminHomeView extends GetView {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.indigo.shade200,
+                          color: Colors.white54,
                         ),
                         margin: const EdgeInsets.all(8),
                         width: Get.width * 0.95,
@@ -243,6 +412,6 @@ class AdminHomeView extends GetView {
           ],
         ),
       ),
-    );
+     );
   }
 }

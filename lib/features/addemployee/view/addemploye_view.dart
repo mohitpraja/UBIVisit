@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:visitantapp/features/addemployee/controller/addemploye_controller.dart';
 
-import '../controller/addemploye_controller.dart';
 
 class AddEmployeeView extends GetView<AddEmployeeController> {
   const AddEmployeeView({super.key});
@@ -15,10 +14,10 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
 
 
       body:Container(
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         height: Get.height,
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
              mainAxisAlignment: MainAxisAlignment.spaceAround,
                      children: [
@@ -42,10 +41,10 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           obscureText: false,
                           decoration:
-                          InputDecoration(
-                            border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+                          const InputDecoration(
+                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
                             hintText: "Name:",
-                            prefixIcon: const Icon(Icons.person),
+                            prefixIcon: Icon(Icons.person),
                           ),
                             validator: (value) {
                               if (value == null ||value.length<5) {
@@ -61,10 +60,10 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           obscureText: false ,
                           decoration:
-                          InputDecoration(
-                            border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+                          const InputDecoration(
+                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
                             hintText: "Email:",
-                            prefixIcon: const Icon(Icons.email_outlined),
+                            prefixIcon: Icon(Icons.email_outlined),
                           ),
                             validator: (value){
                               Pattern pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -83,10 +82,10 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           obscureText: false,
                           decoration:
-                          InputDecoration(
-                            border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+                          const InputDecoration(
+                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
                             hintText: "Phone: ",
-                            prefixIcon: const Icon(Icons.phone),
+                            prefixIcon: Icon(Icons.phone),
                           ),
                             validator:(value) {
                               // Indian Mobile number are of 10 digit only
@@ -103,10 +102,10 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           obscureText: false,
                           decoration:
-                          InputDecoration(
-                            border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+                          const InputDecoration(
+                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
                             hintText: "Role: ",
-                            prefixIcon: const Icon(Icons.list_alt),
+                            prefixIcon: Icon(Icons.list_alt),
                           ),
                             validator: (value) {
                               if (value == null ||value.length<5) {

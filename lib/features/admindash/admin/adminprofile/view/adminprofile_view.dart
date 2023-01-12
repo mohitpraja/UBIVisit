@@ -14,6 +14,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+            backgroundColor:GlobalColor.customColor,
         title: Text('Profile',style: TextStyle(
           fontFamily: CustomFonts.alata
         ),),
