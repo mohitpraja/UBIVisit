@@ -76,4 +76,10 @@ List<GetPage> allpage = [
     page: () => const AddEmployeeView(),
     binding: AddEmployeeBinding(),
   ),
+
+  GetPage(
+    name: Routes.visitoranalysis,
+    page: () => VisitorAnalysisView(),
+    binding: VisitorAnalysisBinding(),
+  ),
 ];

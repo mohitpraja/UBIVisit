@@ -65,12 +65,8 @@ class VisitorAnalysisView extends GetView<VisitorAnalysisController>{
                     style:TextStyle(color:Colors.black87 ) ,
                     decoration: InputDecoration(
                         hintText: "Search...",
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: Colors.black87,
-                            )
-                        )
+                        border: OutlineInputBorder(
+                          borderRadius:BorderRadius.circular(10) ),
                     ),
                   ),
 
