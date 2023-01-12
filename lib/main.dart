@@ -2,9 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/allpages.dart';
-import 'package:visitantapp/core/global.dart';
+import 'package:visitantapp/core/global/global.dart';
 import 'package:visitantapp/core/routes.dart';
 import 'firebase_options.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'UBIVisit',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch:GlobalColor.customMaterialColor,
+        primarySwatch: GlobalColor.customMaterialColor,
       ),
       initialRoute: Routes.splash,
       getPages: allpage,

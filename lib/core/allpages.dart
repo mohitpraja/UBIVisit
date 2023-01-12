@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:visitantapp/core/routes.dart';
+import 'package:visitantapp/features/addemployee/binding/addemployee_binding.dart';
+import 'package:visitantapp/features/addemployee/view/addemploye_view.dart';
 import 'package:visitantapp/features/addvisitor/binding/addvisitor_binding.dart';
 import 'package:visitantapp/features/addvisitor/view/addvisitor_view.dart';
 import 'package:visitantapp/features/admindash/binding/admindash_binding.dart';
@@ -23,7 +25,6 @@ import 'package:visitantapp/features/visitoranalysis/view/visitoranalysis_view.d
 import 'package:visitantapp/features/welcome/view/welcome_view.dart';
 
 import '../features/welcome/binding/welcome_binding.dart';
-
 
 List<GetPage> allpage = [
   GetPage(name: Routes.otp, page: () => const OtpView(), binding: OtpBinding()),
@@ -55,29 +56,24 @@ List<GetPage> allpage = [
     page: () => const AdminVisitorListView(),
     binding: AdminVisitorListBinding(),
   ),
-
-
-GetPage(
+  GetPage(
     name: Routes.welcome,
     page: () => const WelcomeView(),
     binding: WelcomeBinding(),
   ),
-GetPage(
+  GetPage(
     name: Routes.signup,
-    page: () =>  const SignupView(),
+    page: () => const SignupView(),
     binding: SignupBinding(),
   ),
-
-
   GetPage(
     name: Routes.addvisitor,
-    page: () =>  const AddvisitorView(),
+    page: () => const AddvisitorView(),
     binding: AddvisitorBinding(),
   ),
-
   GetPage(
-    name: Routes.visitoranalysis,
-    page: () => VisitorAnalysisView(),
-    binding: VisitorAnalysisBinding(),
+    name: Routes.addemployee,
+    page: () => const AddEmployeeView(),
+    binding: AddEmployeeBinding(),
   ),
 ];

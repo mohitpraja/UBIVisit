@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/core/customfont.dart';
-import 'package:visitantapp/core/global.dart';
+import 'package:visitantapp/core/global/customfont.dart';
+import 'package:visitantapp/core/global/global.dart';
+import 'package:visitantapp/core/routes.dart';
 
 class AdminHomeView extends GetView {
   const AdminHomeView({super.key});
@@ -18,7 +18,7 @@ class AdminHomeView extends GetView {
         title: Text(
           'Dashboard',
           style: TextStyle(
-              fontSize:Get.height*0.03, fontFamily: CustomFonts.alata),
+              fontSize:23, fontFamily: CustomFonts.alata),
         ),
       ),
       drawer: Drawer(
@@ -45,14 +45,14 @@ class AdminHomeView extends GetView {
                             'Your name',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize:Get.height*0.03,
+                                fontSize:26,
                                 fontFamily: CustomFonts.alata),
                           ),
                           Text(
                             '1234567890',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: Get.height*0.02,
+                                fontSize: 16,
                                 fontFamily: CustomFonts.alata),
                           ),
                         ],
@@ -71,30 +71,37 @@ class AdminHomeView extends GetView {
             ),
             const ListTile(
               leading: Icon(Icons.home),
+              minLeadingWidth: 5,
               title: Text('Home'),
             ),
             const ListTile(
               leading: Icon(Icons.notes),
+              minLeadingWidth: 5,
               title: Text('Visitor List'),
             ),
             const ListTile(
               leading: Icon(Icons.account_circle),
+              minLeadingWidth: 5,
               title: Text('Profile'),
             ),
             const ListTile(
               leading: Icon(Icons.play_circle_fill),
+              minLeadingWidth: 5,
               title: Text('Tutorial'),
             ),
             const ListTile(
               leading: Icon(Icons.people),
+              minLeadingWidth: 5,
               title: Text('Manage Users'),
             ),
             const ListTile(
               leading: Icon(Icons.settings),
+              minLeadingWidth: 5,
               title: Text('Settings'),
             ),
             ListTile(
               leading: const Icon(Icons.exit_to_app),
+              minLeadingWidth: 5,
               title: const Text('Logout'),
               onTap: () {
                 // dashhomecont.islogout();
@@ -118,10 +125,10 @@ class AdminHomeView extends GetView {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(10),
                           color: Colors.indigo.shade200,
                         ),
-                        margin: const EdgeInsets.only(top: 10),
+                        margin: const EdgeInsets.all(8),
                         width: Get.width * 0.95,
                         child: Container(
                           margin: const EdgeInsets.symmetric(
@@ -137,7 +144,7 @@ class AdminHomeView extends GetView {
                                     style: TextStyle(
                                         color: Colors.black54,
                                         fontWeight: FontWeight.w500,
-                                        fontSize:Get.height*0.023,
+                                        fontSize:20,
                                         fontFamily: CustomFonts.alata),
                                   ),
                                   const SizedBox(
@@ -148,7 +155,7 @@ class AdminHomeView extends GetView {
                                     style: TextStyle(
                                         color: Colors.black54,
                                         fontWeight: FontWeight.w500,
-                                        fontSize:Get.height*0.02,
+                                        fontSize:17,
                                         fontFamily: CustomFonts.alata),
                                   )
                                 ],
@@ -188,7 +195,9 @@ class AdminHomeView extends GetView {
                         ),
                         CustomButton(
                           title: 'Add Employee',
-                          onPress: () {},
+                          onPress: () {
+                            Get.toNamed(Routes.addemployee);
+                          },
                         ),
                         const SizedBox(
                           height: 15,
@@ -197,6 +206,13 @@ class AdminHomeView extends GetView {
                           width: Get.width,
                           child: ElevatedButton(
                             onPressed: () {},
+                            
+                          
+                            style: ElevatedButton.styleFrom(
+                              shape: const StadiumBorder(
+                                  side: BorderSide(color: Colors.indigo)),
+                              backgroundColor: Colors.white,
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical:10),
                               child: Text(
@@ -205,16 +221,9 @@ class AdminHomeView extends GetView {
                                     color: GlobalColor.customColor,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize: Get.height * 0.02,
+                                    fontSize:17,
                                     fontFamily: CustomFonts.alata),
                               ),
-                            ),
-                            
-                          
-                            style: ElevatedButton.styleFrom(
-                              shape: const StadiumBorder(
-                                  side: BorderSide(color: Colors.indigo)),
-                              backgroundColor: Colors.white,
                             ),
                           ),
                         ),
