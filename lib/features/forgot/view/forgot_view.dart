@@ -5,6 +5,9 @@ import 'package:visitantapp/core/components/customscroll.dart';
 import 'package:visitantapp/core/global/customfont.dart';
 import 'package:visitantapp/core/global/validation.dart';
 import 'package:visitantapp/core/routes.dart';
+import 'package:visitantapp/core/global/global.dart';
+import 'package:visitantapp/core/global/globalfunction.dart';
+import 'package:visitantapp/core/routes.dart';
 import 'package:visitantapp/features/forgot/controller/forgot_controller.dart';
 
 class ForgotView extends GetView<ForgotController> {
