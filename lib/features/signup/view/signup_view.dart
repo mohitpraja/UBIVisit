@@ -128,7 +128,7 @@ class SignupView extends GetView <SignupController>{
                         onPress: () {
                          if(GlobalFunction.formValid()){
                            print("fyy");
-                           GlobalFunction.CheckConnection();
+                           // GlobalFunction.CheckConnection();
                          }
 
                         },
