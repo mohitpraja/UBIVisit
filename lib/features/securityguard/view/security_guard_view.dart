@@ -31,7 +31,7 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                 height: 50,
                 width: 60,
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,7 +47,7 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                   ),
                 ],
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
                  Form(
                    key: Validation.guardFormKey,
                    autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -56,7 +56,7 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                    children: [
                      Container(
                        width: size.width*0.9,
-                       margin: EdgeInsets.symmetric(vertical: 6),
+                       margin: const EdgeInsets.symmetric(vertical: 6),
                        child:  TextFormField(
                            keyboardType: TextInputType.name,
                            style: const TextStyle(color: Colors.black54),
@@ -73,7 +73,7 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                      ),
                      Container(
                        width: size.width*0.9,
-                       margin: EdgeInsets.symmetric(vertical: 6),
+                       margin: const EdgeInsets.symmetric(vertical: 6),
                        child:   TextFormField(
                          keyboardType: TextInputType.emailAddress,
                          style: const TextStyle(color: Colors.black54),
@@ -89,7 +89,7 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                      ),
                      Container(
                        width: size.width*0.9,
-                       margin: EdgeInsets.symmetric(vertical: 6),
+                       margin: const EdgeInsets.symmetric(vertical: 6),
                        child:   TextFormField(
                          keyboardType: TextInputType.number,
                          maxLength: 10,
@@ -106,7 +106,7 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                      ),
                      Container(
                        width: size.width*0.9,
-                       margin: EdgeInsets.symmetric(vertical: 6),
+                       margin: const EdgeInsets.symmetric(vertical: 6),
                        child:    TextFormField(
                          style: const TextStyle(color: Colors.black54),
                          keyboardType: TextInputType.visiblePassword,
@@ -117,13 +117,13 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                              hintStyle: const TextStyle(color: Colors.black54),
                              hintText: 'Enter Password',
                              prefixIcon: const Icon(Icons.lock),
-                           suffixIcon: IconButton(onPressed: () {},icon: Icon(Icons.visibility,)),
+                           suffixIcon: IconButton(onPressed: () {},icon: const Icon(Icons.visibility,)),
                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
                        ),
                      ),
                      Container(
                        width: size.width*0.9,
-                       margin: EdgeInsets.symmetric(vertical: 6),
+                       margin: const EdgeInsets.symmetric(vertical: 6),
                        child:  TextFormField(
                          keyboardType: TextInputType.visiblePassword,
                          style: const TextStyle(color: Colors.black54),
@@ -134,14 +134,14 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                              hintStyle: const TextStyle(color: Colors.black54),
                              hintText: 'Confirm Password',
                              prefixIcon: const Icon(Icons.lock),
-                             suffixIcon: IconButton(onPressed: () {},icon: Icon(Icons.visibility,)),
+                             suffixIcon: IconButton(onPressed: () {},icon: const Icon(Icons.visibility,)),
                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
                        ),
                      ),
 
                      Container(
                        width: size.width*0.8,
-                       margin: EdgeInsets.only(top: 10),
+                       margin: const EdgeInsets.only(top: 10),
 
                        child: ClipRRect(
 

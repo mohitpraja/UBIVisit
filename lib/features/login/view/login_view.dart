@@ -1,10 +1,12 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
 import 'package:visitantapp/core/components/customscroll.dart';
 import 'package:visitantapp/core/global/customfont.dart';
 import 'package:visitantapp/core/global/global.dart';
+import 'package:visitantapp/core/global/globalfunction.dart';
 import 'package:visitantapp/core/global/validation.dart';
 import 'package:visitantapp/core/routes.dart';
 import 'package:visitantapp/features/login/controller/login_controller.dart';
@@ -16,10 +18,14 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar:AppBar(
+      appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back),color: Colors.black54,),
+        leading: IconButton(
+          onPressed: () => Get.back(),
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.black54,
+        ),
       ),
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),
@@ -50,7 +56,7 @@ class LoginView extends GetView<LoginController> {
                               "Welcome !!!",
                               style: TextStyle(
                                   color: Colors.black54,
-                                  fontSize:25,
+                                  fontSize: 25,
                                   fontFamily: CustomFonts.alata),
                             ),
                             Text(
@@ -63,25 +69,29 @@ class LoginView extends GetView<LoginController> {
                           ],
                         ),
                         TextFormField(
+                          keyboardType:TextInputType.number,
                           style: const TextStyle(color: Colors.black54),
-                          validator: (value) => Validation.isValid(value, 'Enter phone number'),
+                          validator: (value)=>Validation.isValid(value, 'Enter phone number'),
                           decoration: InputDecoration(
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
                               hintText: 'Phone number',
                               prefixIcon: const Icon(Icons.person),
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10))),
                         ),
                         TextFormField(
                           style: const TextStyle(color: Colors.black54),
-                          validator: (value) => Validation.isValid(value, 'Enter password'),
+                          validator: (value) =>Validation.isValid(value, 'Enter password')
+                          ,
                           obscureText: true,
                           decoration: InputDecoration(
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
                               hintText: 'Enter Password',
                               prefixIcon: const Icon(Icons.lock),
-                                                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10))),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -93,10 +103,9 @@ class LoginView extends GetView<LoginController> {
                                 style: TextStyle(
                                     color: GlobalColor.customColor,
                                     fontFamily: CustomFonts.alata,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 1,
-        
-                                    fontSize:16),
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 1,
+                                    fontSize: 16),
                               ),
                             ),
                           ],
@@ -104,18 +113,13 @@ class LoginView extends GetView<LoginController> {
                         CustomButton(
                           title: "Login",
                           onPress: () {
-                            AwesomeDialog(
-                              context: context,
-                              dialogType: DialogType.warning,
-                              title: 'Warning',
-                              desc: 'Check your internet connection',
-
-                            ).show().then((value) => Get.toNamed(Routes.admindash));
-                            
-                           
+                            if (Validation.loginFormKey.currentState!
+                                .validate()) {
+                              GlobalFunction.checkInternet(
+                                  context, Routes.admindash);
+                            }
                           },
                         ),
-                        
                         Container(
                           margin: const EdgeInsets.symmetric(horizontal: 10),
                           child: Row(
@@ -142,23 +146,25 @@ class LoginView extends GetView<LoginController> {
                         SizedBox(
                           width: Get.width,
                           child: ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () {
+                              GlobalFunction.checkInternet(
+                                  context, Routes.admindash);
+                            },
                             label: Padding(
-                              padding: const EdgeInsets.symmetric(vertical:10),
+                              padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Text(
                                 'login with Google',
                                 style: TextStyle(
                                     color: GlobalColor.customColor,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize:16,
+                                    fontSize: 16,
                                     fontFamily: CustomFonts.alata),
                               ),
                             ),
-                            
                             icon: Image.asset(
                               'assets/images/google.png',
-                              width:30,
+                              width: 30,
                             ),
                             style: ElevatedButton.styleFrom(
                               shape: const StadiumBorder(
@@ -173,11 +179,10 @@ class LoginView extends GetView<LoginController> {
                             Text(
                               "Don't have an account? ",
                               style: TextStyle(
-                                color: Colors.black54,
-                                fontWeight: FontWeight.w500,
-                                fontSize:16,
-                                fontFamily: CustomFonts.alata
-                              ),
+                                  color: Colors.black54,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  fontFamily: CustomFonts.alata),
                             ),
                             InkWell(
                               onTap: () => Get.toNamed(Routes.signup),
@@ -186,9 +191,8 @@ class LoginView extends GetView<LoginController> {
                                 style: TextStyle(
                                     color: Colors.indigo,
                                     fontWeight: FontWeight.w600,
-                                     fontSize:17,
-                                fontFamily: CustomFonts.alata
-                                    ),
+                                    fontSize: 17,
+                                    fontFamily: CustomFonts.alata),
                               ),
                             )
                           ],

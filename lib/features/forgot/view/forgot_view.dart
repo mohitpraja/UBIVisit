@@ -61,7 +61,7 @@ class ForgotView extends GetView<ForgotController> {
                     ],
                   ),
                   Form(
-                    key: Validation.loginFormKey,
+                    key: Validation.forgotFormKey,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: TextFormField(
                       style: const TextStyle(color: Colors.black54),
