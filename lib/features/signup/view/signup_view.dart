@@ -4,10 +4,10 @@ import 'package:visitantapp/core/components/custombutton.dart';
 import 'package:visitantapp/core/components/customscroll.dart';
 import 'package:visitantapp/core/global/customfont.dart';
 import 'package:visitantapp/core/global/global.dart';
-import 'package:visitantapp/core/global/globalfunction.dart';
 import 'package:visitantapp/core/global/validation.dart';
 import 'package:visitantapp/core/routes.dart';
 import 'package:visitantapp/features/signup/controller/signup_controller.dart';
+
 
 class SignupView extends GetView <SignupController>{
   const SignupView({super.key});
@@ -68,7 +68,7 @@ class SignupView extends GetView <SignupController>{
                       children: [
                         TextFormField(
                           style: const TextStyle(color: Colors.black54),
-                          validator: (value) => GlobalFunction.isValid(value, 'Enter name'),
+                          validator: (value) => Validation.isValid(value, 'Enter name'),
                           decoration: InputDecoration(
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
@@ -80,7 +80,7 @@ class SignupView extends GetView <SignupController>{
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           style: const TextStyle(color: Colors.black54),
-                          validator: (value) => GlobalFunction.isValid(value, 'Enter email'),
+                          validator: (value) => Validation.isValid(value, 'Enter email'),
                           decoration: InputDecoration(
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
@@ -94,7 +94,7 @@ class SignupView extends GetView <SignupController>{
                           keyboardType: TextInputType.number,
                           maxLength: 10,
                           style: const TextStyle(color: Colors.black54),
-                          validator: (value) => GlobalFunction.isValid(value, 'Enter phone'),
+                          validator: (value) => Validation.isValid(value, 'Enter phone'),
                           decoration: InputDecoration(
                               counterText: '',
                               filled: true,
@@ -105,7 +105,7 @@ class SignupView extends GetView <SignupController>{
                         ),
                         TextFormField(
                           style: const TextStyle(color: Colors.black54),
-                          validator: (value) => GlobalFunction.isValid(value, 'Enter password'),
+                          validator: (value) => Validation.isValid(value, 'Enter password'),
                           obscureText: true,
                           decoration: InputDecoration(
                               filled: true,
@@ -116,7 +116,7 @@ class SignupView extends GetView <SignupController>{
                         ),
                         TextFormField(
                           style: const TextStyle(color: Colors.black54),
-                          validator: (value) =>GlobalFunction.isValid(value, 'Enter password'),
+                          validator: (value) =>Validation.isValid(value, 'Enter password'),
                           obscureText: true,
                           decoration: InputDecoration(
                               filled: true,
@@ -128,9 +128,7 @@ class SignupView extends GetView <SignupController>{
                         CustomButton(
                           title: 'Signup',
                           onPress: () {
-                           if(GlobalFunction.formValid()){
-                             GlobalFunction.checkConnection();
-                           }
+                          
         
                           },
                         ),

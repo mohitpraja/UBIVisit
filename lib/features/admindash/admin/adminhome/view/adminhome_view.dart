@@ -11,6 +11,7 @@ class AdminHomeView extends GetView <AdminHomeController>{
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
@@ -149,45 +150,7 @@ class AdminHomeView extends GetView <AdminHomeController>{
                       fontWeight: FontWeight.w500,
                       fontFamily: CustomFonts.alata),),
                       const Divider(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            InkWell(
-                              onTap: () {
-
-                              },
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    border: Border.all(width: 0.2),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: const Center(
-                                    child: Icon(
-                                  Icons.sunny,
-                                  color: Colors.black54,
-                                )),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                
-                              },
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    border: Border.all(width: 0.2),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: const Center(
-                                    child: Icon(
-                                  Icons.dark_mode,
-                                  color: Colors.black54,
-                                )),
-                              ),
-                            )
-                          ],
-                        ),
+                      
                          const SizedBox(height: 10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -211,7 +174,7 @@ class AdminHomeView extends GetView <AdminHomeController>{
                             GlobalColor.customColor=Colors.deepOrange;
                             GlobalColor.customMaterialColor=Colors.deepOrange;
                              Get.back();
-                            Get.offAllNamed(Routes.admindash,predicate:(route) =>false,);
+                            Get.offAllNamed(Routes.admindash);
                           },
                           child: Container(
                             width: 30,

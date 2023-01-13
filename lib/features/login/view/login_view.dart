@@ -5,7 +5,7 @@ import 'package:visitantapp/core/components/custombutton.dart';
 import 'package:visitantapp/core/components/customscroll.dart';
 import 'package:visitantapp/core/global/customfont.dart';
 import 'package:visitantapp/core/global/global.dart';
-import 'package:visitantapp/core/global/globalfunction.dart';
+import 'package:visitantapp/core/global/validation.dart';
 import 'package:visitantapp/core/routes.dart';
 import 'package:visitantapp/features/login/controller/login_controller.dart';
 
@@ -36,7 +36,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
                 Form(
-                  key: GlobalFunction.formkey,
+                  key: Validation.loginFormKey,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Container(
                     margin: const EdgeInsets.all(12),
@@ -64,7 +64,7 @@ class LoginView extends GetView<LoginController> {
                         ),
                         TextFormField(
                           style: const TextStyle(color: Colors.black54),
-                          validator: (value) => GlobalFunction.isValid(value, 'Enter phone number'),
+                          validator: (value) => Validation.isValid(value, 'Enter phone number'),
                           decoration: InputDecoration(
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
@@ -74,7 +74,7 @@ class LoginView extends GetView<LoginController> {
                         ),
                         TextFormField(
                           style: const TextStyle(color: Colors.black54),
-                          validator: (value) => GlobalFunction.isValid(value, 'Enter password'),
+                          validator: (value) => Validation.isValid(value, 'Enter password'),
                           obscureText: true,
                           decoration: InputDecoration(
                               filled: true,
