@@ -18,6 +18,8 @@ class AdminVisitorListView extends GetView<AdminVisitorListController> {
             itemBuilder: (context, index) {
               return Stack(
                 children: [
+
+
                   SizedBox(
                     height: 150,
                     width: 500,

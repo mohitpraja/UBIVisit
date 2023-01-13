@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
+import 'package:visitantapp/core/components/customscroll.dart';
 import 'package:visitantapp/core/global/customfont.dart';
 import 'package:visitantapp/core/global/global.dart';
 import 'package:visitantapp/core/global/globalfunction.dart';
@@ -125,8 +126,9 @@ class SignupView extends GetView <SignupController>{
                       CustomButton(
                         title: 'Signup',
                         onPress: () {
-                         if(GlobalFunction.formkey.currentState!.validate()){
-                          Get.toNamed(Routes.otp);
+                         if(GlobalFunction.formValid()){
+                           print("fyy");
+                           GlobalFunction.CheckConnection();
                          }
 
                         },

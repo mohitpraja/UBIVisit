@@ -16,14 +16,14 @@ import 'package:visitantapp/features/login/binding/login_binding.dart';
 import 'package:visitantapp/features/login/view/login_view.dart';
 import 'package:visitantapp/features/otp/binding/otp_binding.dart';
 import 'package:visitantapp/features/otp/view/otp_view.dart';
-import 'package:visitantapp/features/securityguard/view/security_guard_view.dart';
 import 'package:visitantapp/features/signup/binding/signup_binding.dart';
 import 'package:visitantapp/features/signup/view/signup_view.dart';
 import 'package:visitantapp/features/splash/binding/splash_binding.dart';
 import 'package:visitantapp/features/splash/view/splash_view.dart';
+import 'package:visitantapp/features/visitoranalysis/binding/visitoranalysis_binding.dart';
+import 'package:visitantapp/features/visitoranalysis/view/visitoranalysis_view.dart';
 import 'package:visitantapp/features/welcome/view/welcome_view.dart';
 
-import '../features/securityguard/binding/security_guard_binding.dart';
 import '../features/welcome/binding/welcome_binding.dart';
 
 List<GetPage> allpage = [
@@ -76,9 +76,10 @@ List<GetPage> allpage = [
     page: () => const AddEmployeeView(),
     binding: AddEmployeeBinding(),
   ),
+
   GetPage(
-    name: Routes.security,
-    page: () => const SecurityGuardView(),
-    binding: SecurityGuardBinding(),
+    name: Routes.visitoranalysis,
+    page: () => VisitorAnalysisView(),
+    binding: VisitorAnalysisBinding(),
   ),
 ];

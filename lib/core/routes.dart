@@ -10,5 +10,6 @@ class Routes {
   static String welcome = '/welcome_view.dart';
   static String addvisitor = '/addvisitor_view.dart';
   static String addemployee= '/addemployee_view.dart';
-  static String security = '/security_guard_view';
+  static String visitoranalysis= '/visitoranalysis_view.dart';
+
 }
