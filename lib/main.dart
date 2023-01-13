@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: GlobalColor.customMaterialColor,
       ),
-      initialRoute: Routes.security,
+      initialRoute: Routes.splash,
       getPages: allpage,
     );
   }
