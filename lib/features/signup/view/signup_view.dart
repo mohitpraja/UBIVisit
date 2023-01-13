@@ -5,6 +5,7 @@ import 'package:visitantapp/core/components/customscroll.dart';
 import 'package:visitantapp/core/global/customfont.dart';
 import 'package:visitantapp/core/global/global.dart';
 import 'package:visitantapp/core/global/globalfunction.dart';
+import 'package:visitantapp/core/global/validation.dart';
 import 'package:visitantapp/core/routes.dart';
 import 'package:visitantapp/features/signup/controller/signup_controller.dart';
 
@@ -59,14 +60,13 @@ class SignupView extends GetView <SignupController>{
                 SizedBox(
                   height: Get.height * 0.65,
                   child: Form(
-                    key: GlobalFunction.formkey,
+                      key: controller.formKey,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                       child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       TextFormField(
                         style: const TextStyle(color: Colors.black54),
-                        validator: (value) => GlobalFunction.isValid(value, 'Enter name'),
                         decoration: InputDecoration(
                             filled: true,
                             hintStyle: const TextStyle(color: Colors.black54),
@@ -74,11 +74,26 @@ class SignupView extends GetView <SignupController>{
                             prefixIcon: const Icon(Icons.person),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))
                           
-                      )),
+                      ),
+                        validator: (value){
+                          if (value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                            return 'Enter Correct Name';
+
+                          }else {
+                            return null;
+                          }
+
+
+
+                        },
+
+
+
+
+                      ),
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
                         style: const TextStyle(color: Colors.black54),
-                        validator: (value) => GlobalFunction.isValid(value, 'Enter email'),
                         decoration: InputDecoration(
                             filled: true,
                             hintStyle: const TextStyle(color: Colors.black54),
@@ -87,12 +102,25 @@ class SignupView extends GetView <SignupController>{
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))
                                     
                                     ),
+
+                        validator: (value){
+                          if (value!.isEmpty || !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$').hasMatch(value)){
+                            return 'Enter Correct Email';
+
+                          }else {
+                            return null;
+                          }
+
+
+
+                        },
+
+
                       ),
                       TextFormField(
                         keyboardType: TextInputType.number,
                         maxLength: 10,
                         style: const TextStyle(color: Colors.black54),
-                        validator: (value) => GlobalFunction.isValid(value, 'Enter phone'),
                         decoration: InputDecoration(
                             counterText: '',
                             filled: true,
@@ -100,10 +128,27 @@ class SignupView extends GetView <SignupController>{
                             hintText: 'Enter phone ',
                             prefixIcon: const Icon(Icons.phone),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+
+                        validator: (value){
+                          if (value!.isEmpty || !RegExp(r'^[0-9]{10}$').hasMatch(value)){
+                            return 'Enter Correct Phone Number';
+
+                          }else {
+                            return null;
+                          }
+
+
+
+                        },
+
+
+
+
+
                       ),
                       TextFormField(
+                        controller: controller.Password,
                         style: const TextStyle(color: Colors.black54),
-                        validator: (value) => GlobalFunction.isValid(value, 'Enter password'),
                         obscureText: true,
                         decoration: InputDecoration(
                             filled: true,
@@ -111,10 +156,26 @@ class SignupView extends GetView <SignupController>{
                             hintText: 'Enter Password',
                             prefixIcon: const Icon(Icons.lock),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+
+                        validator: (value){
+                          if (value!.isEmpty || !RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$').hasMatch(value)){
+                            return 'Enter Correct Password';
+
+                          }else {
+                            return null;
+                          }
+
+
+
+                        },
+
+
+
+
                       ),
                       TextFormField(
+                        controller:controller. confirmPassword,
                         style: const TextStyle(color: Colors.black54),
-                        validator: (value) =>GlobalFunction.isValid(value, 'Enter password'),
                         obscureText: true,
                         decoration: InputDecoration(
                             filled: true,
@@ -122,13 +183,27 @@ class SignupView extends GetView <SignupController>{
                             hintText: 'Confirm Password',
                             prefixIcon: const Icon(Icons.lock),
                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+                        validator: (value){
+                          if(value!.isEmpty)
+                            return 'Enter Correct Password';
+                          if(value!= controller.Password.text)
+                            return 'Password Do Not Match';
+                          return null;
+
+
+
+                        },
+
+
+
                       ),
                       CustomButton(
                         title: 'Signup',
                         onPress: () {
+                          controller.signupButton();
                          if(GlobalFunction.formValid()){
                            print("fyy");
-                           // GlobalFunction.CheckConnection();
+                            //GlobalFunction.CheckConnection();
                          }
 
                         },
