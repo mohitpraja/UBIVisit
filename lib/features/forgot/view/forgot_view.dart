@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/core/components/customscroll.dart';
 import 'package:visitantapp/core/global/customfont.dart';
 import 'package:visitantapp/core/global/validation.dart';
 import 'package:visitantapp/core/routes.dart';
@@ -62,12 +61,12 @@ class ForgotView extends GetView<ForgotController> {
                     ],
                   ),
                   Form(
-                    key: GlobalFunction.formkey,
+                    key: Validation.loginFormKey,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: TextFormField(
                       style: const TextStyle(color: Colors.black54),
                       validator: (value) =>
-                          GlobalFunction.isValid(value, 'Enter email'),
+                          Validation.isValid(value, 'Enter email'),
                       decoration: InputDecoration(
                           filled: true,
                           hintStyle: const TextStyle(color: Colors.black54),

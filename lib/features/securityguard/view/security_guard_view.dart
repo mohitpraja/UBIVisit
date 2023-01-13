@@ -1,13 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import '../../../core/components/custombutton.dart';
-import '../../../core/global/customfont.dart';
-import '../../../core/global/global.dart';
-import '../../../core/global/globalfunction.dart';
-import '../../../core/routes.dart';
-import '../controller/security_guard_controller.dart';
+import 'package:visitantapp/core/components/custombutton.dart';
+import 'package:visitantapp/core/global/customfont.dart';
+import 'package:visitantapp/core/global/global.dart';
+import 'package:visitantapp/core/global/validation.dart';
+import 'package:visitantapp/core/routes.dart';
+import 'package:visitantapp/features/securityguard/controller/security_guard_controller.dart';
 
 class SecurityGuardView extends GetView <SecurityGuardController>{
   const SecurityGuardView({super.key});
@@ -51,7 +49,7 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
               ),
               SizedBox(height: 20,),
                  Form(
-                   key: GlobalFunction.formkey,
+                   key: Validation.guardFormKey,
                    autovalidateMode: AutovalidateMode.onUserInteraction,
                  child: Column(
                    mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -62,7 +60,7 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                        child:  TextFormField(
                            keyboardType: TextInputType.name,
                            style: const TextStyle(color: Colors.black54),
-                           validator: (value) => GlobalFunction.isValid(value, 'Enter name'),
+                           validator: (value) => Validation.isValid(value, 'Enter name'),
                            decoration: InputDecoration(
                              filled: true,
                              hintStyle: const TextStyle(color: Colors.black54),
@@ -79,7 +77,7 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                        child:   TextFormField(
                          keyboardType: TextInputType.emailAddress,
                          style: const TextStyle(color: Colors.black54),
-                         validator: (value) => GlobalFunction.isValid(value, 'Enter email'),
+                         validator: (value) => Validation.isValid(value, 'Enter email'),
                          decoration: InputDecoration(
                              filled: true,
                              hintStyle: const TextStyle(color: Colors.black54),
@@ -96,7 +94,7 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                          keyboardType: TextInputType.number,
                          maxLength: 10,
                          style: const TextStyle(color: Colors.black54),
-                         validator: (value) => GlobalFunction.isValid(value, 'Enter phone'),
+                         validator: (value) => Validation.isValid(value, 'Enter phone'),
                          decoration: InputDecoration(
                              counterText: '',
                              filled: true,
@@ -112,7 +110,7 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                        child:    TextFormField(
                          style: const TextStyle(color: Colors.black54),
                          keyboardType: TextInputType.visiblePassword,
-                         validator: (value) => GlobalFunction.isValid(value, 'Enter password'),
+                         validator: (value) => Validation.isValid(value, 'Enter password'),
                          obscureText: true,
                          decoration: InputDecoration(
                              filled: true,
@@ -129,7 +127,7 @@ class SecurityGuardView extends GetView <SecurityGuardController>{
                        child:  TextFormField(
                          keyboardType: TextInputType.visiblePassword,
                          style: const TextStyle(color: Colors.black54),
-                         validator: (value) =>GlobalFunction.isValid(value, 'Enter password'),
+                         validator: (value) =>Validation.isValid(value, 'Enter password'),
                          obscureText: true,
                          decoration: InputDecoration(
                              filled: true,
