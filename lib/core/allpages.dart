@@ -21,6 +21,8 @@ import 'package:visitantapp/features/signup/binding/signup_binding.dart';
 import 'package:visitantapp/features/signup/view/signup_view.dart';
 import 'package:visitantapp/features/splash/binding/splash_binding.dart';
 import 'package:visitantapp/features/splash/view/splash_view.dart';
+import 'package:visitantapp/features/visitoranalysis/binding/visitoranalysis_binding.dart';
+import 'package:visitantapp/features/visitoranalysis/view/visitoranalysis_view.dart';
 import 'package:visitantapp/features/welcome/view/welcome_view.dart';
 
 import '../features/securityguard/binding/security_guard_binding.dart';
@@ -80,5 +82,10 @@ List<GetPage> allpage = [
     name: Routes.security,
     page: () => const SecurityGuardView(),
     binding: SecurityGuardBinding(),
+
+  GetPage(
+    name: Routes.visitoranalysis,
+    page: () => VisitorAnalysisView(),
+    binding: VisitorAnalysisBinding(),
   ),
 ];

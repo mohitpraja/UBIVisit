@@ -11,14 +11,14 @@ class AdminHomeView extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         titleSpacing: 0,
         toolbarHeight: 60,
         elevation: 0,
         title: Text(
           'Dashboard',
-          style: TextStyle(
-              fontSize:23, fontFamily: CustomFonts.alata),
+          style: TextStyle(fontSize: 23, fontFamily: CustomFonts.alata),
         ),
       ),
       drawer: Drawer(
@@ -45,7 +45,7 @@ class AdminHomeView extends GetView {
                             'Your name',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize:26,
+                                fontSize: 26,
                                 fontFamily: CustomFonts.alata),
                           ),
                           Text(
@@ -94,10 +94,21 @@ class AdminHomeView extends GetView {
               minLeadingWidth: 5,
               title: Text('Manage Users'),
             ),
-            const ListTile(
+            ExpansionTile(
               leading: Icon(Icons.settings),
-              minLeadingWidth: 5,
-              title: Text('Settings'),
+              title: Text(
+                'Setting',
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+              ),
+              
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'description',
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                )
+              ],
             ),
             ListTile(
               leading: const Icon(Icons.exit_to_app),
@@ -144,7 +155,7 @@ class AdminHomeView extends GetView {
                                     style: TextStyle(
                                         color: Colors.black54,
                                         fontWeight: FontWeight.w500,
-                                        fontSize:20,
+                                        fontSize: 20,
                                         fontFamily: CustomFonts.alata),
                                   ),
                                   const SizedBox(
@@ -155,7 +166,7 @@ class AdminHomeView extends GetView {
                                     style: TextStyle(
                                         color: Colors.black54,
                                         fontWeight: FontWeight.w500,
-                                        fontSize:17,
+                                        fontSize: 17,
                                         fontFamily: CustomFonts.alata),
                                   )
                                 ],
@@ -206,22 +217,20 @@ class AdminHomeView extends GetView {
                           width: Get.width,
                           child: ElevatedButton(
                             onPressed: () {},
-                            
-                          
                             style: ElevatedButton.styleFrom(
                               shape: const StadiumBorder(
                                   side: BorderSide(color: Colors.indigo)),
                               backgroundColor: Colors.white,
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical:10),
+                              padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Text(
                                 'Add Guard',
                                 style: TextStyle(
                                     color: GlobalColor.customColor,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize:17,
+                                    fontSize: 17,
                                     fontFamily: CustomFonts.alata),
                               ),
                             ),
