@@ -31,9 +31,12 @@ class VisitorAnalysisView extends GetView<VisitorAnalysisController>{
             SizedBox(
               height: 20,
             ),
+
+
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //crossAxisAlignment: CrossAxisAlignment.center,
+
 
               children: [
                 Text("This Month", style: TextStyle(fontSize: 20),),
@@ -42,8 +45,9 @@ class VisitorAnalysisView extends GetView<VisitorAnalysisController>{
                   height: 10,
                 ),
               ],
-
             ),
+
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -131,9 +135,6 @@ class VisitorAnalysisView extends GetView<VisitorAnalysisController>{
                       ],
                     ),
                   )
-
-
-
                 ],
               ),
             ),
