@@ -1,6 +1,4 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
 import 'package:visitantapp/core/components/customscroll.dart';
@@ -38,7 +36,7 @@ class LoginView extends GetView<LoginController> {
                 Center(
                   child: Image.asset(
                     "assets/images/login.png",
-                    height: Get.width * 0.4,
+                    height: Get.height * 0.18,
                   ),
                 ),
                 Form(
@@ -46,7 +44,7 @@ class LoginView extends GetView<LoginController> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Container(
                     margin: const EdgeInsets.all(12),
-                    height: Get.height * 0.6,
+                    height: Get.height * 0.65,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [

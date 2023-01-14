@@ -27,10 +27,10 @@ class AdminProfileView extends GetView<AdminProfileController>{
         onTap: () => Get.focusScope!.unfocus(),
         child: SingleChildScrollView(
           child: Container(
-            height: Get.height * 0.7,
-            margin: const EdgeInsets.all(15),
+            height: Get.height * 0.8,
+            margin: const EdgeInsets.all(10),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Stack(
                   children: [
@@ -63,7 +63,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                 ),
                 Form(
                   child: SizedBox(
-                    height: Get.height * 0.4,
+                    height: Get.height * 0.5,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [

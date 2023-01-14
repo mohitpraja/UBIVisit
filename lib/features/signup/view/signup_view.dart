@@ -29,7 +29,7 @@ class SignupView extends GetView <SignupController>{
           child: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal:12),
-              height: Get.height*0.8,
+              height: Get.height*0.85,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -59,7 +59,7 @@ class SignupView extends GetView <SignupController>{
                   )),
                   
                   SizedBox(
-                    height: Get.height * 0.65,
+                    height: Get.height * 0.7,
                     child: Form(
                       key:Validation.signupFormKey,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -128,7 +128,6 @@ class SignupView extends GetView <SignupController>{
                         CustomButton(
                           title: 'Signup',
                           onPress: () {
-                          
         
                           },
                         ),

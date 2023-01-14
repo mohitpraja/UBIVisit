@@ -272,7 +272,7 @@ class AdminHomeView extends GetView <AdminHomeController>{
                           color: Colors.white54,
                         ),
                         margin: const EdgeInsets.all(8),
-                        width: Get.width * 0.95,
+                        width: Get.width * 0.9,
                         child: Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 15),
@@ -320,10 +320,10 @@ class AdminHomeView extends GetView <AdminHomeController>{
               ),
             ),
             Positioned(
-              top: Get.height * 0.15,
+              top: Get.height * 0.16,
               child: Container(
                   width: Get.width,
-                  height: Get.height * 0.65,
+                  height: Get.height * 0.6,
                   decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -350,8 +350,8 @@ class AdminHomeView extends GetView <AdminHomeController>{
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              shape: const StadiumBorder(
-                                  side: BorderSide(color: Colors.indigo)),
+                              shape: StadiumBorder(
+                                  side: BorderSide(color:GlobalColor.customColor)),
                               backgroundColor: Colors.white,
                             ),
                             child: Padding(

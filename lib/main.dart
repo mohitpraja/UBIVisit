@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         fontFamily: CustomFonts.alata,
         primarySwatch: GlobalColor.customMaterialColor,
       ),
-      initialRoute: Routes.splash,
+      initialRoute: Routes.login,
       getPages: allpage,
     );
   }
