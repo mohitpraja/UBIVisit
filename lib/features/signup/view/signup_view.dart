@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/core/customfont.dart';
-import 'package:visitantapp/core/global.dart';
+import 'package:visitantapp/core/components/customscroll.dart';
+import 'package:visitantapp/core/global/customfont.dart';
+import 'package:visitantapp/core/global/global.dart';
+import 'package:visitantapp/core/global/validation.dart';
 import 'package:visitantapp/core/routes.dart';
+import 'package:visitantapp/features/signup/controller/signup_controller.dart';
 
-class SignupView extends GetView {
+
+class SignupView extends GetView <SignupController>{
   const SignupView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
        appBar:AppBar(
         elevation: 0,
+        titleSpacing: 1,
         backgroundColor: Colors.white,
-        leading: IconButton(onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back),color: Colors.black54,),
+        leading: IconButton(onPressed: () => Get.toNamed(Routes.login), icon: const Icon(Icons.arrow_back),color: Colors.black54,),
       ),
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),
-        child: SingleChildScrollView(
-          child: Container(
-            color: Colors.white,
+        child: ScrollConfiguration(
+          behavior: CustomScroll(),
+          child: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal:12),
-              height: Get.height*0.8,
+              height: Get.height*0.85,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -37,7 +43,8 @@ class SignupView extends GetView {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black54,
-                            fontSize: Get.height*0.03,
+                            fontSize:28,
+                            fontWeight: FontWeight.normal,
                             fontFamily: CustomFonts.alata),
                       ),
                       Text(
@@ -45,15 +52,17 @@ class SignupView extends GetView {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.grey,
-                            fontSize:Get.height*0.02,
+                            fontSize:15,
                             fontFamily: CustomFonts.alata),
                       ),
                     ],
                   )),
                   
                   SizedBox(
-                    height: Get.height * 0.65,
+                    height: Get.height * 0.7,
                     child: Form(
+                        key: controller.formKey,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                         child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -64,15 +73,26 @@ class SignupView extends GetView {
                               hintStyle: const TextStyle(color: Colors.black54),
                               hintText: 'Enter name',
                               prefixIcon: const Icon(Icons.person),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey))),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))
+                            
+                        ),
+
+                          validator: (value){
+                            if (value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                              return 'Enter Correct Name';
+
+                            }else {
+                              return null;
+                            }
+
+
+
+                          },
+
+
+
+
+
                         ),
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
@@ -82,15 +102,24 @@ class SignupView extends GetView {
                               hintStyle: const TextStyle(color: Colors.black54),
                               hintText: 'Enter email',
                               prefixIcon: const Icon(Icons.email),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey))),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))
+                                      
+                                      ),
+                          validator: (value){
+                            if (value!.isEmpty || !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$').hasMatch(value)){
+                              return 'Enter Correct Email';
+
+                            }else {
+                              return null;
+                            }
+
+
+
+                          },
+
+
+
+
                         ),
                         TextFormField(
                           keyboardType: TextInputType.number,
@@ -100,19 +129,30 @@ class SignupView extends GetView {
                               counterText: '',
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
-                              hintText: 'Enter phone ',
+                              hintText: 'Enter Phone Number ',
                               prefixIcon: const Icon(Icons.phone),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey))),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+
+                          validator: (value){
+                            if (value!.isEmpty || !RegExp(r'^[0-9]{10}$').hasMatch(value)){
+                              return 'Enter Correct Phone Number';
+
+                            }else {
+                              return null;
+                            }
+
+
+
+                          },
+
+
+
+
+
+
                         ),
                         TextFormField(
+                          controller: controller.Password,
                           style: const TextStyle(color: Colors.black54),
                           obscureText: true,
                           decoration: InputDecoration(
@@ -120,38 +160,56 @@ class SignupView extends GetView {
                               hintStyle: const TextStyle(color: Colors.black54),
                               hintText: 'Enter Password',
                               prefixIcon: const Icon(Icons.lock),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey))),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+
+                          validator: (value){
+                            if (value!.isEmpty || !RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$').hasMatch(value)){
+                              return 'Enter Correct Password';
+
+                            }else {
+                              return null;
+                            }
+
+
+
+                          },
+
+
+
+
+
                         ),
                         TextFormField(
                           style: const TextStyle(color: Colors.black54),
+                          controller:controller. confirmPassword,
                           obscureText: true,
                           decoration: InputDecoration(
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
                               hintText: 'Confirm Password',
                               prefixIcon: const Icon(Icons.lock),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey))),
+                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+
+                          validator: (value){
+                            if(value!.isEmpty)
+                              return 'Enter Correct Password';
+                            if(value!= controller.Password.text)
+                              return 'Password Do Not Match';
+                            return null;
+
+
+
+                          },
+
+
+
+
                         ),
                         CustomButton(
                           title: 'Signup',
                           onPress: () {
-                            Get.toNamed(Routes.otp);
+
+                            controller.signupButton();
                           },
                         ),
                         Row(
@@ -160,7 +218,7 @@ class SignupView extends GetView {
                             Text(
                               'Already have an account? ',
                               style: TextStyle(
-                                  fontSize:Get.height*0.02,
+                                  fontSize:16,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: CustomFonts.alata,
                                   color: Colors.black54),
@@ -170,7 +228,7 @@ class SignupView extends GetView {
                               child: Text(
                                 'Login here ',
                                 style: TextStyle(
-                                    fontSize: Get.height*0.021,
+                                    fontSize: 17,
                                     fontWeight: FontWeight.w500,
                                     fontFamily: CustomFonts.alata,
                                     color: GlobalColor.customColor),

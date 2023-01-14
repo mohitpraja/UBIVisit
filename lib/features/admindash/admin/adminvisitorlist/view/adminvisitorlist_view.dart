@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:visitantapp/core/global/global.dart';
 import 'package:visitantapp/features/admindash/admin/adminvisitorlist/controller/adminvisitorlist_controller.dart';
 
 class AdminVisitorListView extends GetView<AdminVisitorListController> {
@@ -9,6 +10,8 @@ class AdminVisitorListView extends GetView<AdminVisitorListController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+            backgroundColor:GlobalColor.customColor,
+
         title: const Text("Visitor's List"),
       ),
       body: Center(
@@ -18,6 +21,8 @@ class AdminVisitorListView extends GetView<AdminVisitorListController> {
             itemBuilder: (context, index) {
               return Stack(
                 children: [
+
+
                   SizedBox(
                     height: 150,
                     width: 500,

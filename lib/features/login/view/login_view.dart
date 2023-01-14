@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/core/customfont.dart';
-import 'package:visitantapp/core/global.dart';
+import 'package:visitantapp/core/components/customscroll.dart';
+import 'package:visitantapp/core/global/customfont.dart';
+import 'package:visitantapp/core/global/global.dart';
+import 'package:visitantapp/core/global/globalfunction.dart';
+import 'package:visitantapp/core/global/validation.dart';
 import 'package:visitantapp/core/routes.dart';
 import 'package:visitantapp/features/login/controller/login_controller.dart';
 
@@ -12,85 +17,106 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back),color: Colors.black54,),
+        leading: IconButton(
+          onPressed: () => Get.back(),
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.black54,
+        ),
       ),
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),
-        child: SingleChildScrollView(
-          child: Container(
-            color: Colors.white,
+        child: ScrollConfiguration(
+          behavior: CustomScroll(),
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              
                 Center(
                   child: Image.asset(
                     "assets/images/login.png",
-                    width: Get.width * 0.65,
+                    height: Get.height * 0.18,
                   ),
                 ),
                 Form(
+                  key: controller.formValidation,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Container(
                     margin: const EdgeInsets.all(12),
-                    height: Get.height * 0.58,
+                    height: Get.height * 0.65,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Column(
                           children: [
                             Text(
-                              "Welcome Back!!!",
+                              "Welcome !!!",
                               style: TextStyle(
                                   color: Colors.black54,
-                                  fontSize: Get.height * 0.03,
+                                  fontSize: 25,
                                   fontFamily: CustomFonts.alata),
                             ),
                             Text(
-                              "Login in to your existant account",
+                              "Login to your existing account",
                               style: TextStyle(
-                                  fontSize: Get.height * 0.018,
+                                  fontSize: 16,
                                   color: Colors.grey,
                                   fontFamily: CustomFonts.alata),
                             ),
                           ],
                         ),
                         TextFormField(
+                          keyboardType:TextInputType.number,
                           style: const TextStyle(color: Colors.black54),
+
                           decoration: InputDecoration(
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
                               hintText: 'Phone number',
                               prefixIcon: const Icon(Icons.person),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey))),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10))),
+                          validator: MultiValidator(
+                            [
+                              RequiredValidator(errorText: 'Required Phone Number' ),
+
+                              PatternValidator(RegExp(r'^[0-9]{10}$').pattern, errorText: 'Please enter valid Phone Number')
+
+
+                            ],
+
+                          ),
+
+
+
                         ),
                         TextFormField(
                           style: const TextStyle(color: Colors.black54),
+
                           obscureText: true,
                           decoration: InputDecoration(
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
                               hintText: 'Enter Password',
                               prefixIcon: const Icon(Icons.lock),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: GlobalColor.customColor),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25),
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey))),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10))),
+                          validator: MultiValidator(
+                            [
+                              RequiredValidator(errorText: 'Required Password' ),
+
+                              PatternValidator(RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$').pattern, errorText: 'Enter Valid Password')
+
+
+                            ],
+
+                          ),
+
+
+
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -102,7 +128,9 @@ class LoginView extends GetView<LoginController> {
                                 style: TextStyle(
                                     color: GlobalColor.customColor,
                                     fontFamily: CustomFonts.alata,
-                                    fontSize: Get.height * 0.018),
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 1,
+                                    fontSize: 16),
                               ),
                             ),
                           ],
@@ -110,7 +138,7 @@ class LoginView extends GetView<LoginController> {
                         CustomButton(
                           title: "Login",
                           onPress: () {
-                            Get.toNamed(Routes.admindash);
+                            controller.loginButton();
                           },
                         ),
                         Container(
@@ -139,23 +167,25 @@ class LoginView extends GetView<LoginController> {
                         SizedBox(
                           width: Get.width,
                           child: ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () {
+                              GlobalFunction.checkInternet(
+                                  context, Routes.admindash);
+                            },
                             label: Padding(
-                              padding: const EdgeInsets.symmetric(vertical:10),
+                              padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Text(
-                                'Google',
+                                'login with Google',
                                 style: TextStyle(
                                     color: GlobalColor.customColor,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize: Get.height * 0.02,
+                                    fontSize: 16,
                                     fontFamily: CustomFonts.alata),
                               ),
                             ),
-                            
                             icon: Image.asset(
                               'assets/images/google.png',
-                              width:30,
+                              width: 30,
                             ),
                             style: ElevatedButton.styleFrom(
                               shape: const StadiumBorder(
@@ -170,11 +200,10 @@ class LoginView extends GetView<LoginController> {
                             Text(
                               "Don't have an account? ",
                               style: TextStyle(
-                                color: Colors.black54,
-                                fontWeight: FontWeight.w500,
-                                fontSize:Get.height*0.02,
-                                fontFamily: CustomFonts.alata
-                              ),
+                                  color: Colors.black54,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  fontFamily: CustomFonts.alata),
                             ),
                             InkWell(
                               onTap: () => Get.toNamed(Routes.signup),
@@ -183,9 +212,8 @@ class LoginView extends GetView<LoginController> {
                                 style: TextStyle(
                                     color: Colors.indigo,
                                     fontWeight: FontWeight.w600,
-                                     fontSize:Get.height*0.021,
-                                fontFamily: CustomFonts.alata
-                                    ),
+                                    fontSize: 17,
+                                    fontFamily: CustomFonts.alata),
                               ),
                             )
                           ],

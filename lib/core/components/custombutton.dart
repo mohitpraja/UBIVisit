@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:visitantapp/core/customfont.dart';
-import 'package:visitantapp/core/global.dart';
+import 'package:visitantapp/core/global/customfont.dart';
+import 'package:visitantapp/core/global/global.dart';
 
 class CustomButton extends GetView {
   final String title;
@@ -21,7 +21,7 @@ class CustomButton extends GetView {
           child: Text(
             title,
             style: TextStyle(
-                color: Colors.white, letterSpacing: 1,fontWeight: FontWeight.w600, fontSize:Get.height*0.02,fontFamily: CustomFonts.alata),
+                color: Colors.white, letterSpacing: 1,fontWeight: FontWeight.w600, fontSize:17,fontFamily: CustomFonts.alata),
           ),
         ),
       ),

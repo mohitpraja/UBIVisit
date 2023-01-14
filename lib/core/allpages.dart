@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:visitantapp/core/routes.dart';
+import 'package:visitantapp/features/addemployee/binding/addemployee_binding.dart';
+import 'package:visitantapp/features/addemployee/view/addemploye_view.dart';
 import 'package:visitantapp/features/addvisitor/binding/addvisitor_binding.dart';
 import 'package:visitantapp/features/addvisitor/view/addvisitor_view.dart';
 import 'package:visitantapp/features/admindash/binding/admindash_binding.dart';
@@ -14,16 +16,19 @@ import 'package:visitantapp/features/login/binding/login_binding.dart';
 import 'package:visitantapp/features/login/view/login_view.dart';
 import 'package:visitantapp/features/otp/binding/otp_binding.dart';
 import 'package:visitantapp/features/otp/view/otp_view.dart';
+import 'package:visitantapp/features/securityguard/view/security_guard_view.dart';
 import 'package:visitantapp/features/signup/binding/signup_binding.dart';
 import 'package:visitantapp/features/signup/view/signup_view.dart';
 import 'package:visitantapp/features/splash/binding/splash_binding.dart';
 import 'package:visitantapp/features/splash/view/splash_view.dart';
+import 'package:visitantapp/features/visitoranalysis/binding/visitoranalysis_binding.dart';
+import 'package:visitantapp/features/visitoranalysis/view/visitoranalysis_view.dart';
 import 'package:visitantapp/features/welcome/view/welcome_view.dart';
-
 import '../features/accept&decline/binding/accept_decline_binding.dart';
 import '../features/accept&decline/view/accept_decline_view.dart';
 import '../features/addemployee/binding/add_employee_binding.dart';
 import '../features/addemployee/view/add_employe_view.dart';
+import '../features/securityguard/binding/security_guard_binding.dart';
 import '../features/welcome/binding/welcome_binding.dart';
 
 List<GetPage> allpage = [
@@ -80,5 +85,15 @@ List<GetPage> allpage = [
     name: Routes.addemployee,
     page: () => const AddEmployeeView(),
     binding: AddEmployeeBinding(),
+  ),
+  GetPage(
+    name: Routes.security,
+    page: () => const SecurityGuardView(),
+    binding: SecurityGuardBinding(),
+  ),
+  GetPage(
+    name: Routes.visitoranalysis,
+    page: () => const VisitorAnalysisView(),
+    binding: VisitorAnalysisBinding(),
   ),
 ];

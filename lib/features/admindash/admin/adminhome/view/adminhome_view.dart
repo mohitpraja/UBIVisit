@@ -1,33 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/core/customfont.dart';
-import 'package:visitantapp/core/global.dart';
+import 'package:visitantapp/core/global/customfont.dart';
+import 'package:visitantapp/core/global/global.dart';
+import 'package:visitantapp/core/routes.dart';
+import 'package:visitantapp/features/admindash/admin/adminhome/controller/adminhome_controller.dart';
 
-class AdminHomeView extends GetView {
+class AdminHomeView extends GetView <AdminHomeController>{
   const AdminHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      appBar: AppBar(
-        titleSpacing: 0,
-        toolbarHeight: 60,
-        elevation: 0,
-        title: Text(
-          'Dashboard',
-          style: TextStyle(
-              fontSize:Get.height*0.03, fontFamily: CustomFonts.alata),
-        ),
-      ),
-      drawer: Drawer(
-        width: Get.width * 0.75,
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            SizedBox(
-              height: Get.height * 0.2,
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            titleSpacing: 0,
+            toolbarHeight: 60,
+            backgroundColor:GlobalColor.customColor,
+            elevation: 0,
+            title: Text(
+              'Dashboard',
+              style: TextStyle(fontSize: 23, fontFamily: CustomFonts.alata),
+            ),
+          ),
+          drawer: Drawer(
+            width: Get.width * 0.75,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                SizedBox(
+              height: 160,
               child: DrawerHeader(
                 decoration: BoxDecoration(
                   color: GlobalColor.customColor,
@@ -45,14 +48,14 @@ class AdminHomeView extends GetView {
                             'Your name',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize:Get.height*0.03,
+                                fontSize: 26,
                                 fontFamily: CustomFonts.alata),
                           ),
                           Text(
                             '1234567890',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: Get.height*0.02,
+                                fontSize: 16,
                                 fontFamily: CustomFonts.alata),
                           ),
                         ],
@@ -69,33 +72,180 @@ class AdminHomeView extends GetView {
                 ),
               ),
             ),
-            const ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
+            ListTile(
+              leading: const Icon(Icons.home),
+              horizontalTitleGap: 0,
+              title: Text(
+                'Home',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              ),
             ),
-            const ListTile(
-              leading: Icon(Icons.notes),
-              title: Text('Visitor List'),
+            ListTile(
+              leading: const Icon(Icons.notes),
+              horizontalTitleGap: 0,
+              title: Text(
+                'Visitor List',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              ),
             ),
-            const ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text('Profile'),
+            ListTile(
+              leading: const Icon(Icons.account_circle),
+              horizontalTitleGap: 0,
+              title: Text(
+                'Profile',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              ),
             ),
-            const ListTile(
-              leading: Icon(Icons.play_circle_fill),
-              title: Text('Tutorial'),
+            ListTile(
+              leading: const Icon(Icons.play_circle_fill),
+              horizontalTitleGap: 0,
+              title: Text(
+                'Tutorial',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              ),
             ),
-            const ListTile(
-              leading: Icon(Icons.people),
-              title: Text('Manage Users'),
+            ListTile(
+              leading: const Icon(Icons.people),
+              horizontalTitleGap: 0,
+              title: Text(
+                'Manage Users',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              ),
             ),
-            const ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
+            ListTileTheme(
+              horizontalTitleGap: 0,
+              child: ExpansionTile(
+                
+                title: Text(
+                  'Setting',
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: CustomFonts.alata),
+                ),
+                leading: const Icon(Icons.settings),
+                children: [
+                  SizedBox(
+                    width: Get.width*0.5,
+                    child: Column(
+                      children: [
+                      Text('Themes', style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: CustomFonts.alata),),
+                      const Divider(),
+                      
+                         const SizedBox(height: 10,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            GlobalColor.customColor=Colors.teal;
+                            GlobalColor.customMaterialColor=Colors.teal;
+                            Get.back();
+                            Get.offAllNamed(Routes.admindash);
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: const BoxDecoration(
+                                color: Colors.teal, shape: BoxShape.circle),
+                          ),
+                        ),
+                        InkWell(
+                           onTap: () {
+                            GlobalColor.customColor=Colors.deepOrange;
+                            GlobalColor.customMaterialColor=Colors.deepOrange;
+                             Get.back();
+                            Get.offAllNamed(Routes.admindash);
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: const BoxDecoration(
+                                color: Colors.deepOrange, shape: BoxShape.circle),
+                          ),
+                        ),
+                        InkWell(
+                           onTap: () {
+                            GlobalColor.customColor=Colors.blue;
+                            GlobalColor.customMaterialColor=Colors.blue;
+                              Get.back();
+                            Get.offAllNamed(Routes.admindash);
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: const BoxDecoration(
+                                color: Colors.blue, shape: BoxShape.circle),
+                          ),
+                        ),
+                        InkWell(
+                           onTap: () {
+                            GlobalColor.customColor=Colors.green;
+                            GlobalColor.customMaterialColor=Colors.green;
+                             Get.back();
+                            Get.offAllNamed(Routes.admindash);
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: const BoxDecoration(
+                                color: Colors.green, shape: BoxShape.circle),
+                          ),
+                        ),
+                        InkWell(
+                           onTap: () {
+                            GlobalColor.customColor=Colors.pink;
+                            GlobalColor.customMaterialColor=Colors.pink;
+                             Get.back();
+                            Get.offAllNamed(Routes.admindash);
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: const BoxDecoration(
+                                color: Colors.pink, shape: BoxShape.circle),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10,),
+                      ],
+                    ),
+                  ),
+                 
+
+                ],
+              ),
             ),
             ListTile(
               leading: const Icon(Icons.exit_to_app),
-              title: const Text('Logout'),
+              minLeadingWidth: 5,
+              title: Text(
+                'Logout',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              ),
               onTap: () {
                 // dashhomecont.islogout();
               },
@@ -118,11 +268,11 @@ class AdminHomeView extends GetView {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.indigo.shade200,
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white54,
                         ),
-                        margin: const EdgeInsets.only(top: 10),
-                        width: Get.width * 0.95,
+                        margin: const EdgeInsets.all(8),
+                        width: Get.width * 0.9,
                         child: Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 15),
@@ -137,7 +287,7 @@ class AdminHomeView extends GetView {
                                     style: TextStyle(
                                         color: Colors.black54,
                                         fontWeight: FontWeight.w500,
-                                        fontSize:Get.height*0.023,
+                                        fontSize: 20,
                                         fontFamily: CustomFonts.alata),
                                   ),
                                   const SizedBox(
@@ -148,7 +298,7 @@ class AdminHomeView extends GetView {
                                     style: TextStyle(
                                         color: Colors.black54,
                                         fontWeight: FontWeight.w500,
-                                        fontSize:Get.height*0.02,
+                                        fontSize: 17,
                                         fontFamily: CustomFonts.alata),
                                   )
                                 ],
@@ -170,10 +320,10 @@ class AdminHomeView extends GetView {
               ),
             ),
             Positioned(
-              top: Get.height * 0.15,
+              top: Get.height * 0.16,
               child: Container(
                   width: Get.width,
-                  height: Get.height * 0.65,
+                  height: Get.height * 0.6,
                   decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -188,7 +338,9 @@ class AdminHomeView extends GetView {
                         ),
                         CustomButton(
                           title: 'Add Employee',
-                          onPress: () {},
+                          onPress: () {
+                            Get.toNamed(Routes.addemployee);
+                          },
                         ),
                         const SizedBox(
                           height: 15,
@@ -197,24 +349,22 @@ class AdminHomeView extends GetView {
                           width: Get.width,
                           child: ElevatedButton(
                             onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              shape: StadiumBorder(
+                                  side: BorderSide(color:GlobalColor.customColor)),
+                              backgroundColor: Colors.white,
+                            ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical:10),
+                              padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Text(
                                 'Add Guard',
                                 style: TextStyle(
                                     color: GlobalColor.customColor,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize: Get.height * 0.02,
+                                    fontSize: 17,
                                     fontFamily: CustomFonts.alata),
                               ),
-                            ),
-                            
-                          
-                            style: ElevatedButton.styleFrom(
-                              shape: const StadiumBorder(
-                                  side: BorderSide(color: Colors.indigo)),
-                              backgroundColor: Colors.white,
                             ),
                           ),
                         ),
@@ -225,6 +375,6 @@ class AdminHomeView extends GetView {
           ],
         ),
       ),
-    );
+     );
   }
 }
