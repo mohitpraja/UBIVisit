@@ -26,8 +26,6 @@ import 'package:visitantapp/features/visitoranalysis/view/visitoranalysis_view.d
 import 'package:visitantapp/features/welcome/view/welcome_view.dart';
 import '../features/accept&decline/binding/accept_decline_binding.dart';
 import '../features/accept&decline/view/accept_decline_view.dart';
-import '../features/addemployee/binding/add_employee_binding.dart';
-import '../features/addemployee/view/add_employe_view.dart';
 import '../features/securityguard/binding/security_guard_binding.dart';
 import '../features/welcome/binding/welcome_binding.dart';
 
