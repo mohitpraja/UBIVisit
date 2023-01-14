@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:visitantapp/core/components/custombutton.dart';
 import 'package:visitantapp/core/components/customscroll.dart';
@@ -42,7 +43,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
                 Form(
-                  key: Validation.loginFormKey,
+                  key: controller.formValidation,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Container(
                     margin: const EdgeInsets.all(12),
@@ -72,6 +73,7 @@ class LoginView extends GetView<LoginController> {
                           keyboardType:TextInputType.number,
                           style: const TextStyle(color: Colors.black54),
                           validator: (value)=>Validation.isValid(value, 'Enter phone number'),
+
                           decoration: InputDecoration(
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
@@ -84,6 +86,23 @@ class LoginView extends GetView<LoginController> {
                           style: const TextStyle(color: Colors.black54),
                           validator: (value) =>Validation.isValid(value, 'Enter password')
                           ,
+                          validator: MultiValidator(
+                            [
+                              RequiredValidator(errorText: 'Required Phone Number' ),
+
+                              PatternValidator(RegExp(r'^[0-9]{10}$').pattern, errorText: 'Please enter valid Phone Number')
+
+
+                            ],
+
+                          ),
+
+
+
+                        ),
+                        TextFormField(
+                          style: const TextStyle(color: Colors.black54),
+
                           obscureText: true,
                           decoration: InputDecoration(
                               filled: true,
@@ -92,6 +111,19 @@ class LoginView extends GetView<LoginController> {
                               prefixIcon: const Icon(Icons.lock),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10))),
+                          validator: MultiValidator(
+                            [
+                              RequiredValidator(errorText: 'Required Password' ),
+
+                              PatternValidator(RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$').pattern, errorText: 'Enter Valid Password')
+
+
+                            ],
+
+                          ),
+
+
+
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -118,6 +150,7 @@ class LoginView extends GetView<LoginController> {
                               GlobalFunction.checkInternet(
                                   context, Routes.admindash);
                             }
+                            controller.loginButton();
                           },
                         ),
                         Container(
