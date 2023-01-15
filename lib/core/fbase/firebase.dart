@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FBase {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  static Future addUser() {
+  static Future addUser(name,email,phone,password) {
     log('cld');
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     return firestore
@@ -14,11 +14,11 @@ class FBase {
         .collection('users')
         .doc(id)
         .set({
-      'name': 'Mohit',
-      'email': 'mohit@gmail.com',
+      'name': name,
+      'email': email,
       'post': 'admin',
-      'password': 'pass',
-      'phone': '8103586806',
+      'password': password,
+      'phone': phone,
       'id': id
     }).then((value) => print('_'));
   }
@@ -27,8 +27,8 @@ class FBase {
     firestore
         .collection('ubivisit/ubivisit/users')
         .get()
+        // ignore: avoid_function_literals_in_foreach_calls
         .then((snapshot) => snapshot.docs.forEach((element) {
-      print(element['name']);
-    }));
+            }));
   }
 }

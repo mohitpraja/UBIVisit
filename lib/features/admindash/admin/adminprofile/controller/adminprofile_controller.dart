@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:visitantapp/core/global/customfont.dart';
+import 'package:ubivisit/core/global/customfont.dart';
 
 class AdminProfileController extends GetxController{
   showBottomSheet(){

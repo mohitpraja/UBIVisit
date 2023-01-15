@@ -1,4 +1,4 @@
-package com.example.visitantapp
+package com.example.ubivisit
 
 import io.flutter.embedding.android.FlutterActivity
 

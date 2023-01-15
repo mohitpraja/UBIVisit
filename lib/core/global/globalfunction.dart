@@ -1,10 +1,10 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:visitantapp/core/components/customloader.dart';
+import 'package:ubivisit/core/components/customloader.dart';
 
 class GlobalFunction {
-   static checkInternet(context,routename) async {
+   static checkInternet(context,routename,args) async {
       CustomLoader.showLoader(context);
       if(!(await InternetConnectionChecker().hasConnection)){
         Get.back();
@@ -16,7 +16,7 @@ class GlobalFunction {
         ).show();
       }else{
         Get.back();
-        Get.toNamed(routename);
+        Get.offAllNamed(routename,arguments: args);
        
       }
 

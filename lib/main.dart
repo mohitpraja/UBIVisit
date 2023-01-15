@@ -1,9 +1,11 @@
+// ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:visitantapp/core/allpages.dart';
-import 'package:visitantapp/core/global/global.dart';
-import 'package:visitantapp/core/routes.dart';
+import 'package:ubivisit/core/allpages.dart';
+import 'package:ubivisit/core/global/customfont.dart';
+import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/routes.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -14,7 +16,6 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-//changes by mohit
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'UBIVisit',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: CustomFonts.alata,
         primarySwatch: GlobalColor.customMaterialColor,
       ),
       initialRoute: Routes.splash,

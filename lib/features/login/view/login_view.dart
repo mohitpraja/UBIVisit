@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
-import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/core/components/customscroll.dart';
-import 'package:visitantapp/core/global/customfont.dart';
-import 'package:visitantapp/core/global/global.dart';
-import 'package:visitantapp/core/global/globalfunction.dart';
-import 'package:visitantapp/core/routes.dart';
-import 'package:visitantapp/features/login/controller/login_controller.dart';
+import 'package:ubivisit/core/components/custombutton.dart';
+import 'package:ubivisit/core/components/customscroll.dart';
+import 'package:ubivisit/core/global/customfont.dart';
+import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/globalfunction.dart';
+import 'package:ubivisit/core/global/validation.dart';
+import 'package:ubivisit/core/routes.dart';
+import 'package:ubivisit/features/login/controller/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
@@ -40,7 +41,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
                 Form(
-                  key: controller.formValidation,
+                  key: Validation.loginFormKey,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Container(
                     margin: const EdgeInsets.all(12),
@@ -53,23 +54,22 @@ class LoginView extends GetView<LoginController> {
                             Text(
                               "Welcome !!!",
                               style: TextStyle(
-                                  color: Colors.black54,
+                                  color: Colors.black,
                                   fontSize: 25,
                                   fontFamily: CustomFonts.alata),
                             ),
                             Text(
                               "Login to your existing account",
                               style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 15,
                                   color: Colors.grey,
                                   fontFamily: CustomFonts.alata),
                             ),
                           ],
                         ),
                         TextFormField(
-                          keyboardType:TextInputType.number,
+                          keyboardType: TextInputType.number,
                           style: const TextStyle(color: Colors.black54),
-
                           decoration: InputDecoration(
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
@@ -79,43 +79,41 @@ class LoginView extends GetView<LoginController> {
                                   borderRadius: BorderRadius.circular(10))),
                           validator: MultiValidator(
                             [
-                              RequiredValidator(errorText: 'Required Phone Number' ),
-
-                              PatternValidator(RegExp(r'^[0-9]{10}$').pattern, errorText: 'Please enter valid Phone Number')
-
-
+                              RequiredValidator(
+                                  errorText: 'Required Phone Number'),
+                              PatternValidator(RegExp(r'^[0-9]{10}$').pattern,
+                                  errorText: 'Please enter valid Phone Number')
                             ],
-
                           ),
-
-
-
                         ),
-                        TextFormField(
-                          style: const TextStyle(color: Colors.black54),
-
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              filled: true,
-                              hintStyle: const TextStyle(color: Colors.black54),
-                              hintText: 'Enter Password',
-                              prefixIcon: const Icon(Icons.lock),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                          validator: MultiValidator(
-                            [
-                              RequiredValidator(errorText: 'Required Password' ),
-
-                              PatternValidator(RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$').pattern, errorText: 'Enter Valid Password')
-
-
-                            ],
-
-                          ),
-
-
-
-                        ),
+                        Obx(() => TextFormField(
+                              style: const TextStyle(color: Colors.black54),
+                              obscureText: controller.isPass.value,
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  hintStyle:
+                                      const TextStyle(color: Colors.black54),
+                                  hintText: 'Enter Password',
+                                  suffixIcon: IconButton(
+                                      onPressed: () => controller.showPass(),
+                                      icon: controller.isPass.value
+                                          ? const Icon(Icons.visibility_off)
+                                          : const Icon(Icons.visibility)),
+                                  prefixIcon: const Icon(Icons.lock),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10))),
+                              validator: MultiValidator(
+                                [
+                                  RequiredValidator(
+                                      errorText: 'Required Password'),
+                                  PatternValidator(
+                                      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$&*~]).{6,}$')
+                                          .pattern,
+                                      errorText:
+                                          ("Password doesn't match the format : Abc@123"))
+                                ],
+                              ),
+                            )),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -136,7 +134,12 @@ class LoginView extends GetView<LoginController> {
                         CustomButton(
                           title: "Login",
                           onPress: () {
-                            controller.loginButton();
+                            // controller.loginButton();
+                            if (Validation.loginFormKey.currentState!
+                                .validate()) {
+                              GlobalFunction.checkInternet(
+                                  context, Routes.admindash,null);
+                            }
                           },
                         ),
                         Container(
@@ -167,12 +170,12 @@ class LoginView extends GetView<LoginController> {
                           child: ElevatedButton.icon(
                             onPressed: () {
                               GlobalFunction.checkInternet(
-                                  context, Routes.admindash);
+                                  context, Routes.admindash,null);
                             },
                             label: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Text(
-                                'login with Google',
+                                'signup with Google',
                                 style: TextStyle(
                                     color: GlobalColor.customColor,
                                     fontWeight: FontWeight.w600,

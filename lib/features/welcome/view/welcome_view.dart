@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:visitantapp/core/global/customfont.dart';
-import 'package:visitantapp/core/global/global.dart';
-import 'package:visitantapp/core/routes.dart';
+import 'package:ubivisit/core/global/customfont.dart';
+import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/routes.dart';
 
 class WelcomeView extends GetView {
   const WelcomeView({super.key});

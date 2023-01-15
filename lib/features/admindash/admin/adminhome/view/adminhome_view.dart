@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/core/global/customfont.dart';
-import 'package:visitantapp/core/global/global.dart';
-import 'package:visitantapp/core/routes.dart';
-import 'package:visitantapp/features/admindash/admin/adminhome/controller/adminhome_controller.dart';
+import 'package:ubivisit/core/components/custombutton.dart';
+import 'package:ubivisit/core/global/customfont.dart';
+import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/routes.dart';
+import 'package:ubivisit/features/admindash/admin/adminhome/controller/adminhome_controller.dart';
 
 class AdminHomeView extends GetView <AdminHomeController>{
   const AdminHomeView({super.key});

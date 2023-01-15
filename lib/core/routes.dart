@@ -7,6 +7,7 @@ class Routes {
   static String splash = '/splash_view.dart';
   static String adminvisitorlist = '/adminvisitorlist_view.dart';
   static String signup = '/signup_view.dart';
+  static String googlesignup = '/googlesignup_view.dart';
   static String welcome = '/welcome_view.dart';
   static String addvisitor = '/addvisitor_view.dart';
   static String acceptdecline = '/acceptdecline_view.dart';

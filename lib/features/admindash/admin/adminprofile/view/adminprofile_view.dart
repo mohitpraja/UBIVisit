@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:visitantapp/core/global/customfont.dart';
-import 'package:visitantapp/core/global/global.dart';
-import 'package:visitantapp/core/routes.dart';
-import 'package:visitantapp/features/admindash/admin/adminprofile/controller/adminprofile_controller.dart';
+import 'package:ubivisit/core/global/customfont.dart';
+import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/routes.dart';
+import 'package:ubivisit/features/admindash/admin/adminprofile/controller/adminprofile_controller.dart';
 
 class AdminProfileView extends GetView<AdminProfileController>{
   const AdminProfileView({super.key});
@@ -63,7 +63,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                 ),
                 Form(
                   child: SizedBox(
-                    height: Get.height * 0.5,
+                    height: Get.height * 0.45,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [

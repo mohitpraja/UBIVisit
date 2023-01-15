@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/features/addvisitor/controller/addvisitor_controller.dart';
+import 'package:ubivisit/core/components/custombutton.dart';
+import 'package:ubivisit/features/addvisitor/controller/addvisitor_controller.dart';
 
 class AddvisitorView extends GetView<AddvisitorController> {
   const AddvisitorView({super.key});

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:visitantapp/core/routes.dart';
+import 'package:ubivisit/core/routes.dart';
 
 class SplashController extends GetxController {
   @override

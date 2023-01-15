@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:visitantapp/core/routes.dart';
-import 'package:visitantapp/features/intoduction/controller/introduction_controller.dart';
+import 'package:ubivisit/core/routes.dart';
+import 'package:ubivisit/features/intoduction/controller/introduction_controller.dart';
 
 class IntroductionView extends GetView<IntroductionController> {
   const IntroductionView({super.key});

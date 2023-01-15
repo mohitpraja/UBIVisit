@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:visitantapp/core/components/custombutton.dart';
-import 'package:visitantapp/core/components/customscroll.dart';
-import 'package:visitantapp/core/global/customfont.dart';
-import 'package:visitantapp/core/global/validation.dart';
-import 'package:visitantapp/core/routes.dart';
-import 'package:visitantapp/features/forgot/controller/forgot_controller.dart';
+import 'package:ubivisit/core/components/custombutton.dart';
+import 'package:ubivisit/core/components/customscroll.dart';
+import 'package:ubivisit/core/global/customfont.dart';
+import 'package:ubivisit/core/global/validation.dart';
+import 'package:ubivisit/core/routes.dart';
+import 'package:ubivisit/features/forgot/controller/forgot_controller.dart';
 
 class ForgotView extends GetView<ForgotController> {
   const ForgotView({super.key});

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:visitantapp/features/visitoranalysis/controller/visitoranalysis_controller.dart';
+import 'package:ubivisit/features/visitoranalysis/controller/visitoranalysis_controller.dart';
 
 class VisitorAnalysisView extends GetView<VisitorAnalysisController>{
   const VisitorAnalysisView({super.key});

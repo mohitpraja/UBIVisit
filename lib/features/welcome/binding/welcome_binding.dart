@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:visitantapp/features/welcome/controller/welcome_controller.dart';
+import 'package:ubivisit/features/welcome/controller/welcome_controller.dart';
 
 class WelcomeBinding extends Bindings{
   @override

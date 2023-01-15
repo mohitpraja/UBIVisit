@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "392052713889",
-    "project_id": "ubivisit-f41e6",
-    "storage_bucket": "ubivisit-f41e6.appspot.com"
+    "project_number": "734739097166",
+    "project_id": "finalubivisit-c93ff",
+    "storage_bucket": "finalubivisit-c93ff.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:392052713889:android:ec79a8caae92e91b8c43e0",
+        "mobilesdk_app_id": "1:734739097166:android:d1d28c18214e8960b4851f",
         "android_client_info": {
-          "package_name": "com.example.visitantapp"
+          "package_name": "com.example.ubivisit"
         }
       },
       "oauth_client": [
         {
-          "client_id": "392052713889-vuf7030v3ehue5c839ggm0b0d4124ada.apps.googleusercontent.com",
+          "client_id": "734739097166-34g8kqhlj2s4ejo1l1tujamadejhmnd1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCe-nOCZd8rWiaijaXuAPhQCrI_OqaIzi0"
+          "current_key": "AIzaSyBt9wdasj9m437Bj0Id5JeZNg-A39BZM9o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "392052713889-vuf7030v3ehue5c839ggm0b0d4124ada.apps.googleusercontent.com",
+              "client_id": "734739097166-34g8kqhlj2s4ejo1l1tujamadejhmnd1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

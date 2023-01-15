@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:visitantapp/features/signup/controller/signup_controller.dart';
+import 'package:ubivisit/features/signup/controller/signup_controller.dart';
 
 class SignupBinding extends Bindings{
   @override

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:visitantapp/features/admindash/admin/adminvisitorlist/controller/adminvisitorlist_controller.dart';
+import 'package:ubivisit/features/admindash/admin/adminvisitorlist/controller/adminvisitorlist_controller.dart';
 
 class AdminVisitorListBinding extends Bindings{
   @override

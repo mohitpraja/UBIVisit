@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:visitantapp/core/global/global.dart';
+import 'package:ubivisit/core/global/global.dart';
 
 class CustomLoader{
   static void showLoader(BuildContext context){

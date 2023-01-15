@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controller/accept_decline_controller.dart';
+import 'package:ubivisit/features/accept&decline/controller/accept_decline_controller.dart';
 
 
 class AcceptDeclineView extends GetView<AcceptDeclineController> {
@@ -13,7 +13,7 @@ class AcceptDeclineView extends GetView<AcceptDeclineController> {
     return   Scaffold(
       backgroundColor:Colors.indigo,
       body: Container(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         color: Colors.indigo,
         width: double.infinity,height: 900,
         child: Stack(
@@ -22,10 +22,10 @@ class AcceptDeclineView extends GetView<AcceptDeclineController> {
                 child: Container(
                   height: Get.height*6,
                   width: Get.width*6,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                   ),
-                  constraints: BoxConstraints(maxHeight: 250,maxWidth: 350),
+                  constraints: const BoxConstraints(maxHeight: 250,maxWidth: 350),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:  const [
@@ -62,13 +62,13 @@ class AcceptDeclineView extends GetView<AcceptDeclineController> {
                            borderRadius: BorderRadius.circular(20),
                          ),),
                          padding: MaterialStateProperty.all
-                           (EdgeInsets.symmetric(vertical: 10, horizontal: 10,),),
+                           (const EdgeInsets.symmetric(vertical: 10, horizontal: 10,),),
                          backgroundColor: MaterialStateProperty.all(Colors.green),
                        ),
                        onPressed: (){
 
                        },
-                       child: Text("Accept",
+                       child: const Text("Accept",
                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25,
                            color:Colors.white, ),),
                      ),),
@@ -80,13 +80,13 @@ class AcceptDeclineView extends GetView<AcceptDeclineController> {
                       borderRadius: BorderRadius.circular(20),
                     ),),
                     padding: MaterialStateProperty.all
-                      (EdgeInsets.symmetric(vertical: 10, horizontal: 10,),),
+                      (const EdgeInsets.symmetric(vertical: 10, horizontal: 10,),),
                     backgroundColor: MaterialStateProperty.all(Colors.red),
                   ),
                   onPressed: (){
 
                   },
-                  child: Text("Decline",
+                  child: const Text("Decline",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25,
                       color:Colors.white, ),),
                 ),),

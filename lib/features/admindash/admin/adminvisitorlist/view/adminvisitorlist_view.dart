@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:visitantapp/core/global/global.dart';
-import 'package:visitantapp/features/admindash/admin/adminvisitorlist/controller/adminvisitorlist_controller.dart';
+import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/features/admindash/admin/adminvisitorlist/controller/adminvisitorlist_controller.dart';
 
 class AdminVisitorListView extends GetView<AdminVisitorListController> {
   const AdminVisitorListView({super.key});

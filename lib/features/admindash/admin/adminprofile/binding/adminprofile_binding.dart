@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:visitantapp/features/admindash/admin/adminprofile/controller/adminprofile_controller.dart';
+import 'package:ubivisit/features/admindash/admin/adminprofile/controller/adminprofile_controller.dart';
 
 class AdminProfileBinding extends Bindings{
   @override

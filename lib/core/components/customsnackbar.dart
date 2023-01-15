@@ -1,26 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/global/global.dart';
 
-class CustomSnackbar {
-  late final String title;
-  late final String message;
-  CustomSnackbar({required this.title,required this.message});
+class CustomSnackbar{
+  final String title;
+  final String msg;
+
+  const CustomSnackbar({required this.title,required this.msg});
 
   show(){
-    Get.snackbar(title, message,
-      backgroundColor: Colors.white,
-        colorText: Colors.indigo,
-        borderColor: Colors.indigo,
-        borderWidth: 1,
-        dismissDirection: DismissDirection.horizontal,
+    Get.snackbar(title, msg,
+    backgroundColor:Colors.white,
+    colorText: GlobalColor.customColor
     );
   }
-  // @override
-  // Widget build(BuildContext context) {
-  //   return SizedBox(
-  //     child: show(),
-  //
-  //   );
-
-  }
-
+ 
+}

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:visitantapp/features/login/controller/login_controller.dart';
+import 'package:ubivisit/features/login/controller/login_controller.dart';
 
 class LoginBinding extends Bindings {
   @override
