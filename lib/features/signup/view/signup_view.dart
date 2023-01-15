@@ -204,7 +204,9 @@ class SignupView extends GetView<SignupController> {
                                       color: Colors.black54),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Get.toNamed(Routes.login);
+                                  },
                                   child: Text(
                                     'Login here ',
                                     style: TextStyle(

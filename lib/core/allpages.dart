@@ -30,7 +30,10 @@ import 'package:ubivisit/features/welcome/binding/welcome_binding.dart';
 import 'package:ubivisit/features/welcome/view/welcome_view.dart';
 
 List<GetPage> allpage = [
-  GetPage(name: Routes.otp, page: () => OtpView(), binding: OtpBinding()),
+  GetPage(
+    name: Routes.otp, 
+    page: () => const OtpView(), 
+    binding: OtpBinding()),
   GetPage(
       name: Routes.introduction,
       page: () => const IntroductionView(),

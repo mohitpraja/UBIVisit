@@ -11,7 +11,6 @@ class AdminDashView extends GetView <AdminDashController>{
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
       backgroundColor: Colors.white,
-
              body: controller.adminallpages[controller.selectedindex.value],
               bottomNavigationBar: CurvedNavigationBar(
                 backgroundColor: Colors.white,

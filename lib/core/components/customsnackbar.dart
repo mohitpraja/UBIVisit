@@ -14,5 +14,11 @@ class CustomSnackbar{
     colorText: GlobalColor.customColor
     );
   }
+  show1(){
+    Get.snackbar(title, msg,
+    backgroundColor:GlobalColor.customColor,
+    colorText: Colors.white
+    );
+  }
  
 }

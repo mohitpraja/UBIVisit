@@ -5,7 +5,6 @@ import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
-import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/login/controller/login_controller.dart';
@@ -70,10 +69,13 @@ class LoginView extends GetView<LoginController> {
                         TextFormField(
                           keyboardType: TextInputType.number,
                           style: const TextStyle(color: Colors.black54),
+                          maxLength: 10,
+                          controller: controller.phone,
                           decoration: InputDecoration(
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
                               hintText: 'Phone number',
+                              counterText: '',
                               prefixIcon: const Icon(Icons.person),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10))),
@@ -89,6 +91,7 @@ class LoginView extends GetView<LoginController> {
                         Obx(() => TextFormField(
                               style: const TextStyle(color: Colors.black54),
                               obscureText: controller.isPass.value,
+                              controller: controller.pass,
                               decoration: InputDecoration(
                                   filled: true,
                                   hintStyle:
@@ -134,11 +137,9 @@ class LoginView extends GetView<LoginController> {
                         CustomButton(
                           title: "Login",
                           onPress: () {
-                            // controller.loginButton();
                             if (Validation.loginFormKey.currentState!
                                 .validate()) {
-                              GlobalFunction.checkInternet(
-                                  context, Routes.admindash,null);
+                                  controller.login(context, controller.phone.text, controller.pass.text);
                             }
                           },
                         ),
@@ -169,8 +170,8 @@ class LoginView extends GetView<LoginController> {
                           width: Get.width,
                           child: ElevatedButton.icon(
                             onPressed: () {
-                              GlobalFunction.checkInternet(
-                                  context, Routes.admindash,null);
+                              controller.googleSignIn(context);
+                             
                             },
                             label: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),

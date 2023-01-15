@@ -5,10 +5,9 @@ import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/features/otp/controller/otp_controller.dart';
-import 'package:ubivisit/features/signup/controller/signup_controller.dart';
 
 class OtpView extends GetView<OtpController> {
-  OtpView({super.key});
+  const OtpView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -5,6 +5,7 @@ import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/googlesignup/controller/googlesignup_controller.dart';
@@ -63,7 +64,7 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
                   SizedBox(
                     height: Get.height * 0.7,
                     child: Form(
-                        key: Validation.signupFormKey,
+                        key: Validation.googleSignupFormKey,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -87,6 +88,7 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
                               onChanged: (value) => controller.name = value,
                             ),
                             TextFormField(
+                              readOnly: true,
                               keyboardType: TextInputType.emailAddress,
                               style: const TextStyle(color: Colors.black54),
                               decoration: InputDecoration(
@@ -104,7 +106,7 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
                                         .pattern,
                                     errorText: 'Invalid email')
                               ]),
-                              onChanged: (value) => controller.email = value,
+                              initialValue: controller.signupEmail,
                             ),
                             TextFormField(
                               keyboardType: TextInputType.number,
@@ -188,8 +190,10 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
                             CustomButton(
                               title: 'Signup',
                               onPress: () {
-                                controller.gotoOtp(
-                                    context);
+                                if (Validation.googleSignupFormKey.currentState!
+                                    .validate()) {
+                                  controller.signupByGoogle(context);
+                                }
                               },
                             ),
                             Row(
@@ -204,7 +208,9 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
                                       color: Colors.black54),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Get.toNamed(Routes.login);
+                                  },
                                   child: Text(
                                     'Login here ',
                                     style: TextStyle(

@@ -75,8 +75,8 @@ class SignupController extends GetxController {
           await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
       if (authCred.user != null) {
         Get.back();
-        FBase.addUser(name,email,phone,password);
-        AwesomeDialog(
+        FBase.addUser(name,email,phone,password).then((value){
+              AwesomeDialog(
           context: context,
           dialogType: DialogType.success,
           title: 'Success',
@@ -92,8 +92,10 @@ class SignupController extends GetxController {
                         fontWeight: FontWeight.bold),
                   ))),
         ).show();
+        });
+      
       }
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       Get.back();
       const CustomSnackbar(msg: 'Invalid OTP', title: 'Warning').show();
     }
