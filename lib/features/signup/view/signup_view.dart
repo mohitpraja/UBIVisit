@@ -146,6 +146,7 @@ class SignupView extends GetView<SignupController> {
                                           borderRadius:
                                               BorderRadius.circular(10))),
                                   validator: MultiValidator([
+                                    MinLengthValidator(6, errorText: 'password must be at least 8 digits long'), 
                                     RequiredValidator(
                                         errorText: 'Password requied'),
                                     PatternValidator(
