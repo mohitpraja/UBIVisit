@@ -13,7 +13,7 @@ class AdminHomeView extends GetView<AdminHomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => controller.loader.value
+    return Obx(() => controller.loader.value==true
         ? const Center(child: CircularProgressIndicator())
         : Scaffold(
             backgroundColor: Colors.white,
@@ -280,6 +280,9 @@ class AdminHomeView extends GetView<AdminHomeController> {
                       await pref.setBool('islogin', false);
                       pref.clear();
                       print('data cleared');
+                      print(pref.getString('name'));
+                      GlobalColor.customColor=Colors.indigo;
+                      GlobalColor.customMaterialColor=Colors.indigo;
                       Get.offAllNamed(Routes.login);
                     },
                   ),
