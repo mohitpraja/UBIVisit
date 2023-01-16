@@ -278,6 +278,8 @@ class AdminHomeView extends GetView<AdminHomeController> {
                     onTap: () async {
                       var pref = await SharedPreferences.getInstance();
                       await pref.setBool('islogin', false);
+                      pref.clear();
+                      print('data cleared');
                       Get.offAllNamed(Routes.login);
                     },
                   ),
