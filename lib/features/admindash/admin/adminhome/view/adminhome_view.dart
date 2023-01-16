@@ -13,29 +13,28 @@ class AdminHomeView extends GetView<AdminHomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => controller.loader.value==true
-        ? const Center(child: CircularProgressIndicator())
-        : Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              titleSpacing: 0,
-              toolbarHeight: 60,
-              backgroundColor: GlobalColor.customColor,
-              elevation: 0,
-              title: Text(
-                'Dashboard',
-                style: TextStyle(fontSize: 23, fontFamily: CustomFonts.alata),
-              ),
-            ),
-            drawer: Drawer(
-              width: Get.width * 0.75,
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: <Widget>[
-                  SizedBox(
-                    height: 160,
-                    child: DrawerHeader(
-                      decoration: BoxDecoration(
+    print('rebuuit');
+    return Obx(() => Scaffold(
+                backgroundColor: Colors.white,
+                appBar: AppBar(
+                  titleSpacing: 0,
+                  toolbarHeight: 60,
+                  backgroundColor: GlobalColor.customColor,
+                  elevation: 0,
+                  title: Text(
+                    'Dashboard',
+                    style: TextStyle(fontSize: 23, fontFamily: CustomFonts.alata),
+                  ),
+                ),
+                drawer: Drawer(
+                  width: Get.width * 0.75,
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    children: <Widget>[
+                      SizedBox(
+                        height: 160,
+                        child: DrawerHeader(
+                          decoration: BoxDecoration(
                         color: GlobalColor.customColor,
                       ),
                       child: Container(
@@ -48,14 +47,14 @@ class AdminHomeView extends GetView<AdminHomeController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  controller.userData![0].toString(),
+                                  controller.name.value,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 26,
                                       fontFamily: CustomFonts.alata),
                                 ),
                                 Text(
-                                  controller.userData![2].toString(),
+                                  controller.phone.value,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 16,
@@ -69,7 +68,7 @@ class AdminHomeView extends GetView<AdminHomeController> {
                                 width: 60,
                                 height: 60,
                                 fit: BoxFit.cover,
-                                imageUrl: controller.userData![4].toString(),
+                                imageUrl: '',
                                 errorWidget: (context, url, error) =>
                                     CircleAvatar(
                                         backgroundColor:
@@ -279,8 +278,6 @@ class AdminHomeView extends GetView<AdminHomeController> {
                       var pref = await SharedPreferences.getInstance();
                       await pref.setBool('islogin', false);
                       pref.clear();
-                      print('data cleared');
-                      print(pref.getString('name'));
                       GlobalColor.customColor=Colors.indigo;
                       GlobalColor.customMaterialColor=Colors.indigo;
                       Get.offAllNamed(Routes.login);
@@ -321,7 +318,7 @@ class AdminHomeView extends GetView<AdminHomeController> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          controller.userData![0].toString(),
+                                          controller.name.value,
                                           style: TextStyle(
                                               color: Colors.black54,
                                               fontWeight: FontWeight.w500,
@@ -332,7 +329,7 @@ class AdminHomeView extends GetView<AdminHomeController> {
                                           height: 2,
                                         ),
                                         Text(
-                                          controller.userData![6].toString(),
+                                          controller.post.value,
                                           style: TextStyle(
                                               color: Colors.black54,
                                               fontWeight: FontWeight.w500,
@@ -347,8 +344,7 @@ class AdminHomeView extends GetView<AdminHomeController> {
                                         width: 50,
                                         height: 50,
                                         fit: BoxFit.cover,
-                                        imageUrl:
-                                            controller.userData![4].toString(),
+                                        imageUrl:'',
                                         errorWidget: (context, url, error) =>
                                             CircleAvatar(
                                                 backgroundColor:
@@ -427,6 +423,6 @@ class AdminHomeView extends GetView<AdminHomeController> {
                 ],
               ),
             ),
-          ));
+    ));
   }
 }

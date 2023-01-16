@@ -24,7 +24,7 @@ class FBase {
       'post': 'admin',
       'password': password,
       'phone': phone,
-      'image': 'null',
+      'image': '',
       'id': id
     });
   }
@@ -36,23 +36,25 @@ class FBase {
     CustomLoader.showLoader(context);
     firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
       // ignore: avoid_function_literals_in_foreach_calls
-      snapshot.docs.forEach((e) async {
-        var data = e.data();
-        if ((data['phone'] == phone||data['eamil'] == phone) && data['password'] == pass) {
-          isMatch = true;
-          await prefs.setBool('islogin', true);
-          print(data);
-          await prefs.setStringList('items', <String>[
-            data['name'],
-            data['email'],
-            data['phone'],
-            data['password'],
-            data['image'],
-            data['id'],
-            data['post']
-          ]);
-        }
-      });
+      snapshot.docs.forEach(
+        (e) async {
+          var data = e.data();
+          if ((data['phone'] == phone || data['eamil'] == phone) &&
+              data['password'] == pass) {
+            isMatch = true;
+            await prefs.setBool('islogin', true);
+            await prefs.setString('name', data['name']);
+            await prefs.setString('email', data['email']);
+            await prefs.setString('password', data['password']);
+            await prefs.setString('phone', data['phone']);
+            await prefs.setString('image', data['image']);
+            await prefs.setString('post', data['post']);
+            await prefs.setString('id', data['id']);
+
+            print(data);
+          }
+        },
+      );
     }).then((value) {
       Get.back();
       isMatch == true
@@ -61,5 +63,20 @@ class FBase {
               .show1();
     });
   }
- 
+  static bool isUser=false;
+  static checkUser(val) {
+    print('check usr cld $val');
+    firestore
+        .collection('ubivisit/ubivisit/users')
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((e) {
+          if((e.data()['phone']==val)||(e.data()['email']==val)){
+           isUser=true;
+          }
+        })).then((value){
+          if(isUser){
+            return 'this $val is already exist';
+          }
+        });
+  }
 }
