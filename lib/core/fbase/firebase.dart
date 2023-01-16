@@ -41,6 +41,7 @@ class FBase {
         if ((data['phone'] == phone||data['eamil'] == phone) && data['password'] == pass) {
           isMatch = true;
           await prefs.setBool('islogin', true);
+          print(data);
           await prefs.setStringList('items', <String>[
             data['name'],
             data['email'],
