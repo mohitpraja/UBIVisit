@@ -31,19 +31,11 @@ class FBase {
   }
 
   static bool isMatch = false;
-  static RxString name=''.obs;
-  static RxString email=''.obs;
-  static RxString password=''.obs;
-  static RxString phone=''.obs;
-  static RxString id=''.obs;
-  static RxString post=''.obs;
-  static RxString image=''.obs;
-  static RxMap userInfo={}.obs;
- 
+  static RxMap userInfo = {}.obs;
 
   static Future getData(context, phone, pass) async {
     final prefs = await SharedPreferences.getInstance();
-    var db=await Hive.openBox('ubivisit');
+    var db = await Hive.openBox('ubivisit');
     CustomLoader.showLoader(context);
     firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
       // ignore: avoid_function_literals_in_foreach_calls
@@ -54,18 +46,16 @@ class FBase {
               data['password'] == pass) {
             isMatch = true;
             db.put('userInfo', {
-              'name':data['name'],
-              'email':data['email'],
-              'password':data['password'],
-              'post':data['post'],
-              'id':data['id'],
-              'image':data['image'],
-              'phone':data['phone'],
+              'name': data['name'],
+              'email': data['email'],
+              'password': data['password'],
+              'post': data['post'],
+              'id': data['id'],
+              'image': data['image'],
+              'phone': data['phone'],
             });
-           
-            await prefs.setBool('isLogin', true);
-           
 
+            await prefs.setBool('isLogin', true);
           }
         },
       );
@@ -77,20 +67,17 @@ class FBase {
               .show1();
     });
   }
-  static bool isUser=false;
-  static checkUser(val) {
+
+  static checkUser(val){
     firestore
-        .collection('ubivisit/ubivisit/users')
+        .collection('ubivisit/ubivisit/users/')
+        .where('phone', isEqualTo: val)
         .get()
-        // ignore: avoid_function_literals_in_foreach_calls
-        .then((snapshot) => snapshot.docs.forEach((e) {
-          if((e.data()['phone']==val)||(e.data()['email']==val)){
-           isUser=true;
-          }
-        })).then((value){
-          if(isUser){
-            return 'this $val is already exist';
-          }
-        });
+        .then((e) {
+          print(e.docs.length);
+      if (e.docs.isNotEmpty) {
+        CustomSnackbar(title: 'Warning',msg: 'this is phone number is already exists').show1();
+      } 
+    });
   }
 }

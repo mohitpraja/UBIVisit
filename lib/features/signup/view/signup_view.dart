@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
+import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/validation.dart';
@@ -119,12 +121,27 @@ class SignupView extends GetView<SignupController> {
                                   prefixIcon: const Icon(Icons.phone),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10))),
-                              validator: MultiValidator([
-                                RequiredValidator(
-                                    errorText: 'Phone number required'),
-                                PatternValidator(RegExp(r'^[0-9]{10}$').pattern,
-                                    errorText: 'Invalid number')
-                              ]),
+                              validator: (value) {
+                                Validation.isValid(
+                                    value, 'Phone number required');
+                                Pattern pattern = r'^[0-9]{10}$';
+                                RegExp regex = RegExp(pattern.toString());
+                                if (!regex.hasMatch(value!)) {
+                                  return 'Enter Valid Phone';
+                                }
+                                if (regex.hasMatch(value)) {
+                                  FBase.checkUser(value);
+                                  
+
+                                }
+                               
+                              },
+                              // validator: MultiValidator([
+                              //   RequiredValidator(
+                              //       errorText: 'Phone number required'),
+                              //   PatternValidator(RegExp(r'^[0-9]{10}$').pattern,
+                              //       errorText: 'Invalid number')
+                              // ]),
                               onChanged: (value) => controller.phone = value,
                             ),
                             Obx(() => TextFormField(
@@ -146,7 +163,9 @@ class SignupView extends GetView<SignupController> {
                                           borderRadius:
                                               BorderRadius.circular(10))),
                                   validator: MultiValidator([
-                                    MinLengthValidator(6, errorText: 'password must be at least 8 digits long'), 
+                                    MinLengthValidator(6,
+                                        errorText:
+                                            'password must be at least 6 digits long'),
                                     RequiredValidator(
                                         errorText: 'Password requied'),
                                     PatternValidator(
@@ -189,8 +208,7 @@ class SignupView extends GetView<SignupController> {
                             CustomButton(
                               title: 'Signup',
                               onPress: () {
-                                controller.gotoOtp(
-                                    context);
+                                controller.gotoOtp(context);
                               },
                             ),
                             Row(

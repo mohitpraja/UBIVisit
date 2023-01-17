@@ -282,7 +282,7 @@ class AdminHomeView extends GetView<AdminHomeController> {
                       Hive.deleteBoxFromDisk('ubivisit');
                       GlobalColor.customColor=Colors.indigo;
                       GlobalColor.customMaterialColor=Colors.indigo;
-                      Get.offAllNamed(Routes.login);
+                      Get.offAllNamed(Routes.introduction);
                     },
                   ),
                 ],
