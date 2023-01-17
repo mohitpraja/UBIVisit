@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
+import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/routes.dart';
@@ -13,28 +15,27 @@ class AdminHomeView extends GetView<AdminHomeController> {
 
   @override
   Widget build(BuildContext context) {
-    print('rebuuit');
-    return Obx(() => Scaffold(
-                backgroundColor: Colors.white,
-                appBar: AppBar(
-                  titleSpacing: 0,
-                  toolbarHeight: 60,
-                  backgroundColor: GlobalColor.customColor,
-                  elevation: 0,
-                  title: Text(
-                    'Dashboard',
-                    style: TextStyle(fontSize: 23, fontFamily: CustomFonts.alata),
-                  ),
-                ),
-                drawer: Drawer(
-                  width: Get.width * 0.75,
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 160,
-                        child: DrawerHeader(
-                          decoration: BoxDecoration(
+    return Obx(() => controller.loader.value?const Center(child: CircularProgressIndicator()):Scaffold(
+                    backgroundColor: Colors.white,
+                    appBar: AppBar(
+                      titleSpacing: 0,
+                      toolbarHeight: 60,
+                      backgroundColor: GlobalColor.customColor,
+                      elevation: 0,
+                      title: Text(
+                        'Dashboard',
+                        style: TextStyle(fontSize: 23, fontFamily: CustomFonts.alata),
+                      ),
+                    ),
+                    drawer: Drawer(
+                      width: Get.width * 0.75,
+                      child: ListView(
+                        padding: EdgeInsets.zero,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 160,
+                            child: DrawerHeader(
+                              decoration: BoxDecoration(
                         color: GlobalColor.customColor,
                       ),
                       child: Container(
@@ -47,14 +48,14 @@ class AdminHomeView extends GetView<AdminHomeController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  controller.name.value,
+                                 FBase.userInfo['name'],
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 26,
                                       fontFamily: CustomFonts.alata),
                                 ),
                                 Text(
-                                  controller.phone.value,
+                                 FBase.userInfo['phone'],
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 16,
@@ -276,8 +277,9 @@ class AdminHomeView extends GetView<AdminHomeController> {
                     ),
                     onTap: () async {
                       var pref = await SharedPreferences.getInstance();
-                      await pref.setBool('islogin', false);
+                      await pref.setBool('isLogin', false);
                       pref.clear();
+                      Hive.deleteBoxFromDisk('ubivisit');
                       GlobalColor.customColor=Colors.indigo;
                       GlobalColor.customMaterialColor=Colors.indigo;
                       Get.offAllNamed(Routes.login);
@@ -318,7 +320,7 @@ class AdminHomeView extends GetView<AdminHomeController> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          controller.name.value,
+                                         FBase.userInfo['name'],
                                           style: TextStyle(
                                               color: Colors.black54,
                                               fontWeight: FontWeight.w500,
@@ -329,7 +331,7 @@ class AdminHomeView extends GetView<AdminHomeController> {
                                           height: 2,
                                         ),
                                         Text(
-                                          controller.post.value,
+                                          FBase.userInfo['post'],
                                           style: TextStyle(
                                               color: Colors.black54,
                                               fontWeight: FontWeight.w500,
@@ -423,6 +425,6 @@ class AdminHomeView extends GetView<AdminHomeController> {
                 ],
               ),
             ),
-    ));
+        )    );
   }
 }

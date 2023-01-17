@@ -1,13 +1,10 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
-import 'package:ubivisit/core/global/globalfunction.dart';
-import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 
 class GoogleSignupController extends GetxController {
@@ -36,9 +33,7 @@ class GoogleSignupController extends GetxController {
   }
 
   var signupEmail = Get.arguments;
-  forchk() {
-    print(signupEmail);
-  }
+ 
 
   signupByGoogle(context) async {
     CustomLoader.showLoader(context);

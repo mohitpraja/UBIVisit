@@ -14,12 +14,12 @@ class SplashController extends GetxController {
       const Duration(seconds: 3),
       () => isLogin == true
           ? Get.offAllNamed(Routes.admindash)
-          : Get.offAllNamed(Routes.welcome),
+          : Get.offAllNamed(Routes.introduction),
     );
   }
 
   Future<void> getdata() async {
     var pref = await SharedPreferences.getInstance();
-    isLogin = pref.getBool('islogin')!;
+    isLogin = pref.getBool('isLogin')!;
   }
 }
