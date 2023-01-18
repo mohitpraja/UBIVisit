@@ -114,6 +114,8 @@ class FBase {
       }
     });
   }
+          
+ 
 
   static updateUserInfo(updateField, value, id) async {
     await Hive.deleteBoxFromDisk('ubivisit');
