@@ -99,7 +99,7 @@ class SignupController extends GetxController {
           await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
       if (authCred.user != null) {
         Get.back();
-        FBase.addUser(name, email, phone, password).then((value) {
+        FBase.addUser(name, email, phone, password,'Admin','').then((value) {
           AwesomeDialog(
             context: context,
             dialogType: DialogType.success,

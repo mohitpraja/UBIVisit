@@ -56,7 +56,7 @@ class GoogleSignupController extends GetxController {
           const CustomSnackbar(title: 'Warning', msg: 'This mail already ').show1();
         } else {
       Get.back();
-      FBase.addUser(name, signupEmail, phone, password).then((value){
+      FBase.addUser(name, signupEmail, phone, password,'Admin','').then((value){
 
           AwesomeDialog(
           context: context,

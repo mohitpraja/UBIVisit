@@ -396,7 +396,9 @@ class AdminHomeView extends GetView<AdminHomeController> {
                               SizedBox(
                                 width: Get.width,
                                 child: ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.toNamed(Routes.addguard);
+                                  },
                                   style: ElevatedButton.styleFrom(
                                     shape: StadiumBorder(
                                         side: BorderSide(
