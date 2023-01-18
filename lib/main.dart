@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         fontFamily: CustomFonts.alata,
         primarySwatch: GlobalColor.customMaterialColor,
       ),
-      initialRoute: Routes.splash,
+      initialRoute: Routes.addemployee,
       getPages: allpage,
     );
   }

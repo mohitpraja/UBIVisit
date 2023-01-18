@@ -2,6 +2,9 @@ import 'package:get/get.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/accept&decline/binding/accept_decline_binding.dart';
 import 'package:ubivisit/features/accept&decline/view/accept_decline_view.dart';
+import 'package:ubivisit/features/addemployee/binding/addemployee_binding.dart';
+import 'package:ubivisit/features/addemployee/controller/addemployee_controller.dart';
+import 'package:ubivisit/features/addemployee/view/addemployee_view.dart';
 import 'package:ubivisit/features/addvisitor/binding/addvisitor_binding.dart';
 import 'package:ubivisit/features/addvisitor/view/addvisitor_view.dart';
 import 'package:ubivisit/features/admindash/binding/admindash_binding.dart';
@@ -96,5 +99,11 @@ List<GetPage> allpage = [
     name: Routes.googlesignup,
     page: () => const GoogleSignupView(),
     binding: GoogleSignupBinding(),
+  ),
+
+  GetPage(
+    name: Routes.addemployee,
+    page: () => const AddEmployeeView(),
+    binding: AddEmployeeBinding(),
   ),
 ];
