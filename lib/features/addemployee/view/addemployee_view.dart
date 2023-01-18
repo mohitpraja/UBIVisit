@@ -40,31 +40,31 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                       children: [
                         Center(
                             child: Column(
-                          children: [
-                            Image.asset(
-                              "assets/images/addemployee.png",
-                              height: 50,
-                              width: 60,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Add Employee",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.indigo,
-                                  fontSize: 20,
-                                  fontFamily: CustomFonts.alata),
-                            ),
-                          ],
-                        )),
+                              children: [
+                                Image.asset(
+                                  "assets/images/addemployee.png",
+                                  height: 50,
+                                  width: 60,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Add Employee",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.indigo,
+                                      fontSize: 20,
+                                      fontFamily: CustomFonts.alata),
+                                ),
+                              ],
+                            )),
                         SizedBox(
                           height: Get.height * 0.7,
                           child: Form(
                             key: Validation.signupFormKey,
                             autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
+                            AutovalidateMode.onUserInteraction,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -78,7 +78,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                                       prefixIcon: const Icon(Icons.person),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(10))),
+                                          BorderRadius.circular(10))),
                                   validator: MultiValidator([
                                     RequiredValidator(
                                         errorText: 'Name required'),
@@ -99,7 +99,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                                       prefixIcon: const Icon(Icons.email),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(10))),
+                                          BorderRadius.circular(10))),
                                   validator: MultiValidator([
                                     RequiredValidator(
                                         errorText: 'Email required'),
@@ -109,7 +109,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                                         errorText: 'Invalid email')
                                   ]),
                                   onChanged: (value) =>
-                                      controller.email = value,
+                                  controller.email = value,
                                 ),
                                 TextFormField(
                                   keyboardType: TextInputType.number,
@@ -124,7 +124,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                                       prefixIcon: const Icon(Icons.phone),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(10))),
+                                          BorderRadius.circular(10))),
                                   validator: MultiValidator([
                                     RequiredValidator(
                                         errorText: 'Phone number required'),
@@ -133,77 +133,77 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                                         errorText: 'Invalid number')
                                   ]),
                                   onChanged: (value) =>
-                                      controller.phone = value,
+                                  controller.phone = value,
                                 ),
                                 Obx(() => TextFormField(
-                                      style: const TextStyle(
+                                  style: const TextStyle(
+                                      color: Colors.black54),
+                                  obscureText: controller.isPass.value,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      hintStyle: const TextStyle(
                                           color: Colors.black54),
-                                      obscureText: controller.isPass.value,
-                                      decoration: InputDecoration(
-                                          filled: true,
-                                          hintStyle: const TextStyle(
-                                              color: Colors.black54),
-                                          hintText: 'Enter Password',
-                                          suffixIcon: IconButton(
-                                              onPressed: () =>
-                                                  controller.showPass(),
-                                              icon: controller.isPass.value
-                                                  ? const Icon(
-                                                      Icons.visibility_off)
-                                                  : const Icon(
-                                                      Icons.visibility)),
-                                          prefixIcon: const Icon(Icons.lock),
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10))),
-                                      validator: MultiValidator([
-                                        MinLengthValidator(6,
-                                            errorText:
-                                                'password must be at least 8 digits long'),
-                                        RequiredValidator(
-                                            errorText: 'Password requied'),
-                                        PatternValidator(
-                                            RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$&*~]).{6,}$')
-                                                .pattern,
-                                            errorText:
-                                                "Password doesn't match the format : Abc@123")
-                                      ]),
-                                      onChanged: (value) =>
-                                          controller.password = value,
-                                    )),
+                                      hintText: 'Enter Password',
+                                      suffixIcon: IconButton(
+                                          onPressed: () =>
+                                              controller.showPass(),
+                                          icon: controller.isPass.value
+                                              ? const Icon(
+                                              Icons.visibility_off)
+                                              : const Icon(
+                                              Icons.visibility)),
+                                      prefixIcon: const Icon(Icons.lock),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10))),
+                                  validator: MultiValidator([
+                                    MinLengthValidator(6,
+                                        errorText:
+                                        'password must be at least 8 digits long'),
+                                    RequiredValidator(
+                                        errorText: 'Password requied'),
+                                    PatternValidator(
+                                        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$&*~]).{6,}$')
+                                            .pattern,
+                                        errorText:
+                                        "Password doesn't match the format : Abc@123")
+                                  ]),
+                                  onChanged: (value) =>
+                                  controller.password = value,
+                                )),
                                 Obx(() => TextFormField(
-                                      style: const TextStyle(
+                                  style: const TextStyle(
+                                      color: Colors.black54),
+                                  obscureText:
+                                  controller.isConfirmPass.value,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      hintStyle: const TextStyle(
                                           color: Colors.black54),
-                                      obscureText:
-                                          controller.isConfirmPass.value,
-                                      decoration: InputDecoration(
-                                          filled: true,
-                                          hintStyle: const TextStyle(
-                                              color: Colors.black54),
-                                          hintText: 'Confirm Password',
-                                          suffixIcon: IconButton(
-                                              onPressed: () =>
-                                                  controller.showConfirmPass(),
-                                              icon:
-                                                  controller.isConfirmPass.value
-                                                      ? const Icon(
-                                                          Icons.visibility_off)
-                                                      : const Icon(
-                                                          Icons.visibility)),
-                                          prefixIcon: const Icon(Icons.lock),
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10))),
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return 'Confirm Password required';
-                                        }
-                                        if (value != controller.password) {
-                                          return 'Password Do Not Match';
-                                        }
-                                        return null;
-                                      },
-                                    )),
+                                      hintText: 'Confirm Password',
+                                      suffixIcon: IconButton(
+                                          onPressed: () =>
+                                              controller.showConfirmPass(),
+                                          icon:
+                                          controller.isConfirmPass.value
+                                              ? const Icon(
+                                              Icons.visibility_off)
+                                              : const Icon(
+                                              Icons.visibility)),
+                                      prefixIcon: const Icon(Icons.lock),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(10))),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Confirm Password required';
+                                    }
+                                    if (value != controller.password) {
+                                      return 'Password Do Not Match';
+                                    }
+                                    return null;
+                                  },
+                                )),
                                 Container(
                                   width: size.width * 0.8,
                                   margin: const EdgeInsets.only(top: 10),
