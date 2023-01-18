@@ -4,6 +4,8 @@ import 'package:ubivisit/features/accept&decline/binding/accept_decline_binding.
 import 'package:ubivisit/features/accept&decline/view/accept_decline_view.dart';
 import 'package:ubivisit/features/addvisitor/binding/addvisitor_binding.dart';
 import 'package:ubivisit/features/addvisitor/view/addvisitor_view.dart';
+import 'package:ubivisit/features/admindash/admin/adminprofile/binding/adminprofile_binding.dart';
+import 'package:ubivisit/features/admindash/admin/adminprofile/view/adminprofile_view.dart';
 import 'package:ubivisit/features/admindash/binding/admindash_binding.dart';
 import 'package:ubivisit/features/admindash/admin/adminvisitorlist/binding/adminvisitorlist_binding.dart';
 import 'package:ubivisit/features/admindash/admin/adminvisitorlist/view/adminvisitorlist_view.dart';
@@ -96,5 +98,10 @@ List<GetPage> allpage = [
     name: Routes.googlesignup,
     page: () => const GoogleSignupView(),
     binding: GoogleSignupBinding(),
+  ),
+  GetPage(
+    name: Routes.adminprofile,
+    page: () => const AdminProfileView(),
+    binding: AdminProfileBinding(),
   ),
 ];
