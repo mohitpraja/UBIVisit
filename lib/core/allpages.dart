@@ -4,6 +4,8 @@ import 'package:ubivisit/features/accept&decline/binding/accept_decline_binding.
 import 'package:ubivisit/features/accept&decline/view/accept_decline_view.dart';
 import 'package:ubivisit/features/addemployee/binding/addemployee_binding.dart';
 import 'package:ubivisit/features/addemployee/view/addemployee_view.dart';
+import 'package:ubivisit/features/addguard/binding/addguard_binding.dart';
+import 'package:ubivisit/features/addguard/view/addguard_view.dart';
 import 'package:ubivisit/features/addvisitor/binding/addvisitor_binding.dart';
 import 'package:ubivisit/features/addvisitor/view/addvisitor_view.dart';
 import 'package:ubivisit/features/admindash/admin/adminprofile/binding/adminprofile_binding.dart';
@@ -12,10 +14,14 @@ import 'package:ubivisit/features/admindash/binding/admindash_binding.dart';
 import 'package:ubivisit/features/admindash/admin/adminvisitorlist/binding/adminvisitorlist_binding.dart';
 import 'package:ubivisit/features/admindash/admin/adminvisitorlist/view/adminvisitorlist_view.dart';
 import 'package:ubivisit/features/admindash/view/admindash_view.dart';
+import 'package:ubivisit/features/empdash/binding/empdash_binding.dart';
+import 'package:ubivisit/features/empdash/view/empdash_view.dart';
 import 'package:ubivisit/features/forgot/binding/forgot_binding.dart';
 import 'package:ubivisit/features/forgot/view/forgot_view.dart';
 import 'package:ubivisit/features/googlesignup/binding/googlesignup_binding.dart';
 import 'package:ubivisit/features/googlesignup/view/googlesignup_view.dart';
+import 'package:ubivisit/features/guarddash/binding/guarddash_binding.dart';
+import 'package:ubivisit/features/guarddash/view/guarddash_view.dart';
 import 'package:ubivisit/features/intoduction/binding/introduction_binding.dart';
 import 'package:ubivisit/features/intoduction/view/introduction_view.dart';
 import 'package:ubivisit/features/login/binding/login_binding.dart';
@@ -110,5 +116,20 @@ List<GetPage> allpage = [
     name: Routes.addemployee,
     page: () => const AddEmployeeView(),
     binding: AddEmployeeBinding(),
+  ),
+  GetPage(
+    name: Routes.addguard,
+    page: () => const AddGuardView(),
+    binding: AddGuardBinding(),
+  ),
+  GetPage(
+    name: Routes.guarddash,
+    page: () => const GuardDashView(),
+    binding: GuardDashBinding(),
+  ),
+  GetPage(
+    name: Routes.empdash,
+    page: () => const EmpDashView(),
+    binding: EmpDashBinding(),
   ),
 ];

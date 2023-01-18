@@ -11,7 +11,7 @@ import 'package:ubivisit/core/routes.dart';
 class FBase {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  static Future addUser(name, email, phone, password) {
+  static Future addUser(name, email, phone, password, post, role) {
     log('cld');
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     return firestore
@@ -22,10 +22,11 @@ class FBase {
         .set({
       'name': name,
       'email': email,
-      'post': 'admin',
+      'post': post,
       'password': password,
       'phone': phone,
       'image': '',
+      'role': role,
       'id': id
     });
   }
@@ -36,6 +37,7 @@ class FBase {
   static Future getData(context, phone, pass) async {
     final prefs = await SharedPreferences.getInstance();
     var db = await Hive.openBox('ubivisit');
+    var post = '';
     CustomLoader.showLoader(context);
     firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
       // ignore: avoid_function_literals_in_foreach_calls
@@ -45,6 +47,8 @@ class FBase {
           if ((data['phone'] == phone || data['eamil'] == phone) &&
               data['password'] == pass) {
             isMatch = true;
+            post = data['post'];
+            print(post);
             db.put('userInfo', {
               'name': data['name'],
               'email': data['email'],
@@ -61,10 +65,25 @@ class FBase {
       );
     }).then((value) {
       Get.back();
-      isMatch == true
-          ? Get.offAllNamed(Routes.admindash)
-          : const CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
-              .show1();
+      if (isMatch) {
+        if (post == 'Admin') {
+          print('Admin');
+          Get.offAllNamed(Routes.admindash);
+        } else if (post == 'Guard') {
+          print('Guard');
+          Get.offAllNamed(Routes.guarddash);
+        } else {
+          print('emp');
+          Get.offAllNamed(Routes.empdash);
+        }
+      } else {
+        const CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
+            .show1();
+      }
+      // isMatch == true
+      //     ? Get.offAllNamed(Routes.admindash)
+      //     : const CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
+      //         .show1();
     });
   }
 
@@ -109,7 +128,6 @@ class FBase {
           (e) async {
             var data = e.data();
             if (data['id'] == id) {
-              print(data);
               isMatch = true;
               db.put('userInfo', {
                 'name': data['name'],

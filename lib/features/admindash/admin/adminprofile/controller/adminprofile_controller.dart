@@ -8,7 +8,6 @@ class AdminProfileController extends GetxController{
    @override
   Future<void> onInit() async {
     var db=await Hive.openBox('ubivisit');
-    print(db.get('userInfo'));
     FBase.userInfo.value=db.get('userInfo');
     loader.value=false;
     super.onInit();

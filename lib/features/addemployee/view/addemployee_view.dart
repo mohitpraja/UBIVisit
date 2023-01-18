@@ -32,7 +32,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
           child: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 12),
-              height: Get.height * 0.85,
+              height: Get.height * 0.9,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -40,25 +40,27 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                   Center(
                       child: Column(
                     children: [
-                      const CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/person.png'),
+                      CircleAvatar(
+                        radius: Get.height * 0.05,
+                        backgroundColor: Colors.indigo.shade100,
+                        backgroundImage:
+                            const AssetImage('assets/images/person.png'),
                       ),
                       Text(
                         "Add new employee",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 28,
+                            fontSize: 26,
                             fontWeight: FontWeight.normal,
                             fontFamily: CustomFonts.alata),
                       ),
-                    
                     ],
                   )),
                   SizedBox(
-                    height: Get.height * 0.7,
+                    height: Get.height * 0.75,
                     child: Form(
-                        key: Validation.signupFormKey,
+                        key: Validation.employeeFormKey,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -114,25 +116,6 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                                   prefixIcon: const Icon(Icons.phone),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10))),
-                              // validator: (value) {
-                              //   FBase.checkUser(value);
-                              //   Validation.isValid(
-                              //       value, 'Phone number required');
-                              //   Pattern pattern = r'^[0-9]{10}$';
-                              //   RegExp regex = RegExp(pattern.toString());
-                              //   if (!regex.hasMatch(value!)) {
-                              //     return 'Enter Valid Phone';
-                              //   }
-                               
-                                
-                              //   if (regex.hasMatch(value)) {
-                              //    print(
-                              //      FBase.checkUser(value).then((val) {
-                                   
-                              //     })
-                              //    );
-                              //   }
-                              // },
                               validator: MultiValidator([
                                 RequiredValidator(
                                     errorText: 'Phone number required'),
@@ -149,19 +132,17 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                                   hintStyle:
                                       const TextStyle(color: Colors.black54),
                                   hintText: 'Role ',
-                                  prefixIcon: const Icon(Icons.phone),
+                                  prefixIcon: const Icon(Icons.card_travel),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10))),
-                            
                               validator: MultiValidator([
-                                RequiredValidator(
-                                    errorText: 'Role required'),
-                                     PatternValidator(
+                                RequiredValidator(errorText: 'Role required'),
+                                PatternValidator(
                                     RegExp(r'^[a-z A-Z]+$').pattern,
                                     errorText: 'Invalid Role')
-
-                                
                               ]),
+                              onChanged: (value) =>
+                                      controller.post = value,
                             ),
                             Obx(() => TextFormField(
                                   style: const TextStyle(color: Colors.black54),
@@ -227,9 +208,9 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                             CustomButton(
                               title: 'Save',
                               onPress: () {
+                                controller.addEmployee(context);
                               },
                             ),
-                          
                           ],
                         )),
                   )
