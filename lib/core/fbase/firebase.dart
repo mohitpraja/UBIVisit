@@ -81,7 +81,6 @@ class FBase {
           }else{
             isPhoneExist=false;
           }
-      print(e.docs.length);
       
     });
     await firestore
@@ -94,9 +93,42 @@ class FBase {
           }else{
             isEmailExist=false;
           }
-      print(e.docs.length);
       
     });
+  }
+  static updateUserInfo(updateField,value,id) async {
+    var db=await Hive.openBox('ubivisit');
+    firestore.collection('ubivisit/ubivisit/users').doc(id).update({
+      updateField:value
+    }).then((val) {
+       firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
+      // ignore: avoid_function_literals_in_foreach_calls
+      snapshot.docs.forEach(
+        (e) async {
+          var data = e.data();
+          if (data['id']==id) {
+            print(data);
+            isMatch = true;
+            db.put('userInfo', {
+              'name': data['name'],
+              'email': data['email'],
+              'password': data['password'],
+              'post': data['post'],
+              'id': data['id'],
+              'image': data['image'],
+              'phone': data['phone'],
+            });
+
+          }
+        },
+      );
+    });
+      Get.offAllNamed(Routes.admindash);
+    
+      
+
+    });
+
   }
  
 

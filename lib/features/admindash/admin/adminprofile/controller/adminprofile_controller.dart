@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 
 class AdminProfileController extends GetxController{
-  showBottomSheet(){
+   @override
+  Future<void> onInit() async {
+    var db=await Hive.openBox('ubivisit');
+    print(db.get('userInfo'));
+    FBase.userInfo.value=db.get('userInfo');
+    loader.value=false;
+    super.onInit();
+  }
+  RxBool loader=true.obs;
+  var tempUpdate='';
+  showBottomSheet(fieldname,value,updateField){
     Get.bottomSheet(
       // barrierColor: Colors.transparent,
       Container(
@@ -16,14 +28,14 @@ class AdminProfileController extends GetxController{
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
 
-              Text('Your Name',style: TextStyle(
+              Text('Your $fieldname',style: TextStyle(
                 fontFamily:CustomFonts.alata,
                 fontSize:18,
                 fontWeight: FontWeight.w500
               ),),
               TextFormField(
                 autofocus: true,
-                initialValue: 'Admin',
+                initialValue: value,
                 style: TextStyle(
                 fontFamily:CustomFonts.alata,
                 fontSize:17,
@@ -33,6 +45,7 @@ class AdminProfileController extends GetxController{
                 decoration: const InputDecoration(
                   hintText: 'Enter name',
                 ),
+                onChanged: (value) => tempUpdate=value,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -44,6 +57,8 @@ class AdminProfileController extends GetxController{
                 fontWeight: FontWeight.w500
               ),)),
                 TextButton(onPressed: () {
+                  FBase.updateUserInfo(updateField, tempUpdate,FBase.userInfo['id']);
+                  Get.back();
 
                 }, child: Text('Save',style: TextStyle(
                 fontFamily:CustomFonts.alata,

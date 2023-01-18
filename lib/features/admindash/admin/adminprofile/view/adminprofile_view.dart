@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/routes.dart';
@@ -11,23 +12,23 @@ class AdminProfileView extends GetView<AdminProfileController>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-            backgroundColor:GlobalColor.customColor,
-        title: Text('Profile',style: TextStyle(
-          fontFamily: CustomFonts.alata
-        ),),
-        leading: IconButton(
-          onPressed: () => Get.offAllNamed(Routes.admindash),
-          icon: const Icon(Icons.arrow_back),
-        ),
-      ),
-      body: GestureDetector(
-        onTap: () => Get.focusScope!.unfocus(),
-        child: SingleChildScrollView(
-          child: Container(
-            height: Get.height * 0.8,
+    return Obx(() =>controller.loader.value?const Center(child: CircularProgressIndicator()):Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+                backgroundColor:GlobalColor.customColor,
+            title: Text('Profile',style: TextStyle(
+              fontFamily: CustomFonts.alata
+            ),),
+            leading: IconButton(
+              onPressed: () => Get.offAllNamed(Routes.admindash),
+              icon: const Icon(Icons.arrow_back),
+            ),
+          ),
+          body: GestureDetector(
+            onTap: () => Get.focusScope!.unfocus(),
+            child: SingleChildScrollView(
+              child: Container(
+                height: Get.height * 0.8,
             margin: const EdgeInsets.all(10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -75,42 +76,6 @@ class AdminProfileView extends GetView<AdminProfileController>{
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
-                                    'Name',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: CustomFonts.alata),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            TextFormField(
-                              readOnly: true,
-                              initialValue: 'Admin',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: CustomFonts.alata),
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  prefixIcon: const Icon(Icons.person),
-                                  suffixIcon: IconButton(
-                                      onPressed: () {
-                                        controller.showBottomSheet();
-                                      },
-                                      icon: const Icon(Icons.edit))),
-                            )
-                          ],
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
                                     'Post',
                                     style: TextStyle(
                                         fontSize: 16,
@@ -122,7 +87,39 @@ class AdminProfileView extends GetView<AdminProfileController>{
                             ),
                             TextFormField(
                               readOnly: true,
-                              initialValue: 'Admin',
+                              initialValue: FBase.userInfo['post'],
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black54,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: CustomFonts.alata),
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  prefixIcon: Icon(Icons.card_travel),
+                                  ),
+                            )
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    'Name',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: CustomFonts.alata),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            TextFormField(
+                              readOnly: true,
+                              initialValue: FBase.userInfo['name'],
                               style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.black54,
@@ -130,15 +127,16 @@ class AdminProfileView extends GetView<AdminProfileController>{
                                   fontFamily: CustomFonts.alata),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  prefixIcon: const Icon(Icons.card_travel),
+                                  prefixIcon: const Icon(Icons.person),
                                   suffixIcon: IconButton(
                                       onPressed: () {
-                                        controller.showBottomSheet();
+                                        controller.showBottomSheet('Name',FBase.userInfo['name'],'name');
                                       },
                                       icon: const Icon(Icons.edit))),
                             )
                           ],
                         ),
+                        
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -158,7 +156,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                             ),
                             TextFormField(
                               readOnly: true,
-                              initialValue: 'admin@gmail.com',
+                              initialValue: FBase.userInfo['email'],
                               style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.black54,
@@ -169,7 +167,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                                   prefixIcon: const Icon(Icons.email),
                                   suffixIcon: IconButton(
                                       onPressed: () {
-                                        controller.showBottomSheet();
+                                        controller.showBottomSheet('Email',FBase.userInfo['email'],'email');
                                       },
                                       icon: const Icon(Icons.edit))),
                             )
@@ -194,7 +192,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                             ),
                             TextFormField(
                               readOnly: true,
-                              initialValue: '123456789',
+                              initialValue: FBase.userInfo['phone'],
                               style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.black54,
@@ -205,7 +203,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                                   prefixIcon: const Icon(Icons.phone),
                                   suffixIcon: IconButton(
                                       onPressed: () {
-                                        controller.showBottomSheet();
+                                        controller.showBottomSheet('Phone number',FBase.userInfo['phone'],'phone');
                                       },
                                       icon: const Icon(Icons.edit))),
                             )
@@ -220,6 +218,6 @@ class AdminProfileView extends GetView<AdminProfileController>{
           ),
         ),
       ),
-    );
+    ));
   }
 }
