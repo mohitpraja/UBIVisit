@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/accept&decline/binding/accept_decline_binding.dart';
 import 'package:ubivisit/features/accept&decline/view/accept_decline_view.dart';
+import 'package:ubivisit/features/addemployee/binding/addemployee_binding.dart';
+import 'package:ubivisit/features/addemployee/view/addemployee_view.dart';
 import 'package:ubivisit/features/addvisitor/binding/addvisitor_binding.dart';
 import 'package:ubivisit/features/addvisitor/view/addvisitor_view.dart';
 import 'package:ubivisit/features/admindash/admin/adminprofile/binding/adminprofile_binding.dart';
@@ -103,5 +105,10 @@ List<GetPage> allpage = [
     name: Routes.adminprofile,
     page: () => const AdminProfileView(),
     binding: AdminProfileBinding(),
+  ),
+  GetPage(
+    name: Routes.addemployee,
+    page: () => const AddEmployeeView(),
+    binding: AddEmployeeBinding(),
   ),
 ];

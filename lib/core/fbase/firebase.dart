@@ -67,69 +67,63 @@ class FBase {
               .show1();
     });
   }
-  static bool isPhoneExist=false;
-  static bool isEmailExist=false;
 
-  static Future checkUser(phone,email) async {
+  static bool isPhoneExist = false;
+  static bool isEmailExist = false;
+
+  static Future checkUser(phone, email) async {
     await firestore
         .collection('ubivisit/ubivisit/users/')
         .where('phone', isEqualTo: phone)
         .get()
         .then((e) {
-          if(e.docs.isNotEmpty){
-            isPhoneExist=true;
-          }else{
-            isPhoneExist=false;
-          }
-      
+      if (e.docs.isNotEmpty) {
+        isPhoneExist = true;
+      } else {
+        isPhoneExist = false;
+      }
     });
     await firestore
         .collection('ubivisit/ubivisit/users/')
         .where('email', isEqualTo: email)
         .get()
         .then((e) {
-           if(e.docs.isNotEmpty){
-            isEmailExist=true;
-          }else{
-            isEmailExist=false;
-          }
-      
+      if (e.docs.isNotEmpty) {
+        isEmailExist = true;
+      } else {
+        isEmailExist = false;
+      }
     });
   }
-  static updateUserInfo(updateField,value,id) async {
-    var db=await Hive.openBox('ubivisit');
-    firestore.collection('ubivisit/ubivisit/users').doc(id).update({
-      updateField:value
-    }).then((val) {
-       firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
-      // ignore: avoid_function_literals_in_foreach_calls
-      snapshot.docs.forEach(
-        (e) async {
-          var data = e.data();
-          if (data['id']==id) {
-            print(data);
-            isMatch = true;
-            db.put('userInfo', {
-              'name': data['name'],
-              'email': data['email'],
-              'password': data['password'],
-              'post': data['post'],
-              'id': data['id'],
-              'image': data['image'],
-              'phone': data['phone'],
-            });
 
-          }
-        },
-      );
+  static updateUserInfo(updateField, value, id) async {
+    await Hive.deleteBoxFromDisk('ubivisit');
+    var db = await Hive.openBox('ubivisit');
+    firestore
+        .collection('ubivisit/ubivisit/users')
+        .doc(id)
+        .update({updateField: value}).then((val) {
+      firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
+        // ignore: avoid_function_literals_in_foreach_calls
+        snapshot.docs.forEach(
+          (e) async {
+            var data = e.data();
+            if (data['id'] == id) {
+              print(data);
+              isMatch = true;
+              db.put('userInfo', {
+                'name': data['name'],
+                'email': data['email'],
+                'password': data['password'],
+                'post': data['post'],
+                'id': data['id'],
+                'image': data['image'],
+                'phone': data['phone'],
+              }).then((value) => Get.offAllNamed(Routes.admindash));
+            }
+          },
+        );
+      });
     });
-      Get.offAllNamed(Routes.admindash);
-    
-      
-
-    });
-
   }
- 
-
 }
