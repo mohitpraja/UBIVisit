@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:ubivisit/core/components/customloader.dart';
+import 'package:ubivisit/core/components/customsnackbar.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/routes.dart';
@@ -46,8 +47,17 @@ class GoogleSignupController extends GetxController {
         desc: 'Check internet connection',
       ).show();
     } else {
+      FBase.checkUser(phone, signupEmail).then((value) {
+         if (FBase.isPhoneExist) {
+          Get.back();
+          const CustomSnackbar(title: 'Warning', msg: 'This phone already ').show1();
+        } else if (FBase.isEmailExist) {
+          Get.back();
+          const CustomSnackbar(title: 'Warning', msg: 'This mail already ').show1();
+        } else {
       Get.back();
       FBase.addUser(name, signupEmail, phone, password).then((value){
+
           AwesomeDialog(
           context: context,
           dialogType: DialogType.success,
@@ -65,6 +75,9 @@ class GoogleSignupController extends GetxController {
                   ))),
         ).show();
       });
+        }
+      });
+      
     }
   }
 }

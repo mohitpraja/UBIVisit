@@ -67,17 +67,37 @@ class FBase {
               .show1();
     });
   }
+  static bool isPhoneExist=false;
+  static bool isEmailExist=false;
 
-  static checkUser(val){
-    firestore
+  static Future checkUser(phone,email) async {
+    await firestore
         .collection('ubivisit/ubivisit/users/')
-        .where('phone', isEqualTo: val)
+        .where('phone', isEqualTo: phone)
         .get()
         .then((e) {
-          print(e.docs.length);
-      if (e.docs.isNotEmpty) {
-        CustomSnackbar(title: 'Warning',msg: 'this is phone number is already exists').show1();
-      } 
+          if(e.docs.isNotEmpty){
+            isPhoneExist=true;
+          }else{
+            isPhoneExist=false;
+          }
+      print(e.docs.length);
+      
+    });
+    await firestore
+        .collection('ubivisit/ubivisit/users/')
+        .where('email', isEqualTo: email)
+        .get()
+        .then((e) {
+           if(e.docs.isNotEmpty){
+            isEmailExist=true;
+          }else{
+            isEmailExist=false;
+          }
+      print(e.docs.length);
+      
     });
   }
+ 
+
 }

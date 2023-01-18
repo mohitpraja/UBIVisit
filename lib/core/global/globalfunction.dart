@@ -16,7 +16,7 @@ class GlobalFunction {
       ).show();
     } else {
       Get.back();
-      Get.offAllNamed(routename, arguments: args);
+      Get.toNamed(routename, arguments: args);
     }
   }
 

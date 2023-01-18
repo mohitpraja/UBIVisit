@@ -121,27 +121,31 @@ class SignupView extends GetView<SignupController> {
                                   prefixIcon: const Icon(Icons.phone),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10))),
-                              validator: (value) {
-                                Validation.isValid(
-                                    value, 'Phone number required');
-                                Pattern pattern = r'^[0-9]{10}$';
-                                RegExp regex = RegExp(pattern.toString());
-                                if (!regex.hasMatch(value!)) {
-                                  return 'Enter Valid Phone';
-                                }
-                                if (regex.hasMatch(value)) {
-                                  FBase.checkUser(value);
-                                  
-
-                                }
+                              // validator: (value) {
+                              //   FBase.checkUser(value);
+                              //   Validation.isValid(
+                              //       value, 'Phone number required');
+                              //   Pattern pattern = r'^[0-9]{10}$';
+                              //   RegExp regex = RegExp(pattern.toString());
+                              //   if (!regex.hasMatch(value!)) {
+                              //     return 'Enter Valid Phone';
+                              //   }
                                
-                              },
-                              // validator: MultiValidator([
-                              //   RequiredValidator(
-                              //       errorText: 'Phone number required'),
-                              //   PatternValidator(RegExp(r'^[0-9]{10}$').pattern,
-                              //       errorText: 'Invalid number')
-                              // ]),
+                                
+                              //   if (regex.hasMatch(value)) {
+                              //    print(
+                              //      FBase.checkUser(value).then((val) {
+                                   
+                              //     })
+                              //    );
+                              //   }
+                              // },
+                              validator: MultiValidator([
+                                RequiredValidator(
+                                    errorText: 'Phone number required'),
+                                PatternValidator(RegExp(r'^[0-9]{10}$').pattern,
+                                    errorText: 'Invalid number')
+                              ]),
                               onChanged: (value) => controller.phone = value,
                             ),
                             Obx(() => TextFormField(
