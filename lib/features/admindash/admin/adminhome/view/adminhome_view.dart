@@ -130,15 +130,18 @@ class AdminHomeView extends GetView<AdminHomeController> {
                           fontFamily: CustomFonts.alata),
                     ),
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.people),
-                    horizontalTitleGap: 0,
-                    title: Text(
-                      'Manage Users',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: CustomFonts.alata),
+                  GestureDetector(
+                    onTap: () => Get.toNamed(Routes.manageuser),
+                    child: ListTile(
+                      leading: const Icon(Icons.people),
+                      horizontalTitleGap: 0,
+                      title: Text(
+                        'Manage Users',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: CustomFonts.alata),
+                      ),
                     ),
                   ),
                   ListTileTheme(
