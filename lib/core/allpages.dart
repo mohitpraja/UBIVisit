@@ -44,7 +44,7 @@ List<GetPage> allpage = [
       binding: LoginBinding()),
   GetPage(
     name: Routes.forgot,
-    page: () => const ForgotView(),
+    page: () =>  ForgotView(),
     binding: ForgotBinding(),
   ),
   GetPage(

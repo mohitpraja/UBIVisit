@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
@@ -14,11 +15,15 @@ class ForgotView extends GetView<ForgotController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-        appBar:AppBar(
+      appBar: AppBar(
         elevation: 0,
         titleSpacing: 1,
         backgroundColor: Colors.white,
-        leading: IconButton(onPressed: () => Get.toNamed(Routes.login), icon: const Icon(Icons.arrow_back),color: Colors.black54,),
+        leading: IconButton(
+          onPressed: () => Get.toNamed(Routes.login),
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.black54,
+        ),
       ),
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),
@@ -49,9 +54,6 @@ class ForgotView extends GetView<ForgotController> {
                               fontFamily: CustomFonts.alata,
                               color: Colors.black54),
                         ),
-                        SizedBox(
-                          height: Get.height * 0.01,
-                        ),
                         Text(
                           'Enter your email address to retrieve your password',
                           textAlign: TextAlign.center,
@@ -64,27 +66,39 @@ class ForgotView extends GetView<ForgotController> {
                       ],
                     ),
                     Form(
-                      key: Validation.forgotFormKey,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      child: TextFormField(
-                        style: const TextStyle(color: Colors.black54),
-                        validator: (value) =>
-                            Validation.isValid(value, 'Enter email'),
-                        decoration: InputDecoration(
-                            filled: true,
-                            hintStyle: const TextStyle(color: Colors.black54),
-                            hintText: 'Enter email address',
-                            prefixIcon: const Icon(Icons.email),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10))),
-                      ),
+                        key: Validation.forgotFormKey,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              style: const TextStyle(color: Colors.black54),
+                              controller: controller.emailController,
+                              validator: (value) =>
+                                  Validation.isValid(value, 'Enter email'),
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  hintStyle:
+                                      const TextStyle(color: Colors.black54),
+                                  hintText: 'Enter email address',
+                                  prefixIcon: const Icon(Icons.email),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10))),
+                            ),
+
+
+                          ],
+                        )
                     ),
                     CustomButton(
                       title: 'Reset Password',
                       onPress: () {
-                       
+                        if (Validation.forgotFormKey.currentState!.validate()) {
+                          print('func cld');
+
+                          controller.passwordReset(context);
+                        }
                       },
-                    )
+                    ),
                   ],
                 ),
               ),
