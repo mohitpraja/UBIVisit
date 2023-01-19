@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 
@@ -16,7 +19,6 @@ class AdminProfileController extends GetxController{
   var tempUpdate='';
   showBottomSheet(fieldname,value,updateField){
     Get.bottomSheet(
-      // barrierColor: Colors.transparent,
       Container(
           color: Colors.white,
         child: Container(
@@ -71,5 +73,90 @@ class AdminProfileController extends GetxController{
       )
     );
   }
-  
+  choosePic(){
+    Get.bottomSheet(
+      SizedBox(
+        height: 150,
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            const Center(
+              child: Text(
+                'Choose Profile Picture',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  child: Column(
+                    children: const [
+                      Icon(
+                        Icons.photo,
+                        size: 30,
+                        color: Colors.black54,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text('Gallery'),
+                    ],
+                  ),
+                  onTap: () {
+                    print('galler');
+
+                    selectImage(ImageSource.gallery);
+                  },
+                ),
+                const SizedBox(
+                  width: 60,
+                ),
+                InkWell(
+                  child: Column(
+                    children: const [
+                      Icon(
+                        Icons.camera,
+                        size: 30,
+                        color: Colors.grey,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text('Camera')
+                    ],
+                  ),
+                  onTap: () {
+                    print('camra');
+                    selectImage(ImageSource.camera);
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      backgroundColor: Colors.white,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+    );
+
+  }
+  final ImagePicker picker=ImagePicker();
+  RxString imagePath=''.obs;
+  selectImage(src) async {
+   final XFile? img=await picker.pickImage(source:src,imageQuality: 80);
+   if(img!=null){
+    imagePath.value=img.path;
+    FBase.uploadImage(File(imagePath.value), FBase.userInfo['id']);
+    Get.back();
+   }
+
+
+  }
 }

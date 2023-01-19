@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,6 +11,7 @@ import 'package:ubivisit/core/routes.dart';
 
 class FBase {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
+  static FirebaseStorage storage = FirebaseStorage.instance;
 
   static Future addUser(name, email, phone, password, post, role) {
     log('cld');
@@ -153,7 +155,6 @@ class FBase {
 
   }
   static updateEmpInfo(context,id,name,email,phone,role,password){
-    print('$name,$email');
     CustomLoader.showLoader(context);
     firestore
         .collection('ubivisit/ubivisit/users')
@@ -168,5 +169,27 @@ class FBase {
 
 
   }
+  static uploadImage(file,id){
+      final ext = file.path.split('.').last;
+      
+
+
+  }
+  //  static uploadImage(File file) async {
+  //   final ext = file.path.split('.').last;
+  //   final ref = storage.ref().child('profiles/${auth.currentUser!.uid}.${ext}');
+  //   ref.putFile(file).then((p0) {
+  //     log('image status:${p0.bytesTransferred / 1000}');
+  //   });
+  //   log('${userInfo.image}');
+  //   userInfo.image = await ref.getDownloadURL();
+  //   log('${ref.getDownloadURL()}');
+  //   log('${userInfo.image}');
+  //   await firestore
+  //       .collection('users')
+  //       .doc(auth.currentUser!.uid)
+  //       .update({'image': userInfo.image}).then(
+  //           (_) => Get.snackbar('Success', 'Pic Uploaded Successfully'));
+  // }
 
 }

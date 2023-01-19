@@ -79,8 +79,6 @@ class AllGuardDataController extends GetxController{
   
   
   updateUser(user, context) {
-    print('data :$user');
-    print(user);
     var name = user['name'];
     var email = user['email'];
     var phone = user['phone'];

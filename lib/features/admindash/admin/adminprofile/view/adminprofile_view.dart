@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,17 +38,40 @@ class AdminProfileView extends GetView<AdminProfileController>{
               children: [
                 Stack(
                   children: [
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.indigo.shade100,
-                      backgroundImage:
-                          const AssetImage('assets/images/person.png'),
-                    ),
+                    controller.imagePath.value != ''
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(75),
+                                  child: Image.file(
+                                    File(controller.imagePath.value),
+                                    width: 120,
+                                    height: 120,
+                                    fit: BoxFit.cover,
+                                  ))
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(75),
+                                  child: CachedNetworkImage(
+                                    width: 120,
+                                    height: 120,
+                                    fit: BoxFit.cover,
+                                    // imageUrl: controller.user.image.toString(),
+                                    imageUrl: '',
+                                    errorWidget: (context, url, error) =>
+                                        CircleAvatar(
+                                            backgroundColor:Colors.grey.shade300,
+                                            child: const Icon(
+                                              Icons.person,
+                                              size: 80,
+                                              color: Colors.white,
+                                            )),
+                                  ),
+                                ),
                     Positioned(
                       bottom: 5,
                       right: 0,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          controller.choosePic();
+                        },
                         child: Container(
                           decoration: BoxDecoration(
                               color: GlobalColor.customColor,
