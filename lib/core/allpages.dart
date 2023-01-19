@@ -26,6 +26,8 @@ import 'package:ubivisit/features/intoduction/binding/introduction_binding.dart'
 import 'package:ubivisit/features/intoduction/view/introduction_view.dart';
 import 'package:ubivisit/features/login/binding/login_binding.dart';
 import 'package:ubivisit/features/login/view/login_view.dart';
+import 'package:ubivisit/features/manageuser/binding/manageuser_binding.dart';
+import 'package:ubivisit/features/manageuser/view/manageuser_view.dart';
 import 'package:ubivisit/features/otp/binding/otp_binding.dart';
 import 'package:ubivisit/features/otp/view/otp_view.dart';
 import 'package:ubivisit/features/securityguard/binding/security_guard_binding.dart';
@@ -131,5 +133,10 @@ List<GetPage> allpage = [
     name: Routes.empdash,
     page: () => const EmpDashView(),
     binding: EmpDashBinding(),
+  ),
+  GetPage(
+    name: Routes.manageuser,
+    page: () => const ManageUserView(),
+    binding: ManageUserBinding(),
   ),
 ];

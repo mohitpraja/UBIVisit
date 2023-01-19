@@ -31,6 +31,14 @@ class FBase {
     });
   }
 
+  static Stream collectionPathEmp = firestore
+      .collection('ubivisit/ubivisit/users')
+      .where('role', isEqualTo:'employee')
+      .snapshots();
+  static Stream collectionPathGuard = firestore
+      .collection('ubivisit/ubivisit/users')
+      .where('post', isEqualTo:'Guard')
+      .snapshots();
   static bool isMatch = false;
   static RxMap userInfo = {}.obs;
 
@@ -48,7 +56,6 @@ class FBase {
               data['password'] == pass) {
             isMatch = true;
             post = data['post'];
-            print(post);
             db.put('userInfo', {
               'name': data['name'],
               'email': data['email'],
@@ -67,23 +74,16 @@ class FBase {
       Get.back();
       if (isMatch) {
         if (post == 'Admin') {
-          print('Admin');
           Get.offAllNamed(Routes.admindash);
         } else if (post == 'Guard') {
-          print('Guard');
           Get.offAllNamed(Routes.guarddash);
         } else {
-          print('emp');
           Get.offAllNamed(Routes.empdash);
         }
       } else {
         const CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
             .show1();
       }
-      // isMatch == true
-      //     ? Get.offAllNamed(Routes.admindash)
-      //     : const CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
-      //         .show1();
     });
   }
 
@@ -114,8 +114,6 @@ class FBase {
       }
     });
   }
-          
- 
 
   static updateUserInfo(updateField, value, id) async {
     await Hive.deleteBoxFromDisk('ubivisit');
@@ -146,4 +144,29 @@ class FBase {
       });
     });
   }
+  static deleteUser(id,context){
+    CustomLoader.showLoader(context);
+    firestore
+        .collection('ubivisit/ubivisit/users')
+        .doc(id).delete().then((value) => Get.back());
+
+
+  }
+  static updateEmpInfo(context,id,name,email,phone,role,password){
+    print('$name,$email');
+    CustomLoader.showLoader(context);
+    firestore
+        .collection('ubivisit/ubivisit/users')
+        .doc(id).update({
+          'name':name,
+          'email':email,
+          'phone':phone,
+          'post':role,
+          'password':password,
+        }).then((value) => Get.back());
+
+
+
+  }
+
 }

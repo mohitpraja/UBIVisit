@@ -5,7 +5,6 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/components/customsnackbar.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
-import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 
@@ -61,17 +60,10 @@ class AddEmployeeController extends GetxController {
           context: context,
           dialogType: DialogType.success,
           title: 'Success',
-          desc: 'You have successfully signup go back to login',
+          desc: 'You have successfully add employee',
           dismissOnTouchOutside: false,
-          btnOk: Center(
-              child: GestureDetector(
-                  onTap: () => Get.offAllNamed(Routes.admindash),
-                  child: Text(
-                    'Ok',
-                    style: TextStyle(
-                        color: GlobalColor.customColor,
-                        fontWeight: FontWeight.bold),
-                  ))),
+          btnOkOnPress: () => Get.offAllNamed(Routes.admindash),
+        
         ).show();
       });
         }

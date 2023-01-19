@@ -6,7 +6,6 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/components/customsnackbar.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
-import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
@@ -99,22 +98,14 @@ class SignupController extends GetxController {
           await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
       if (authCred.user != null) {
         Get.back();
-        FBase.addUser(name, email, phone, password,'Admin','').then((value) {
+        FBase.addUser(name, email, phone, password, 'Admin', '').then((value) {
           AwesomeDialog(
             context: context,
             dialogType: DialogType.success,
             title: 'Success',
             desc: 'You have successfully signup go back to login',
             dismissOnTouchOutside: false,
-            btnOk: Center(
-                child: GestureDetector(
-                    onTap: () => Get.offAllNamed(Routes.login),
-                    child: Text(
-                      'Ok',
-                      style: TextStyle(
-                          color: GlobalColor.customColor,
-                          fontWeight: FontWeight.bold),
-                    ))),
+            btnOkOnPress: () => Get.offAllNamed(Routes.login),
           ).show();
         });
       }

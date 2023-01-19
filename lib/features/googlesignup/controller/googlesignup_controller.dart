@@ -5,7 +5,6 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/components/customsnackbar.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
-import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/routes.dart';
 
 class GoogleSignupController extends GetxController {
@@ -64,15 +63,7 @@ class GoogleSignupController extends GetxController {
           title: 'Success',
           desc: 'You have successfully signup go back to login',
           dismissOnTouchOutside: false,
-          btnOk: Center(
-              child: GestureDetector(
-                  onTap: () => Get.offAllNamed(Routes.login),
-                  child: Text(
-                    'Ok',
-                    style: TextStyle(
-                        color: GlobalColor.customColor,
-                        fontWeight: FontWeight.bold),
-                  ))),
+          btnOkOnPress: () => Get.offAllNamed(Routes.login),
         ).show();
       });
         }
