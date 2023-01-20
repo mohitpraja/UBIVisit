@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,6 +11,7 @@ import 'package:ubivisit/core/routes.dart';
 
 class FBase {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
+  static FirebaseStorage storage = FirebaseStorage.instance;
 
   static Future addUser(name, email, phone, password, post, role) {
     log('cld');
@@ -31,13 +33,21 @@ class FBase {
     });
   }
 
+  static Stream getUserInfo(id) {
+    print(id);
+    return firestore
+        .collection('ubivisit/ubivisit/users')
+        .where('id', isEqualTo: id)
+        .snapshots();
+  }
+
   static Stream collectionPathEmp = firestore
       .collection('ubivisit/ubivisit/users')
-      .where('role', isEqualTo:'employee')
+      .where('role', isEqualTo: 'employee')
       .snapshots();
   static Stream collectionPathGuard = firestore
       .collection('ubivisit/ubivisit/users')
-      .where('post', isEqualTo:'Guard')
+      .where('post', isEqualTo: 'Guard')
       .snapshots();
   static bool isMatch = false;
   static RxMap userInfo = {}.obs;
@@ -115,58 +125,80 @@ class FBase {
     });
   }
 
+  // static updateUserInfo(updateField, value, id) async {
+  //   await Hive.deleteBoxFromDisk('ubivisit');
+  //   var db = await Hive.openBox('ubivisit');
+  //   firestore
+  //       .collection('ubivisit/ubivisit/users')
+  //       .doc(id)
+  //       .update({updateField: value});.then((val) {
+  //     firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
+  //       // ignore: avoid_function_literals_in_foreach_calls
+  //       snapshot.docs.forEach(
+  //         (e) async {
+  //           var data = e.data();
+  //           if (data['id'] == id) {
+  //             isMatch = true;
+  //             db.put('userInfo', {
+  //               'name': data['name'],
+  //               'email': data['email'],
+  //               'password': data['password'],
+  //               'post': data['post'],
+  //               'id': data['id'],
+  //               'image': data['image'],
+  //               'phone': data['phone'],
+  //             }).then((value) => Get.offAllNamed(Routes.admindash));
+  //           }
+  //         },
+  //       );
+  //     });
+  //   });
+  // }
   static updateUserInfo(updateField, value, id) async {
-    await Hive.deleteBoxFromDisk('ubivisit');
+    // await Hive.deleteBoxFromDisk('ubivisit');
+    
     var db = await Hive.openBox('ubivisit');
     firestore
         .collection('ubivisit/ubivisit/users')
         .doc(id)
         .update({updateField: value}).then((val) {
-      firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
-        // ignore: avoid_function_literals_in_foreach_calls
-        snapshot.docs.forEach(
-          (e) async {
-            var data = e.data();
-            if (data['id'] == id) {
-              isMatch = true;
-              db.put('userInfo', {
-                'name': data['name'],
-                'email': data['email'],
-                'password': data['password'],
-                'post': data['post'],
-                'id': data['id'],
-                'image': data['image'],
-                'phone': data['phone'],
-              }).then((value) => Get.offAllNamed(Routes.admindash));
-            }
-          },
-        );
-      });
+
+     
     });
   }
-  static deleteUser(id,context){
+
+  static deleteUser(id, context) {
     CustomLoader.showLoader(context);
     firestore
         .collection('ubivisit/ubivisit/users')
-        .doc(id).delete().then((value) => Get.back());
-
-
+        .doc(id)
+        .delete()
+        .then((value) => Get.back());
   }
-  static updateEmpInfo(context,id,name,email,phone,role,password){
+
+  static updateEmpInfo(context, id, name, email, phone, role, password) {
     print('$name,$email');
     CustomLoader.showLoader(context);
-    firestore
-        .collection('ubivisit/ubivisit/users')
-        .doc(id).update({
-          'name':name,
-          'email':email,
-          'phone':phone,
-          'post':role,
-          'password':password,
-        }).then((value) => Get.back());
-
-
-
+    firestore.collection('ubivisit/ubivisit/users').doc(id).update({
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'post': role,
+      'password': password,
+    }).then((value) => Get.back());
   }
 
+  static uploadImage(file, id, context) async {
+    CustomLoader.showLoader(context);
+    final ext = file.path.split('.').last;
+    final ref = storage.ref().child('users/profiles/$id.$ext');
+    ref.putFile(file).then((p0) {
+      log('image status:${p0.bytesTransferred / 1000}');
+    });
+    final imgUrl = await ref.getDownloadURL();
+    firestore
+        .collection('ubivisit/ubivisit/users')
+        .doc(id)
+        .update({'image': imgUrl}).then((value) => Get.back());
+  }
 }
