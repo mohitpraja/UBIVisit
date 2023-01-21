@@ -34,7 +34,6 @@ class FBase {
   }
 
   static Stream getUserInfo(id) {
-    print(id);
     return firestore
         .collection('ubivisit/ubivisit/users')
         .where('id', isEqualTo: id)
@@ -125,45 +124,37 @@ class FBase {
     });
   }
 
-  // static updateUserInfo(updateField, value, id) async {
-  //   await Hive.deleteBoxFromDisk('ubivisit');
-  //   var db = await Hive.openBox('ubivisit');
-  //   firestore
-  //       .collection('ubivisit/ubivisit/users')
-  //       .doc(id)
-  //       .update({updateField: value});.then((val) {
-  //     firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
-  //       // ignore: avoid_function_literals_in_foreach_calls
-  //       snapshot.docs.forEach(
-  //         (e) async {
-  //           var data = e.data();
-  //           if (data['id'] == id) {
-  //             isMatch = true;
-  //             db.put('userInfo', {
-  //               'name': data['name'],
-  //               'email': data['email'],
-  //               'password': data['password'],
-  //               'post': data['post'],
-  //               'id': data['id'],
-  //               'image': data['image'],
-  //               'phone': data['phone'],
-  //             }).then((value) => Get.offAllNamed(Routes.admindash));
-  //           }
-  //         },
-  //       );
-  //     });
-  //   });
-  // }
-  static updateUserInfo(updateField, value, id) async {
-    // await Hive.deleteBoxFromDisk('ubivisit');
-    
+  static updateUserInfo(context, updateField, value, id,route) async {
+    await Hive.deleteBoxFromDisk('ubivisit');
     var db = await Hive.openBox('ubivisit');
+  CustomLoader.showLoader(context);
     firestore
         .collection('ubivisit/ubivisit/users')
         .doc(id)
         .update({updateField: value}).then((val) {
-
-     
+      firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
+        // ignore: avoid_function_literals_in_foreach_calls
+        snapshot.docs.forEach(
+          (e) async {
+            var data = e.data();
+            if (data['id'] == id) {
+              isMatch = true;
+              db.put('userInfo', {
+                'name': data['name'],
+                'email': data['email'],
+                'password': data['password'],
+                'post': data['post'],
+                'id': data['id'],
+                'image': data['image'],
+                'phone': data['phone'],
+              }).then((value) {
+                Get.back();
+                Get.offAllNamed(route);
+              });
+            }
+          },
+        );
+      });
     });
   }
 
@@ -177,7 +168,6 @@ class FBase {
   }
 
   static updateEmpInfo(context, id, name, email, phone, role, password) {
-    print('$name,$email');
     CustomLoader.showLoader(context);
     firestore.collection('ubivisit/ubivisit/users').doc(id).update({
       'name': name,
@@ -188,7 +178,9 @@ class FBase {
     }).then((value) => Get.back());
   }
 
-  static uploadImage(file, id, context) async {
+  static uploadImage(file, id, context,route) async {
+    await Hive.deleteBoxFromDisk('ubivisit');
+    var db = await Hive.openBox('ubivisit');
     CustomLoader.showLoader(context);
     final ext = file.path.split('.').last;
     final ref = storage.ref().child('users/profiles/$id.$ext');
@@ -199,6 +191,32 @@ class FBase {
     firestore
         .collection('ubivisit/ubivisit/users')
         .doc(id)
-        .update({'image': imgUrl}).then((value) => Get.back());
+        .update({'image': imgUrl}).then(
+      (value) {
+        firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
+          // ignore: avoid_function_literals_in_foreach_calls
+          snapshot.docs.forEach(
+            (e) async {
+              var data = e.data();
+              if (data['id'] == id) {
+                isMatch = true;
+                db.put('userInfo', {
+                  'name': data['name'],
+                  'email': data['email'],
+                  'password': data['password'],
+                  'post': data['post'],
+                  'id': data['id'],
+                  'image': data['image'],
+                  'phone': data['phone'],
+                }).then((value) {
+                  Get.back();
+                  Get.offAllNamed(route);
+                });
+              }
+            },
+          );
+        });
+      },
+    );
   }
 }

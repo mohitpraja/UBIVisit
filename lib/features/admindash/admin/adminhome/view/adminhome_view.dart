@@ -69,7 +69,7 @@ class AdminHomeView extends GetView<AdminHomeController> {
                                 width: 60,
                                 height: 60,
                                 fit: BoxFit.cover,
-                                imageUrl: '',
+                                imageUrl:FBase.userInfo['image'],
                                 errorWidget: (context, url, error) =>
                                     CircleAvatar(
                                         backgroundColor:
@@ -349,7 +349,7 @@ class AdminHomeView extends GetView<AdminHomeController> {
                                         width: 50,
                                         height: 50,
                                         fit: BoxFit.cover,
-                                        imageUrl:'',
+                                        imageUrl:FBase.userInfo['image'],
                                         errorWidget: (context, url, error) =>
                                             CircleAvatar(
                                                 backgroundColor:

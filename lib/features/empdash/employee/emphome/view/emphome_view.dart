@@ -70,7 +70,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                 width: 60,
                                 height: 60,
                                 fit: BoxFit.cover,
-                                imageUrl: '',
+                                imageUrl: FBase.userInfo['image'],
                                 errorWidget: (context, url, error) =>
                                     CircleAvatar(
                                         backgroundColor:
@@ -169,7 +169,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                       GlobalColor.customMaterialColor =
                                           Colors.teal;
                                       Get.back();
-                                      Get.offAllNamed(Routes.admindash);
+                                      Get.offAllNamed(Routes.empdash);
                                     },
                                     child: Container(
                                       width: 30,
@@ -186,7 +186,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                       GlobalColor.customMaterialColor =
                                           Colors.deepOrange;
                                       Get.back();
-                                      Get.offAllNamed(Routes.admindash);
+                                      Get.offAllNamed(Routes.empdash);
                                     },
                                     child: Container(
                                       width: 30,
@@ -202,7 +202,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                       GlobalColor.customMaterialColor =
                                           Colors.blue;
                                       Get.back();
-                                      Get.offAllNamed(Routes.admindash);
+                                      Get.offAllNamed(Routes.empdash);
                                     },
                                     child: Container(
                                       width: 30,
@@ -218,7 +218,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                       GlobalColor.customMaterialColor =
                                           Colors.green;
                                       Get.back();
-                                      Get.offAllNamed(Routes.admindash);
+                                      Get.offAllNamed(Routes.empdash);
                                     },
                                     child: Container(
                                       width: 30,
@@ -234,7 +234,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                       GlobalColor.customMaterialColor =
                                           Colors.pink;
                                       Get.back();
-                                      Get.offAllNamed(Routes.admindash);
+                                      Get.offAllNamed(Routes.empdash);
                                     },
                                     child: Container(
                                       width: 30,
@@ -336,7 +336,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                         width: 50,
                                         height: 50,
                                         fit: BoxFit.cover,
-                                        imageUrl: '',
+                                        imageUrl: FBase.userInfo['image'],
                                         errorWidget: (context, url, error) =>
                                             CircleAvatar(
                                                 backgroundColor:

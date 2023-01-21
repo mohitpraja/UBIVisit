@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +23,7 @@ class GuardProfileView extends GetView<GuardProfileController>{
               fontFamily: CustomFonts.alata
             ),),
             leading: IconButton(
-              onPressed: () => Get.offAllNamed(Routes.admindash),
+              onPressed: () => Get.offAllNamed(Routes.guarddash),
               icon: const Icon(Icons.arrow_back),
             ),
           ),
@@ -35,31 +38,51 @@ class GuardProfileView extends GetView<GuardProfileController>{
               children: [
                 Stack(
                   children: [
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.indigo.shade100,
-                      backgroundImage:
-                          const AssetImage('assets/images/person.png'),
-                    ),
-                    Positioned(
-                      bottom: 5,
-                      right: 0,
-                      child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: GlobalColor.customColor,
-                              borderRadius: BorderRadius.circular(20)),
-                          width: 28,
-                          height: 28,
-                          child: const Icon(
-                            CupertinoIcons.camera,
-                            size: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    )
+                  controller.imagePath.value != ''
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(75),
+                                  child: Image.file(
+                                    File(controller.imagePath.value),
+                                    width: 120,
+                                    height: 120,
+                                    fit: BoxFit.cover,
+                                  ))
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(75),
+                                  child: CachedNetworkImage(
+                                    width: 120,
+                                    height: 120,
+                                    fit: BoxFit.cover,
+                                    imageUrl: FBase.userInfo['image'],
+                                    errorWidget: (context, url, error) =>
+                                        CircleAvatar(
+                                      backgroundColor: Colors.indigo.shade100,
+                                      backgroundImage: const AssetImage(
+                                          'assets/images/person.png'),
+                                    ),
+                                  ),
+                                ),
+                          Positioned(
+                            bottom: 5,
+                            right: 0,
+                            child: InkWell(
+                              onTap: () {
+                                controller.choosePic(context);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: GlobalColor.customColor,
+                                    borderRadius: BorderRadius.circular(20)),
+                                width: 28,
+                                height: 28,
+                                child: const Icon(
+                                  CupertinoIcons.camera,
+                                  size: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          )
                   ],
                 ),
                 Form(
@@ -130,7 +153,7 @@ class GuardProfileView extends GetView<GuardProfileController>{
                                   prefixIcon: const Icon(Icons.person),
                                   suffixIcon: IconButton(
                                       onPressed: () {
-                                        controller.showBottomSheet('Name',FBase.userInfo['name'],'name');
+                                        controller.showBottomSheet(context,'Name',FBase.userInfo['name'],'name');
                                       },
                                       icon: const Icon(Icons.edit))),
                             )
@@ -167,7 +190,7 @@ class GuardProfileView extends GetView<GuardProfileController>{
                                   prefixIcon: const Icon(Icons.email),
                                   suffixIcon: IconButton(
                                       onPressed: () {
-                                        controller.showBottomSheet('Email',FBase.userInfo['email'],'email');
+                                        controller.showBottomSheet(context,'Email',FBase.userInfo['email'],'email');
                                       },
                                       icon: const Icon(Icons.edit))),
                             )
@@ -203,7 +226,7 @@ class GuardProfileView extends GetView<GuardProfileController>{
                                   prefixIcon: const Icon(Icons.phone),
                                   suffixIcon: IconButton(
                                       onPressed: () {
-                                        controller.showBottomSheet('Phone number',FBase.userInfo['phone'],'phone');
+                                        controller.showBottomSheet(context,'Phone number',FBase.userInfo['phone'],'phone');
                                       },
                                       icon: const Icon(Icons.edit))),
                             )

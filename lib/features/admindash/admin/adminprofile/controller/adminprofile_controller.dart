@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
+import 'package:ubivisit/core/routes.dart';
 
 class AdminProfileController extends GetxController{
    @override
@@ -16,10 +16,9 @@ class AdminProfileController extends GetxController{
     loader.value=false;
     super.onInit();
   }
-  List userInfo=[];
   RxBool loader=true.obs;
   var tempUpdate='';
-  showBottomSheet(fieldname,value,updateField){
+  showBottomSheet(context,fieldname,value,updateField){
     Get.bottomSheet(
       Container(
           color: Colors.white,
@@ -60,7 +59,7 @@ class AdminProfileController extends GetxController{
                 fontWeight: FontWeight.w500
               ),)),
                 TextButton(onPressed: () {
-                  FBase.updateUserInfo(updateField, tempUpdate,FBase.userInfo['id']);
+                  FBase.updateUserInfo(context,updateField, tempUpdate,FBase.userInfo['id'],Routes.admindash);
                   Get.back();
 
                 }, child: Text('Save',style: TextStyle(
@@ -109,7 +108,6 @@ class AdminProfileController extends GetxController{
                     ],
                   ),
                   onTap: () {
-                    print('galler');
 
                     selectImage(ImageSource.gallery,context);
                   },
@@ -132,7 +130,6 @@ class AdminProfileController extends GetxController{
                     ],
                   ),
                   onTap: () {
-                    print('camra');
                     selectImage(ImageSource.camera,context);
                   },
                 ),
@@ -155,7 +152,7 @@ class AdminProfileController extends GetxController{
    final XFile? img=await picker.pickImage(source:src,imageQuality: 80);
    if(img!=null){
     imagePath.value=img.path;
-    FBase.uploadImage(File(imagePath.value), FBase.userInfo['id'],context);
+    FBase.uploadImage(File(imagePath.value), FBase.userInfo['id'],context,Routes.admindash);
     Get.back();
    }
 

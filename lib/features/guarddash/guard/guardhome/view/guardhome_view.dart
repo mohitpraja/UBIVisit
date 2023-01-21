@@ -71,7 +71,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                 width: 60,
                                 height: 60,
                                 fit: BoxFit.cover,
-                                imageUrl: '',
+                                imageUrl:FBase.userInfo['image'],
                                 errorWidget: (context, url, error) =>
                                     CircleAvatar(
                                         backgroundColor:
@@ -170,7 +170,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                       GlobalColor.customMaterialColor =
                                           Colors.teal;
                                       Get.back();
-                                      Get.offAllNamed(Routes.admindash);
+                                      Get.offAllNamed(Routes.guarddash);
                                     },
                                     child: Container(
                                       width: 30,
@@ -187,7 +187,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                       GlobalColor.customMaterialColor =
                                           Colors.deepOrange;
                                       Get.back();
-                                      Get.offAllNamed(Routes.admindash);
+                                      Get.offAllNamed(Routes.guarddash);
                                     },
                                     child: Container(
                                       width: 30,
@@ -203,7 +203,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                       GlobalColor.customMaterialColor =
                                           Colors.blue;
                                       Get.back();
-                                      Get.offAllNamed(Routes.admindash);
+                                      Get.offAllNamed(Routes.guarddash);
                                     },
                                     child: Container(
                                       width: 30,
@@ -219,7 +219,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                       GlobalColor.customMaterialColor =
                                           Colors.green;
                                       Get.back();
-                                      Get.offAllNamed(Routes.admindash);
+                                      Get.offAllNamed(Routes.guarddash);
                                     },
                                     child: Container(
                                       width: 30,
@@ -235,7 +235,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                       GlobalColor.customMaterialColor =
                                           Colors.pink;
                                       Get.back();
-                                      Get.offAllNamed(Routes.admindash);
+                                      Get.offAllNamed(Routes.guarddash);
                                     },
                                     child: Container(
                                       width: 30,
@@ -337,7 +337,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                         width: 50,
                                         height: 50,
                                         fit: BoxFit.cover,
-                                        imageUrl: '',
+                                        imageUrl: FBase.userInfo['image'],
                                         errorWidget: (context, url, error) =>
                                             CircleAvatar(
                                                 backgroundColor:
@@ -377,7 +377,9 @@ class GuardHomeView extends GetView<GuardHomeController> {
                               ),
                               CustomButton(
                                 title: 'Add Visitor',
-                                onPress: () {},
+                                onPress: () {
+                                  Get.toNamed(Routes.addvisitor);
+                                },
                               ),
                               const SizedBox(
                                 height: 15,
