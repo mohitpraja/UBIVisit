@@ -3,6 +3,7 @@ class Routes {
   static String guarddash = '/guarddash_view.dart';
   static String empdash = '/empdash_view.dart';
   static String otp = '/otp_view.dart';
+  static String visitorotp = '/visitorotp_view.dart';
   static String introduction = '/introduction_view.dart';
   static String adminprofile = '/adminprofile_view.dart';
   static String login = '/login_view.dart';

@@ -25,6 +25,7 @@ class AllGuardDataView extends GetView<AllGuardDataController>{
                   final data = snapshot.data?.docs;
                   controller.userInfo = data!.map((e) => e.data()).toList();
                 }
+
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
                       child: CircularProgressIndicator(
@@ -32,6 +33,9 @@ class AllGuardDataView extends GetView<AllGuardDataController>{
                     color: GlobalColor.customColor,
                   ));
                 }
+                 if (controller.userInfo.isEmpty) {
+            return const Text('No guard added yet');
+          }
                 return ListView.builder(
                   itemCount: controller.userInfo.length,
                   itemBuilder: (context, index) {

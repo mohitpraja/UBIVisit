@@ -1,9 +1,11 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/components/customsnackbar.dart';
@@ -12,10 +14,21 @@ import 'package:ubivisit/core/routes.dart';
 class FBase {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
   static FirebaseStorage storage = FirebaseStorage.instance;
+  static FirebaseMessaging fmessaging = FirebaseMessaging.instance;
 
-  static Future addUser(name, email, phone, password, post, role) {
+  static Future addUser(name, email, phone, password, post, role) async {
     log('cld');
     var id = DateTime.now().millisecondsSinceEpoch.toString();
+    await fmessaging.requestPermission();
+    String pushtoken='';
+    await fmessaging.getToken().then((token){
+      if(token!=null){
+        log('push token:$token');
+        pushtoken=token;
+      }
+
+    });
+   
     return firestore
         .collection('ubivisit')
         .doc('ubivisit')
@@ -29,7 +42,8 @@ class FBase {
       'phone': phone,
       'image': '',
       'role': role,
-      'id': id
+      'id': id,
+      'pushtoken':pushtoken
     });
   }
 
@@ -73,6 +87,7 @@ class FBase {
               'id': data['id'],
               'image': data['image'],
               'phone': data['phone'],
+              'pushtoken': data['pushtoken'],
             });
 
             await prefs.setBool('isLogin', true);
@@ -124,10 +139,10 @@ class FBase {
     });
   }
 
-  static updateUserInfo(context, updateField, value, id,route) async {
+  static updateUserInfo(context, updateField, value, id, route) async {
     await Hive.deleteBoxFromDisk('ubivisit');
     var db = await Hive.openBox('ubivisit');
-  CustomLoader.showLoader(context);
+    CustomLoader.showLoader(context);
     firestore
         .collection('ubivisit/ubivisit/users')
         .doc(id)
@@ -147,6 +162,7 @@ class FBase {
                 'id': data['id'],
                 'image': data['image'],
                 'phone': data['phone'],
+                'pushtoken': data['pushtoken'],
               }).then((value) {
                 Get.back();
                 Get.offAllNamed(route);
@@ -178,7 +194,7 @@ class FBase {
     }).then((value) => Get.back());
   }
 
-  static uploadImage(file, id, context,route) async {
+  static uploadImage(file, id, context, route) async {
     await Hive.deleteBoxFromDisk('ubivisit');
     var db = await Hive.openBox('ubivisit');
     CustomLoader.showLoader(context);
@@ -208,6 +224,7 @@ class FBase {
                   'id': data['id'],
                   'image': data['image'],
                   'phone': data['phone'],
+                  'pushtoken': data['pushtoken'],
                 }).then((value) {
                   Get.back();
                   Get.offAllNamed(route);
@@ -219,4 +236,45 @@ class FBase {
       },
     );
   }
+
+  static Future addVisitor(name, phone, address, purpose, tomeet, image) async {
+    var id = DateTime.now().millisecondsSinceEpoch.toString();
+
+    final ext = image.path.split('.').last;
+    final ref = storage.ref().child('users/$id.$ext');
+    ref.putFile(image).then((p0) {
+      log('image status:${p0.bytesTransferred / 1000}');
+    });
+    var currDate=DateTime.now();
+    // String date=DateFormat.yMd().format(currDate);
+    String date='${currDate.day}-${currDate.month}-${currDate.year}';
+
+    // final imgUrl = await ref.getDownloadURL();
+    return firestore
+        .collection('ubivisit')
+        .doc('ubivisit')
+        .collection('visitors')
+        .doc(id)
+        .set({
+      'name': name,
+      'address': address,
+      'phone': phone,
+      'image': '',
+      'purpose': purpose,
+      'tomeet': tomeet,
+      'id': id,
+      'date':date
+      
+    });
+  }
+  static getMessagingToken() async {
+    await fmessaging.requestPermission();
+    await fmessaging.getToken().then((token){
+      if(token!=null){
+        log('push token:$token');
+      }
+
+    });
+  }
+  
 }

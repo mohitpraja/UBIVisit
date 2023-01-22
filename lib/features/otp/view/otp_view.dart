@@ -88,7 +88,9 @@ class OtpView extends GetView<OtpController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Obx(() => Text(
-                                      controller.forrebuilt.value=='ram'?'':'+91 ${controller.signupData[2]}',
+                                      controller.forrebuilt.value == 'ram'
+                                          ? ''
+                                          : '+91 ${controller.signupData[2]}',
                                       style: TextStyle(
                                           fontSize: Get.height * 0.03,
                                           fontWeight: FontWeight.bold,
@@ -107,7 +109,7 @@ class OtpView extends GetView<OtpController> {
                               length: 6,
                               pinAnimationType: PinAnimationType.fade,
                               defaultPinTheme: controller.defaultPinTheme,
-                              onChanged: (value) => controller.otp=value,
+                              onChanged: (value) => controller.otp = value,
                             ),
                             Text(
                               "Didn't recieve an OTP",
@@ -127,7 +129,8 @@ class OtpView extends GetView<OtpController> {
                             CustomButton(
                               title: 'Verify',
                               onPress: () {
-                                controller.signupController.verifyOTP(controller.otp,context);
+                                controller.signupController
+                                    .verifyOTP(controller.otp, context);
                               },
                             )
                           ],

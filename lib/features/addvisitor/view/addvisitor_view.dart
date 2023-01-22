@@ -2,13 +2,11 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
-import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
@@ -108,6 +106,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                         RegExp(r'^[a-z A-Z]+$').pattern,
                                         errorText: 'Invalid name')
                                   ]),
+                                  onChanged: (value) => controller.name = value,
                                 ),
                                 TextFormField(
                                   keyboardType: TextInputType.number,
@@ -130,6 +129,8 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                         RegExp(r'^[0-9]{10}$').pattern,
                                         errorText: 'Invalid number')
                                   ]),
+                                  onChanged: (value) =>
+                                      controller.phone = value,
                                 ),
                                 TextFormField(
                                   style: const TextStyle(color: Colors.black54),
@@ -146,6 +147,8 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                     RequiredValidator(
                                         errorText: 'Address required'),
                                   ]),
+                                  onChanged: (value) =>
+                                      controller.address = value,
                                 ),
                                 DropdownButtonFormField2(
                                   itemPadding: EdgeInsets.zero,
@@ -172,7 +175,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                   dropdownDecoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
                                   ),
-                                  items: controller.purpose
+                                  items: controller.purposeList
                                       .map((item) => DropdownMenuItem<String>(
                                             value: item,
                                             child: Container(
@@ -193,6 +196,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                     return null;
                                   },
                                   onChanged: (value) {
+                                    controller.purpose = value!;
                                     //Do something when changing the item if you want.
                                   },
                                 ),
@@ -242,6 +246,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                     return null;
                                   },
                                   onChanged: (value) {
+                                    controller.tomeet = value!;
                                     //Do something when changing the item if you want.
                                   },
                                 ),
@@ -253,7 +258,9 @@ class AddvisitorView extends GetView<AddvisitorController> {
                           title: "Submit",
                           onPress: () {
                             if (Validation.addvisitor.currentState!
-                                .validate()) {}
+                                .validate()) {
+                              controller.saveVisitor(context);
+                            }
                           },
                         ),
                       ],

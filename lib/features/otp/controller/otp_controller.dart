@@ -22,7 +22,7 @@ class OtpController extends GetxController {
   );
 
   var signupData = Get.arguments;
-  final formkey=GlobalKey<FormState>();
+  final formkey = GlobalKey<FormState>();
   var updatePhone = '';
   var otp = '';
   RxString forrebuilt = ''.obs;
@@ -59,8 +59,8 @@ class OtpController extends GetxController {
                   ),
                   validator: MultiValidator([
                     RequiredValidator(errorText: 'Phone requied'),
-                     PatternValidator(RegExp(r'^[0-9]{10}$').pattern,
-                                    errorText: 'Invalid number')
+                    PatternValidator(RegExp(r'^[0-9]{10}$').pattern,
+                        errorText: 'Invalid number')
                   ]),
                 ),
               ),
@@ -80,8 +80,8 @@ class OtpController extends GetxController {
                   TextButton(
                       onPressed: () {
                         forrebuilt.value = '';
-                        if(formkey.currentState!.validate()){
-                        signupData[2] = updatePhone;
+                        if (formkey.currentState!.validate()) {
+                          signupData[2] = updatePhone;
                         }
                         Get.back();
                         // signupData[2]=otpPhone.value;

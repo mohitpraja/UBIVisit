@@ -31,6 +31,9 @@ class AllEmployeeDataView extends GetView<AllEmployeeDataController> {
                     color: GlobalColor.customColor,
                   ));
                 }
+                 if (controller.userInfo.isEmpty) {
+            return const Text('No employee added yet');
+          }
                 return ListView.builder(
                   itemCount: controller.userInfo.length,
                   itemBuilder: (context, index) {

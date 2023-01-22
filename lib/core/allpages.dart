@@ -38,6 +38,8 @@ import 'package:ubivisit/features/splash/binding/splash_binding.dart';
 import 'package:ubivisit/features/splash/view/splash_view.dart';
 import 'package:ubivisit/features/visitoranalysis/binding/visitoranalysis_binding.dart';
 import 'package:ubivisit/features/visitoranalysis/view/visitoranalysis_view.dart';
+import 'package:ubivisit/features/visitorotp/binding/visitorotp_binding.dart';
+import 'package:ubivisit/features/visitorotp/view/visitorotp_view.dart';
 import 'package:ubivisit/features/welcome/binding/welcome_binding.dart';
 import 'package:ubivisit/features/welcome/view/welcome_view.dart';
 
@@ -138,5 +140,10 @@ List<GetPage> allpage = [
     name: Routes.manageuser,
     page: () => const ManageUserView(),
     binding: ManageUserBinding(),
+  ),
+  GetPage(
+    name: Routes.visitorotp,
+    page: () => const VisitorOtpView(),
+    binding: VisitorOtpBinding(),
   ),
 ];
