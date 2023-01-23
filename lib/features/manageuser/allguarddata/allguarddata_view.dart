@@ -34,7 +34,7 @@ class AllGuardDataView extends GetView<AllGuardDataController>{
                   ));
                 }
                  if (controller.userInfo.isEmpty) {
-            return const Text('No guard added yet');
+            return const Center(child: Text('No guard added yet'));
           }
                 return ListView.builder(
                   itemCount: controller.userInfo.length,

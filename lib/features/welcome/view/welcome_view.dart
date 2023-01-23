@@ -100,7 +100,7 @@ class WelcomeView extends GetView {
                                 child: Padding(
                                   padding: const EdgeInsets.all(10),
                                   child: Text(
-                                    'Signup for Admin',
+                                    'Signup',
                                     style: TextStyle(
                                         color: GlobalColor.customColor,
                                         fontSize: 17,

@@ -20,15 +20,14 @@ class FBase {
     log('cld');
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     await fmessaging.requestPermission();
-    String pushtoken='';
-    await fmessaging.getToken().then((token){
-      if(token!=null){
+    String pushtoken = '';
+    await fmessaging.getToken().then((token) {
+      if (token != null) {
         log('push token:$token');
-        pushtoken=token;
+        pushtoken = token;
       }
-
     });
-   
+
     return firestore
         .collection('ubivisit')
         .doc('ubivisit')
@@ -43,7 +42,7 @@ class FBase {
       'image': '',
       'role': role,
       'id': id,
-      'pushtoken':pushtoken
+      'pushtoken': pushtoken
     });
   }
 
@@ -56,7 +55,7 @@ class FBase {
 
   static Stream collectionPathEmp = firestore
       .collection('ubivisit/ubivisit/users')
-      .where('role', isEqualTo: 'employee')
+      .where('role', isEqualTo: 'emp')
       .snapshots();
   static Stream collectionPathGuard = firestore
       .collection('ubivisit/ubivisit/users')
@@ -69,6 +68,13 @@ class FBase {
     final prefs = await SharedPreferences.getInstance();
     var db = await Hive.openBox('ubivisit');
     var post = '';
+     String pushtoken = '';
+    await fmessaging.getToken().then((token) {
+      if (token != null) {
+        log('push token:$token');
+        pushtoken = token;
+      }
+    });
     CustomLoader.showLoader(context);
     firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
       // ignore: avoid_function_literals_in_foreach_calls
@@ -78,6 +84,9 @@ class FBase {
           if ((data['phone'] == phone || data['eamil'] == phone) &&
               data['password'] == pass) {
             isMatch = true;
+            firestore.collection('ubivisit/ubivisit/users').doc(data['id']).update({
+              "pushtoken":pushtoken
+            });
             post = data['post'];
             db.put('userInfo', {
               'name': data['name'],
@@ -239,15 +248,15 @@ class FBase {
 
   static Future addVisitor(name, phone, address, purpose, tomeet, image) async {
     var id = DateTime.now().millisecondsSinceEpoch.toString();
-
-    final ext = image.path.split('.').last;
-    final ref = storage.ref().child('users/$id.$ext');
-    ref.putFile(image).then((p0) {
-      log('image status:${p0.bytesTransferred / 1000}');
-    });
-    var currDate=DateTime.now();
-    // String date=DateFormat.yMd().format(currDate);
-    String date='${currDate.day}-${currDate.month}-${currDate.year}';
+    // final ext = image.path.split('.').last;
+    // print(ext);
+    // final ref = storage.ref().child('users/visitors/$id.$ext');
+    // ref.putFile(image).then((p0) {
+    //   log('image status:${p0.bytesTransferred / 1000}');
+    // });
+    var currDate = DateTime.now();
+    String time=DateFormat('jm').format(currDate);
+    String date = '${currDate.day}-${currDate.month}-${currDate.year}';
 
     // final imgUrl = await ref.getDownloadURL();
     return firestore
@@ -259,22 +268,21 @@ class FBase {
       'name': name,
       'address': address,
       'phone': phone,
-      'image': '',
+      'image': "",
       'purpose': purpose,
       'tomeet': tomeet,
       'id': id,
-      'date':date
-      
+      'date': date,
+      'time':time
     });
   }
+
   static getMessagingToken() async {
     await fmessaging.requestPermission();
-    await fmessaging.getToken().then((token){
-      if(token!=null){
+    await fmessaging.getToken().then((token) {
+      if (token != null) {
         log('push token:$token');
       }
-
     });
   }
-  
 }

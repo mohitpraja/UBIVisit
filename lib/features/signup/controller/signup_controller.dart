@@ -16,6 +16,7 @@ class SignupController extends GetxController {
   var email = '';
   var phone = '';
   var password = '';
+  var post = '';
 
   RxBool isPass = true.obs;
   RxBool isConfirmPass = true.obs;
@@ -98,7 +99,7 @@ class SignupController extends GetxController {
           await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
       if (authCred.user != null) {
         Get.back();
-        FBase.addUser(name, email, phone, password, 'Admin', '').then((value) {
+        FBase.addUser(name, email, phone, password, post,'emp').then((value) {
           AwesomeDialog(
             context: context,
             dialogType: DialogType.success,

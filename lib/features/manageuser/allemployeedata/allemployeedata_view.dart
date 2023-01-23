@@ -32,7 +32,7 @@ class AllEmployeeDataView extends GetView<AllEmployeeDataController> {
                   ));
                 }
                  if (controller.userInfo.isEmpty) {
-            return const Text('No employee added yet');
+            return const Center(child: Text('No employee added yet'));
           }
                 return ListView.builder(
                   itemCount: controller.userInfo.length,
