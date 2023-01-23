@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/global/global.dart';
 
-class GuardVisitorListController extends GetxController{
-
-List allVisitors = [];
-final Stream visitorStream =
-      FirebaseFirestore.instance.collection('ubivisit/ubivisit/visitors').snapshots();
-     showDetails(user) {
+class GuardVisitorListController extends GetxController {
+ 
+  List allVisitors = [];
+  final Stream visitorStream = FirebaseFirestore.instance
+      .collection('ubivisit/ubivisit/visitors')
+      .snapshots();
+  showDetails(user) {
     Get.defaultDialog(
         title: '',
         contentPadding: const EdgeInsets.all(0),
@@ -20,7 +21,10 @@ final Stream visitorStream =
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Text('Visitor Details',style: TextStyle(fontSize: 18),),
+              const Text(
+                'Visitor Details',
+                style: TextStyle(fontSize: 18),
+              ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(75),
                 child: CachedNetworkImage(
@@ -37,16 +41,38 @@ final Stream visitorStream =
                       )),
                 ),
               ),
-              Text('Name: ${user['name']}',style: const TextStyle(fontSize: 14),),
-              Text('Phone: ${user['phone']}',style: const TextStyle(fontSize: 14),),
-              Text('Date: ${user['date']}',style: const TextStyle(fontSize: 14),),
-              Text('Address: ${user['address']}',style: const TextStyle(fontSize: 14),),
-              Text('Purpose: ${user['purpose']}',style: const TextStyle(fontSize: 14),),
-              Text('To Meet: ${user['tomeet']}',style: const TextStyle(fontSize: 14),),
-              Text('Time in: ${user['time']}',style: const TextStyle(fontSize: 14),),
+              Text(
+                'Name: ${user['name']}',
+                style: const TextStyle(fontSize: 14),
+              ),
+              Text(
+                'Phone: ${user['phone']}',
+                style: const TextStyle(fontSize: 14),
+              ),
+              Text(
+                'Date: ${user['date']}',
+                style: const TextStyle(fontSize: 14),
+              ),
+              Text(
+                'Address: ${user['address']}',
+                style: const TextStyle(fontSize: 14),
+              ),
+              Text(
+                'Purpose: ${user['purpose']}',
+                style: const TextStyle(fontSize: 14),
+              ),
+              Text(
+                'To Meet: ${user['tomeet']}',
+                style: const TextStyle(fontSize: 14),
+              ),
+              Text(
+                'Time in: ${user['time']}',
+                style: const TextStyle(fontSize: 14),
+              ),
             ],
           ),
         ));
   }
 
+  
 }

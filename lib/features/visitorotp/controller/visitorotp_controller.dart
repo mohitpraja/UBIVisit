@@ -113,6 +113,7 @@ class VisitorOtpController extends GetxController {
       if (authCred.user != null) {
         Get.back();
         FBase.addVisitor(signupData[0], signupData[2], signupData[1], signupData[3], signupData[4], signupData[5]).then((value) {
+          FBase.sendNotification(signupData[7]);
           AwesomeDialog(
             context: context,
             dialogType: DialogType.success,

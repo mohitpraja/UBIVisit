@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
+    return Obx(() =>controller.loader.value? const Center(child: CircularProgressIndicator()):Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.white,
@@ -27,7 +28,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
             ),
             elevation: 0,
             leading: IconButton(
-              onPressed: () => Get.toNamed(Routes.addvisitor),
+              onPressed: () => Get.toNamed(Routes.guarddash),
               icon: const Icon(Icons.arrow_back),
               color: Colors.black54,
             ),
@@ -139,7 +140,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                       hintStyle: const TextStyle(
                                           color: Colors.black54),
                                       hintText: 'Enter Address',
-                                      prefixIcon: const Icon(Icons.person),
+                                      prefixIcon: const Icon(Icons.calendar_view_day_outlined),
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10))),
@@ -200,54 +201,31 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                     //Do something when changing the item if you want.
                                   },
                                 ),
-                                DropdownButtonFormField2(
-                                  itemPadding: EdgeInsets.zero,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    isDense: true,
-                                    contentPadding: EdgeInsets.zero,
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
+                                DropdownSearch(
+                                
+                                  items: controller.getSenderInfo.map((e)=>
+                                    e['name'],
+
+                                  ).toList(),
+                                      
+                                  onChanged: (value) {
+                                   controller.tempSender=value;
+
+
+                                  },
+                                  dropdownDecoratorProps:
+                                      const DropDownDecoratorProps(
+                                        
+                                    dropdownSearchDecoration: InputDecoration(
+                                      hintStyle: TextStyle(fontSize: 15,color: Colors.black54),
+                                      filled: true,
+                                        hintText: "To Meet",
+                                        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
                                   ),
-                                  isExpanded: true,
-                                  hint: const Text(
-                                    'To Meet',
-                                  ),
-                                  icon: const Icon(
-                                    Icons.arrow_drop_down,
-                                    color: Colors.black45,
-                                  ),
-                                  iconSize: 30,
-                                  buttonHeight: 60,
-                                  buttonPadding: const EdgeInsets.only(
-                                      left: 20, right: 10),
-                                  dropdownDecoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  items: controller.toMeetList
-                                      .map((item) => DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Container(
-                                              margin: const EdgeInsets.all(10),
-                                              child: Text(
-                                                item,
-                                                style: const TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.black54),
-                                              ),
-                                            ),
-                                          ))
-                                      .toList(),
                                   validator: (value) {
                                     if (value == null) {
-                                      return 'To meet required';
+                                      return 'To Meet required';
                                     }
-                                    return null;
-                                  },
-                                  onChanged: (value) {
-                                    controller.tomeet = value!;
-                                    //Do something when changing the item if you want.
                                   },
                                 ),
                               ],
@@ -259,10 +237,12 @@ class AddvisitorView extends GetView<AddvisitorController> {
                           onPress: () {
                             if (Validation.addvisitor.currentState!
                                 .validate()) {
-                              controller.saveVisitor(context);
+                                  controller.getSenderToken();
+                              controller.saveVisitor(context,);
                             }
                           },
                         ),
+                       
                       ],
                     ),
                   ),

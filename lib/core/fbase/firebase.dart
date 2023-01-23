@@ -1,10 +1,13 @@
+import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ubivisit/core/components/customloader.dart';
@@ -68,7 +71,7 @@ class FBase {
     final prefs = await SharedPreferences.getInstance();
     var db = await Hive.openBox('ubivisit');
     var post = '';
-     String pushtoken = '';
+    String pushtoken = '';
     await fmessaging.getToken().then((token) {
       if (token != null) {
         log('push token:$token');
@@ -84,9 +87,10 @@ class FBase {
           if ((data['phone'] == phone || data['eamil'] == phone) &&
               data['password'] == pass) {
             isMatch = true;
-            firestore.collection('ubivisit/ubivisit/users').doc(data['id']).update({
-              "pushtoken":pushtoken
-            });
+            firestore
+                .collection('ubivisit/ubivisit/users')
+                .doc(data['id'])
+                .update({"pushtoken": pushtoken});
             post = data['post'];
             db.put('userInfo', {
               'name': data['name'],
@@ -255,7 +259,7 @@ class FBase {
     //   log('image status:${p0.bytesTransferred / 1000}');
     // });
     var currDate = DateTime.now();
-    String time=DateFormat('jm').format(currDate);
+    String time = DateFormat('jm').format(currDate);
     String date = '${currDate.day}-${currDate.month}-${currDate.year}';
 
     // final imgUrl = await ref.getDownloadURL();
@@ -273,7 +277,7 @@ class FBase {
       'tomeet': tomeet,
       'id': id,
       'date': date,
-      'time':time
+      'time': time
     });
   }
 
@@ -285,4 +289,26 @@ class FBase {
       }
     });
   }
+
+  static sendNotification(token) async {
+    log('token: $token');
+    try {
+      final body = {
+        "to": token['pushtoken'],
+        "notification": {"title": 'Ubivisit', "body": "One person arrived"}
+      };
+      var response = await post(
+          Uri.parse('https://fcm.googleapis.com/fcm/send'),
+          body: jsonEncode(body),
+          headers: {
+            HttpHeaders.contentTypeHeader: 'application/json',
+            HttpHeaders.authorizationHeader:
+                "key=AAAAqxHc5k4:APA91bHhIMrkwXnJccnxsnPQI4t2YtnfUA44H-Czm7HW4gMMlsrTp6Wy4OP2Ovqa86_z6cRhhOO19zh3q1_N-p-LaQpjSo0BfcpRs8orADeBXtPrkKzwLvwruA8GcdMWPcVgNhM9rzXF"
+          });
+      print('res: $response.response');
+    } catch (e) {
+      log('$e');
+    }
+  }
+ 
 }
