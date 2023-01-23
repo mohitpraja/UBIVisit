@@ -501,8 +501,8 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                                                         Row(
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.end,
-                                                                          children: const [
-                                                                            Text('Waiting...')
+                                                                          children:  [
+                                                                            Text('${controller.allVisitors[index]['status']}')
                                                                           ],
                                                                         ),
                                                                       ],

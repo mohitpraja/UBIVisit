@@ -55,6 +55,13 @@ class FBase {
         .where('id', isEqualTo: id)
         .snapshots();
   }
+  static Stream getEmpVisitor(name) {
+    print(name);
+    return firestore
+        .collection('ubivisit/ubivisit/visitors')
+        .where('tomeet', isEqualTo: name)
+        .snapshots();
+  }
 
   static Stream collectionPathEmp = firestore
       .collection('ubivisit/ubivisit/users')
@@ -277,7 +284,9 @@ class FBase {
       'tomeet': tomeet,
       'id': id,
       'date': date,
-      'time': time
+      'time': time,
+      'status':'waiting...',
+      'timeout':''
     });
   }
 
@@ -309,6 +318,14 @@ class FBase {
     } catch (e) {
       log('$e');
     }
+  }
+  static updateStatus(id,status){
+     firestore
+        .collection('ubivisit/ubivisit/visitors')
+        .doc(id).update({
+          'status':status
+        });
+
   }
  
 }

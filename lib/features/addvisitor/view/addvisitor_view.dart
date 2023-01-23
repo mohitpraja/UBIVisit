@@ -209,6 +209,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                   ).toList(),
                                       
                                   onChanged: (value) {
+                                    controller.tomeet=value;
                                    controller.tempSender=value;
 
 
