@@ -56,7 +56,6 @@ class FBase {
         .snapshots();
   }
   static Stream getEmpVisitor(name) {
-    print(name);
     return firestore
         .collection('ubivisit/ubivisit/visitors')
         .where('tomeet', isEqualTo: name)
@@ -279,7 +278,7 @@ class FBase {
       'name': name,
       'address': address,
       'phone': phone,
-      'image': "",
+      'image': '',
       'purpose': purpose,
       'tomeet': tomeet,
       'id': id,
@@ -306,6 +305,7 @@ class FBase {
         "to": token['pushtoken'],
         "notification": {"title": 'Ubivisit', "body": "One person arrived"}
       };
+      // ignore: unused_local_variable
       var response = await post(
           Uri.parse('https://fcm.googleapis.com/fcm/send'),
           body: jsonEncode(body),
@@ -314,7 +314,6 @@ class FBase {
             HttpHeaders.authorizationHeader:
                 "key=AAAAqxHc5k4:APA91bHhIMrkwXnJccnxsnPQI4t2YtnfUA44H-Czm7HW4gMMlsrTp6Wy4OP2Ovqa86_z6cRhhOO19zh3q1_N-p-LaQpjSo0BfcpRs8orADeBXtPrkKzwLvwruA8GcdMWPcVgNhM9rzXF"
           });
-      print('res: $response.response');
     } catch (e) {
       log('$e');
     }
@@ -324,7 +323,19 @@ class FBase {
         .collection('ubivisit/ubivisit/visitors')
         .doc(id).update({
           'status':status
+        }).then((value) => Get.back());
+
+  }
+  static timeOut(id){
+    var currDate = DateTime.now();
+    String time = DateFormat('jm').format(currDate);
+    firestore
+        .collection('ubivisit/ubivisit/visitors')
+        .doc(id).update({
+          'timeout':time
         });
+
+
 
   }
  

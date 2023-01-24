@@ -128,6 +128,26 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
                               ]),
                               onChanged: (value) => controller.phone = value,
                             ),
+                            TextFormField(
+                              style: const TextStyle(color: Colors.black54),
+                              decoration: InputDecoration(
+                                  counterText: '',
+                                  filled: true,
+                                  hintStyle:
+                                      const TextStyle(color: Colors.black54),
+                                  hintText: 'Role ',
+                                  prefixIcon: const Icon(Icons.card_travel),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10))),
+                              validator: MultiValidator([
+                                RequiredValidator(errorText: 'Role required'),
+                                PatternValidator(
+                                    RegExp(r'^[a-z A-Z]+$').pattern,
+                                    errorText: 'Invalid Role')
+                              ]),
+                              onChanged: (value) =>
+                                      controller.post = value,
+                            ),
                             Obx(() => TextFormField(
                                   style: const TextStyle(color: Colors.black54),
                                   obscureText: controller.isPass.value,

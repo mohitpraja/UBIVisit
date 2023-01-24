@@ -146,6 +146,7 @@ class SignupView extends GetView<SignupController> {
                               ]),
                               onChanged: (value) => controller.phone = value,
                             ),
+                            
                             TextFormField(
                               style: const TextStyle(color: Colors.black54),
                               decoration: InputDecoration(

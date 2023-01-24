@@ -13,6 +13,7 @@ class GoogleSignupController extends GetxController {
   var email = '';
   var phone = '';
   var password = '';
+  var post = '';
 
   RxBool isPass = true.obs;
   RxBool isConfirmPass = true.obs;
@@ -55,7 +56,7 @@ class GoogleSignupController extends GetxController {
           const CustomSnackbar(title: 'Warning', msg: 'This mail already ').show1();
         } else {
       Get.back();
-      FBase.addUser(name, signupEmail, phone, password,'Admin','').then((value){
+      FBase.addUser(name, signupEmail, phone, password,post,'').then((value){
 
           AwesomeDialog(
           context: context,

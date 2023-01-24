@@ -23,7 +23,7 @@ class AcceptDeclineView extends GetView<AcceptDeclineController> {
                   width: Get.width,
                   height: Get.height * 0.2,
                   child: Container(
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     child: Card(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +66,7 @@ class AcceptDeclineView extends GetView<AcceptDeclineController> {
                       Expanded(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            shape: StadiumBorder(),
+                            shape: const StadiumBorder(),
                             backgroundColor: Colors.red),
                             
                           onPressed: () {
@@ -74,20 +74,20 @@ class AcceptDeclineView extends GetView<AcceptDeclineController> {
 
 
                           
-                        }, child: Text('Reject')),
+                        }, child: const Text('Reject')),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       Expanded(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            shape: StadiumBorder(),
+                            shape: const StadiumBorder(),
                             backgroundColor: Colors.green),
                           onPressed: () {
                             FBase.updateStatus(controller.visitorData['id'], 'Agree');
                           
-                        }, child: Text('Accept')),
+                        }, child: const Text('Accept')),
                       ),
                     ],
                   ),

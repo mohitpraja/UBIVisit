@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
-import 'package:ubivisit/features/admindash/admin/adminvisitorlist/controller/adminvisitorlist_controller.dart';
 import 'package:ubivisit/features/empdash/employee/empvisitorlist/controller/empvisitorlist_controller.dart';
 
 class EmpVisitorListView extends GetView<EmpVisitorListController> {

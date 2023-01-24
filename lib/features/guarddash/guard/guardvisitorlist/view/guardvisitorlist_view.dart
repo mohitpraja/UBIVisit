@@ -11,6 +11,7 @@ class GuardVisitorListView extends GetView<GuardVisitorListController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: GlobalColor.customColor,
         title: const Text("Visitor's List"),
       ),
       body: StreamBuilder(

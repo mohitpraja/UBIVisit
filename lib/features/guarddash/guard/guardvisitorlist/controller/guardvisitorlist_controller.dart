@@ -69,6 +69,10 @@ class GuardVisitorListController extends GetxController {
                 'Time in: ${user['time']}',
                 style: const TextStyle(fontSize: 14),
               ),
+              Text(
+                'Time out: ${user['timeout']}',
+                style: const TextStyle(fontSize: 14),
+              ),
             ],
           ),
         ));

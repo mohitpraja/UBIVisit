@@ -227,6 +227,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                     if (value == null) {
                                       return 'To Meet required';
                                     }
+                                    return null;
                                   },
                                 ),
                               ],

@@ -2,7 +2,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 
 class GuardHomeController extends GetxController {
@@ -16,7 +15,7 @@ class GuardHomeController extends GetxController {
   RxBool loader=true.obs;
   List allVisitors = [];
 final Stream visitorStream =
-      FirebaseFirestore.instance.collection('ubivisit/ubivisit/visitors').snapshots();
+      FirebaseFirestore.instance.collection('ubivisit/ubivisit/visitors').where('timeout', isEqualTo: '').snapshots();
     
 
     

@@ -8,10 +8,11 @@ import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/routes.dart';
+import 'package:ubivisit/features/guarddash/controller/guarddash_controller.dart';
 import 'package:ubivisit/features/guarddash/guard/guardhome/controller/guardhome_controller.dart';
 
 class GuardHomeView extends GetView<GuardHomeController> {
-  const GuardHomeView({super.key});
+  GuardHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -90,15 +91,18 @@ class GuardHomeView extends GetView<GuardHomeController> {
                         ),
                       ),
                     ),
-                    ListTile(
-                      leading: const Icon(Icons.home),
-                      horizontalTitleGap: 0,
-                      title: Text(
-                        'Home',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: CustomFonts.alata),
+                    InkWell(
+                      onTap: () => Get.offAllNamed(Routes.guarddash,arguments:[1]),
+                      child: ListTile(
+                        leading: const Icon(Icons.home),
+                        horizontalTitleGap: 0,
+                        title: Text(
+                          'Home',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: CustomFonts.alata),
+                        ),
                       ),
                     ),
                     ListTile(
@@ -518,8 +522,13 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                                               width: Get.width,
                                                               child:
                                                                   ElevatedButton(
+                                                                    style: ElevatedButton.styleFrom(
+                                                                      backgroundColor: GlobalColor.customColor
+                                                                    ),
                                                                       onPressed:
-                                                                          () {},
+                                                                          () {
+                                                                            FBase.timeOut(controller.allVisitors[index]['id']);
+                                                                          },
                                                                       child:
                                                                           const Text(
                                                                         'Time out',
