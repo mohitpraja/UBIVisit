@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -298,7 +297,7 @@ class FBase {
       'name': name,
       'address': address,
       'phone': phone,
-      'image': '',
+      'image': "",
       'purpose': purpose,
       'tomeet': tomeet,
       'id': id,
@@ -318,13 +317,26 @@ class FBase {
     });
   }
 
-  static sendNotification(token) async {
+  static sendNotification(token, visitorData) async {
+    print('send notification');
     log('token: $token');
+    print(visitorData);
     try {
       final body = {
         "to": token['pushtoken'],
         "notification": {"title": 'Ubivisit', "body": "One person arrived"}
       };
+      var name = visitorData[0];
+      var email = token['email'];
+      var phone = visitorData[2];
+      var purpose = visitorData[3];
+      var address = visitorData[1];
+
+      // ignore: unused_local_variable
+      var responseEmail = await post(Uri.parse(
+          'https://ubiattendance.ubiattendance.xyz/newpanel/index.php/Att_services_getx_xyz_regendra/visitorMail?visitorName=$name&visitorContactNumber=$phone&visitorAddress=$address&purpus=$purpose&meetTo=$email'));
+      // ignore: unused_local_variable
+
       // ignore: unused_local_variable
       var response = await post(
           Uri.parse('https://fcm.googleapis.com/fcm/send'),

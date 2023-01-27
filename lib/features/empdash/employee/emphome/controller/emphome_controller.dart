@@ -16,6 +16,7 @@ class EmpHomeController extends GetxController {
     super.onInit();
   }
   RxBool loader=true.obs;
+  RxString name = '${FBase.userInfo['name'].split(' ').first}'.obs;
   List allVisitors = [];
   final Stream visitorStream = FirebaseFirestore.instance
       .collection('ubivisit/ubivisit/visitors')

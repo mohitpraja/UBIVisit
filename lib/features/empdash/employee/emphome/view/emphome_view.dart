@@ -49,7 +49,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  FBase.userInfo['name'],
+                                  'Hi, ${controller.name.value}',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 26,

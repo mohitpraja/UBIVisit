@@ -52,7 +52,8 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    FBase.userInfo['name'],
+                                    // FBase.userInfo['name'],
+                                    'Hi, ${controller.name.value}',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 26,

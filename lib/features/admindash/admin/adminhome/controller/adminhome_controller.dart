@@ -12,6 +12,7 @@ class AdminHomeController extends GetxController {
     super.onInit();
   }
   RxBool loader=true.obs;
+  RxString name = '${FBase.userInfo['name'].split(' ').first}'.obs;
 
     
  
