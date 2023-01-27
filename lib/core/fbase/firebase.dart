@@ -258,17 +258,17 @@ class FBase {
 
   static Future addVisitor(name, phone, address, purpose, tomeet, image) async {
     var id = DateTime.now().millisecondsSinceEpoch.toString();
-    // final ext = image.path.split('.').last;
-    // print(ext);
-    // final ref = storage.ref().child('users/visitors/$id.$ext');
-    // ref.putFile(image).then((p0) {
-    //   log('image status:${p0.bytesTransferred / 1000}');
-    // });
+    final ext = image.path.split('.').last;
+    print(ext);
+    final ref = storage.ref().child('users/visitors/$id.$ext');
+    ref.putFile(image).then((p0) {
+      log('image status:${p0.bytesTransferred / 1000}');
+    });
     var currDate = DateTime.now();
     String time = DateFormat('jm').format(currDate);
     String date = '${currDate.day}-${currDate.month}-${currDate.year}';
 
-    // final imgUrl = await ref.getDownloadURL();
+    final imgUrl = await ref.getDownloadURL();
     return firestore
         .collection('ubivisit')
         .doc('ubivisit')
@@ -278,7 +278,7 @@ class FBase {
       'name': name,
       'address': address,
       'phone': phone,
-      'image': '',
+      'image': imgUrl,
       'purpose': purpose,
       'tomeet': tomeet,
       'id': id,

@@ -93,6 +93,7 @@ class IntroductionView extends GetView<IntroductionController> {
               style:
                   TextStyle(fontWeight: FontWeight.w600, color: Colors.indigo)),
           showBackButton: false,
+          onSkip: () => Get.offAllNamed(Routes.welcome),
           done: const Text("Done",
               style: TextStyle(color: Colors.black54, fontSize: 16)),
           dotsDecorator: const DotsDecorator(
