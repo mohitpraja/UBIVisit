@@ -36,7 +36,7 @@ class LoginView extends GetView<LoginController> {
                 Center(
                   child: Image.asset(
                     "assets/images/login.png",
-                    height: Get.height * 0.18,
+                    height: Get.height * 0.16,
                   ),
                 ),
                 Form(
@@ -44,7 +44,7 @@ class LoginView extends GetView<LoginController> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Container(
                     margin: const EdgeInsets.all(12),
-                    height: Get.height * 0.65,
+                    height: Get.height * 0.66,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -54,13 +54,13 @@ class LoginView extends GetView<LoginController> {
                               "Welcome !!!",
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 25,
+                                  fontSize: Get.height*0.035,
                                   fontFamily: CustomFonts.alata),
                             ),
                             Text(
                               "Login to your existing account",
                               style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize:Get.height*0.02,
                                   color: Colors.grey,
                                   fontFamily: CustomFonts.alata),
                             ),
@@ -72,6 +72,7 @@ class LoginView extends GetView<LoginController> {
                           maxLength: 10,
                           controller: controller.phone,
                           decoration: InputDecoration(
+                            contentPadding: EdgeInsets.zero,
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
                               hintText: 'Phone number',
@@ -93,6 +94,7 @@ class LoginView extends GetView<LoginController> {
                               obscureText: controller.isPass.value,
                               controller: controller.pass,
                               decoration: InputDecoration(
+                                contentPadding: EdgeInsets.zero,
                                   filled: true,
                                   hintStyle:
                                       const TextStyle(color: Colors.black54),
@@ -129,7 +131,8 @@ class LoginView extends GetView<LoginController> {
                                     fontFamily: CustomFonts.alata,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize: 16),
+                                    fontSize: Get.height*0.02
+                                    ),
                               ),
                             ),
                           ],
@@ -157,7 +160,9 @@ class LoginView extends GetView<LoginController> {
                                 style: TextStyle(
                                     color: Colors.black54,
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: CustomFonts.alata),
+                                    fontFamily: CustomFonts.alata,
+                                    fontSize: Get.height*0.02
+                                    ),
                               ),
                               const Expanded(
                                   child: Divider(
@@ -176,18 +181,18 @@ class LoginView extends GetView<LoginController> {
                             label: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Text(
-                                'signup with Google',
+                                'Sign up with Google',
                                 style: TextStyle(
                                     color: GlobalColor.customColor,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize: 16,
+                                    fontSize: Get.height*0.023,
                                     fontFamily: CustomFonts.alata),
                               ),
                             ),
                             icon: Image.asset(
                               'assets/images/google.png',
-                              width: 30,
+                              width: 28,
                             ),
                             style: ElevatedButton.styleFrom(
                               shape: const StadiumBorder(
@@ -204,7 +209,7 @@ class LoginView extends GetView<LoginController> {
                               style: TextStyle(
                                   color: Colors.black54,
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 16,
+                                  fontSize: Get.height*0.02,
                                   fontFamily: CustomFonts.alata),
                             ),
                             InkWell(
@@ -214,7 +219,7 @@ class LoginView extends GetView<LoginController> {
                                 style: TextStyle(
                                     color: Colors.indigo,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 17,
+                                    fontSize: Get.height*0.022,
                                     fontFamily: CustomFonts.alata),
                               ),
                             )

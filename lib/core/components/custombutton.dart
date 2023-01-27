@@ -21,7 +21,7 @@ class CustomButton extends GetView {
           child: Text(
             title,
             style: TextStyle(
-                color: Colors.white, letterSpacing: 1,fontWeight: FontWeight.w600, fontSize:17,fontFamily: CustomFonts.alata),
+                color: Colors.white, letterSpacing: 1,fontWeight: FontWeight.w600, fontSize:Get.height*0.023,fontFamily: CustomFonts.alata),
           ),
         ),
       ),

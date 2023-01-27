@@ -40,7 +40,7 @@ class WelcomeView extends GetView {
                             Text(
                               'Welcome to',
                               style: TextStyle(
-                                  fontSize: 35,
+                                  fontSize: Get.height*0.043,
                                   fontWeight: FontWeight.w600,
                                   fontFamily: CustomFonts.alata,
                                   color: Colors.white,
@@ -49,7 +49,7 @@ class WelcomeView extends GetView {
                             Text(
                               'UBIVisit',
                               style: TextStyle(
-                                  fontSize: 35,
+                                  fontSize: Get.height*0.043,
                                   fontWeight: FontWeight.w600,
                                   fontFamily: CustomFonts.alata,
                                   color: Colors.white,
@@ -78,7 +78,7 @@ class WelcomeView extends GetView {
                                     'Login',
                                     style: TextStyle(
                                         color: GlobalColor.customColor,
-                                        fontSize: 17,
+                                        fontSize: Get.height*0.025,
                                         fontWeight: FontWeight.w600,
                                         letterSpacing: 1,
                                         fontFamily: CustomFonts.alata),
@@ -103,7 +103,7 @@ class WelcomeView extends GetView {
                                     'Signup',
                                     style: TextStyle(
                                         color: GlobalColor.customColor,
-                                        fontSize: 17,
+                                        fontSize: Get.height*0.025,
                                         fontWeight: FontWeight.w600,
                                         letterSpacing: 1,
                                         fontFamily: CustomFonts.alata),

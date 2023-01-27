@@ -20,6 +20,9 @@ class FBase {
   static FirebaseMessaging fmessaging = FirebaseMessaging.instance;
 
   static Future addUser(name, email, phone, password, post, role) async {
+    print(name);
+    print(email);
+    print(post);
     log('cld');
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     await fmessaging.requestPermission();
@@ -64,7 +67,7 @@ class FBase {
 
   static Stream collectionPathEmp = firestore
       .collection('ubivisit/ubivisit/users')
-      .where('role', isEqualTo: 'emp')
+      .where('role', isEqualTo: 'employee')
       .snapshots();
   static Stream collectionPathGuard = firestore
       .collection('ubivisit/ubivisit/users')
@@ -268,7 +271,7 @@ class FBase {
     String time = DateFormat('jm').format(currDate);
     String date = '${currDate.day}-${currDate.month}-${currDate.year}';
 
-    final imgUrl = await ref.getDownloadURL();
+    // final imgUrl = await ref.getDownloadURL();
     return firestore
         .collection('ubivisit')
         .doc('ubivisit')
@@ -278,7 +281,7 @@ class FBase {
       'name': name,
       'address': address,
       'phone': phone,
-      'image': imgUrl,
+      'image': '',
       'purpose': purpose,
       'tomeet': tomeet,
       'id': id,

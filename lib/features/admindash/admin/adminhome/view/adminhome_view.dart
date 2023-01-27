@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
@@ -385,6 +386,12 @@ class AdminHomeView extends GetView<AdminHomeController> {
                             children: [
                               const SizedBox(
                                 height: 15,
+                              ),
+                              CustomButton(title: 'Add Employee', onPress: () {
+                                Get.toNamed(Routes.addemployee);
+                              },),
+                              SizedBox(
+                                height: Get.height*0.015,
                               ),
                               SizedBox(
                                 width: Get.width,

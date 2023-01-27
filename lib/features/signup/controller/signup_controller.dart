@@ -58,6 +58,7 @@ class SignupController extends GetxController {
             const CustomSnackbar(title: 'Warning', msg: 'This mail already ')
                 .show1();
           } else {
+            Get.back();
             sendOtp(context, phone);
           }
         });
@@ -86,7 +87,10 @@ class SignupController extends GetxController {
         GlobalFunction.checkInternet(
             context, Routes.otp, [name, email, phone, password]);
       },
-      codeAutoRetrievalTimeout: (String verificationId) {},
+      codeAutoRetrievalTimeout: (String verificationId) {
+        Get.back();
+        const CustomSnackbar(msg: 'Request time out', title: 'Warning').show1();
+      },
     );
   }
 
@@ -99,7 +103,7 @@ class SignupController extends GetxController {
           await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
       if (authCred.user != null) {
         Get.back();
-        FBase.addUser(name, email, phone, password, post,'emp').then((value) {
+        FBase.addUser(name, email, phone, password,'Admin', '').then((value) {
           AwesomeDialog(
             context: context,
             dialogType: DialogType.success,
@@ -112,7 +116,15 @@ class SignupController extends GetxController {
       }
     } on FirebaseAuthException {
       Get.back();
-      const CustomSnackbar(msg: 'Invalid OTP', title: 'Warning').show();
+       AwesomeDialog(
+            context: context,
+            dialogType: DialogType.error,
+            title: 'Error',
+            desc: 'invalid OTP',
+            dismissOnBackKeyPress: true
+          ).show();
+      // const CustomSnackbar(msg: 'Invalid OTP', title: 'Warning').show();
+      // Get.back();
     }
   }
 }

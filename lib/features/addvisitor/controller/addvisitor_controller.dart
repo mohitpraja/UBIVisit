@@ -105,7 +105,7 @@ class AddvisitorController extends GetxController {
         .get()
         .then((QuerySnapshot querySnapshot) {
       for (var e in querySnapshot.docs) {
-        if (e['role'] == 'emp') {
+        if (e['role'] == 'employee') {
           getSenderInfo.add({
             'name': e['name'],
             'pushtoken': e['pushtoken'],

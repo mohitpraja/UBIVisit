@@ -46,7 +46,7 @@ class SignupView extends GetView<SignupController> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 28,
+                            fontSize: Get.height*0.04,
                             fontWeight: FontWeight.normal,
                             fontFamily: CustomFonts.alata),
                       ),
@@ -55,13 +55,13 @@ class SignupView extends GetView<SignupController> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 15,
+                            fontSize:Get.height*0.02,
                             fontFamily: CustomFonts.alata),
                       ),
                     ],
                   )),
                   SizedBox(
-                    height: Get.height * 0.7,
+                    height: Get.height * 0.65,
                     child: Form(
                         key: Validation.signupFormKey,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -71,6 +71,7 @@ class SignupView extends GetView<SignupController> {
                             TextFormField(
                               style: const TextStyle(color: Colors.black54),
                               decoration: InputDecoration(
+                                contentPadding: EdgeInsets.zero,
                                   filled: true,
                                   hintStyle:
                                       const TextStyle(color: Colors.black54),
@@ -90,6 +91,7 @@ class SignupView extends GetView<SignupController> {
                               keyboardType: TextInputType.emailAddress,
                               style: const TextStyle(color: Colors.black54),
                               decoration: InputDecoration(
+                                contentPadding: EdgeInsets.zero,
                                   filled: true,
                                   hintStyle:
                                       const TextStyle(color: Colors.black54),
@@ -111,6 +113,7 @@ class SignupView extends GetView<SignupController> {
                               maxLength: 10,
                               style: const TextStyle(color: Colors.black54),
                               decoration: InputDecoration(
+                                contentPadding: EdgeInsets.zero,
                                   counterText: '',
                                   filled: true,
                                   hintStyle:
@@ -147,30 +150,12 @@ class SignupView extends GetView<SignupController> {
                               onChanged: (value) => controller.phone = value,
                             ),
                             
-                            TextFormField(
-                              style: const TextStyle(color: Colors.black54),
-                              decoration: InputDecoration(
-                                  counterText: '',
-                                  filled: true,
-                                  hintStyle:
-                                      const TextStyle(color: Colors.black54),
-                                  hintText: 'Role ',
-                                  prefixIcon: const Icon(Icons.card_travel),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10))),
-                              validator: MultiValidator([
-                                RequiredValidator(errorText: 'Role required'),
-                                PatternValidator(
-                                    RegExp(r'^[a-z A-Z]+$').pattern,
-                                    errorText: 'Invalid Role')
-                              ]),
-                              onChanged: (value) =>
-                                      controller.post = value,
-                            ),
+                           
                             Obx(() => TextFormField(
                                   style: const TextStyle(color: Colors.black54),
                                   obscureText: controller.isPass.value,
                                   decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.zero,
                                       filled: true,
                                       hintStyle: const TextStyle(
                                           color: Colors.black54),
@@ -188,7 +173,7 @@ class SignupView extends GetView<SignupController> {
                                   validator: MultiValidator([
                                     MinLengthValidator(6,
                                         errorText:
-                                            'password must be at least 6 digits long'),
+                                            'Password must be at least 6 digits long'),
                                     RequiredValidator(
                                         errorText: 'Password requied'),
                                     PatternValidator(
@@ -204,6 +189,7 @@ class SignupView extends GetView<SignupController> {
                                   style: const TextStyle(color: Colors.black54),
                                   obscureText: controller.isConfirmPass.value,
                                   decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.zero,
                                       filled: true,
                                       hintStyle: const TextStyle(
                                           color: Colors.black54),
@@ -240,7 +226,7 @@ class SignupView extends GetView<SignupController> {
                                 Text(
                                   'Already have an account? ',
                                   style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: Get.height*0.02,
                                       fontWeight: FontWeight.w500,
                                       fontFamily: CustomFonts.alata,
                                       color: Colors.black54),
@@ -252,8 +238,8 @@ class SignupView extends GetView<SignupController> {
                                   child: Text(
                                     'Login here ',
                                     style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500,
+                                        fontSize:Get.height*0.022,
+                                        fontWeight: FontWeight.bold,
                                         fontFamily: CustomFonts.alata,
                                         color: GlobalColor.customColor),
                                   ),
