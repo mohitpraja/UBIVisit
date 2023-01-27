@@ -8,11 +8,10 @@ import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/routes.dart';
-import 'package:ubivisit/features/guarddash/controller/guarddash_controller.dart';
 import 'package:ubivisit/features/guarddash/guard/guardhome/controller/guardhome_controller.dart';
 
 class GuardHomeView extends GetView<GuardHomeController> {
-  GuardHomeView({super.key});
+  const GuardHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +91,8 @@ class GuardHomeView extends GetView<GuardHomeController> {
                       ),
                     ),
                     InkWell(
-                      onTap: () => Get.offAllNamed(Routes.guarddash,arguments:[1]),
+                      onTap: () =>
+                          Get.offAllNamed(Routes.guarddash, arguments: [1]),
                       child: ListTile(
                         leading: const Icon(Icons.home),
                         horizontalTitleGap: 0,
@@ -390,7 +390,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                   height: 10,
                                 ),
                                 SizedBox(
-                                  height: Get.height*0.07,
+                                  height: Get.height * 0.07,
                                   child: TextFormField(
                                     style:
                                         const TextStyle(color: Colors.black54),
@@ -431,7 +431,11 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                         ));
                                       }
                                       if (controller.allVisitors.isEmpty) {
-                                        return const Center(child: Text('No Recent Updates',style: TextStyle(fontSize: 16),));
+                                        return const Center(
+                                            child: Text(
+                                          'No Recent Updates',
+                                          style: TextStyle(fontSize: 16),
+                                        ));
                                       }
                                       return ListView.builder(
                                         itemCount:
@@ -505,7 +509,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                                                         Row(
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.end,
-                                                                          children:  [
+                                                                          children: [
                                                                             Text('${controller.allVisitors[index]['status']}')
                                                                           ],
                                                                         ),
@@ -522,13 +526,15 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                                               width: Get.width,
                                                               child:
                                                                   ElevatedButton(
-                                                                    style: ElevatedButton.styleFrom(
-                                                                      backgroundColor: GlobalColor.customColor
-                                                                    ),
+                                                                      style: ElevatedButton.styleFrom(
+                                                                          backgroundColor: GlobalColor
+                                                                              .customColor),
                                                                       onPressed:
                                                                           () {
-                                                                            FBase.timeOut(controller.allVisitors[index]['id']);
-                                                                          },
+                                                                        FBase.timeOut(controller.allVisitors[index]
+                                                                            [
+                                                                            'id']);
+                                                                      },
                                                                       child:
                                                                           const Text(
                                                                         'Time out',

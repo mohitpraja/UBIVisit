@@ -14,14 +14,18 @@ class CustomButton extends GetView {
       width: Get.width,
       child: MaterialButton(
         onPressed: onPress,
-        color:GlobalColor.customColor,
+        color: GlobalColor.customColor,
         shape: const StadiumBorder(),
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Text(
             title,
             style: TextStyle(
-                color: Colors.white, letterSpacing: 1,fontWeight: FontWeight.w600, fontSize:Get.height*0.023,fontFamily: CustomFonts.alata),
+                color: Colors.white,
+                letterSpacing: 1,
+                fontWeight: FontWeight.w600,
+                fontSize: Get.height * 0.02,
+                fontFamily: CustomFonts.alata),
           ),
         ),
       ),

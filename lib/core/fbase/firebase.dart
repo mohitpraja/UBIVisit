@@ -20,9 +20,6 @@ class FBase {
   static FirebaseMessaging fmessaging = FirebaseMessaging.instance;
 
   static Future addUser(name, email, phone, password, post, role) async {
-    print(name);
-    print(email);
-    print(post);
     log('cld');
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     await fmessaging.requestPermission();
@@ -58,6 +55,7 @@ class FBase {
         .where('id', isEqualTo: id)
         .snapshots();
   }
+
   static Stream getEmpVisitor(name) {
     return firestore
         .collection('ubivisit/ubivisit/visitors')
@@ -158,6 +156,26 @@ class FBase {
       } else {
         isEmailExist = false;
       }
+    });
+  }
+
+  static Future updatePass(phone, password) async {
+    String id = '';
+    firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
+      // ignore: avoid_function_literals_in_foreach_calls
+      snapshot.docs.forEach(
+        (e) async {
+          var data = e.data();
+          if (data['phone'] == phone || data['eamil'] == phone) {
+            isMatch = true;
+            id = data['id'];
+          }
+        },
+      );
+      firestore
+          .collection('ubivisit/ubivisit/users')
+          .doc(id)
+          .update({'password': password});
     });
   }
 
@@ -262,7 +280,6 @@ class FBase {
   static Future addVisitor(name, phone, address, purpose, tomeet, image) async {
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     final ext = image.path.split('.').last;
-    print(ext);
     final ref = storage.ref().child('users/visitors/$id.$ext');
     ref.putFile(image).then((p0) {
       log('image status:${p0.bytesTransferred / 1000}');
@@ -287,8 +304,8 @@ class FBase {
       'id': id,
       'date': date,
       'time': time,
-      'status':'waiting...',
-      'timeout':''
+      'status': 'waiting...',
+      'timeout': ''
     });
   }
 
@@ -321,25 +338,20 @@ class FBase {
       log('$e');
     }
   }
-  static updateStatus(id,status){
-     firestore
-        .collection('ubivisit/ubivisit/visitors')
-        .doc(id).update({
-          'status':status
-        }).then((value) => Get.back());
 
+  static updateStatus(id, status) {
+    firestore
+        .collection('ubivisit/ubivisit/visitors')
+        .doc(id)
+        .update({'status': status}).then((value) => Get.back());
   }
-  static timeOut(id){
+
+  static timeOut(id) {
     var currDate = DateTime.now();
     String time = DateFormat('jm').format(currDate);
     firestore
         .collection('ubivisit/ubivisit/visitors')
-        .doc(id).update({
-          'timeout':time
-        });
-
-
-
+        .doc(id)
+        .update({'timeout': time});
   }
- 
 }

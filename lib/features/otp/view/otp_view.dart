@@ -120,10 +120,11 @@ class OtpView extends GetView<OtpController> {
                             ),
                             TextButton(
                                 onPressed: () {},
-                                child: const Text(
+                                child: Text(
                                   'Resend OTP',
                                   style: TextStyle(
                                       fontSize: 17,
+                                      color: GlobalColor.customColor,
                                       fontWeight: FontWeight.w600),
                                 )),
                             CustomButton(

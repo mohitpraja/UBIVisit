@@ -18,6 +18,8 @@ import 'package:ubivisit/features/empdash/binding/empdash_binding.dart';
 import 'package:ubivisit/features/empdash/view/empdash_view.dart';
 import 'package:ubivisit/features/forgot/binding/forgot_binding.dart';
 import 'package:ubivisit/features/forgot/view/forgot_view.dart';
+import 'package:ubivisit/features/forgototp/binding/forgot_otp_binding.dart';
+import 'package:ubivisit/features/forgototp/view/forgot_otp_view.dart';
 import 'package:ubivisit/features/googlesignup/binding/googlesignup_binding.dart';
 import 'package:ubivisit/features/googlesignup/view/googlesignup_view.dart';
 import 'package:ubivisit/features/guarddash/binding/guarddash_binding.dart';
@@ -36,6 +38,8 @@ import 'package:ubivisit/features/signup/binding/signup_binding.dart';
 import 'package:ubivisit/features/signup/view/signup_view.dart';
 import 'package:ubivisit/features/splash/binding/splash_binding.dart';
 import 'package:ubivisit/features/splash/view/splash_view.dart';
+import 'package:ubivisit/features/updatepass/binding/updatepass_binding.dart';
+import 'package:ubivisit/features/updatepass/view/updatepass_view.dart';
 import 'package:ubivisit/features/visitoranalysis/binding/visitoranalysis_binding.dart';
 import 'package:ubivisit/features/visitoranalysis/view/visitoranalysis_view.dart';
 import 'package:ubivisit/features/visitorotp/binding/visitorotp_binding.dart';
@@ -44,10 +48,7 @@ import 'package:ubivisit/features/welcome/binding/welcome_binding.dart';
 import 'package:ubivisit/features/welcome/view/welcome_view.dart';
 
 List<GetPage> allpage = [
-  GetPage(
-    name: Routes.otp, 
-    page: () => const OtpView(), 
-    binding: OtpBinding()),
+  GetPage(name: Routes.otp, page: () => const OtpView(), binding: OtpBinding()),
   GetPage(
       name: Routes.introduction,
       page: () => const IntroductionView(),
@@ -145,5 +146,15 @@ List<GetPage> allpage = [
     name: Routes.visitorotp,
     page: () => const VisitorOtpView(),
     binding: VisitorOtpBinding(),
+  ),
+  GetPage(
+    name: Routes.forgototp,
+    page: () => const ForgotOtpView(),
+    binding: ForgotOtpBinding(),
+  ),
+  GetPage(
+    name: Routes.updatepass,
+    page: () => const UpdatePass(),
+    binding: UpdatePassBinding(),
   ),
 ];

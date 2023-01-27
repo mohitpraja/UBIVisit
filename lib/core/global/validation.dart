@@ -7,6 +7,7 @@ class Validation{
   static final forgotFormKey=GlobalKey<FormState>();
   static final guardFormKey=GlobalKey<FormState>();
   static final employeeFormKey=GlobalKey<FormState>();
+  static final updatepassFormKey=GlobalKey<FormState>();
   static final googleSignupFormKey=GlobalKey<FormState>();
 
   static isValid(val,msg){

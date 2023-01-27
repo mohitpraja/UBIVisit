@@ -8,6 +8,7 @@ class Routes {
   static String adminprofile = '/adminprofile_view.dart';
   static String login = '/login_view.dart';
   static String forgot = '/forgot_view.dart';
+  static String forgototp = '/forgot_otp_view.dart';
   static String splash = '/splash_view.dart';
   static String adminvisitorlist = '/adminvisitorlist_view.dart';
   static String signup = '/signup_view.dart';
@@ -20,4 +21,5 @@ class Routes {
   static String security = '/security_guard_view';
   static String visitoranalysis = '/visitoranalysis_view.dart';
   static String manageuser = '/manageuser_view.dart';
+  static String updatepass = '/updatepass_view.dart';
 }

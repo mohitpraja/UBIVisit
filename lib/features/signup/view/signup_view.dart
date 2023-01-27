@@ -32,10 +32,10 @@ class SignupView extends GetView<SignupController> {
           behavior: CustomScroll(),
           child: SingleChildScrollView(
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 12),
+              margin: const EdgeInsets.symmetric(horizontal: 15),
               height: Get.height * 0.85,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Center(
@@ -238,7 +238,7 @@ class SignupView extends GetView<SignupController> {
                                   child: Text(
                                     'Login here ',
                                     style: TextStyle(
-                                        fontSize:Get.height*0.022,
+                                        fontSize:Get.height*0.021,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: CustomFonts.alata,
                                         color: GlobalColor.customColor),

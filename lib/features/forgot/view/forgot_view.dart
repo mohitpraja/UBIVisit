@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
@@ -26,7 +27,7 @@ class ForgotView extends GetView<ForgotController> {
           behavior: CustomScroll(),
           child: SingleChildScrollView(
             child: Container(
-              height: Get.height * 0.8,
+              height: Get.height * 0.75,
               margin: const EdgeInsets.all(12),
               child: Center(
                 child: Column(
@@ -45,7 +46,7 @@ class ForgotView extends GetView<ForgotController> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 30,
+                              fontSize: Get.height*0.035,
                               fontFamily: CustomFonts.alata,
                               color: Colors.black54),
                         ),
@@ -53,11 +54,11 @@ class ForgotView extends GetView<ForgotController> {
                           height: Get.height * 0.01,
                         ),
                         Text(
-                          'Enter your email address to retrieve your password',
+                          'Enter your phone number to retrieve your password',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
-                              fontSize: 16,
+                              fontSize: Get.height*0.02,
                               fontFamily: CustomFonts.alata,
                               color: Colors.black45),
                         ),
@@ -67,21 +68,36 @@ class ForgotView extends GetView<ForgotController> {
                       key: Validation.forgotFormKey,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       child: TextFormField(
-                        style: const TextStyle(color: Colors.black54),
-                        validator: (value) =>
-                            Validation.isValid(value, 'Enter email'),
-                        decoration: InputDecoration(
-                            filled: true,
-                            hintStyle: const TextStyle(color: Colors.black54),
-                            hintText: 'Enter email address',
-                            prefixIcon: const Icon(Icons.email),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10))),
-                      ),
+                          keyboardType: TextInputType.number,
+                          style: const TextStyle(color: Colors.black54),
+                          maxLength: 10,
+                          controller: controller.phone,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.zero,
+                              filled: true,
+                              hintStyle: const TextStyle(color: Colors.black54),
+                              hintText: 'Phone number',
+                              counterText: '',
+                              prefixIcon: const Icon(Icons.phone),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10))),
+                          validator: MultiValidator(
+                            [
+                              RequiredValidator(
+                                  errorText: 'Required Phone Number'),
+                              PatternValidator(RegExp(r'^[0-9]{10}$').pattern,
+                                  errorText: 'Please enter valid Phone Number')
+                            ],
+                          ),
+                        ),
                     ),
                     CustomButton(
                       title: 'Reset Password',
                       onPress: () {
+                        if(Validation.forgotFormKey.currentState!.validate()){
+                          controller.resetPassword(context);
+
+                        }
                        
                       },
                     )

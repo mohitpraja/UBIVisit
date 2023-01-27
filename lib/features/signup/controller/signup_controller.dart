@@ -88,8 +88,7 @@ class SignupController extends GetxController {
             context, Routes.otp, [name, email, phone, password]);
       },
       codeAutoRetrievalTimeout: (String verificationId) {
-        Get.back();
-        const CustomSnackbar(msg: 'Request time out', title: 'Warning').show1();
+       
       },
     );
   }

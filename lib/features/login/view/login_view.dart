@@ -186,7 +186,7 @@ class LoginView extends GetView<LoginController> {
                                     color: GlobalColor.customColor,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize: Get.height*0.023,
+                                    fontSize: Get.height*0.02,
                                     fontFamily: CustomFonts.alata),
                               ),
                             ),
@@ -219,7 +219,7 @@ class LoginView extends GetView<LoginController> {
                                 style: TextStyle(
                                     color: Colors.indigo,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: Get.height*0.022,
+                                    fontSize: Get.height*0.021,
                                     fontFamily: CustomFonts.alata),
                               ),
                             )
