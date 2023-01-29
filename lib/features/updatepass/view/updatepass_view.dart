@@ -65,6 +65,7 @@ class UpdatePass extends GetView<UpdatePassController> {
                                   hintStyle:
                                       const TextStyle(color: Colors.black54),
                                   hintText: 'Enter New Password',
+                                  
                                   suffixIcon: IconButton(
                                       onPressed: () => controller.showPass(),
                                       icon: controller.isPass.value

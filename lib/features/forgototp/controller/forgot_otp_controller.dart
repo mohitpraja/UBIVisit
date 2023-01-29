@@ -58,6 +58,7 @@ class ForgotOtpController extends GetxController {
                       fontWeight: FontWeight.w500),
                   decoration: const InputDecoration(
                     hintText: 'Enter phone number',
+                    contentPadding: EdgeInsets.zero,
                   ),
                   validator: MultiValidator([
                     RequiredValidator(errorText: 'Phone requied'),

@@ -72,6 +72,7 @@ class SecurityGuardView extends GetView<SecurityGuardController> {
                           filled: true,
                           hintStyle: const TextStyle(color: Colors.black54),
                           hintText: 'Enter name',
+                          contentPadding: EdgeInsets.zero,
                           prefixIcon: const Icon(Icons.person),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -89,6 +90,7 @@ class SecurityGuardView extends GetView<SecurityGuardController> {
                           filled: true,
                           hintStyle: const TextStyle(color: Colors.black54),
                           hintText: 'Enter email',
+                          contentPadding: EdgeInsets.zero,
                           prefixIcon: const Icon(Icons.email),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10))),
@@ -108,6 +110,7 @@ class SecurityGuardView extends GetView<SecurityGuardController> {
                           filled: true,
                           hintStyle: const TextStyle(color: Colors.black54),
                           hintText: 'Enter phone ',
+                          contentPadding: EdgeInsets.zero,
                           prefixIcon: const Icon(Icons.phone),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10))),
@@ -126,6 +129,7 @@ class SecurityGuardView extends GetView<SecurityGuardController> {
                           filled: true,
                           hintStyle: const TextStyle(color: Colors.black54),
                           hintText: 'Enter Password',
+                          contentPadding: EdgeInsets.zero,
                           prefixIcon: const Icon(Icons.lock),
                           suffixIcon: IconButton(
                               onPressed: () {},
@@ -149,6 +153,7 @@ class SecurityGuardView extends GetView<SecurityGuardController> {
                           filled: true,
                           hintStyle: const TextStyle(color: Colors.black54),
                           hintText: 'Confirm Password',
+                          contentPadding: EdgeInsets.zero,
                           prefixIcon: const Icon(Icons.lock),
                           suffixIcon: IconButton(
                               onPressed: () {},

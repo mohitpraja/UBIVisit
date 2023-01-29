@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/features/accept&decline/controller/accept_decline_controller.dart';
 
 class AcceptDeclineView extends GetView<AcceptDeclineController> {
@@ -39,20 +40,23 @@ class AcceptDeclineView extends GetView<AcceptDeclineController> {
               ),
               Positioned(
                 top: 10,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(75),
-                  child: CachedNetworkImage(
-                    width: 90,
-                    height: 90,
-                    fit: BoxFit.cover,
-                    imageUrl:controller.visitorData['image'],
-                    errorWidget: (context, url, error) => CircleAvatar(
-                        backgroundColor:Colors.grey.shade300,
-                        child: const Icon(
-                          Icons.person,
-                          size:50,
-                          color: Colors.white,
-                        )),
+                child: InkWell(
+                  onTap: () => GlobalFunction.showImg(controller.visitorData['image']),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(75),
+                    child: CachedNetworkImage(
+                      width: 90,
+                      height: 90,
+                      fit: BoxFit.cover,
+                      imageUrl:controller.visitorData['image'],
+                      errorWidget: (context, url, error) => CircleAvatar(
+                          backgroundColor:Colors.grey.shade300,
+                          child: const Icon(
+                            Icons.person,
+                            size:50,
+                            color: Colors.white,
+                          )),
+                    ),
                   ),
                 ),
               ),

@@ -94,7 +94,7 @@ class AllGuardDataView extends GetView<AllGuardDataController>{
                                         controller.updateUser(controller.userInfo[index],context);
                                       },
                                       icon: const Icon(
-                                          CupertinoIcons.pencil_outline),
+                                          Icons.edit),
                                       color: Colors.green,
                                     ),
                                     const SizedBox(

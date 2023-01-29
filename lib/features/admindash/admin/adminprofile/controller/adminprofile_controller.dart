@@ -38,6 +38,7 @@ class AdminProfileController extends GetxController{
               TextFormField(
                 autofocus: true,
                 initialValue: value,
+                
                 style: TextStyle(
                 fontFamily:CustomFonts.alata,
                 fontSize:17,
@@ -46,6 +47,7 @@ class AdminProfileController extends GetxController{
               ),
                 decoration: const InputDecoration(
                   hintText: 'Enter name',
+                  contentPadding: EdgeInsets.zero,
                 ),
                 onChanged: (value) => tempUpdate=value,
               ),

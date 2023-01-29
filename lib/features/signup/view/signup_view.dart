@@ -76,6 +76,8 @@ class SignupView extends GetView<SignupController> {
                                   hintStyle:
                                       const TextStyle(color: Colors.black54),
                                   hintText: 'Enter name',
+                                  
+                                  
                                   prefixIcon: const Icon(Icons.person),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10))),

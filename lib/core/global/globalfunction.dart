@@ -1,4 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:ubivisit/core/components/customloader.dart';
@@ -19,7 +21,21 @@ class GlobalFunction {
       Get.toNamed(routename, arguments: args);
     }
   }
-
+ static showImg(img) {
+    Get.defaultDialog(
+      title: '',
+      backgroundColor: Colors.transparent,
+      titleStyle: const TextStyle(fontSize: 0),
+      content: CachedNetworkImage(
+        fit: BoxFit.cover,
+        imageUrl: img,
+        errorWidget: (context, url, error) => CircleAvatar(
+          backgroundColor: Colors.indigo.shade100,
+          backgroundImage: const AssetImage('assets/images/person.png'),
+        ),
+      ),
+    );
+  }
   
 
   

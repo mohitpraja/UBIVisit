@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/empdash/employee/emphome/controller/emphome_controller.dart';
 
@@ -25,7 +26,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
               elevation: 0,
               title: Text(
                 'Dashboard',
-                style: TextStyle(fontSize: 23, fontFamily: CustomFonts.alata),
+                style: TextStyle(fontSize: Get.height*0.03, fontFamily: CustomFonts.alata),
               ),
             ),
             drawer: Drawer(
@@ -52,14 +53,14 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                   'Hi! ${FBase.userInfo['name'].split(' ').first}',
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 26,
+                                      fontSize: Get.height*0.035, 
                                       fontFamily: CustomFonts.alata),
                                 ),
                                 Text(
                                   FBase.userInfo['phone'],
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16,
+                                      fontSize: Get.height*0.02, 
                                       fontFamily: CustomFonts.alata),
                                 ),
                               ],
@@ -87,50 +88,19 @@ class EmpHomeView extends GetView<EmpHomeController> {
                       ),
                     ),
                   ),
+                 
                   ListTile(
-                    leading: const Icon(Icons.home),
+                    leading: const Icon(Icons.person_add_alt_1),
                     horizontalTitleGap: 0,
                     title: Text(
-                      'Home',
+                      'Edit Profile',
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           fontFamily: CustomFonts.alata),
                     ),
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.notes),
-                    horizontalTitleGap: 0,
-                    title: Text(
-                      'Visitor List',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: CustomFonts.alata),
-                    ),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.account_circle),
-                    horizontalTitleGap: 0,
-                    title: Text(
-                      'Profile',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: CustomFonts.alata),
-                    ),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.play_circle_fill),
-                    horizontalTitleGap: 0,
-                    title: Text(
-                      'Tutorial',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: CustomFonts.alata),
-                    ),
-                  ),
+                
                   ListTileTheme(
                     horizontalTitleGap: 0,
                     child: ExpansionTile(
@@ -314,7 +284,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                           style: TextStyle(
                                               color: Colors.black54,
                                               fontWeight: FontWeight.w500,
-                                              fontSize: 20,
+                                              fontSize: Get.height*0.028,
                                               fontFamily: CustomFonts.alata),
                                         ),
                                         const SizedBox(
@@ -325,27 +295,30 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                           style: TextStyle(
                                               color: Colors.black54,
                                               fontWeight: FontWeight.w500,
-                                              fontSize: 17,
+                                              fontSize:  Get.height*0.022,
                                               fontFamily: CustomFonts.alata),
                                         )
                                       ],
                                     ),
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(75),
-                                      child: CachedNetworkImage(
-                                        width: 50,
-                                        height: 50,
-                                        fit: BoxFit.cover,
-                                        imageUrl: FBase.userInfo['image'],
-                                        errorWidget: (context, url, error) =>
-                                            CircleAvatar(
-                                                backgroundColor:
-                                                    GlobalColor.customColor,
-                                                child: const Icon(
-                                                  Icons.person,
-                                                  size: 35,
-                                                  color: Colors.white,
-                                                )),
+                                    InkWell(
+                                      onTap: () => GlobalFunction.showImg(FBase.userInfo['image']),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(75),
+                                        child: CachedNetworkImage(
+                                          width: 50,
+                                          height: 50,
+                                          fit: BoxFit.cover,
+                                          imageUrl: FBase.userInfo['image'],
+                                          errorWidget: (context, url, error) =>
+                                              CircleAvatar(
+                                                  backgroundColor:
+                                                      GlobalColor.customColor,
+                                                  child: const Icon(
+                                                    Icons.person,
+                                                    size: 35,
+                                                    color: Colors.white,
+                                                  )),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -425,35 +398,40 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                                               15),
                                                       child: Row(
                                                         children: [
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        75),
-                                                            child:
-                                                                CachedNetworkImage(
-                                                              width: 60,
-                                                              height: 60,
-                                                              fit: BoxFit.cover,
-                                                              imageUrl: controller
-                                                                      .allVisitors[
-                                                                  index]['image'],
-                                                              errorWidget: (context,
-                                                                      url,
-                                                                      error) =>
-                                                                  CircleAvatar(
-                                                                      backgroundColor:
-                                                                          GlobalColor
-                                                                              .customColor,
-                                                                      child:
-                                                                          const Icon(
-                                                                        Icons
-                                                                            .person,
-                                                                        size:
-                                                                            35,
-                                                                        color: Colors
-                                                                            .white,
-                                                                      )),
+                                                          InkWell(
+                                                            onTap: () => GlobalFunction.showImg(controller
+                                                                        .allVisitors[
+                                                                    index]['image']),
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          75),
+                                                              child:
+                                                                  CachedNetworkImage(
+                                                                width: 60,
+                                                                height: 60,
+                                                                fit: BoxFit.cover,
+                                                                imageUrl: controller
+                                                                        .allVisitors[
+                                                                    index]['image'],
+                                                                errorWidget: (context,
+                                                                        url,
+                                                                        error) =>
+                                                                    CircleAvatar(
+                                                                        backgroundColor:
+                                                                            GlobalColor
+                                                                                .customColor,
+                                                                        child:
+                                                                            const Icon(
+                                                                          Icons
+                                                                              .person,
+                                                                          size:
+                                                                              35,
+                                                                          color: Colors
+                                                                              .white,
+                                                                        )),
+                                                              ),
                                                             ),
                                                           ),
                                                           Expanded(

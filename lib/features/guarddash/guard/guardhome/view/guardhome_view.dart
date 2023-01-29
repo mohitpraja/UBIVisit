@@ -7,6 +7,7 @@ import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/guarddash/guard/guardhome/controller/guardhome_controller.dart';
 
@@ -28,7 +29,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                 elevation: 0,
                 title: Text(
                   'Dashboard',
-                  style: TextStyle(fontSize: 23, fontFamily: CustomFonts.alata),
+                  style: TextStyle(fontSize: Get.height*0.03, fontFamily: CustomFonts.alata),
                 ),
               ),
               drawer: Drawer(
@@ -56,14 +57,14 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                     'Hi! ${FBase.userInfo['name'].split(' ').first}',
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 26,
+                                        fontSize: Get.height*0.035,
                                         fontFamily: CustomFonts.alata),
                                   ),
                                   Text(
                                     FBase.userInfo['phone'],
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 16,
+                                        fontSize: Get.height*0.02,
                                         fontFamily: CustomFonts.alata),
                                   ),
                                 ],
@@ -92,54 +93,19 @@ class GuardHomeView extends GetView<GuardHomeController> {
                         ),
                       ),
                     ),
-                    InkWell(
-                      onTap: () =>
-                          Get.offAllNamed(Routes.guarddash, arguments: [1]),
-                      child: ListTile(
-                        leading: const Icon(Icons.home),
-                        horizontalTitleGap: 0,
-                        title: Text(
-                          'Home',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: CustomFonts.alata),
-                        ),
-                      ),
-                    ),
+                   
                     ListTile(
-                      leading: const Icon(Icons.notes),
+                      leading: const Icon(Icons.person_add_alt_1),
                       horizontalTitleGap: 0,
                       title: Text(
-                        'Visitor List',
+                        'Edit Profile',
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                             fontFamily: CustomFonts.alata),
                       ),
                     ),
-                    ListTile(
-                      leading: const Icon(Icons.account_circle),
-                      horizontalTitleGap: 0,
-                      title: Text(
-                        'Profile',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: CustomFonts.alata),
-                      ),
-                    ),
-                    ListTile(
-                      leading: const Icon(Icons.play_circle_fill),
-                      horizontalTitleGap: 0,
-                      title: Text(
-                        'Tutorial',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: CustomFonts.alata),
-                      ),
-                    ),
+                    
                     ListTileTheme(
                       horizontalTitleGap: 0,
                       child: ExpansionTile(
@@ -322,7 +288,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                             style: TextStyle(
                                                 color: Colors.black54,
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: 20,
+                                                fontSize: Get.height*0.028,
                                                 fontFamily: CustomFonts.alata),
                                           ),
                                           const SizedBox(
@@ -333,27 +299,30 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                             style: TextStyle(
                                                 color: Colors.black54,
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: 17,
+                                                fontSize: Get.height*0.022,
                                                 fontFamily: CustomFonts.alata),
                                           )
                                         ],
                                       ),
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(75),
-                                        child: CachedNetworkImage(
-                                          width: 50,
-                                          height: 50,
-                                          fit: BoxFit.cover,
-                                          imageUrl: FBase.userInfo['image'],
-                                          errorWidget: (context, url, error) =>
-                                              CircleAvatar(
-                                                  backgroundColor:
-                                                      GlobalColor.customColor,
-                                                  child: const Icon(
-                                                    Icons.person,
-                                                    size: 35,
-                                                    color: Colors.white,
-                                                  )),
+                                      InkWell(
+                                        onTap: () => controller.showImg(FBase.userInfo['image']),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(75),
+                                          child: CachedNetworkImage(
+                                            width: 50,
+                                            height: 50,
+                                            fit: BoxFit.cover,
+                                            imageUrl: FBase.userInfo['image'],
+                                            errorWidget: (context, url, error) =>
+                                                CircleAvatar(
+                                                    backgroundColor:
+                                                        GlobalColor.customColor,
+                                                    child: const Icon(
+                                                      Icons.person,
+                                                      size: 35,
+                                                      color: Colors.white,
+                                                    )),
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -391,26 +360,25 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                SizedBox(
-                                  height: Get.height * 0.07,
-                                  child: TextFormField(
-                                    style:
-                                        const TextStyle(color: Colors.black54),
-                                    decoration: const InputDecoration(
-                                        filled: true,
-                                        border: InputBorder.none,
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15)),
-                                            borderSide: BorderSide(
-                                                color: Colors.transparent)),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15)),
-                                            borderSide: BorderSide(
-                                                color: Colors.transparent)),
-                                        hintText: 'Search by name...'),
-                                  ),
+                                TextFormField(
+                                  style:
+                                      const TextStyle(color: Colors.black54),
+                                  decoration: const InputDecoration(
+                                      filled: true,
+                                      border: InputBorder.none,
+                                      
+                                      contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 15),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          borderSide: BorderSide(
+                                              color: Colors.transparent)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          borderSide: BorderSide(
+                                              color: Colors.transparent)),
+                                      hintText: 'Search by name...'),
                                 ),
                                 const SizedBox(
                                   height: 8,
@@ -444,7 +412,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                             controller.allVisitors.length,
                                         itemBuilder: (context, index) {
                                           return GestureDetector(
-                                            // onTap: () => controller.showDetails(controller.allVisitors[index]),
+                                            onTap: () => GlobalFunction.showImg(controller.allVisitors[index]['qr']),
                                             child: Stack(
                                               alignment: Alignment.center,
                                               children: [

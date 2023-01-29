@@ -40,6 +40,7 @@ class GuardVisitorListView extends GetView<GuardVisitorListController> {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () =>
+                    // controller.showDetails(controller.allVisitors[index]),
                     controller.showDetails(controller.allVisitors[index]),
                 child: Stack(
                   alignment: Alignment.center,

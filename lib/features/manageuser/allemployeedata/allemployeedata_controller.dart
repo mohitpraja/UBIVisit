@@ -16,35 +16,89 @@ class AllEmployeeDataController extends GetxController {
         titleStyle: const TextStyle(fontSize: 0),
         titlePadding: const EdgeInsets.all(0),
         content: SizedBox(
-          height: Get.height * 0.3,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text('Employee Detals'),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(75),
-                child: CachedNetworkImage(
-                  width: 70,
-                  height: 70,
-                  fit: BoxFit.cover,
-                  imageUrl: user['image'],
-                  errorWidget: (context, url, error) => CircleAvatar(
-                      backgroundColor: GlobalColor.customColor,
-                      child: const Icon(
-                        Icons.person,
-                        size: 40,
-                        color: Colors.white,
-                      )),
+          width: Get.width,
+          child: Container(
+            margin: const EdgeInsets.all(15),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(75),
+                      child: CachedNetworkImage(
+                        width: 60,
+                        height: 60,
+                        fit: BoxFit.cover,
+                        imageUrl: user['image'],
+                        errorWidget: (context, url, error) => CircleAvatar(
+                            backgroundColor: GlobalColor.customColor,
+                            child: const Icon(
+                              Icons.person,
+                              size: 40,
+                              color: Colors.white,
+                            )),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          user['name'],
+                          style: TextStyle(
+                            color: Colors.black54,
+                          ),
+                        ),
+                        Text(
+                          user['post'],
+                          style: TextStyle(
+                            color: Colors.black54,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-              Text('name: ${user['name']}'),
-              Text('email: ${user['email']}'),
-              Text('phone: ${user['phone']}'),
-              Text('post: ${user['post']}'),
-            ],
+                Divider(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        // Text('Address - ${user['address']}'),
+                        Flexible(
+                            child: Text(
+                          'Phone - ${user['phone']}',
+                          style: const TextStyle(fontSize: 15),
+                        )),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 2,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        // Text('Address - ${user['address']}'),
+                        Flexible(
+                            child: Text(
+                          'Email - ${user['email']}',
+                          style: const TextStyle(fontSize: 15),
+                        )),
+                      ],
+                    ),
+                 
+                  ],
+                ),
+              ],
+            ),
           ),
         ));
   }
+ 
 
   deleteUser(id, context) {
     AwesomeDialog(
@@ -107,6 +161,7 @@ class AllEmployeeDataController extends GetxController {
                         filled: true,
                         hintStyle: const TextStyle(color: Colors.black54),
                         hintText: 'Enter name',
+                        contentPadding: EdgeInsets.zero,
                         prefixIcon: const Icon(Icons.person),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10))),
@@ -125,6 +180,7 @@ class AllEmployeeDataController extends GetxController {
                         filled: true,
                         hintStyle: const TextStyle(color: Colors.black54),
                         hintText: 'Enter email',
+                        contentPadding: EdgeInsets.zero,
                         prefixIcon: const Icon(Icons.email),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10))),
@@ -147,6 +203,7 @@ class AllEmployeeDataController extends GetxController {
                         filled: true,
                         hintStyle: const TextStyle(color: Colors.black54),
                         hintText: 'Enter Phone Number ',
+                        contentPadding: EdgeInsets.zero,
                         prefixIcon: const Icon(Icons.phone),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10))),
@@ -165,6 +222,7 @@ class AllEmployeeDataController extends GetxController {
                         filled: true,
                         hintStyle: const TextStyle(color: Colors.black54),
                         hintText: 'Role ',
+                        contentPadding: EdgeInsets.zero,
                         prefixIcon: const Icon(Icons.card_travel),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10))),
@@ -183,6 +241,7 @@ class AllEmployeeDataController extends GetxController {
                             filled: true,
                             hintStyle: const TextStyle(color: Colors.black54),
                             hintText: 'Enter Password',
+                            contentPadding: EdgeInsets.zero,
                             suffixIcon: IconButton(
                                 onPressed: () => showPass(),
                                 icon: isPass.value

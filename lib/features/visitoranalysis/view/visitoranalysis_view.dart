@@ -66,6 +66,7 @@ class VisitorAnalysisView extends GetView<VisitorAnalysisController>{
                   style:const TextStyle(color:Colors.black87 ) ,
                   decoration: InputDecoration(
                       hintText: "Search...",
+                      contentPadding: EdgeInsets.zero,
                       border: OutlineInputBorder(
                         borderRadius:BorderRadius.circular(10) ),
                   ),

@@ -241,41 +241,44 @@ class FBase {
     CustomLoader.showLoader(context);
     final ext = file.path.split('.').last;
     final ref = storage.ref().child('users/profiles/$id.$ext');
-    ref.putFile(file).then((p0) {
+    ref.putFile(file).then((p0) async {
       log('image status:${p0.bytesTransferred / 1000}');
+      final imgUrl = await ref.getDownloadURL();
+      firestore
+          .collection('ubivisit/ubivisit/users')
+          .doc(id)
+          .update({'image': imgUrl}).then(
+        (value) {
+          firestore
+              .collection('ubivisit/ubivisit/users')
+              .get()
+              .then((snapshot) {
+            // ignore: avoid_function_literals_in_foreach_calls
+            snapshot.docs.forEach(
+              (e) async {
+                var data = e.data();
+                if (data['id'] == id) {
+                  isMatch = true;
+                  db.put('userInfo', {
+                    'name': data['name'],
+                    'email': data['email'],
+                    'password': data['password'],
+                    'post': data['post'],
+                    'id': data['id'],
+                    'image': data['image'],
+                    'phone': data['phone'],
+                    'pushtoken': data['pushtoken'],
+                  }).then((value) {
+                    Get.back();
+                    Get.offAllNamed(route);
+                  });
+                }
+              },
+            );
+          });
+        },
+      );
     });
-    final imgUrl = await ref.getDownloadURL();
-    firestore
-        .collection('ubivisit/ubivisit/users')
-        .doc(id)
-        .update({'image': imgUrl}).then(
-      (value) {
-        firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
-          // ignore: avoid_function_literals_in_foreach_calls
-          snapshot.docs.forEach(
-            (e) async {
-              var data = e.data();
-              if (data['id'] == id) {
-                isMatch = true;
-                db.put('userInfo', {
-                  'name': data['name'],
-                  'email': data['email'],
-                  'password': data['password'],
-                  'post': data['post'],
-                  'id': data['id'],
-                  'image': data['image'],
-                  'phone': data['phone'],
-                  'pushtoken': data['pushtoken'],
-                }).then((value) {
-                  Get.back();
-                  Get.offAllNamed(route);
-                });
-              }
-            },
-          );
-        });
-      },
-    );
   }
 
   static Future addVisitor(

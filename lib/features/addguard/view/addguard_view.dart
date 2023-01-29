@@ -72,6 +72,7 @@ class AddGuardView extends GetView<AddGuardController> {
                                   hintStyle:
                                       const TextStyle(color: Colors.black54),
                                   hintText: 'Enter name',
+                                  contentPadding: EdgeInsets.zero,
                                   prefixIcon: const Icon(Icons.person),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10))),
@@ -91,6 +92,7 @@ class AddGuardView extends GetView<AddGuardController> {
                                   hintStyle:
                                       const TextStyle(color: Colors.black54),
                                   hintText: 'Enter email',
+                                  contentPadding: EdgeInsets.zero,
                                   prefixIcon: const Icon(Icons.email),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10))),
@@ -113,6 +115,7 @@ class AddGuardView extends GetView<AddGuardController> {
                                   hintStyle:
                                       const TextStyle(color: Colors.black54),
                                   hintText: 'Enter Phone Number ',
+                                  contentPadding: EdgeInsets.zero,
                                   prefixIcon: const Icon(Icons.phone),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10))),
@@ -132,6 +135,7 @@ class AddGuardView extends GetView<AddGuardController> {
                                       hintStyle: const TextStyle(
                                           color: Colors.black54),
                                       hintText: 'Enter Password',
+                                      contentPadding: EdgeInsets.zero,
                                       suffixIcon: IconButton(
                                           onPressed: () =>
                                               controller.showPass(),
@@ -165,6 +169,7 @@ class AddGuardView extends GetView<AddGuardController> {
                                       hintStyle: const TextStyle(
                                           color: Colors.black54),
                                       hintText: 'Confirm Password',
+                                      contentPadding: EdgeInsets.zero,
                                       suffixIcon: IconButton(
                                           onPressed: () =>
                                               controller.showConfirmPass(),

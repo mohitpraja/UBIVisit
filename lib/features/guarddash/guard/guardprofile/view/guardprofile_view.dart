@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/guarddash/guard/guardprofile/controller/guardprofile_controller.dart';
 
@@ -39,29 +40,35 @@ class GuardProfileView extends GetView<GuardProfileController>{
                 Stack(
                   children: [
                   controller.imagePath.value != ''
-                              ? ClipRRect(
-                                  borderRadius: BorderRadius.circular(75),
-                                  child: Image.file(
-                                    File(controller.imagePath.value),
-                                    width: 120,
-                                    height: 120,
-                                    fit: BoxFit.cover,
-                                  ))
-                              : ClipRRect(
-                                  borderRadius: BorderRadius.circular(75),
-                                  child: CachedNetworkImage(
-                                    width: 120,
-                                    height: 120,
-                                    fit: BoxFit.cover,
-                                    imageUrl: FBase.userInfo['image'],
-                                    errorWidget: (context, url, error) =>
-                                        CircleAvatar(
-                                      backgroundColor: Colors.indigo.shade100,
-                                      backgroundImage: const AssetImage(
-                                          'assets/images/person.png'),
+                              ? InkWell(
+                                onTap:() =>  GlobalFunction.showImg(controller.imagePath.value),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(75),
+                                    child: Image.file(
+                                      File(controller.imagePath.value),
+                                      width: 120,
+                                      height: 120,
+                                      fit: BoxFit.cover,
+                                    )),
+                              )
+                              : InkWell(
+                                onTap: () => controller.showImg(FBase.userInfo['image']),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(75),
+                                    child: CachedNetworkImage(
+                                      width: 120,
+                                      height: 120,
+                                      fit: BoxFit.cover,
+                                      imageUrl: FBase.userInfo['image'],
+                                      errorWidget: (context, url, error) =>
+                                          CircleAvatar(
+                                        backgroundColor: Colors.indigo.shade100,
+                                        backgroundImage: const AssetImage(
+                                            'assets/images/person.png'),
+                                      ),
                                     ),
                                   ),
-                                ),
+                              ),
                           Positioned(
                             bottom: 5,
                             right: 0,

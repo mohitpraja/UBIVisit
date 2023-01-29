@@ -1,5 +1,7 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
@@ -13,6 +15,21 @@ class GuardHomeController extends GetxController {
     super.onInit();
   }
   RxBool loader=true.obs;
+  showImg(img) {
+    Get.defaultDialog(
+      title: '',
+      backgroundColor: Colors.transparent,
+      titleStyle: const TextStyle(fontSize: 0),
+      content: CachedNetworkImage(
+        fit: BoxFit.cover,
+        imageUrl: img,
+        errorWidget: (context, url, error) => CircleAvatar(
+          backgroundColor: Colors.indigo.shade100,
+          backgroundImage: const AssetImage('assets/images/person.png'),
+        ),
+      ),
+    );
+  }
    
   List allVisitors = [];
 final Stream visitorStream =
