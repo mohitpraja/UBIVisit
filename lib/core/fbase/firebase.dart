@@ -8,17 +8,17 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
-import 'package:screenshot/screenshot.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/components/customsnackbar.dart';
 import 'package:ubivisit/core/routes.dart';
-import 'package:uuid/uuid.dart';
+import 'package:telephony/telephony.dart';
 
 class FBase {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
   static FirebaseStorage storage = FirebaseStorage.instance;
   static FirebaseMessaging fmessaging = FirebaseMessaging.instance;
+  static Telephony telephony = Telephony.instance;
 
   static Future addUser(name, email, phone, password, post, role) async {
     log('cld');
@@ -315,7 +315,7 @@ class FBase {
           'status': 'waiting...',
           'timeout': '',
           'qr': qrUrl
-        });
+        }).then((value) => sendMessage(phone, qrUrl));
       });
     });
   }
@@ -330,9 +330,6 @@ class FBase {
   }
 
   static sendNotification(token, visitorData) async {
-    print('send notification');
-    log('token: $token');
-    print(visitorData);
     try {
       final body = {
         "to": token['pushtoken'],
@@ -377,5 +374,10 @@ class FBase {
         .collection('ubivisit/ubivisit/visitors')
         .doc(id)
         .update({'timeout': time});
+  }
+
+  static sendMessage(phone, url) async {
+    telephony.sendSmsByDefaultApp(
+        to: "8103586806", message: "Your visitor pass for UBIVisit - $url");
   }
 }

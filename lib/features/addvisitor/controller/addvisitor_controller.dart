@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,7 +14,6 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/components/customsnackbar.dart';
-import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/routes.dart';
@@ -150,61 +148,64 @@ class AddvisitorController extends GetxController {
     };
 
     screenshotController
-        .captureFromWidget(SizedBox(
-      height: Get.height * 0.75,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'UBI',
-                    style: TextStyle(
-                        color: GlobalColor.customColor,
-                        fontSize: Get.height * 0.05,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: CustomFonts.alata),
-                  ),
-                  Text(
-                    'Visit',
-                    style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: Get.height * 0.05,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: CustomFonts.alata),
-                  )
-                ],
-              ),
-              Text(
-                "visitor's pass",
-                style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: Get.height * 0.023,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: CustomFonts.alata),
-              )
-            ],
-          ),
-          Text(
-            name.toUpperCase(),
-            style: TextStyle(
-                color: Colors.black54,
-                fontSize: Get.height * 0.045,
-                fontWeight: FontWeight.w500,
-                letterSpacing: 1,
-                fontFamily: CustomFonts.alata),
-          ),
-          QrImage(
-            data: json.encode(visitorInfo),
-            version: QrVersions.auto,
-            size: 200.0,
-            foregroundColor: Colors.black,
-          ),
-        ],
+        .captureFromWidget(Container(
+      color: Colors.white,
+      child: SizedBox(
+        height: Get.height * 0.76,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'UBI',
+                      style: TextStyle(
+                          color: GlobalColor.customColor,
+                          fontSize: Get.height * 0.05,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: CustomFonts.alata),
+                    ),
+                    Text(
+                      'Visit',
+                      style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: Get.height * 0.05,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: CustomFonts.alata),
+                    )
+                  ],
+                ),
+                Text(
+                  "visitor's pass",
+                  style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: Get.height * 0.023,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: CustomFonts.alata),
+                )
+              ],
+            ),
+            Text(
+              name.toUpperCase(),
+              style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: Get.height * 0.045,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 1,
+                  fontFamily: CustomFonts.alata),
+            ),
+            QrImage(
+              data: json.encode(visitorInfo),
+              version: QrVersions.auto,
+              size: 200.0,
+              foregroundColor: Colors.black,
+            ),
+          ],
+        ),
       ),
     ))
         .then((image) async {
