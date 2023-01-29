@@ -8,10 +8,12 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/components/customsnackbar.dart';
 import 'package:ubivisit/core/routes.dart';
+import 'package:uuid/uuid.dart';
 
 class FBase {
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -276,35 +278,45 @@ class FBase {
     );
   }
 
-  static Future addVisitor(name, phone, address, purpose, tomeet, image) async {
+  static Future addVisitor(
+      name, phone, address, purpose, tomeet, image, qr) async {
     var id = DateTime.now().millisecondsSinceEpoch.toString();
-    final ext = image.path.split('.').last;
-    final ref = storage.ref().child('users/visitors/$id.$ext');
-    ref.putFile(image).then((p0) {
-      log('image status:${p0.bytesTransferred / 1000}');
-    });
-    var currDate = DateTime.now();
-    String time = DateFormat('jm').format(currDate);
-    String date = '${currDate.day}-${currDate.month}-${currDate.year}';
+    final imgId = image.path.split('/').last;
+    final qrId = qr.path.split('/').last;
 
-    // final imgUrl = await ref.getDownloadURL();
-    return firestore
-        .collection('ubivisit')
-        .doc('ubivisit')
-        .collection('visitors')
-        .doc(id)
-        .set({
-      'name': name,
-      'address': address,
-      'phone': phone,
-      'image': "",
-      'purpose': purpose,
-      'tomeet': tomeet,
-      'id': id,
-      'date': date,
-      'time': time,
-      'status': 'waiting...',
-      'timeout': ''
+    final ref = storage.ref().child('users/visitors/$imgId');
+    final qrRef = storage.ref().child('users/visitors/$qrId');
+    ref.putFile(image).then((p0) async {
+      // log('image status:${p0.bytesTransferred / 1000}');
+      // log('p0:$p0');
+      qrRef.putFile(qr).then((p0) async {
+        var currDate = DateTime.now();
+        String time = DateFormat('jm').format(currDate);
+        String date = '${currDate.day}-${currDate.month}-${currDate.year}';
+
+        final imgUrl = await ref.getDownloadURL();
+        final qrUrl = await qrRef.getDownloadURL();
+        log(imgUrl);
+        await firestore
+            .collection('ubivisit')
+            .doc('ubivisit')
+            .collection('visitors')
+            .doc(id)
+            .set({
+          'name': name,
+          'address': address,
+          'phone': phone,
+          'image': imgUrl,
+          'purpose': purpose,
+          'tomeet': tomeet,
+          'id': id,
+          'date': date,
+          'time': time,
+          'status': 'waiting...',
+          'timeout': '',
+          'qr': qrUrl
+        });
+      });
     });
   }
 

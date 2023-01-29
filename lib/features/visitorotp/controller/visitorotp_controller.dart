@@ -11,7 +11,6 @@ import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/routes.dart';
 
 class VisitorOtpController extends GetxController {
-
   final defaultPinTheme = PinTheme(
     width: 42,
     height: 42,
@@ -103,8 +102,9 @@ class VisitorOtpController extends GetxController {
           )),
     ));
   }
+
   verifyOtp(context) async {
-     CustomLoader.showLoader(context);
+    CustomLoader.showLoader(context);
     AuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
         verificationId: signupData[6], smsCode: otp);
     try {
@@ -112,8 +112,11 @@ class VisitorOtpController extends GetxController {
           await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
       if (authCred.user != null) {
         Get.back();
-        FBase.addVisitor(signupData[0], signupData[2], signupData[1], signupData[3], signupData[4], signupData[5]).then((value) {
-          FBase.sendNotification(signupData[7],signupData);
+
+        FBase.addVisitor(signupData[0], signupData[2], signupData[1],
+                signupData[3], signupData[4], signupData[5],signupData[8])
+            .then((value) {
+          FBase.sendNotification(signupData[7], signupData);
           AwesomeDialog(
             context: context,
             dialogType: DialogType.success,
@@ -128,7 +131,5 @@ class VisitorOtpController extends GetxController {
       Get.back();
       const CustomSnackbar(msg: 'Invalid OTP', title: 'Warning').show();
     }
-
-
   }
 }

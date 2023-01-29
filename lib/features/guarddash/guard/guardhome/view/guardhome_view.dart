@@ -53,7 +53,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                 children: [
                                   Text(
                                     // FBase.userInfo['name'],
-                                    'Hi, ${controller.name.value}',
+                                    'Hi! ${FBase.userInfo['name'].split(' ').first}',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 26,
@@ -75,6 +75,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                   height: 60,
                                   fit: BoxFit.cover,
                                   imageUrl: FBase.userInfo['image'],
+                                  
                                   errorWidget: (context, url, error) =>
                                       CircleAvatar(
                                           backgroundColor:

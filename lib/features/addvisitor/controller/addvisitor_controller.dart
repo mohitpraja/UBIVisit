@@ -1,14 +1,23 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/components/customsnackbar.dart';
+import 'package:ubivisit/core/fbase/firebase.dart';
+import 'package:ubivisit/core/global/customfont.dart';
+import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/routes.dart';
 
 class AddvisitorController extends GetxController {
@@ -18,6 +27,8 @@ class AddvisitorController extends GetxController {
     getSender().then((value) => loader.value = false);
     log('$getSenderInfo');
   }
+
+  ScreenshotController screenshotController = ScreenshotController();
 
   RxBool loader = true.obs;
 
@@ -42,6 +53,7 @@ class AddvisitorController extends GetxController {
   var tomeet = '';
   final ImagePicker picker = ImagePicker();
   RxString imagePath = ''.obs;
+  RxString qrPath = ''.obs;
   selectImage(context) async {
     final XFile? img =
         await picker.pickImage(source: ImageSource.camera, imageQuality: 80);
@@ -88,7 +100,8 @@ class AddvisitorController extends GetxController {
               tomeet,
               File(imagePath.value),
               verificationId,
-              finalSender
+              finalSender,
+              File(qrPath.value)
             ]);
           },
           codeAutoRetrievalTimeout: (String verificationId) {},
@@ -116,7 +129,7 @@ class AddvisitorController extends GetxController {
     });
   }
 
-  String tempSender='';
+  String tempSender = '';
   // ignore: prefer_typing_uninitialized_variables
   var finalSender;
   getSenderToken() {
@@ -125,5 +138,84 @@ class AddvisitorController extends GetxController {
         finalSender = element;
       }
     }
+  }
+
+  Future generateSS() async {
+    var visitorInfo = {
+      'name': name,
+      'phone': phone,
+      'address': address,
+      'purpose': purpose,
+      'tomeet': tomeet
+    };
+
+    screenshotController
+        .captureFromWidget(SizedBox(
+      height: Get.height * 0.75,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'UBI',
+                    style: TextStyle(
+                        color: GlobalColor.customColor,
+                        fontSize: Get.height * 0.05,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: CustomFonts.alata),
+                  ),
+                  Text(
+                    'Visit',
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: Get.height * 0.05,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: CustomFonts.alata),
+                  )
+                ],
+              ),
+              Text(
+                "visitor's pass",
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: Get.height * 0.023,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              )
+            ],
+          ),
+          Text(
+            name.toUpperCase(),
+            style: TextStyle(
+                color: Colors.black54,
+                fontSize: Get.height * 0.045,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 1,
+                fontFamily: CustomFonts.alata),
+          ),
+          QrImage(
+            data: json.encode(visitorInfo),
+            version: QrVersions.auto,
+            size: 200.0,
+            foregroundColor: Colors.black,
+          ),
+        ],
+      ),
+    ))
+        .then((image) async {
+      var id = DateTime.now().millisecondsSinceEpoch.toString();
+      final directory = await getApplicationDocumentsDirectory();
+      final imageAdd = await File('${directory.path}/$id.png').create();
+
+      await imageAdd.writeAsBytes(image);
+      qrPath.value = imageAdd.path;
+
+      // Handle captured image
+    });
   }
 }
