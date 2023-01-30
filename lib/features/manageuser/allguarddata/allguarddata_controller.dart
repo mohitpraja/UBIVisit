@@ -5,6 +5,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/validation.dart';
 
 class AllGuardDataController extends GetxController {
@@ -23,20 +24,23 @@ class AllGuardDataController extends GetxController {
               children: [
                 Row(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(75),
-                      child: CachedNetworkImage(
-                        width: 60,
-                        height: 60,
-                        fit: BoxFit.cover,
-                        imageUrl: user['image'],
-                        errorWidget: (context, url, error) => CircleAvatar(
-                            backgroundColor: GlobalColor.customColor,
-                            child: const Icon(
-                              Icons.person,
-                              size: 40,
-                              color: Colors.white,
-                            )),
+                    InkWell(
+                       onTap: () => GlobalFunction.showImg(user['image']),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(75),
+                        child: CachedNetworkImage(
+                          width: 60,
+                          height: 60,
+                          fit: BoxFit.cover,
+                          imageUrl: user['image'],
+                          errorWidget: (context, url, error) => CircleAvatar(
+                              backgroundColor: GlobalColor.customColor,
+                              child: const Icon(
+                                Icons.person,
+                                size: 40,
+                                color: Colors.white,
+                              )),
+                        ),
                       ),
                     ),
                     SizedBox(

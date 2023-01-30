@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/globalfunction.dart';
 
 class GuardVisitorListController extends GetxController {
   List allVisitors = [];
@@ -23,20 +24,23 @@ class GuardVisitorListController extends GetxController {
               children: [
                 Row(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(75),
-                      child: CachedNetworkImage(
-                        width: 60,
-                        height: 60,
-                        fit: BoxFit.cover,
-                        imageUrl: user['image'],
-                        errorWidget: (context, url, error) => CircleAvatar(
-                            backgroundColor: GlobalColor.customColor,
-                            child: const Icon(
-                              Icons.person,
-                              size: 40,
-                              color: Colors.white,
-                            )),
+                    InkWell(
+                      onTap: () => GlobalFunction.showImg(user['image']),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(75),
+                        child: CachedNetworkImage(
+                          width: 60,
+                          height: 60,
+                          fit: BoxFit.cover,
+                          imageUrl: user['image'],
+                          errorWidget: (context, url, error) => CircleAvatar(
+                              backgroundColor: GlobalColor.customColor,
+                              child: const Icon(
+                                Icons.person,
+                                size: 40,
+                                color: Colors.white,
+                              )),
+                        ),
                       ),
                     ),
                     SizedBox(

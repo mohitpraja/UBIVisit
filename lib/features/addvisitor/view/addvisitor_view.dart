@@ -43,7 +43,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                   child: Center(
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 15),
-                      height: Get.height * 0.8,
+                      height: Get.height * 0.9,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -86,7 +86,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                   ),
                           ),
                           SizedBox(
-                            height: Get.height * 0.55,
+                            height: Get.height * 0.6,
                             child: Form(
                               key: Validation.addvisitor,
                               child: Column(
@@ -101,6 +101,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                         hintStyle: const TextStyle(
                                             color: Colors.black54),
                                         hintText: 'Enter name',
+                                        contentPadding: EdgeInsets.zero,
                                         prefixIcon: const Icon(Icons.person),
                                         border: OutlineInputBorder(
                                             borderRadius:
@@ -126,6 +127,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                         hintStyle: const TextStyle(
                                             color: Colors.black54),
                                         hintText: 'Enter Phone Number ',
+                                        contentPadding: EdgeInsets.zero,
                                         prefixIcon: const Icon(Icons.phone),
                                         border: OutlineInputBorder(
                                             borderRadius:
@@ -148,6 +150,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                         hintStyle: const TextStyle(
                                             color: Colors.black54),
                                         hintText: 'Enter Address',
+                                        contentPadding: EdgeInsets.zero,
                                         prefixIcon: const Icon(
                                             Icons.calendar_view_day_outlined),
                                         border: OutlineInputBorder(
@@ -179,7 +182,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                       color: Colors.black45,
                                     ),
                                     iconSize: 30,
-                                    buttonHeight: 60,
+                                    buttonHeight: 45,
                                     buttonPadding: const EdgeInsets.only(
                                         left: 20, right: 10),
                                     dropdownDecoration: BoxDecoration(
@@ -228,6 +231,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                               fontSize: 15,
                                               color: Colors.black54),
                                           filled: true,
+                                          contentPadding: EdgeInsets.symmetric(horizontal: 15,vertical: 0),
                                           hintText: "To Meet",
                                           border: OutlineInputBorder(
                                               borderRadius: BorderRadius.all(

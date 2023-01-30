@@ -1,9 +1,12 @@
 import 'dart:io';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/routes.dart';
@@ -154,8 +157,21 @@ class AdminProfileController extends GetxController{
    final XFile? img=await picker.pickImage(source:src,imageQuality: 80);
    if(img!=null){
     imagePath.value=img.path;
-    FBase.uploadImage(File(imagePath.value), FBase.userInfo['id'],context,Routes.admindash);
+    CustomLoader.showLoader(context);
+    if (!(await InternetConnectionChecker().hasConnection)) {
+      Get.back();
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.warning,
+        title: 'Warning!!!',
+        desc: 'Check internet connection',
+      ).show();
+    } else {
+      Get.back();
+     FBase.uploadImage(File(imagePath.value), FBase.userInfo['id'],context,Routes.admindash);
     Get.back();
+    }
+    
    }
 
 

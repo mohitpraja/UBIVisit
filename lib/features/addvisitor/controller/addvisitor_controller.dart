@@ -151,7 +151,7 @@ class AddvisitorController extends GetxController {
         .captureFromWidget(Container(
       color: Colors.white,
       child: SizedBox(
-        height: Get.height * 0.76,
+        height: Get.height * 0.8,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

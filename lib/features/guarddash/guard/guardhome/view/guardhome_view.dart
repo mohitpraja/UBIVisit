@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -29,7 +30,9 @@ class GuardHomeView extends GetView<GuardHomeController> {
                 elevation: 0,
                 title: Text(
                   'Dashboard',
-                  style: TextStyle(fontSize: Get.height*0.03, fontFamily: CustomFonts.alata),
+                  style: TextStyle(
+                      fontSize: Get.height * 0.03,
+                      fontFamily: CustomFonts.alata),
                 ),
               ),
               drawer: Drawer(
@@ -57,14 +60,14 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                     'Hi! ${FBase.userInfo['name'].split(' ').first}',
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: Get.height*0.035,
+                                        fontSize: Get.height * 0.035,
                                         fontFamily: CustomFonts.alata),
                                   ),
                                   Text(
                                     FBase.userInfo['phone'],
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: Get.height*0.02,
+                                        fontSize: Get.height * 0.02,
                                         fontFamily: CustomFonts.alata),
                                   ),
                                 ],
@@ -76,7 +79,6 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                   height: 60,
                                   fit: BoxFit.cover,
                                   imageUrl: FBase.userInfo['image'],
-                                  
                                   errorWidget: (context, url, error) =>
                                       CircleAvatar(
                                           backgroundColor:
@@ -93,7 +95,6 @@ class GuardHomeView extends GetView<GuardHomeController> {
                         ),
                       ),
                     ),
-                   
                     ListTile(
                       leading: const Icon(Icons.person_add_alt_1),
                       horizontalTitleGap: 0,
@@ -105,7 +106,6 @@ class GuardHomeView extends GetView<GuardHomeController> {
                             fontFamily: CustomFonts.alata),
                       ),
                     ),
-                    
                     ListTileTheme(
                       horizontalTitleGap: 0,
                       child: ExpansionTile(
@@ -288,7 +288,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                             style: TextStyle(
                                                 color: Colors.black54,
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: Get.height*0.028,
+                                                fontSize: Get.height * 0.028,
                                                 fontFamily: CustomFonts.alata),
                                           ),
                                           const SizedBox(
@@ -299,21 +299,24 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                             style: TextStyle(
                                                 color: Colors.black54,
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: Get.height*0.022,
+                                                fontSize: Get.height * 0.022,
                                                 fontFamily: CustomFonts.alata),
                                           )
                                         ],
                                       ),
                                       InkWell(
-                                        onTap: () => controller.showImg(FBase.userInfo['image']),
+                                        onTap: () => GlobalFunction.showImg(
+                                            FBase.userInfo['image']),
                                         child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(75),
+                                          borderRadius:
+                                              BorderRadius.circular(75),
                                           child: CachedNetworkImage(
                                             width: 50,
                                             height: 50,
                                             fit: BoxFit.cover,
                                             imageUrl: FBase.userInfo['image'],
-                                            errorWidget: (context, url, error) =>
+                                            errorWidget: (context, url,
+                                                    error) =>
                                                 CircleAvatar(
                                                     backgroundColor:
                                                         GlobalColor.customColor,
@@ -361,13 +364,14 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                   height: 10,
                                 ),
                                 TextFormField(
-                                  style:
-                                      const TextStyle(color: Colors.black54),
+                                  style: const TextStyle(color: Colors.black54),
+                                  onChanged: (value) =>
+                                      controller.searchByName.value = value,
                                   decoration: const InputDecoration(
                                       filled: true,
                                       border: InputBorder.none,
-                                      
-                                      contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 15),
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 0, horizontal: 15),
                                       enabledBorder: OutlineInputBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(10)),
@@ -385,7 +389,20 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                 ),
                                 Expanded(
                                   child: StreamBuilder(
-                                    stream: controller.visitorStream,
+                                    stream: controller.searchByName.value == ''
+                                        ? FirebaseFirestore.instance
+                                            .collection(
+                                                'ubivisit/ubivisit/visitors')
+                                            .where('timeout', isEqualTo: '')
+                                            .snapshots()
+                                        : FirebaseFirestore.instance
+                                            .collection(
+                                                'ubivisit/ubivisit/visitors')
+                                            .where('timeout', isEqualTo: '')
+                                            .where('name',
+                                                isLessThanOrEqualTo: controller
+                                                    .searchByName.value)
+                                            .snapshots(),
                                     builder: (context, snapshot) {
                                       if (snapshot.hasData) {
                                         final data = snapshot.data?.docs;
@@ -412,7 +429,11 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                             controller.allVisitors.length,
                                         itemBuilder: (context, index) {
                                           return GestureDetector(
-                                            onTap: () => GlobalFunction.showImg(controller.allVisitors[index]['qr']),
+                                            onTap: () => controller.showImg(
+                                                controller.allVisitors[index]
+                                                    ['qr'],
+                                                controller.allVisitors[index]
+                                                    ['phone']),
                                             child: Stack(
                                               alignment: Alignment.center,
                                               children: [

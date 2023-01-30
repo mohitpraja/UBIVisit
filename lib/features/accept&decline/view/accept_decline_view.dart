@@ -22,7 +22,7 @@ class AcceptDeclineView extends GetView<AcceptDeclineController> {
               Center(
                 child: SizedBox(
                   width: Get.width,
-                  height: Get.height * 0.2,
+                  height: 200,
                   child: Container(
                     margin: const EdgeInsets.all(10),
                     child: Card(
@@ -61,7 +61,7 @@ class AcceptDeclineView extends GetView<AcceptDeclineController> {
                 ),
               ),
               Positioned(
-                bottom:Get.height*0.06,
+                bottom:30,
                 child: SizedBox(
                   width: Get.width*0.8,
                   child: Row(

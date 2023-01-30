@@ -47,7 +47,7 @@ class AddGuardView extends GetView<AddGuardController> {
                             const AssetImage('assets/images/guard.png'),
                       ),
                       Text(
-                        "Add new employee",
+                        "Add new Guard",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
@@ -58,7 +58,7 @@ class AddGuardView extends GetView<AddGuardController> {
                     ],
                   )),
                   SizedBox(
-                    height: Get.height * 0.65,
+                    height: Get.height * 0.7,
                     child: Form(
                         key: Validation.guardFormKey,
                         autovalidateMode: AutovalidateMode.onUserInteraction,

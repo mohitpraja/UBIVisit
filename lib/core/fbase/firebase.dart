@@ -318,7 +318,7 @@ class FBase {
           'status': 'waiting...',
           'timeout': '',
           'qr': qrUrl
-        }).then((value) => sendMessage(phone, qrUrl));
+        });
       });
     });
   }
@@ -381,6 +381,6 @@ class FBase {
 
   static sendMessage(phone, url) async {
     telephony.sendSmsByDefaultApp(
-        to: "8103586806", message: "Your visitor pass for UBIVisit - $url");
+        to: phone, message: "Your visitor pass for UBIVisit - $url");
   }
 }
