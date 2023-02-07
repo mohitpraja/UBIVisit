@@ -8,7 +8,7 @@ import 'package:ubivisit/core/allpages.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/routes.dart';
-import 'firebase_options.dart';
+import 'core/fbase/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
