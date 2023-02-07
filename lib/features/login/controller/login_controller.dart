@@ -13,14 +13,7 @@ class LoginController extends GetxController {
   final phone = TextEditingController();
   final pass = TextEditingController();
 
-  RxBool isPass = true.obs;
-  showPass() {
-    if (isPass.value == true) {
-      isPass.value = false;
-    } else {
-      isPass.value = true;
-    }
-  }
+  
 
   Future login(context, phone, pass) async {
     CustomLoader.showLoader(context);

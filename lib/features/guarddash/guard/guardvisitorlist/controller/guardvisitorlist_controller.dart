@@ -43,7 +43,7 @@ class GuardVisitorListController extends GetxController {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -51,13 +51,13 @@ class GuardVisitorListController extends GetxController {
                       children: [
                         Text(
                           user['name'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black54,
                           ),
                         ),
                         Text(
                           user['phone'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black54,
                           ),
                         ),
@@ -65,7 +65,7 @@ class GuardVisitorListController extends GetxController {
                     ),
                   ],
                 ),
-                Divider(),
+                const Divider(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -80,7 +80,7 @@ class GuardVisitorListController extends GetxController {
                         )),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 2,
                     ),
                     Row(
@@ -94,7 +94,7 @@ class GuardVisitorListController extends GetxController {
                         )),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 2,
                     ),
                     Row(
@@ -108,7 +108,7 @@ class GuardVisitorListController extends GetxController {
                         )),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 2,
                     ),
                     Row(
@@ -122,7 +122,7 @@ class GuardVisitorListController extends GetxController {
                         )),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 2,
                     ),
                     Row(
@@ -136,7 +136,7 @@ class GuardVisitorListController extends GetxController {
                         )),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 2,
                     ),
                     Row(

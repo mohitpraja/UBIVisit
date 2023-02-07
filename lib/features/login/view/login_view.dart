@@ -3,6 +3,8 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
+import 'package:ubivisit/core/components/customtextform.dart';
+import 'package:ubivisit/core/components/passwordfield.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/validation.dart';
@@ -41,7 +43,6 @@ class LoginView extends GetView<LoginController> {
                 ),
                 Form(
                   key: Validation.loginFormKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Container(
                     margin: const EdgeInsets.all(12),
                     height: Get.height * 0.66,
@@ -54,71 +55,30 @@ class LoginView extends GetView<LoginController> {
                               "Welcome !!!",
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: Get.height*0.035,
+                                  fontSize: Get.height * 0.035,
                                   fontFamily: CustomFonts.alata),
                             ),
                             Text(
                               "Login to your existing account",
                               style: TextStyle(
-                                  fontSize:Get.height*0.02,
+                                  fontSize: Get.height * 0.02,
                                   color: Colors.grey,
                                   fontFamily: CustomFonts.alata),
                             ),
                           ],
                         ),
-                        TextFormField(
-                          keyboardType: TextInputType.number,
-                          style: const TextStyle(color: Colors.black54),
-                          maxLength: 10,
+                        CustomTextFormField(
+                          hintText: 'Phone Number',
+                          icon: const Icon(Icons.person),
                           controller: controller.phone,
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.zero,
-                              filled: true,
-                              hintStyle: const TextStyle(color: Colors.black54),
-                              hintText: 'Phone number',
-                              counterText: '',
-                              prefixIcon: const Icon(Icons.person),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                          validator: MultiValidator(
-                            [
-                              RequiredValidator(
-                                  errorText: 'Required Phone Number'),
-                              PatternValidator(RegExp(r'^[0-9]{10}$').pattern,
-                                  errorText: 'Please enter valid Phone Number')
-                            ],
-                          ),
+                          inputType: TextInputType.number,
+                          maxLength: 10,
+                          validator: Validation.phoneValidator,
                         ),
-                        Obx(() => TextFormField(
-                              style: const TextStyle(color: Colors.black54),
-                              obscureText: controller.isPass.value,
-                              controller: controller.pass,
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.zero,
-                                  filled: true,
-                                  hintStyle:
-                                      const TextStyle(color: Colors.black54),
-                                  hintText: 'Enter Password',
-                                  suffixIcon: IconButton(
-                                      onPressed: () => controller.showPass(),
-                                      icon: controller.isPass.value
-                                          ? const Icon(Icons.visibility_off)
-                                          : const Icon(Icons.visibility)),
-                                  prefixIcon: const Icon(Icons.lock),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10))),
-                              validator: MultiValidator(
-                                [
-                                  RequiredValidator(
-                                      errorText: 'Required Password'),
-                                  PatternValidator(
-                                      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$&*~]).{6,}$')
-                                          .pattern,
-                                      errorText:
-                                          ("Password doesn't match the format : Abc@123"))
-                                ],
-                              ),
-                            )),
+                        PasswordField(
+                          validator: Validation.passwordValidator,
+                          controller: controller.pass,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -131,8 +91,7 @@ class LoginView extends GetView<LoginController> {
                                     fontFamily: CustomFonts.alata,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize: Get.height*0.02
-                                    ),
+                                    fontSize: Get.height * 0.02),
                               ),
                             ),
                           ],
@@ -142,7 +101,8 @@ class LoginView extends GetView<LoginController> {
                           onPress: () {
                             if (Validation.loginFormKey.currentState!
                                 .validate()) {
-                                  controller.login(context, controller.phone.text, controller.pass.text);
+                              controller.login(context, controller.phone.text,
+                                  controller.pass.text);
                             }
                           },
                         ),
@@ -161,8 +121,7 @@ class LoginView extends GetView<LoginController> {
                                     color: Colors.black54,
                                     fontWeight: FontWeight.w500,
                                     fontFamily: CustomFonts.alata,
-                                    fontSize: Get.height*0.02
-                                    ),
+                                    fontSize: Get.height * 0.02),
                               ),
                               const Expanded(
                                   child: Divider(
@@ -176,7 +135,6 @@ class LoginView extends GetView<LoginController> {
                           child: ElevatedButton.icon(
                             onPressed: () {
                               controller.googleSignIn(context);
-                             
                             },
                             label: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
@@ -186,7 +144,7 @@ class LoginView extends GetView<LoginController> {
                                     color: GlobalColor.customColor,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize: Get.height*0.02,
+                                    fontSize: Get.height * 0.02,
                                     fontFamily: CustomFonts.alata),
                               ),
                             ),
@@ -209,7 +167,7 @@ class LoginView extends GetView<LoginController> {
                               style: TextStyle(
                                   color: Colors.black54,
                                   fontWeight: FontWeight.w500,
-                                  fontSize: Get.height*0.02,
+                                  fontSize: Get.height * 0.02,
                                   fontFamily: CustomFonts.alata),
                             ),
                             InkWell(
@@ -219,7 +177,7 @@ class LoginView extends GetView<LoginController> {
                                 style: TextStyle(
                                     color: Colors.indigo,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: Get.height*0.021,
+                                    fontSize: Get.height * 0.021,
                                     fontFamily: CustomFonts.alata),
                               ),
                             )
