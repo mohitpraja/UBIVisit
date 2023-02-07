@@ -16,7 +16,6 @@ class GuardHomeController extends GetxController {
 
   RxBool loader = true.obs;
   showImg(img,phone) {
-    print('cld');
     Get.defaultDialog(
       title: '',
       titleStyle: const TextStyle(fontSize: 0),
@@ -28,14 +27,14 @@ class GuardHomeController extends GetxController {
               
               TextButton.icon(
                   onPressed: () {},
-                  icon: Icon(Icons.print),
-                  label: Text('Print')),
+                  icon: const Icon(Icons.print),
+                  label: const Text('Print')),
                   TextButton.icon(
                   onPressed: () {
                     FBase.sendMessage(phone, img);
                   },
-                  icon: Icon(Icons.share),
-                  label: Text('Share')),
+                  icon: const Icon(Icons.share),
+                  label: const Text('Share')),
             ],
           ),
           CachedNetworkImage(
