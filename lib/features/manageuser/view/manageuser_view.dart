@@ -4,7 +4,6 @@ import 'package:ubivisit/features/manageuser/controller/manageuser_controller.da
 
 class ManageUserView extends GetView<ManageUserController> {
   const ManageUserView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

@@ -126,4 +126,6 @@ class SignupController extends GetxController {
       // Get.back();
     }
   }
+
+
 }

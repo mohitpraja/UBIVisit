@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/global/customfont.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/addguard/controller/addguard_controller.dart';
@@ -49,16 +50,12 @@ class AddGuardView extends GetView<AddGuardController> {
                       Text(
                         "Add new Guard",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 26,
-                            fontWeight: FontWeight.normal,
-                            fontFamily: CustomFonts.alata),
+                        style: ThemeText.headingBlack
                       ),
                     ],
                   )),
                   SizedBox(
-                    height: Get.height * 0.7,
+                    height: Get.height * 0.6,
                     child: Form(
                         key: Validation.guardFormKey,
                         autovalidateMode: AutovalidateMode.onUserInteraction,

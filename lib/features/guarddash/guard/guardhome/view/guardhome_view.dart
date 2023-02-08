@@ -9,6 +9,7 @@ import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/guarddash/guard/guardhome/controller/guardhome_controller.dart';
 
@@ -30,9 +31,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                 elevation: 0,
                 title: Text(
                   'Dashboard',
-                  style: TextStyle(
-                      fontSize: Get.height * 0.03,
-                      fontFamily: CustomFonts.alata),
+                  style: ThemeText.headingWhite,
                 ),
               ),
               drawer: Drawer(
@@ -56,20 +55,11 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    // FBase.userInfo['name'],
-                                    'Hi! ${FBase.userInfo['name'].split(' ').first}',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: Get.height * 0.035,
-                                        fontFamily: CustomFonts.alata),
-                                  ),
-                                  Text(
-                                    FBase.userInfo['phone'],
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: Get.height * 0.02,
-                                        fontFamily: CustomFonts.alata),
-                                  ),
+                                      // FBase.userInfo['name'],
+                                      'Hi! ${FBase.userInfo['name'].split(' ').first}',
+                                      style: ThemeText.headingWhite),
+                                  Text(FBase.userInfo['phone'],
+                                      style: ThemeText.headingWhite),
                                 ],
                               ),
                               ClipRRect(
@@ -98,38 +88,20 @@ class GuardHomeView extends GetView<GuardHomeController> {
                     ListTile(
                       leading: const Icon(Icons.person_add_alt_1),
                       horizontalTitleGap: 0,
-                      title: Text(
-                        'Edit Profile',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: CustomFonts.alata),
-                      ),
+                      title:
+                          Text('Edit Profile', style: ThemeText.profileHeading),
                     ),
                     ListTileTheme(
                       horizontalTitleGap: 0,
                       child: ExpansionTile(
-                        title: Text(
-                          'Setting',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: CustomFonts.alata),
-                        ),
+                        title: Text('Setting', style: ThemeText.profileHeading),
                         leading: const Icon(Icons.settings),
                         children: [
                           SizedBox(
                             width: Get.width * 0.5,
                             child: Column(
                               children: [
-                                Text(
-                                  'Themes',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black54,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: CustomFonts.alata),
-                                ),
+                                Text('Themes', style: ThemeText.profileHeading),
                                 const Divider(),
                                 const SizedBox(
                                   height: 10,
@@ -233,13 +205,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                     ListTile(
                       leading: const Icon(Icons.exit_to_app),
                       minLeadingWidth: 5,
-                      title: Text(
-                        'Logout',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: CustomFonts.alata),
-                      ),
+                      title: Text('Logout', style: ThemeText.profileHeading),
                       onTap: () async {
                         var pref = await SharedPreferences.getInstance();
                         await pref.setBool('isLogin', false);
@@ -283,24 +249,14 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            FBase.userInfo['name'],
-                                            style: TextStyle(
-                                                color: Colors.black54,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: Get.height * 0.028,
-                                                fontFamily: CustomFonts.alata),
-                                          ),
+                                          Text(FBase.userInfo['name'],
+                                              style: ThemeText.userHeading),
                                           const SizedBox(
                                             height: 2,
                                           ),
                                           Text(
                                             FBase.userInfo['post'],
-                                            style: TextStyle(
-                                                color: Colors.black54,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: Get.height * 0.022,
-                                                fontFamily: CustomFonts.alata),
+                                            style: ThemeText.heading2Style,
                                           )
                                         ],
                                       ),
@@ -418,10 +374,10 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                         ));
                                       }
                                       if (controller.allVisitors.isEmpty) {
-                                        return const Center(
+                                        return  Center(
                                             child: Text(
                                           'No Recent Updates',
-                                          style: TextStyle(fontSize: 16),
+                                          style: ThemeText.heading2Style
                                         ));
                                       }
                                       return ListView.builder(

@@ -5,6 +5,7 @@ import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/signup/controller/signup_controller.dart';
@@ -41,22 +42,13 @@ class SignupView extends GetView<SignupController> {
                   Center(
                       child: Column(
                     children: [
-                      Text(
-                        "Let's Get Started",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: Get.height*0.04,
-                            fontWeight: FontWeight.normal,
-                            fontFamily: CustomFonts.alata),
-                      ),
+                      Text("Let's Get Started",
+                          textAlign: TextAlign.center,
+                          style: ThemeText.headingBlack),
                       Text(
                         "create an account to UBIVisit",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize:Get.height*0.02,
-                            fontFamily: CustomFonts.alata),
+                        style: ThemeText.heading2Style,
                       ),
                     ],
                   )),
@@ -71,13 +63,11 @@ class SignupView extends GetView<SignupController> {
                             TextFormField(
                               style: const TextStyle(color: Colors.black54),
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.zero,
+                                  contentPadding: EdgeInsets.zero,
                                   filled: true,
                                   hintStyle:
                                       const TextStyle(color: Colors.black54),
                                   hintText: 'Enter name',
-                                  
-                                  
                                   prefixIcon: const Icon(Icons.person),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10))),
@@ -93,7 +83,7 @@ class SignupView extends GetView<SignupController> {
                               keyboardType: TextInputType.emailAddress,
                               style: const TextStyle(color: Colors.black54),
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.zero,
+                                  contentPadding: EdgeInsets.zero,
                                   filled: true,
                                   hintStyle:
                                       const TextStyle(color: Colors.black54),
@@ -115,7 +105,7 @@ class SignupView extends GetView<SignupController> {
                               maxLength: 10,
                               style: const TextStyle(color: Colors.black54),
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.zero,
+                                  contentPadding: EdgeInsets.zero,
                                   counterText: '',
                                   filled: true,
                                   hintStyle:
@@ -124,25 +114,6 @@ class SignupView extends GetView<SignupController> {
                                   prefixIcon: const Icon(Icons.phone),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10))),
-                              // validator: (value) {
-                              //   FBase.checkUser(value);
-                              //   Validation.isValid(
-                              //       value, 'Phone number required');
-                              //   Pattern pattern = r'^[0-9]{10}$';
-                              //   RegExp regex = RegExp(pattern.toString());
-                              //   if (!regex.hasMatch(value!)) {
-                              //     return 'Enter Valid Phone';
-                              //   }
-                               
-                                
-                              //   if (regex.hasMatch(value)) {
-                              //    print(
-                              //      FBase.checkUser(value).then((val) {
-                                   
-                              //     })
-                              //    );
-                              //   }
-                              // },
                               validator: MultiValidator([
                                 RequiredValidator(
                                     errorText: 'Phone number required'),
@@ -151,13 +122,11 @@ class SignupView extends GetView<SignupController> {
                               ]),
                               onChanged: (value) => controller.phone = value,
                             ),
-                            
-                           
                             Obx(() => TextFormField(
                                   style: const TextStyle(color: Colors.black54),
                                   obscureText: controller.isPass.value,
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.zero,
+                                      contentPadding: EdgeInsets.zero,
                                       filled: true,
                                       hintStyle: const TextStyle(
                                           color: Colors.black54),
@@ -191,7 +160,7 @@ class SignupView extends GetView<SignupController> {
                                   style: const TextStyle(color: Colors.black54),
                                   obscureText: controller.isConfirmPass.value,
                                   decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.zero,
+                                      contentPadding: EdgeInsets.zero,
                                       filled: true,
                                       hintStyle: const TextStyle(
                                           color: Colors.black54),
@@ -227,11 +196,7 @@ class SignupView extends GetView<SignupController> {
                               children: [
                                 Text(
                                   'Already have an account? ',
-                                  style: TextStyle(
-                                      fontSize: Get.height*0.02,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: CustomFonts.alata,
-                                      color: Colors.black54),
+                                  style: ThemeText.heading2Style
                                 ),
                                 InkWell(
                                   onTap: () {
@@ -239,11 +204,7 @@ class SignupView extends GetView<SignupController> {
                                   },
                                   child: Text(
                                     'Login here ',
-                                    style: TextStyle(
-                                        fontSize:Get.height*0.021,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: CustomFonts.alata,
-                                        color: GlobalColor.customColor),
+                                    style: ThemeText.BlueMinHeading
                                   ),
                                 ),
                               ],

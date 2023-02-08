@@ -1,6 +1,13 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
+import 'package:ubivisit/core/fbase/firebase.dart';
+import 'package:ubivisit/core/fbase/firebase.dart';
+import 'package:ubivisit/core/fbase/firebase.dart';
+import 'package:ubivisit/core/fbase/firebase.dart';
+import 'package:ubivisit/core/global/globalfunction.dart';
+
+import '../../../../../core/fbase/firebase.dart';
 
 class AdminHomeController extends GetxController {
   @override
@@ -14,5 +21,8 @@ class AdminHomeController extends GetxController {
 
   RxBool loader = true.obs;
   // RxString name = '${FBase.userInfo['name'].split(' ').first}'.obs;
+
+
+
 
 }

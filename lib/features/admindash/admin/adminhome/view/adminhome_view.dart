@@ -8,6 +8,7 @@ import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/admindash/admin/adminhome/controller/adminhome_controller.dart';
 
@@ -25,7 +26,7 @@ class AdminHomeView extends GetView<AdminHomeController> {
                       elevation: 0,
                       title: Text(
                         'Dashboard',
-                        style: TextStyle(fontSize:Get.height*0.03, fontFamily: CustomFonts.alata),
+                        style: ThemeText.headingWhite
                       ),
                     ),
                     drawer: Drawer(
@@ -50,17 +51,11 @@ class AdminHomeView extends GetView<AdminHomeController> {
                               children: [
                                 Text(
                                  'Hi! ${FBase.userInfo['name'].split(' ').first}',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: Get.height*0.035,
-                                      fontFamily: CustomFonts.alata),
+                                  style: ThemeText.headingWhite
                                 ),
                                 Text(
                                  FBase.userInfo['phone'],
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: Get.height*0.02,
-                                      fontFamily: CustomFonts.alata),
+                                  style: ThemeText.headingWhite
                                 ),
                               ],
                             ),
@@ -294,22 +289,14 @@ class AdminHomeView extends GetView<AdminHomeController> {
                                       children: [
                                         Text(
                                          FBase.userInfo['name'],
-                                          style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: Get.height*0.028,
-                                              fontFamily: CustomFonts.alata),
+                                          style: ThemeText.userHeading
                                         ),
                                         const SizedBox(
                                           height: 2,
                                         ),
                                         Text(
                                           FBase.userInfo['post'],
-                                          style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: Get.height*0.022,
-                                              fontFamily: CustomFonts.alata),
+                                          style: ThemeText.heading2Style
                                         )
                                       ],
                                     ),

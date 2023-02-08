@@ -8,6 +8,7 @@ import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/guarddash/guard/guardprofile/controller/guardprofile_controller.dart';
 
@@ -20,9 +21,7 @@ class GuardProfileView extends GetView<GuardProfileController>{
           backgroundColor: Colors.white,
           appBar: AppBar(
                 backgroundColor:GlobalColor.customColor,
-            title: Text('Profile',style: TextStyle(
-              fontFamily: CustomFonts.alata
-            ),),
+            title: Text('Profile'),
             leading: IconButton(
               onPressed: () => Get.offAllNamed(Routes.guarddash),
               icon: const Icon(Icons.arrow_back),
@@ -104,13 +103,10 @@ class GuardProfileView extends GetView<GuardProfileController>{
                             Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 10),
+                                  padding:  EdgeInsets.only(left: 10),
                                   child: Text(
                                     'Post',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: CustomFonts.alata),
+                                    style: ThemeText.profileHeading
                                   ),
                                 ),
                               ],
@@ -118,11 +114,7 @@ class GuardProfileView extends GetView<GuardProfileController>{
                             TextFormField(
                               readOnly: true,
                               initialValue: FBase.userInfo['post'],
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: CustomFonts.alata),
+                              style: ThemeText.heading2Style,
                               decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   prefixIcon: Icon(Icons.card_travel),
@@ -139,10 +131,7 @@ class GuardProfileView extends GetView<GuardProfileController>{
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     'Name',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: CustomFonts.alata),
+                                    style: ThemeText.profileHeading
                                   ),
                                 ),
                               ],
@@ -150,11 +139,7 @@ class GuardProfileView extends GetView<GuardProfileController>{
                             TextFormField(
                               readOnly: true,
                               initialValue: FBase.userInfo['name'],
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: CustomFonts.alata),
+                              style: ThemeText.heading2Style,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   prefixIcon: const Icon(Icons.person),
@@ -176,10 +161,7 @@ class GuardProfileView extends GetView<GuardProfileController>{
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     'Email',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: CustomFonts.alata),
+                                    style: ThemeText.profileHeading
                                   ),
                                 ),
                               ],
@@ -187,11 +169,7 @@ class GuardProfileView extends GetView<GuardProfileController>{
                             TextFormField(
                               readOnly: true,
                               initialValue: FBase.userInfo['email'],
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: CustomFonts.alata),
+                              style: ThemeText.heading2Style,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   prefixIcon: const Icon(Icons.email),
@@ -212,10 +190,7 @@ class GuardProfileView extends GetView<GuardProfileController>{
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     'Phone',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: CustomFonts.alata),
+                                    style: ThemeText.profileHeading,
                                   ),
                                 ),
                               ],
@@ -223,18 +198,14 @@ class GuardProfileView extends GetView<GuardProfileController>{
                             TextFormField(
                               readOnly: true,
                               initialValue: FBase.userInfo['phone'],
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: CustomFonts.alata),
+                              style: ThemeText.heading2Style,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   prefixIcon: const Icon(Icons.phone),
                                   suffixIcon: IconButton(
                                       onPressed: () {
                                         controller.showBottomSheet(context,'Phone number',FBase.userInfo['phone'],'phone');
-                                      },
+                                                                },
                                       icon: const Icon(Icons.edit))),
                             )
                           ],

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/admindash/admin/adminprofile/controller/adminprofile_controller.dart';
 
@@ -20,9 +20,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
           backgroundColor: Colors.white,
           appBar: AppBar(
                 backgroundColor:GlobalColor.customColor,
-            title: Text('Profile',style: TextStyle(
-              fontFamily: CustomFonts.alata
-            ),),
+            title: Text('Profile'),
             leading: IconButton(
               onPressed: () => Get.offAllNamed(Routes.admindash),
               icon: const Icon(Icons.arrow_back),
@@ -106,10 +104,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     'Post',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: CustomFonts.alata),
+                                    style: ThemeText.profileHeading
                                   ),
                                 ),
                               ],
@@ -117,11 +112,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                             TextFormField(
                               readOnly: true,
                               initialValue: FBase.userInfo['post'],
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: CustomFonts.alata),
+                              style: ThemeText.heading2Style,
                               decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   prefixIcon: Icon(Icons.card_travel),
@@ -138,10 +129,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     'Name',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: CustomFonts.alata),
+                                    style: ThemeText.profileHeading
                                   ),
                                 ),
                               ],
@@ -149,11 +137,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                             TextFormField(
                               readOnly: true,
                               initialValue: FBase.userInfo['name'],
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: CustomFonts.alata),
+                              style: ThemeText.heading2Style,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   prefixIcon: const Icon(Icons.person),
@@ -175,10 +159,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     'Email',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: CustomFonts.alata),
+                                    style: ThemeText.profileHeading
                                   ),
                                 ),
                               ],
@@ -186,11 +167,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                             TextFormField(
                               readOnly: true,
                               initialValue: FBase.userInfo['email'],
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: CustomFonts.alata),
+                              style: ThemeText.heading2Style,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   prefixIcon: const Icon(Icons.email),
@@ -211,10 +188,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     'Phone',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: CustomFonts.alata),
+                                    style: ThemeText.profileHeading
                                   ),
                                 ),
                               ],
@@ -222,11 +196,7 @@ class AdminProfileView extends GetView<AdminProfileController>{
                             TextFormField(
                               readOnly: true,
                               initialValue: FBase.userInfo['phone'],
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: CustomFonts.alata),
+                              style: ThemeText.heading2Style,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   prefixIcon: const Icon(Icons.phone),

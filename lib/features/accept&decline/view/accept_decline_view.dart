@@ -75,8 +75,6 @@ class AcceptDeclineView extends GetView<AcceptDeclineController> {
                             
                           onPressed: () {
                             FBase.updateStatus(controller.visitorData['id'], 'Reject');
-
-
                           
                         }, child: const Text('Reject')),
                       ),

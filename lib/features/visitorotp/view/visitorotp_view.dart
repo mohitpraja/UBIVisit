@@ -4,6 +4,7 @@ import 'package:pinput/pinput.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/features/visitorotp/controller/visitorotp_controller.dart';
 
 class VisitorOtpView extends GetView<VisitorOtpController> {
@@ -37,22 +38,15 @@ class VisitorOtpView extends GetView<VisitorOtpController> {
                     ),
                     Text(
                       'OTP Verification',
-                      style: TextStyle(
-                          fontSize: Get.height * 0.035,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: CustomFonts.alata),
+                      style: ThemeText.headingWhite
                     ),
                     SizedBox(
                       height: Get.height * 0.002,
                     ),
                     Text(
+                      textAlign: TextAlign.center,
                       'Please enter the OTP send to your mobile number',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: Get.height * 0.018,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: CustomFonts.alata),
+                      style: ThemeText.whiteMedHeading
                     ),
                   ],
                 ),
@@ -91,10 +85,7 @@ class VisitorOtpView extends GetView<VisitorOtpController> {
                                       controller.forrebuilt.value == 'ram'
                                           ? ''
                                           : '+91 ${controller.signupData[2]}',
-                                      style: TextStyle(
-                                          fontSize: Get.height * 0.03,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black54),
+                                      style: ThemeText.userHeading
                                     )),
                                 IconButton(
                                   onPressed: () {
@@ -113,19 +104,13 @@ class VisitorOtpView extends GetView<VisitorOtpController> {
                             ),
                             Text(
                               "Didn't recieve an OTP",
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: Get.height * 0.02,
-                                  fontWeight: FontWeight.w500),
+                              style: ThemeText.heading2Style
                             ),
                             TextButton(
                                 onPressed: () {},
                                 child: Text(
                                   'Resend OTP',
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      color: GlobalColor.customColor,
-                                      fontWeight: FontWeight.w600),
+                                  style: ThemeText.BlueMinHeading
                                 )),
                             CustomButton(
                               title: 'Verify',

@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
-import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/empdash/employee/emphome/controller/emphome_controller.dart';
 
@@ -26,7 +26,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
               elevation: 0,
               title: Text(
                 'Dashboard',
-                style: TextStyle(fontSize: Get.height*0.03, fontFamily: CustomFonts.alata),
+                style: ThemeText.headingWhite
               ),
             ),
             drawer: Drawer(
@@ -51,17 +51,11 @@ class EmpHomeView extends GetView<EmpHomeController> {
                               children: [
                                 Text(
                                   'Hi! ${FBase.userInfo['name'].split(' ').first}',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: Get.height*0.035, 
-                                      fontFamily: CustomFonts.alata),
+                                  style: ThemeText.whiteMinHeading
                                 ),
                                 Text(
                                   FBase.userInfo['phone'],
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: Get.height*0.02, 
-                                      fontFamily: CustomFonts.alata),
+                                  style: ThemeText.whiteMinHeading
                                 ),
                               ],
                             ),
@@ -88,28 +82,22 @@ class EmpHomeView extends GetView<EmpHomeController> {
                       ),
                     ),
                   ),
-                 
+
                   ListTile(
                     leading: const Icon(Icons.person_add_alt_1),
                     horizontalTitleGap: 0,
                     title: Text(
                       'Edit Profile',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: CustomFonts.alata),
+                      style: ThemeText.profileHeading
                     ),
                   ),
-                
+
                   ListTileTheme(
                     horizontalTitleGap: 0,
                     child: ExpansionTile(
                       title: Text(
                         'Setting',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: CustomFonts.alata),
+                        style: ThemeText.profileHeading
                       ),
                       leading: const Icon(Icons.settings),
                       children: [
@@ -119,11 +107,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                             children: [
                               Text(
                                 'Themes',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: CustomFonts.alata),
+                                style: ThemeText.profileHeading
                               ),
                               const Divider(),
                               const SizedBox(
@@ -230,10 +214,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                     minLeadingWidth: 5,
                     title: Text(
                       'Logout',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: CustomFonts.alata),
+                      style: ThemeText.profileHeading
                     ),
                     onTap: () async {
                       var pref = await SharedPreferences.getInstance();
@@ -281,22 +262,14 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                       children: [
                                         Text(
                                           FBase.userInfo['name'],
-                                          style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: Get.height*0.028,
-                                              fontFamily: CustomFonts.alata),
+                                          style: ThemeText.userHeading
                                         ),
                                         const SizedBox(
                                           height: 2,
                                         ),
                                         Text(
                                           FBase.userInfo['post'],
-                                          style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize:  Get.height*0.022,
-                                              fontFamily: CustomFonts.alata),
+                                          style: ThemeText.heading2Style
                                         )
                                       ],
                                     ),
@@ -370,10 +343,10 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                       ));
                                     }
                                     if (controller.allVisitors.isEmpty) {
-                                      return const Center(
+                                      return  Center(
                                           child: Text(
                                         'No Visitor added yet',
-                                        style: TextStyle(fontSize: 16),
+                                        style: ThemeText.userHeading
                                       ));
                                     }
                                     return ListView.builder(

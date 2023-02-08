@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/addvisitor/controller/addvisitor_controller.dart';
@@ -24,9 +25,9 @@ class AddvisitorView extends GetView<AddvisitorController> {
             backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
-              title: const Text(
+              title:  Text(
                 'Add Visitor Details',
-                style: TextStyle(fontSize: 20, color: Colors.black54),
+                style: ThemeText.userHeading,
               ),
               elevation: 0,
               leading: IconButton(

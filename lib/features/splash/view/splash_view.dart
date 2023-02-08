@@ -28,9 +28,9 @@ class SplashView extends GetView<SplashController> {
                     child: Text(
                       'MADE BY UBITECH',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: GlobalColor.white,
                           letterSpacing: 4,
-                          fontSize: 16,
+                          fontSize: Get.width*0.05,
                           fontFamily: GoogleFonts.alata().fontFamily),
                     ))
               ],
