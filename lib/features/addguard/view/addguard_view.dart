@@ -65,25 +65,34 @@ class AddGuardView extends GetView<AddGuardController> {
                               hintText: 'Enter Name',
                               icon: const Icon(Icons.person),
                               onchanged: (value) => controller.name = value,
-                               validator: Validation.nameValidator,
+                               validator: (value){
+                                 return  Validation.nameValidator(value);
+                               }
                             ),
                             CustomTextFormField(
                               hintText: 'Enter Email',
                               icon: const Icon(Icons.email),
                               inputType: TextInputType.emailAddress,
                               onchanged: (value) => controller.email = value,
-                               validator: Validation.emailValidator,
+                               validator: (value){
+                                 return  Validation.emailValidator(value);
+                               }
                             ),
                             CustomTextFormField(
                               hintText: 'Enter Phone Number',
                               icon: const Icon(Icons.phone),
+                                inputType: TextInputType.number,
                               maxLength: 10,
                               onchanged: (value) => controller.phone = value,
-                               validator: Validation.phoneValidator,
+                               validator: (value){
+                                 return  Validation.phoneValidator(value);
+                               }
                             ),
                             PasswordField(
                               onchanged: (value) => controller.password = value,
-                               validator: Validation.passwordValidator,
+                               validator:(value){
+                                 return  Validation.passwordValidator(value);
+                               }
                             ),
                             PasswordField(
                               hintext: 'Confirm Password',

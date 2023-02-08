@@ -53,7 +53,9 @@ class VisitorOtpController extends GetxController {
                   hintText: 'Enter Phone',
                   icon: const Icon(Icons.phone),
                   initialValue: signupData[2].toString(),
-                  validator: Validation.phoneValidator,
+                  validator:(value){
+                    return  Validation.phoneValidator(value);
+                  },
                   onchanged: (value) => updatePhone=value,
 
 

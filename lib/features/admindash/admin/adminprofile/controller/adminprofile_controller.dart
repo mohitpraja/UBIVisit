@@ -10,6 +10,7 @@ import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/components/underlinetextfield.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
+import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 
 class AdminProfileController extends GetxController {
@@ -41,6 +42,7 @@ class AdminProfileController extends GetxController {
                     fontWeight: FontWeight.w500),
               ),
               UnderLineTextField(
+
                 hintText: 'Enter $fieldname',
                 initialValue: value,
                 onchanged: (value) => tempUpdate = value,
@@ -60,6 +62,7 @@ class AdminProfileController extends GetxController {
                       )),
                   TextButton(
                       onPressed: () {
+
                         FBase.updateUserInfo(context, updateField, tempUpdate,
                             FBase.userInfo['id'], Routes.admindash);
                         Get.back();

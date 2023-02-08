@@ -66,32 +66,43 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                               hintText: 'Enter Name',
                               icon: const Icon(Icons.person),
                               onchanged: (value) => controller.name = value,
-                               validator: Validation.nameValidator,
+                               validator:(value){
+                                return  Validation.nameValidator(value);
+                            }
                             ),
                             CustomTextFormField(
                               hintText: 'Enter Email',
                               icon: const Icon(Icons.email),
                               inputType: TextInputType.emailAddress,
                               onchanged: (value) => controller.email = value,
-                               validator: Validation.emailValidator,
+                               validator:(value){
+                                 return  Validation.emailValidator(value);
+                               }
                             ),
                             CustomTextFormField(
-                              hintText: 'Enter Phone Number',
-                              icon: const Icon(Icons.phone),
-                              maxLength: 10,
-                              onchanged: (value) => controller.phone = value,
-                               validator: Validation.phoneValidator,
+                                hintText: 'Enter Phone Number',
+                                inputType: TextInputType.number,
+                                icon: const Icon(Icons.phone),
+                                maxLength: 10,
+                                onchanged: (value) => controller.phone = value,
+                                validator: (value){
+                                 return  Validation.phoneValidator(value);
+                               }
                             ),
 
                             CustomTextFormField(
                               hintText: 'Role',
                               icon: const Icon(Icons.card_travel),
                               onchanged: (value) => controller.post = value,
-                               validator: Validation.nameValidator,
+                               validator: (value){
+                                 return  Validation.nameValidator(value);
+                               }
                             ),
                             PasswordField(
                               onchanged: (value) => controller.password = value,
-                               validator: Validation.passwordValidator,
+                               validator: (value){
+                                 return  Validation.passwordValidator(value);
+                               }
                             ),
                             PasswordField(
                               hintext: 'Confirm Password',

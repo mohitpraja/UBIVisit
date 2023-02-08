@@ -52,7 +52,9 @@ class ForgotOtpController extends GetxController {
                   hintText: 'Enter Phone',
                   icon: const Icon(Icons.phone),
                   initialValue: signupData[0].toString(),
-                  validator: Validation.phoneValidator,
+                  validator:(value){
+                    return  Validation.phoneValidator(value);
+                  },
                   onchanged: (value) => updatePhone=value,
 
 

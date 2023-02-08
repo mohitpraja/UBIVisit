@@ -10,8 +10,9 @@ class Validation {
   static final employeeFormKey = GlobalKey<FormState>();
   static final updatepassFormKey = GlobalKey<FormState>();
   static final googleSignupFormKey = GlobalKey<FormState>();
+  static final adminProfileFormKey = GlobalKey<FormState>();
 
-  static isValid(val, msg) {
+  static isValid(val,msg) {
     if (val == null || val.isEmpty) {
       return msg;
     }
@@ -26,31 +27,31 @@ class Validation {
     }
   }
 
-  static var phoneValidator = (value) {
+  static phoneValidator(value) {
     if (value!.isEmpty || !RegExp(r'^[0-9]{10}$').hasMatch(value)) {
       return 'Incorrect Phone Number';
     } else {
       return null;
     }
-  };
+  }
 
-  static var passwordValidator = (value) {
-    if (value!.isEmpty || !RegExp(r'(?=.*?[#?!@$%^&*-])').hasMatch(value)) {
+  static  passwordValidator(value) {
+    if (value!.isEmpty || !RegExp(r'(?=.*?[#?!@$%^&*-]).{6,}$').hasMatch(value)) {
       return 'Passwords must have at least one special character';
     } else {
       return null;
     }
-  };
+  }
 
-  static var nameValidator = (value) {
-    if (value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+  static  nameValidator(value) {
+    if (value!.isEmpty || !RegExp(r'^[a-z A-Z/+0-9]+$').hasMatch(value) ||RegExp(r'^[0-9]+$').hasMatch(value)) {
       return 'Enter Correct Name';
     } else {
       return null;
     }
-  };
+  }
 
-  static var emailValidator = (value) {
+  static  emailValidator(value) {
     if (value!.isEmpty ||
         !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
             .hasMatch(value)) {
@@ -58,9 +59,9 @@ class Validation {
     } else {
       return null;
     }
-  };
+  }
 
-  static var confirmValidator = (value, password) {
+  static confirmValidator(value, password) {
     if (value!.isEmpty) {
       return 'Confirm Password required';
     }
@@ -68,5 +69,5 @@ class Validation {
       return 'Password Do Not Match';
     }
     return null;
-  };
+  }
 }
