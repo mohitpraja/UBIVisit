@@ -147,30 +147,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                TextFormField(
-                                  style: const TextStyle(color: Colors.black54),
-                                  onChanged: (value) =>
-                                      controller.searchByName.value = value,
-                                  decoration: const InputDecoration(
-                                      filled: true,
-                                      border: InputBorder.none,
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 0, horizontal: 15),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10)),
-                                          borderSide: BorderSide(
-                                              color: Colors.transparent)),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(10)),
-                                          borderSide: BorderSide(
-                                              color: Colors.transparent)),
-                                      hintText: 'Search by name...'),
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
+                              
                                 Expanded(
                                   child: StreamBuilder(
                                     stream: controller.searchByName.value == ''

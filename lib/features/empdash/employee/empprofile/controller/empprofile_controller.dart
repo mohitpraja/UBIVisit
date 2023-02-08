@@ -7,6 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:ubivisit/core/components/customloader.dart';
+import 'package:ubivisit/core/components/underlinetextfield.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/routes.dart';
@@ -38,19 +39,10 @@ class EmpProfileController extends GetxController{
                 fontSize:18,
                 fontWeight: FontWeight.w500
               ),),
-              TextFormField(
-                autofocus: true,
+             UnderLineTextField(
+                hintText: 'Enter $fieldname',
                 initialValue: value,
-                style: TextStyle(
-                fontFamily:CustomFonts.alata,
-                fontSize:17,
-                color: Colors.black54,
-                fontWeight: FontWeight.w500
-              ),
-                decoration: const InputDecoration(
-                  hintText: 'Enter name',
-                ),
-                onChanged: (value) => tempUpdate=value,
+                onchanged: (value) => tempUpdate = value,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,

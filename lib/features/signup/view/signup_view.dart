@@ -70,6 +70,12 @@ class SignupView extends GetView<SignupController> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             CustomTextFormField(
+                              hintText: 'Enter Organization Name',
+                              icon: const Icon(Icons.location_city_rounded),
+                              onchanged: (value) => controller.organization = value,
+                              validator: Validation.nameValidator,
+                            ),
+                            CustomTextFormField(
                               hintText: 'Enter Name',
                               icon: const Icon(Icons.person),
                               onchanged: (value) => controller.name = value,

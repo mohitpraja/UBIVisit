@@ -20,7 +20,7 @@ class FBase {
   static FirebaseMessaging fmessaging = FirebaseMessaging.instance;
   static Telephony telephony = Telephony.instance;
 
-  static Future addUser(name, email, phone, password, post, role) async {
+  static Future addUser(name, email, phone, password, post, role,organization) async {
     log('cld');
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     await fmessaging.requestPermission();
@@ -46,7 +46,8 @@ class FBase {
       'image': '',
       'role': role,
       'id': id,
-      'pushtoken': pushtoken
+      'pushtoken': pushtoken,
+      'organization': organization
     });
   }
 
@@ -109,6 +110,7 @@ class FBase {
               'image': data['image'],
               'phone': data['phone'],
               'pushtoken': data['pushtoken'],
+              'organization': data['organization'],
             });
 
             await prefs.setBool('isLogin', true);
@@ -119,13 +121,13 @@ class FBase {
       Get.back();
       if (isMatch) {
         if (post == 'Admin') {
-          isMatch = true;
+          isMatch = false;
           Get.offAllNamed(Routes.admindash);
         } else if (post == 'Guard') {
-          isMatch = true;
+          isMatch = false;
           Get.offAllNamed(Routes.guarddash);
         } else {
-          isMatch = true;
+          isMatch = false;
           Get.offAllNamed(Routes.empdash);
         }
       } else {

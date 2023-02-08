@@ -1,11 +1,12 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 import 'package:ubivisit/core/components/customloader.dart';
+import 'package:ubivisit/core/components/underlinetextfield.dart';
 import 'package:ubivisit/core/global/customfont.dart';
+import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 
 class ForgotOtpController extends GetxController {
@@ -47,25 +48,17 @@ class ForgotOtpController extends GetxController {
               ),
               Form(
                 key: formkey,
-                child: TextFormField(
-                  autofocus: true,
-                  onChanged: (value) => updatePhone = value,
+                child: UnderLineTextField(
+                  hintText: 'Enter Phone',
+                  icon: const Icon(Icons.phone),
                   initialValue: signupData[0].toString(),
-                  style: TextStyle(
-                      fontFamily: CustomFonts.alata,
-                      fontSize: 17,
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w500),
-                  decoration: const InputDecoration(
-                    hintText: 'Enter phone number',
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                  validator: MultiValidator([
-                    RequiredValidator(errorText: 'Phone requied'),
-                    PatternValidator(RegExp(r'^[0-9]{10}$').pattern,
-                        errorText: 'Invalid number')
-                  ]),
+                  validator: Validation.phoneValidator,
+                  onchanged: (value) => updatePhone=value,
+
+
                 ),
+
+             
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,

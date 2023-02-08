@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/customappbar.dart';
+import 'package:ubivisit/core/components/customlisttile.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
@@ -52,19 +53,21 @@ class EmpProfileView extends GetView<EmpProfileController> {
                           children: [
                             controller.imagePath.value != ''
                                 ? InkWell(
-                                  onTap:() =>  GlobalFunction.showImg(controller.imagePath.value),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(75),
-                                      child: Image.file(
-                                        File(controller.imagePath.value),
-                                        width: 120,
-                                        height: 120,
-                                        fit: BoxFit.cover,
-                                      )),
-                                )
+                                    onTap: () => GlobalFunction.showImg(
+                                        controller.imagePath.value),
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(75),
+                                        child: Image.file(
+                                          File(controller.imagePath.value),
+                                          width: 120,
+                                          height: 120,
+                                          fit: BoxFit.cover,
+                                        )),
+                                  )
                                 : InkWell(
-                                  onTap: () => GlobalFunction.showImg(FBase.userInfo['image']),
-                                  child: ClipRRect(
+                                    onTap: () => GlobalFunction.showImg(
+                                        FBase.userInfo['image']),
+                                    child: ClipRRect(
                                       borderRadius: BorderRadius.circular(75),
                                       child: CachedNetworkImage(
                                         width: 120,
@@ -73,13 +76,14 @@ class EmpProfileView extends GetView<EmpProfileController> {
                                         imageUrl: FBase.userInfo['image'],
                                         errorWidget: (context, url, error) =>
                                             CircleAvatar(
-                                          backgroundColor: Colors.indigo.shade100,
+                                          backgroundColor:
+                                              Colors.indigo.shade100,
                                           backgroundImage: const AssetImage(
                                               'assets/images/person.png'),
                                         ),
                                       ),
                                     ),
-                                ),
+                                  ),
                             Positioned(
                               bottom: 5,
                               right: 0,
@@ -127,19 +131,10 @@ class EmpProfileView extends GetView<EmpProfileController> {
                                         ),
                                       ],
                                     ),
-                                    TextFormField(
-                                      readOnly: true,
-                                      initialValue: FBase.userInfo['post'],
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.black54,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: CustomFonts.alata),
-                                      decoration: const InputDecoration(
-                                        border: InputBorder.none,
-                                        prefixIcon: Icon(Icons.card_travel),
-                                      ),
-                                    )
+                                    CustomListTile(
+                                      text: FBase.userInfo['post'],
+                                      leading: const Icon(Icons.card_travel),
+                                    ),
                                   ],
                                 ),
                                 Column(
@@ -160,27 +155,19 @@ class EmpProfileView extends GetView<EmpProfileController> {
                                         ),
                                       ],
                                     ),
-                                    TextFormField(
-                                      readOnly: true,
-                                      initialValue: FBase.userInfo['name'],
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.black54,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: CustomFonts.alata),
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          prefixIcon: const Icon(Icons.person),
-                                          suffixIcon: IconButton(
-                                              onPressed: () {
-                                                controller.showBottomSheet(
-                                                    context,
-                                                    'Name',
-                                                    FBase.userInfo['name'],
-                                                    'name');
-                                              },
-                                              icon: const Icon(Icons.edit))),
-                                    )
+                                    CustomListTile(
+                                        text: FBase.userInfo['name'],
+                                        leading: const Icon(Icons.person),
+                                        trailing: IconButton(
+                                          onPressed: () {
+                                            controller.showBottomSheet(
+                                                context,
+                                                'Name',
+                                                FBase.userInfo['name'],
+                                                'name');
+                                          },
+                                          icon: const Icon(Icons.edit),
+                                        ))
                                   ],
                                 ),
                                 Column(
@@ -201,27 +188,18 @@ class EmpProfileView extends GetView<EmpProfileController> {
                                         ),
                                       ],
                                     ),
-                                    TextFormField(
-                                      readOnly: true,
-                                      initialValue: FBase.userInfo['email'],
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.black54,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: CustomFonts.alata),
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          prefixIcon: const Icon(Icons.email),
-                                          suffixIcon: IconButton(
-                                              onPressed: () {
-                                                controller.showBottomSheet(
-                                                    context,
-                                                    'Email',
-                                                    FBase.userInfo['email'],
-                                                    'email');
-                                              },
-                                              icon: const Icon(Icons.edit))),
-                                    )
+                                    CustomListTile(
+                                        text: FBase.userInfo['email'],
+                                        leading: const Icon(Icons.email),
+                                        trailing: IconButton(
+                                            onPressed: () {
+                                              controller.showBottomSheet(
+                                                  context,
+                                                  'Email',
+                                                  FBase.userInfo['email'],
+                                                  'email');
+                                            },
+                                            icon: const Icon(Icons.edit))),
                                   ],
                                 ),
                                 Column(
@@ -242,27 +220,18 @@ class EmpProfileView extends GetView<EmpProfileController> {
                                         ),
                                       ],
                                     ),
-                                    TextFormField(
-                                      readOnly: true,
-                                      initialValue: FBase.userInfo['phone'],
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.black54,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: CustomFonts.alata),
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          prefixIcon: const Icon(Icons.phone),
-                                          suffixIcon: IconButton(
-                                              onPressed: () {
-                                                controller.showBottomSheet(
-                                                    context,
-                                                    'Phone number',
-                                                    FBase.userInfo['phone'],
-                                                    'phone');
-                                              },
-                                              icon: const Icon(Icons.edit))),
-                                    )
+                                    CustomListTile(
+                                        text: FBase.userInfo['phone'],
+                                        leading: const Icon(Icons.phone),
+                                        trailing: IconButton(
+                                            onPressed: () {
+                                              controller.showBottomSheet(
+                                                  context,
+                                                  'Phone number',
+                                                  FBase.userInfo['phone'],
+                                                  'phone');
+                                            },
+                                            icon: const Icon(Icons.edit))),
                                   ],
                                 ),
                               ],

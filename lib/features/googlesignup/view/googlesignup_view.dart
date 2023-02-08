@@ -68,6 +68,12 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             CustomTextFormField(
+                              hintText: 'Enter Organization Name',
+                              icon: const Icon(Icons.location_city_rounded),
+                              onchanged: (value) => controller.organization = value,
+                              validator: Validation.nameValidator,
+                            ),
+                            CustomTextFormField(
                               hintText: 'Enter Name',
                               icon: const Icon(Icons.person),
                               onchanged: (value) => controller.name = value,
@@ -75,6 +81,7 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
                             ),
                             CustomTextFormField(
                               hintText: 'Enter Email',
+                              readonly: true,
                               inputType: TextInputType.emailAddress,
                               icon: const Icon(Icons.email),
                               onchanged: (value) => controller.email = value,
@@ -90,7 +97,7 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
                             ),
                             PasswordField(
                               onchanged: (value) => controller.password = value,
-                              validator: Validation.phoneValidator,
+                              validator: Validation.passwordValidator,
                             ),
                             PasswordField(
                               hintext: 'Confirm Password',
