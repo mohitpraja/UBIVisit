@@ -22,8 +22,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
             onTap: () => Get.focusScope!.unfocus(),
             child: Scaffold(
               backgroundColor: Colors.white,
-              appBar:
-              AppBar(
+              appBar: AppBar(
                 titleSpacing: 0,
                 toolbarHeight: 60,
                 backgroundColor: GlobalColor.customColor,
@@ -36,7 +35,6 @@ class GuardHomeView extends GetView<GuardHomeController> {
                 ),
               ),
               drawer: Guarddrawer(),
-
               body: SizedBox(
                 height: Get.height,
                 child: Stack(
@@ -147,7 +145,6 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                              
                                 Expanded(
                                   child: StreamBuilder(
                                     stream: controller.searchByName.value == ''
@@ -155,6 +152,9 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                             .collection(
                                                 'ubivisit/ubivisit/visitors')
                                             .where('timeout', isEqualTo: '')
+                                            .where('organization',
+                                                isEqualTo: FBase
+                                                    .userInfo['organization'])
                                             .snapshots()
                                         : FirebaseFirestore.instance
                                             .collection(

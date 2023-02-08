@@ -14,6 +14,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/components/customsnackbar.dart';
+import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/routes.dart';
@@ -113,6 +114,7 @@ class AddvisitorController extends GetxController {
   Future getSender() {
     return FirebaseFirestore.instance
         .collection('ubivisit/ubivisit/users')
+        .where('organization', isEqualTo: FBase.userInfo['organization'])
         .get()
         .then((QuerySnapshot querySnapshot) {
       for (var e in querySnapshot.docs) {

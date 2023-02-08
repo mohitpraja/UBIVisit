@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
 
@@ -9,6 +10,7 @@ class GuardVisitorListController extends GetxController {
   List allVisitors = [];
   final Stream visitorStream = FirebaseFirestore.instance
       .collection('ubivisit/ubivisit/visitors')
+      .where('organization', isEqualTo: FBase.userInfo['organization'])
       .snapshots();
   showDetails(user) {
     Get.defaultDialog(
