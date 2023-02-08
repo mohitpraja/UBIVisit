@@ -1,9 +1,13 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
+import 'package:ubivisit/core/components/customtextform.dart';
+import 'package:ubivisit/core/components/passwordfield.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/validation.dart';
@@ -40,7 +44,6 @@ class LoginView extends GetView<LoginController> {
                 ),
                 Form(
                   key: Validation.loginFormKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Container(
                     margin: const EdgeInsets.all(12),
                     height: Get.height * 0.66,
@@ -65,59 +68,14 @@ class LoginView extends GetView<LoginController> {
                             ),
                           ],
                         ),
-                        TextFormField(
-                          keyboardType: TextInputType.number,
-                          style: const TextStyle(color: Colors.black54),
-                          maxLength: 10,
-                          controller: controller.phone,
-                          decoration: InputDecoration(
-                              contentPadding: EdgeInsets.zero,
-                              filled: true,
-                              hintStyle: const TextStyle(color: Colors.black54),
-                              hintText: 'Phone number',
-                              counterText: '',
-                              prefixIcon: const Icon(Icons.person),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                          validator: MultiValidator(
-                            [
-                              RequiredValidator(
-                                  errorText: 'Required Phone Number'),
-                              PatternValidator(RegExp(r'^[0-9]{10}$').pattern,
-                                  errorText: 'Please enter valid Phone Number')
-                            ],
-                          ),
+                        CustomTextFormField(
+                          hintText: 'Phone Number',
+                          icon: const Icon(Icons.person),
+                          controller: controller.phone),
+                        PasswordField(
+                          validator: Validation.passwordValidator,
+                          controller: controller.pass,
                         ),
-                        Obx(() => TextFormField(
-                              style: const TextStyle(color: Colors.black54),
-                              obscureText: controller.isPass.value,
-                              controller: controller.pass,
-                              decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.zero,
-                                  filled: true,
-                                  hintStyle:
-                                      const TextStyle(color: Colors.black54),
-                                  hintText: 'Enter Password',
-                                  suffixIcon: IconButton(
-                                      onPressed: () => controller.showPass(),
-                                      icon: controller.isPass.value
-                                          ? const Icon(Icons.visibility_off)
-                                          : const Icon(Icons.visibility)),
-                                  prefixIcon: const Icon(Icons.lock),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10))),
-                              validator: MultiValidator(
-                                [
-                                  RequiredValidator(
-                                      errorText: 'Required Password'),
-                                  PatternValidator(
-                                      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$&*~]).{6,}$')
-                                          .pattern,
-                                      errorText:
-                                          ("Password doesn't match the format : Abc@123"))
-                                ],
-                              ),
-                            )),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [

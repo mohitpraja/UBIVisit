@@ -43,7 +43,7 @@ class AllGuardDataController extends GetxController {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -51,13 +51,13 @@ class AllGuardDataController extends GetxController {
                       children: [
                         Text(
                           user['name'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black54,
                           ),
                         ),
                         Text(
                           user['post'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black54,
                           ),
                         ),
@@ -65,7 +65,7 @@ class AllGuardDataController extends GetxController {
                     ),
                   ],
                 ),
-                Divider(),
+                const Divider(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -80,7 +80,7 @@ class AllGuardDataController extends GetxController {
                         )),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 2,
                     ),
                     Row(
@@ -155,7 +155,6 @@ class AllGuardDataController extends GetxController {
               height: Get.height * 0.6,
               child: Form(
                   key: Validation.guardFormKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [

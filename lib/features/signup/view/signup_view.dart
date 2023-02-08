@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
+import 'package:ubivisit/core/components/customtextform.dart';
+import 'package:ubivisit/core/components/passwordfield.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/validation.dart';
@@ -47,7 +48,7 @@ class SignupView extends GetView<SignupController> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: Get.height*0.04,
+                            fontSize: Get.height * 0.04,
                             fontWeight: FontWeight.normal,
                             fontFamily: CustomFonts.alata),
                       ),
@@ -56,7 +57,7 @@ class SignupView extends GetView<SignupController> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.grey,
-                            fontSize:Get.height*0.02,
+                            fontSize: Get.height * 0.02,
                             fontFamily: CustomFonts.alata),
                       ),
                     ],
@@ -65,158 +66,39 @@ class SignupView extends GetView<SignupController> {
                     height: Get.height * 0.65,
                     child: Form(
                         key: Validation.signupFormKey,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            TextFormField(
-                              style: const TextStyle(color: Colors.black54),
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.zero,
-                                  filled: true,
-                                  hintStyle:
-                                      const TextStyle(color: Colors.black54),
-                                  hintText: 'Enter name',
-                                  
-                                  
-                                  prefixIcon: const Icon(Icons.person),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10))),
-                              validator: MultiValidator([
-                                RequiredValidator(errorText: 'Name required'),
-                                PatternValidator(
-                                    RegExp(r'^[a-z A-Z]+$').pattern,
-                                    errorText: 'Invalid name')
-                              ]),
-                              onChanged: (value) => controller.name = value,
+                            CustomTextFormField(
+                              hintText: 'Enter Name',
+                              icon: const Icon(Icons.person),
+                              onchanged: (value) => controller.name = value,
+                              validator: Validation.nameValidator,
                             ),
-                            TextFormField(
-                              keyboardType: TextInputType.emailAddress,
-                              style: const TextStyle(color: Colors.black54),
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.zero,
-                                  filled: true,
-                                  hintStyle:
-                                      const TextStyle(color: Colors.black54),
-                                  hintText: 'Enter email',
-                                  prefixIcon: const Icon(Icons.email),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10))),
-                              validator: MultiValidator([
-                                RequiredValidator(errorText: 'Email required'),
-                                PatternValidator(
-                                    RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-                                        .pattern,
-                                    errorText: 'Invalid email')
-                              ]),
-                              onChanged: (value) => controller.email = value,
+                            CustomTextFormField(
+                              hintText: 'Enter Email',
+                              inputType: TextInputType.emailAddress,
+                              icon: const Icon(Icons.email),
+                              onchanged: (value) => controller.email = value,
+                              validator: Validation.emailValidator,
                             ),
-                            TextFormField(
-                              keyboardType: TextInputType.number,
+                            CustomTextFormField(
+                              hintText: 'Enter Phone Number',
+                              inputType: TextInputType.number,
+                              icon: const Icon(Icons.phone),
+                              onchanged: (value) => controller.phone = value,
                               maxLength: 10,
-                              style: const TextStyle(color: Colors.black54),
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.zero,
-                                  counterText: '',
-                                  filled: true,
-                                  hintStyle:
-                                      const TextStyle(color: Colors.black54),
-                                  hintText: 'Enter Phone Number ',
-                                  prefixIcon: const Icon(Icons.phone),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10))),
-                              // validator: (value) {
-                              //   FBase.checkUser(value);
-                              //   Validation.isValid(
-                              //       value, 'Phone number required');
-                              //   Pattern pattern = r'^[0-9]{10}$';
-                              //   RegExp regex = RegExp(pattern.toString());
-                              //   if (!regex.hasMatch(value!)) {
-                              //     return 'Enter Valid Phone';
-                              //   }
-                               
-                                
-                              //   if (regex.hasMatch(value)) {
-                              //    print(
-                              //      FBase.checkUser(value).then((val) {
-                                   
-                              //     })
-                              //    );
-                              //   }
-                              // },
-                              validator: MultiValidator([
-                                RequiredValidator(
-                                    errorText: 'Phone number required'),
-                                PatternValidator(RegExp(r'^[0-9]{10}$').pattern,
-                                    errorText: 'Invalid number')
-                              ]),
-                              onChanged: (value) => controller.phone = value,
+                              validator: Validation.phoneValidator,
                             ),
-                            
-                           
-                            Obx(() => TextFormField(
-                                  style: const TextStyle(color: Colors.black54),
-                                  obscureText: controller.isPass.value,
-                                  decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.zero,
-                                      filled: true,
-                                      hintStyle: const TextStyle(
-                                          color: Colors.black54),
-                                      hintText: 'Enter Password',
-                                      suffixIcon: IconButton(
-                                          onPressed: () =>
-                                              controller.showPass(),
-                                          icon: controller.isPass.value
-                                              ? const Icon(Icons.visibility_off)
-                                              : const Icon(Icons.visibility)),
-                                      prefixIcon: const Icon(Icons.lock),
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10))),
-                                  validator: MultiValidator([
-                                    MinLengthValidator(6,
-                                        errorText:
-                                            'Password must be at least 6 digits long'),
-                                    RequiredValidator(
-                                        errorText: 'Password requied'),
-                                    PatternValidator(
-                                        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$&*~]).{6,}$')
-                                            .pattern,
-                                        errorText:
-                                            "Password doesn't match the format : Abc@123")
-                                  ]),
-                                  onChanged: (value) =>
-                                      controller.password = value,
-                                )),
-                            Obx(() => TextFormField(
-                                  style: const TextStyle(color: Colors.black54),
-                                  obscureText: controller.isConfirmPass.value,
-                                  decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.zero,
-                                      filled: true,
-                                      hintStyle: const TextStyle(
-                                          color: Colors.black54),
-                                      hintText: 'Confirm Password',
-                                      suffixIcon: IconButton(
-                                          onPressed: () =>
-                                              controller.showConfirmPass(),
-                                          icon: controller.isConfirmPass.value
-                                              ? const Icon(Icons.visibility_off)
-                                              : const Icon(Icons.visibility)),
-                                      prefixIcon: const Icon(Icons.lock),
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10))),
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Confirm Password required';
-                                    }
-                                    if (value != controller.password) {
-                                      return 'Password Do Not Match';
-                                    }
-                                    return null;
-                                  },
-                                )),
+                            PasswordField(
+                              onchanged: (value) => controller.password = value,
+                              validator: Validation.passwordValidator,
+                            ),
+                            PasswordField(
+                              hintext: 'Confirm Password',
+                              validator: (value) => Validation.confirmValidator(
+                                  value, controller.password),
+                            ),
                             CustomButton(
                               title: 'Signup',
                               onPress: () {
@@ -229,7 +111,7 @@ class SignupView extends GetView<SignupController> {
                                 Text(
                                   'Already have an account? ',
                                   style: TextStyle(
-                                      fontSize: Get.height*0.02,
+                                      fontSize: Get.height * 0.02,
                                       fontWeight: FontWeight.w500,
                                       fontFamily: CustomFonts.alata,
                                       color: Colors.black54),
@@ -241,7 +123,7 @@ class SignupView extends GetView<SignupController> {
                                   child: Text(
                                     'Login here ',
                                     style: TextStyle(
-                                        fontSize:Get.height*0.021,
+                                        fontSize: Get.height * 0.021,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: CustomFonts.alata,
                                         color: GlobalColor.customColor),

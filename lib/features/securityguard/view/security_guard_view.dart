@@ -56,7 +56,6 @@ class SecurityGuardView extends GetView<SecurityGuardController> {
             ),
             Form(
               key: Validation.guardFormKey,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

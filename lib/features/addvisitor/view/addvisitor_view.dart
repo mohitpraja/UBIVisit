@@ -4,11 +4,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
+import 'package:ubivisit/core/components/customtextform.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
@@ -89,75 +89,28 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  TextFormField(
-                                    style:
-                                        const TextStyle(color: Colors.black54),
-                                    decoration: InputDecoration(
-                                        filled: true,
-                                        hintStyle: const TextStyle(
-                                            color: Colors.black54),
-                                        hintText: 'Enter name',
-                                        contentPadding: EdgeInsets.zero,
-                                        prefixIcon: const Icon(Icons.person),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10))),
-                                    validator: MultiValidator([
-                                      RequiredValidator(
-                                          errorText: 'Name required'),
-                                      PatternValidator(
-                                          RegExp(r'^[a-z A-Z]+$').pattern,
-                                          errorText: 'Invalid name')
-                                    ]),
-                                    onChanged: (value) =>
+                                  CustomTextFormField(
+                                    hintText: 'Enter Name',
+                                    icon: const Icon(Icons.person),
+                                    onchanged: (value) =>
                                         controller.name = value,
+                                        validator: Validation.nameValidator,
                                   ),
-                                  TextFormField(
-                                    keyboardType: TextInputType.number,
-                                    maxLength: 10,
-                                    style:
-                                        const TextStyle(color: Colors.black54),
-                                    decoration: InputDecoration(
-                                        counterText: '',
-                                        filled: true,
-                                        hintStyle: const TextStyle(
-                                            color: Colors.black54),
-                                        hintText: 'Enter Phone Number ',
-                                        contentPadding: EdgeInsets.zero,
-                                        prefixIcon: const Icon(Icons.phone),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10))),
-                                    validator: MultiValidator([
-                                      RequiredValidator(
-                                          errorText: 'Phone number required'),
-                                      PatternValidator(
-                                          RegExp(r'^[0-9]{10}$').pattern,
-                                          errorText: 'Invalid number')
-                                    ]),
-                                    onChanged: (value) =>
+                                  CustomTextFormField(
+                                    hintText: 'Enter Phone Number',
+                                    icon: const Icon(Icons.phone),
+                                    onchanged: (value) =>
                                         controller.phone = value,
+                                    maxLength: 10,
+                                     validator: Validation.phoneValidator,
                                   ),
-                                  TextFormField(
-                                    style:
-                                        const TextStyle(color: Colors.black54),
-                                    decoration: InputDecoration(
-                                        filled: true,
-                                        hintStyle: const TextStyle(
-                                            color: Colors.black54),
-                                        hintText: 'Enter Address',
-                                        contentPadding: EdgeInsets.zero,
-                                        prefixIcon: const Icon(
-                                            Icons.calendar_view_day_outlined),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10))),
-                                    validator: MultiValidator([
-                                      RequiredValidator(
-                                          errorText: 'Address required'),
-                                    ]),
-                                    onChanged: (value) =>
+                                  CustomTextFormField(
+                                    hintText: 'Enter Address',
+                                    icon: const Icon(
+                                        Icons.calendar_view_day_outlined),
+                                    onchanged: (value) =>
                                         controller.address = value,
+                                        validator: (value) => Validation.isValid(value, 'Address required'),
                                   ),
                                   DropdownButtonFormField2(
                                     itemPadding: EdgeInsets.zero,
