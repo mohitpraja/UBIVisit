@@ -289,7 +289,7 @@ class FBase {
   }
 
   static Future addVisitor(
-      name, phone, address, purpose, tomeet, image, qr) async {
+      name, phone, address, purpose, tomeet, image, qr,organization) async {
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     final imgId = image.path.split('/').last;
     final qrId = qr.path.split('/').last;
@@ -324,7 +324,8 @@ class FBase {
           'time': time,
           'status': 'waiting...',
           'timeout': '',
-          'qr': qrUrl
+          'qr': qrUrl,
+          'organization': organization
         });
       });
     });

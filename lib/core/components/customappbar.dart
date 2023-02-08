@@ -22,7 +22,7 @@ class Customeappbar extends GetView with PreferredSizeWidget{
       backgroundColor: color??GlobalColor.customColor,
       elevation: 0,
       title: Text(title,style: style ?? TextStyle(color: colors ?? Colors.white)),
-      leading: IconButton(onPressed:onPress ?? null,
+      leading: IconButton(onPressed:onPress,
         color: colors??Colors.white,
         icon: const Icon(Icons.arrow_back),
 
