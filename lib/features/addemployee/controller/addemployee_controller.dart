@@ -54,7 +54,7 @@ class AddEmployeeController extends GetxController {
           const CustomSnackbar(title: 'Warning', msg: 'This mail already ').show1();
         } else {
       Get.back();
-      FBase.addUser(name,email, phone, password,post,'employee').then((value){
+      FBase.addUser(name,email, phone, password,post,'employee',FBase.userInfo['organization']).then((value){
 
           AwesomeDialog(
           context: context,

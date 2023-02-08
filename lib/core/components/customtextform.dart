@@ -12,11 +12,13 @@ class CustomTextFormField extends StatelessWidget {
       this.controller,
       this.validator,
       this.onchanged,
+      this.readonly,
       this.initialValue});
 
   final TextInputType? inputType;
   final TextStyle? textStyle;
   final int? maxLength;
+  final bool? readonly;
   final String hintText;
   final String? initialValue;
   final Icon? icon;
@@ -31,6 +33,7 @@ class CustomTextFormField extends StatelessWidget {
       keyboardType: inputType ?? TextInputType.text,
       style: textStyle ?? const TextStyle(color: Colors.black54),
       maxLength: maxLength,
+      readOnly: false,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.zero,
           filled: true,

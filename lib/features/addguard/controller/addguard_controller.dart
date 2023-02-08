@@ -53,7 +53,7 @@ class AddGuardController extends GetxController {
           const CustomSnackbar(title: 'Warning', msg: 'This mail already ').show1();
         } else {
       Get.back();
-      FBase.addUser(name,email, phone, password,'Guard','').then((value){
+      FBase.addUser(name,email, phone, password,'Guard','',FBase.userInfo['organization']).then((value){
 
           AwesomeDialog(
           context: context,

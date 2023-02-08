@@ -8,11 +8,13 @@ class PasswordField extends StatelessWidget {
       this.controller,
       this.onchanged,
       this.validator,
+      this.initialValue,
       this.hintext});
   final TextEditingController? controller;
   final Function(String)? onchanged;
   final String? Function(String?)? validator;
   final String? hintext;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class PasswordField extends StatelessWidget {
                   OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
           validator: validator,
           onChanged: onchanged,
+          initialValue: initialValue,
           textInputAction: TextInputAction.next,
           autovalidateMode: AutovalidateMode.onUserInteraction,
         ));
