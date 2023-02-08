@@ -14,7 +14,7 @@ class EmpVisitorListView extends GetView<EmpVisitorListController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-      Customeappbar(onPress: (){
+      Customappbar(onPress: (){
         Get.offAllNamed(Routes.guarddash);
       },title: "Visitor's List",),
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/global/global.dart';
 
-class Customeappbar extends GetView with PreferredSizeWidget{
+class Customappbar extends GetView with PreferredSizeWidget{
   final String title;
   final VoidCallback? onPress;
   final  Color? color;
@@ -11,7 +11,7 @@ class Customeappbar extends GetView with PreferredSizeWidget{
 
 
 
-  const Customeappbar({super.key,  this.title="",required this.onPress,
+  const Customappbar({super.key,  this.title="",required this.onPress,
   this.color,this.colors,this.style});
   @override
 

@@ -21,7 +21,7 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: Customeappbar(
+      appBar: Customappbar(
         colors: Colors.black,
         color: Colors.white,
         onPress: () {

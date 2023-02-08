@@ -20,7 +20,7 @@ class AdminProfileView extends GetView<AdminProfileController> {
   Widget build(BuildContext context) {
     return Obx(() =>controller.loader.value?const Center(child: CircularProgressIndicator()):Scaffold(
           backgroundColor: Colors.white,
-           appBar: Customeappbar(title: "Profile",onPress: () {
+           appBar: Customappbar(title: "Profile",onPress: () {
              Get.offAllNamed(Routes.admindash);
 
 

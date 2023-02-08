@@ -13,7 +13,7 @@ class OtpView extends GetView<OtpController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Customeappbar(
+      appBar: Customappbar(
         onPress: () {
           Get.back();
         },

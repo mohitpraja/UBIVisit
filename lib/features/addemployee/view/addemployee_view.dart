@@ -7,7 +7,6 @@ import 'package:ubivisit/core/components/customtextform.dart';
 import 'package:ubivisit/core/components/passwordfield.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/validation.dart';
-import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/addemployee/controller/addemployee_controller.dart';
 
 class AddEmployeeView extends GetView<AddEmployeeController> {
@@ -17,7 +16,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: Customeappbar(
+      appBar: Customappbar(
           color: Colors.transparent,
           colors: Colors.black,
           onPress: () {
