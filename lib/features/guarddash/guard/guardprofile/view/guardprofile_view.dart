@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
@@ -18,16 +19,12 @@ class GuardProfileView extends GetView<GuardProfileController>{
   Widget build(BuildContext context) {
     return Obx(() =>controller.loader.value?const Center(child: CircularProgressIndicator()):Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(
-                backgroundColor:GlobalColor.customColor,
-            title: Text('Profile',style: TextStyle(
-              fontFamily: CustomFonts.alata
-            ),),
-            leading: IconButton(
-              onPressed: () => Get.offAllNamed(Routes.guarddash),
-              icon: const Icon(Icons.arrow_back),
-            ),
-          ),
+          appBar:
+          Customeappbar(onPress: (){
+            Get.offAllNamed(Routes.guarddash);
+          },title: "Profile",),
+
+
           body: GestureDetector(
             onTap: () => Get.focusScope!.unfocus(),
             child: SingleChildScrollView(

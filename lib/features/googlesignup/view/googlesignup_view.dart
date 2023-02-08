@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/global/customfont.dart';
@@ -16,16 +17,14 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        titleSpacing: 1,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () => Get.toNamed(Routes.login),
-          icon: const Icon(Icons.arrow_back),
-          color: Colors.black54,
+        appBar:
+        Customeappbar(
+          colors: Colors.black,
+          color: Colors.white,
+          onPress: () {
+            Get.back();
+          },
         ),
-      ),
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),
         child: ScrollConfiguration(

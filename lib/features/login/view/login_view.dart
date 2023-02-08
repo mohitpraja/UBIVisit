@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/global/customfont.dart';
@@ -16,14 +17,12 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () => Get.back(),
-          icon: const Icon(Icons.arrow_back),
-          color: Colors.black54,
-        ),
+      appBar: Customeappbar(
+        colors: Colors.black,
+        color: Colors.white,
+        onPress: () {
+          Get.back();
+        },
       ),
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),
@@ -54,13 +53,13 @@ class LoginView extends GetView<LoginController> {
                               "Welcome !!!",
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: Get.height*0.035,
+                                  fontSize: Get.height * 0.035,
                                   fontFamily: CustomFonts.alata),
                             ),
                             Text(
                               "Login to your existing account",
                               style: TextStyle(
-                                  fontSize:Get.height*0.02,
+                                  fontSize: Get.height * 0.02,
                                   color: Colors.grey,
                                   fontFamily: CustomFonts.alata),
                             ),
@@ -72,7 +71,7 @@ class LoginView extends GetView<LoginController> {
                           maxLength: 10,
                           controller: controller.phone,
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.zero,
+                              contentPadding: EdgeInsets.zero,
                               filled: true,
                               hintStyle: const TextStyle(color: Colors.black54),
                               hintText: 'Phone number',
@@ -94,7 +93,7 @@ class LoginView extends GetView<LoginController> {
                               obscureText: controller.isPass.value,
                               controller: controller.pass,
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.zero,
+                                  contentPadding: EdgeInsets.zero,
                                   filled: true,
                                   hintStyle:
                                       const TextStyle(color: Colors.black54),
@@ -131,8 +130,7 @@ class LoginView extends GetView<LoginController> {
                                     fontFamily: CustomFonts.alata,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize: Get.height*0.02
-                                    ),
+                                    fontSize: Get.height * 0.02),
                               ),
                             ),
                           ],
@@ -142,7 +140,8 @@ class LoginView extends GetView<LoginController> {
                           onPress: () {
                             if (Validation.loginFormKey.currentState!
                                 .validate()) {
-                                  controller.login(context, controller.phone.text, controller.pass.text);
+                              controller.login(context, controller.phone.text,
+                                  controller.pass.text);
                             }
                           },
                         ),
@@ -161,8 +160,7 @@ class LoginView extends GetView<LoginController> {
                                     color: Colors.black54,
                                     fontWeight: FontWeight.w500,
                                     fontFamily: CustomFonts.alata,
-                                    fontSize: Get.height*0.02
-                                    ),
+                                    fontSize: Get.height * 0.02),
                               ),
                               const Expanded(
                                   child: Divider(
@@ -176,7 +174,6 @@ class LoginView extends GetView<LoginController> {
                           child: ElevatedButton.icon(
                             onPressed: () {
                               controller.googleSignIn(context);
-                             
                             },
                             label: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
@@ -186,7 +183,7 @@ class LoginView extends GetView<LoginController> {
                                     color: GlobalColor.customColor,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 1,
-                                    fontSize: Get.height*0.02,
+                                    fontSize: Get.height * 0.02,
                                     fontFamily: CustomFonts.alata),
                               ),
                             ),
@@ -209,7 +206,7 @@ class LoginView extends GetView<LoginController> {
                               style: TextStyle(
                                   color: Colors.black54,
                                   fontWeight: FontWeight.w500,
-                                  fontSize: Get.height*0.02,
+                                  fontSize: Get.height * 0.02,
                                   fontFamily: CustomFonts.alata),
                             ),
                             InkWell(
@@ -219,7 +216,7 @@ class LoginView extends GetView<LoginController> {
                                 style: TextStyle(
                                     color: Colors.indigo,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: Get.height*0.021,
+                                    fontSize: Get.height * 0.021,
                                     fontFamily: CustomFonts.alata),
                               ),
                             )

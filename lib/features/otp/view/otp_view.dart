@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
+import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
@@ -8,20 +9,23 @@ import 'package:ubivisit/features/otp/controller/otp_controller.dart';
 
 class OtpView extends GetView<OtpController> {
   const OtpView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        leading: IconButton(
-            onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back)),
+      appBar: Customeappbar(
+        onPress: () {
+          Get.back();
+        },
       ),
+
+
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),
         child: Stack(
           children: [
             Positioned(
-              top: 0,
+              top: -.1,
               child: Container(
                 width: Get.width,
                 height: Get.height,
