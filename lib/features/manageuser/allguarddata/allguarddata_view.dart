@@ -19,7 +19,7 @@ class AllGuardDataView extends GetView<AllGuardDataController>{
         children: [
           Expanded(
             child: StreamBuilder(
-              stream: FBase.collectionPathGuard,
+              stream: controller.collectionPathGuard,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final data = snapshot.data?.docs;

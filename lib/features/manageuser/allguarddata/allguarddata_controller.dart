@@ -10,6 +10,11 @@ import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/validation.dart';
 
 class AllGuardDataController extends GetxController {
+  Stream collectionPathGuard = FBase.firestore
+      .collection('ubivisit/ubivisit/users')
+      .where('post', isEqualTo: 'Guard')
+      .where('organization', isEqualTo: FBase.userInfo['organization'])
+      .snapshots();
   List userInfo = [];
   showDetails(user) {
     Get.defaultDialog(
@@ -26,7 +31,7 @@ class AllGuardDataController extends GetxController {
                 Row(
                   children: [
                     InkWell(
-                       onTap: () => GlobalFunction.showImg(user['image']),
+                      onTap: () => GlobalFunction.showImg(user['image']),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(75),
                         child: CachedNetworkImage(
@@ -159,7 +164,7 @@ class AllGuardDataController extends GetxController {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                     CustomTextFormField(
+                      CustomTextFormField(
                         hintText: 'Enter Name',
                         icon: const Icon(Icons.person),
                         initialValue: user['name'],
