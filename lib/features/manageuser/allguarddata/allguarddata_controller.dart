@@ -163,7 +163,9 @@ class AllGuardDataController extends GetxController {
                         hintText: 'Enter Name',
                         icon: const Icon(Icons.person),
                         initialValue: user['name'],
-                        validator: Validation.nameValidator,
+                        validator: (value){
+                          return  Validation.nameValidator(value);
+                        },
                         onchanged: (value) => name = value,
                       ),
                       CustomTextFormField(
@@ -171,7 +173,9 @@ class AllGuardDataController extends GetxController {
                         icon: const Icon(Icons.email),
                         inputType: TextInputType.emailAddress,
                         initialValue: user['email'],
-                        validator: Validation.emailValidator,
+                        validator: (value){
+                          return  Validation.emailValidator(value);
+                        },
                         onchanged: (value) => email = value,
                       ),
                       CustomTextFormField(
@@ -179,7 +183,9 @@ class AllGuardDataController extends GetxController {
                         icon: const Icon(Icons.phone),
                         inputType: TextInputType.phone,
                         initialValue: user['phone'],
-                        validator: Validation.phoneValidator,
+                        validator: (value){
+                          return  Validation.phoneValidator(value);
+                        },
                         onchanged: (value) => phone = value,
                         maxLength: 10,
                       ),
@@ -188,12 +194,16 @@ class AllGuardDataController extends GetxController {
                         readonly: true,
                         icon: const Icon(Icons.card_travel),
                         initialValue: user['post'],
-                        validator: Validation.nameValidator,
+                        validator: (value){
+                          return  Validation.nameValidator(value);
+                        },
                         onchanged: (value) => post = value,
                       ),
                       PasswordField(
                         initialValue: user[password],
-                        validator: Validation.passwordValidator,
+                        validator: (value){
+                          return  Validation.passwordValidator(value);
+                        },
                         onchanged: (value) => password = value,
                       ),
                       Row(

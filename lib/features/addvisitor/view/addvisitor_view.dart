@@ -94,15 +94,20 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                     icon: const Icon(Icons.person),
                                     onchanged: (value) =>
                                         controller.name = value,
-                                        validator: Validation.nameValidator,
+                                        validator: (value){
+                                          return  Validation.nameValidator(value);
+                                        }
                                   ),
                                   CustomTextFormField(
                                     hintText: 'Enter Phone Number',
                                     icon: const Icon(Icons.phone),
+                                      inputType: TextInputType.number,
                                     onchanged: (value) =>
                                         controller.phone = value,
                                     maxLength: 10,
-                                     validator: Validation.phoneValidator,
+                                     validator:(value){
+                                       return  Validation.phoneValidator(value);
+                                     }
                                   ),
                                   CustomTextFormField(
                                     hintText: 'Enter Address',

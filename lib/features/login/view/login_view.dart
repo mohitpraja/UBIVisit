@@ -71,9 +71,16 @@ class LoginView extends GetView<LoginController> {
                         CustomTextFormField(
                           hintText: 'Phone Number',
                           icon: const Icon(Icons.person),
+                          maxLength: 10,
+                          validator: (value){
+                            return  Validation.phoneValidator(value);
+                          },
                           controller: controller.phone),
+
                         PasswordField(
-                          validator: Validation.passwordValidator,
+                          validator: (value){
+                            return  Validation.passwordValidator(value);
+                          },
                           controller: controller.pass,
                         ),
                         Row(

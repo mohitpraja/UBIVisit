@@ -10,6 +10,7 @@ import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
+import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/admindash/admin/adminprofile/controller/adminprofile_controller.dart';
 
@@ -166,6 +167,7 @@ class AdminProfileView extends GetView<AdminProfileController> {
                                     ],
                                   ),
                                   CustomListTile(
+
                                       text: FBase.userInfo['name'],
                                       leading: const Icon(Icons.person),
                                       trailing: IconButton(
@@ -199,6 +201,7 @@ class AdminProfileView extends GetView<AdminProfileController> {
                                     ],
                                   ),
                                   CustomListTile(
+                                      
                                       text: FBase.userInfo['email'],
                                       leading: const Icon(Icons.email),
                                       trailing: IconButton(

@@ -73,20 +73,26 @@ class SignupView extends GetView<SignupController> {
                               hintText: 'Enter Organization Name',
                               icon: const Icon(Icons.location_city_rounded),
                               onchanged: (value) => controller.organization = value,
-                              validator: Validation.nameValidator,
+                              validator: (value){
+                                return  Validation.nameValidator(value);
+                              },
                             ),
                             CustomTextFormField(
                               hintText: 'Enter Name',
                               icon: const Icon(Icons.person),
                               onchanged: (value) => controller.name = value,
-                              validator: Validation.nameValidator,
+                              validator: (value){
+                                return  Validation.nameValidator(value);
+                              },
                             ),
                             CustomTextFormField(
                               hintText: 'Enter Email',
                               inputType: TextInputType.emailAddress,
                               icon: const Icon(Icons.email),
                               onchanged: (value) => controller.email = value,
-                              validator: Validation.emailValidator,
+                              validator: (value){
+                                return  Validation.emailValidator(value);
+                              },
                             ),
                             CustomTextFormField(
                               hintText: 'Enter Phone Number',
@@ -94,11 +100,15 @@ class SignupView extends GetView<SignupController> {
                               icon: const Icon(Icons.phone),
                               onchanged: (value) => controller.phone = value,
                               maxLength: 10,
-                              validator: Validation.phoneValidator,
+                              validator:(value){
+                                return  Validation.phoneValidator(value);
+                              },
                             ),
                             PasswordField(
                               onchanged: (value) => controller.password = value,
-                              validator: Validation.passwordValidator,
+                              validator: (value){
+                                return  Validation.passwordValidator(value);
+                              },
                             ),
                             PasswordField(
                               hintext: 'Confirm Password',

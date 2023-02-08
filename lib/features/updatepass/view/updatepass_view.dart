@@ -58,7 +58,9 @@ class UpdatePass extends GetView<UpdatePassController> {
                         PasswordField(
                          
                           onchanged: (value) => controller.password = value,
-                           validator: Validation.passwordValidator,
+                           validator:(value){
+                             return  Validation.passwordValidator(value);
+                           },
                         ),
                         SizedBox(
                           height: Get.height * 0.035,
