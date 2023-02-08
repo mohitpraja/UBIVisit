@@ -68,10 +68,12 @@ class FBase {
   static Stream collectionPathEmp = firestore
       .collection('ubivisit/ubivisit/users')
       .where('role', isEqualTo: 'employee')
+      .where('organization',isEqualTo:userInfo['organization'])
       .snapshots();
   static Stream collectionPathGuard = firestore
       .collection('ubivisit/ubivisit/users')
       .where('post', isEqualTo: 'Guard')
+      .where('organization',isEqualTo:userInfo['organization'])
       .snapshots();
   static bool isMatch = false;
   static RxMap userInfo = {}.obs;
