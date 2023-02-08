@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/components/customtextform.dart';
@@ -20,14 +21,12 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () => Get.back(),
-          icon: const Icon(Icons.arrow_back),
-          color: Colors.black54,
-        ),
+      appBar: Customeappbar(
+        colors: Colors.black,
+        color: Colors.white,
+        onPress: () {
+          Get.back();
+        },
       ),
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),
@@ -72,11 +71,7 @@ class LoginView extends GetView<LoginController> {
                         CustomTextFormField(
                           hintText: 'Phone Number',
                           icon: const Icon(Icons.person),
-                          controller: controller.phone,
-                          inputType: TextInputType.number,
-                          maxLength: 10,
-                          validator: Validation.phoneValidator,
-                        ),
+                          controller: controller.phone),
                         PasswordField(
                           validator: Validation.passwordValidator,
                           controller: controller.pass,

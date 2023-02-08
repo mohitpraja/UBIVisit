@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/admindash/admin/adminvisitorlist/controller/adminvisitorlist_controller.dart';
 
 class AdminVisitorListView extends GetView<AdminVisitorListController> {
@@ -10,11 +12,10 @@ class AdminVisitorListView extends GetView<AdminVisitorListController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-            backgroundColor:GlobalColor.customColor,
+      appBar: Customeappbar(onPress: (){
+        Get.offAllNamed(Routes.admindash);
+      },title: "Visitor's List"),
 
-        title: const Text("Visitor's List"),
-      ),
       body: StreamBuilder(
         stream: controller.visitorStream,
         builder: (context, snapshot) {

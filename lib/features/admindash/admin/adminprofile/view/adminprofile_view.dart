@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/customlisttile.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
@@ -17,33 +18,27 @@ class AdminProfileView extends GetView<AdminProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => controller.loader.value
-        ? const Center(child: CircularProgressIndicator())
-        : Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              backgroundColor: GlobalColor.customColor,
-              title: Text(
-                'Profile',
-                style: TextStyle(fontFamily: CustomFonts.alata),
-              ),
-              leading: IconButton(
-                onPressed: () => Get.offAllNamed(Routes.admindash),
-                icon: const Icon(Icons.arrow_back),
-              ),
-            ),
-            body: GestureDetector(
-              onTap: () => Get.focusScope!.unfocus(),
-              child: SingleChildScrollView(
-                child: Container(
-                  height: Get.height * 0.8,
-                  margin: const EdgeInsets.all(10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Stack(
-                        children: [
-                          controller.imagePath.value != ''
+    return Obx(() =>controller.loader.value?const Center(child: CircularProgressIndicator()):Scaffold(
+          backgroundColor: Colors.white,
+           appBar: Customeappbar(title: "Profile",onPress: () {
+             Get.offAllNamed(Routes.admindash);
+
+
+           },),
+
+
+          body: GestureDetector(
+            onTap: () => Get.focusScope!.unfocus(),
+            child: SingleChildScrollView(
+              child: Container(
+                height: Get.height * 0.8,
+            margin: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Stack(
+                  children: [
+                    controller.imagePath.value != ''
                               ? InkWell(
                                   onTap: () => GlobalFunction.showImg(
                                       controller.imagePath.value),

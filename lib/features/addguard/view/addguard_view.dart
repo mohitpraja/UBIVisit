@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/components/customtextform.dart';
@@ -16,15 +17,10 @@ class AddGuardView extends GetView<AddGuardController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        titleSpacing: 1,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () => Get.toNamed(Routes.admindash),
-          icon: const Icon(Icons.arrow_back),
-          color: Colors.black54,
-        ),
+      appBar: Customeappbar(
+          color: Colors.transparent,
+          colors: Colors.black,
+          onPress: (){Get.back();}
       ),
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),

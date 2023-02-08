@@ -5,6 +5,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/components/customtextform.dart';
@@ -22,19 +23,14 @@ class AddvisitorView extends GetView<AddvisitorController> {
         ? const Center(child: CircularProgressIndicator())
         : Scaffold(
             backgroundColor: Colors.white,
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              title: const Text(
-                'Add Visitor Details',
-                style: TextStyle(fontSize: 20, color: Colors.black54),
-              ),
-              elevation: 0,
-              leading: IconButton(
-                onPressed: () => Get.toNamed(Routes.guarddash),
-                icon: const Icon(Icons.arrow_back),
-                color: Colors.black54,
-              ),
-            ),
+            appBar: Customeappbar(
+                color: Colors.transparent,
+                colors: Colors.black54,
+                title: "Add Visitor Details",
+                style: TextStyle(color: Colors.black54),
+                onPress: () {
+                  Get.back();
+                }),
             body: GestureDetector(
               onTap: () => Get.focusScope!.unfocus(),
               child: ScrollConfiguration(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/components/customtextform.dart';
@@ -16,16 +17,12 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        titleSpacing: 1,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () => Get.toNamed(Routes.admindash),
-          icon: const Icon(Icons.arrow_back),
-          color: Colors.black54,
-        ),
-      ),
+      appBar: Customeappbar(
+          color: Colors.transparent,
+          colors: Colors.black,
+          onPress: () {
+            Get.back();
+          }),
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),
         child: ScrollConfiguration(
@@ -33,7 +30,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
           child: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 12),
-              height: Get.height * 0.9,
+              height: Get.height * 0.91,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -85,6 +82,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                               onchanged: (value) => controller.phone = value,
                                validator: Validation.phoneValidator,
                             ),
+
                             CustomTextFormField(
                               hintText: 'Role',
                               icon: const Icon(Icons.card_travel),

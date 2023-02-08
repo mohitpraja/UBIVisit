@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/guarddash/guard/guardvisitorlist/controller/guardvisitorlist_controller.dart';
 
 class GuardVisitorListView extends GetView<GuardVisitorListController> {
@@ -10,10 +12,11 @@ class GuardVisitorListView extends GetView<GuardVisitorListController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: GlobalColor.customColor,
-        title: const Text("Visitor's List"),
-      ),
+      appBar:
+      Customeappbar(onPress: (){
+        Get.offAllNamed(Routes.guarddash);
+      },title: "Visitor's List",),
+
       body: StreamBuilder(
         stream: controller.visitorStream,
         builder: (context, snapshot) {
