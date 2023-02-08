@@ -32,8 +32,6 @@ import 'package:ubivisit/features/manageuser/binding/manageuser_binding.dart';
 import 'package:ubivisit/features/manageuser/view/manageuser_view.dart';
 import 'package:ubivisit/features/otp/binding/otp_binding.dart';
 import 'package:ubivisit/features/otp/view/otp_view.dart';
-import 'package:ubivisit/features/securityguard/binding/security_guard_binding.dart';
-import 'package:ubivisit/features/securityguard/view/security_guard_view.dart';
 import 'package:ubivisit/features/signup/binding/signup_binding.dart';
 import 'package:ubivisit/features/signup/view/signup_view.dart';
 import 'package:ubivisit/features/splash/binding/splash_binding.dart';
@@ -97,11 +95,7 @@ List<GetPage> allpage = [
     page: () => const AcceptDeclineView(),
     binding: AcceptDeclineBinding(),
   ),
-  GetPage(
-    name: Routes.security,
-    page: () => const SecurityGuardView(),
-    binding: SecurityGuardBinding(),
-  ),
+ 
   GetPage(
     name: Routes.visitoranalysis,
     page: () => const VisitorAnalysisView(),
