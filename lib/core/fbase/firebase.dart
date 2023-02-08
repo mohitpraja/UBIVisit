@@ -119,10 +119,13 @@ class FBase {
       Get.back();
       if (isMatch) {
         if (post == 'Admin') {
+          isMatch = true;
           Get.offAllNamed(Routes.admindash);
         } else if (post == 'Guard') {
+          isMatch = true;
           Get.offAllNamed(Routes.guarddash);
         } else {
+          isMatch = true;
           Get.offAllNamed(Routes.empdash);
         }
       } else {
