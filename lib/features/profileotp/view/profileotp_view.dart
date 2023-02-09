@@ -4,10 +4,10 @@ import 'package:pinput/pinput.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
-import 'package:ubivisit/features/visitorotp/controller/visitorotp_controller.dart';
+import 'package:ubivisit/features/profileotp/controller/profileotp_controller.dart';
 
-class VisitorOtpView extends GetView<VisitorOtpController> {
-  const VisitorOtpView({super.key});
+class ProfileOtpView extends GetView<ProfileOtpController> {
+  const ProfileOtpView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +90,7 @@ class VisitorOtpView extends GetView<VisitorOtpController> {
                                 Obx(() => Text(
                                       controller.forrebuilt.value == 'ram'
                                           ? ''
-                                          : '+91 ${controller.signupData[2]}',
+                                          : '+91 ${controller.signupData[0]}',
                                       style: TextStyle(
                                           fontSize: Get.height * 0.03,
                                           fontWeight: FontWeight.bold,

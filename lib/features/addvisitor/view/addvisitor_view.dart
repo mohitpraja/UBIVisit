@@ -11,7 +11,6 @@ import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/components/customtextform.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/validation.dart';
-import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/addvisitor/controller/addvisitor_controller.dart';
 
 class AddvisitorView extends GetView<AddvisitorController> {
@@ -27,7 +26,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                 color: Colors.transparent,
                 colors: Colors.black54,
                 title: "Add Visitor Details",
-                style: TextStyle(color: Colors.black54),
+                style: const TextStyle(color: Colors.black54),
                 onPress: () {
                   Get.back();
                 }),

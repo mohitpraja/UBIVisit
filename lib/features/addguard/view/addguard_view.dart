@@ -7,7 +7,6 @@ import 'package:ubivisit/core/components/customtextform.dart';
 import 'package:ubivisit/core/components/passwordfield.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/validation.dart';
-import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/addguard/controller/addguard_controller.dart';
 
 class AddGuardView extends GetView<AddGuardController> {

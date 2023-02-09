@@ -9,10 +9,11 @@ class Validation {
   static final guardFormKey = GlobalKey<FormState>();
   static final employeeFormKey = GlobalKey<FormState>();
   static final updatepassFormKey = GlobalKey<FormState>();
+  static final editProfileFormKey = GlobalKey<FormState>();
   static final googleSignupFormKey = GlobalKey<FormState>();
   static final adminProfileFormKey = GlobalKey<FormState>();
 
-  static isValid(val,msg) {
+  static isValid(val, msg) {
     if (val == null || val.isEmpty) {
       return msg;
     }
@@ -35,23 +36,26 @@ class Validation {
     }
   }
 
-  static  passwordValidator(value) {
-    if (value!.isEmpty || !RegExp(r'(?=.*?[#?!@$%^&*-]).{6,}$').hasMatch(value)) {
+  static passwordValidator(value) {
+    if (value!.isEmpty ||
+        !RegExp(r'(?=.*?[#?!@$%^&*-]).{6,}$').hasMatch(value)) {
       return 'Passwords must have at least one special character';
     } else {
       return null;
     }
   }
 
-  static  nameValidator(value) {
-    if (value!.isEmpty || !RegExp(r'^[a-z A-Z/+0-9]+$').hasMatch(value) ||RegExp(r'^[0-9]+$').hasMatch(value)) {
+  static nameValidator(value) {
+    if (value!.isEmpty ||
+        !RegExp(r'^[a-z A-Z/+0-9]+$').hasMatch(value) ||
+        RegExp(r'^[0-9]+$').hasMatch(value)) {
       return 'Enter Correct Field';
     } else {
       return null;
     }
   }
 
-  static  emailValidator(value) {
+  static emailValidator(value) {
     if (value!.isEmpty ||
         !RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
             .hasMatch(value)) {

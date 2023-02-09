@@ -12,7 +12,7 @@ import 'core/fbase/firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  var directory=await getApplicationDocumentsDirectory();
+  var directory = await getApplicationDocumentsDirectory();
   Hive.init(directory.path);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

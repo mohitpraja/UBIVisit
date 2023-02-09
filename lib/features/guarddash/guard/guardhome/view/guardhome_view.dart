@@ -34,7 +34,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                       fontFamily: CustomFonts.alata),
                 ),
               ),
-              drawer: Guarddrawer(),
+              drawer: const Guarddrawer(),
               body: SizedBox(
                 height: Get.height,
                 child: Stack(

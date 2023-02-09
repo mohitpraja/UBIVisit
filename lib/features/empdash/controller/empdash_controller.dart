@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:ubivisit/features/empdash/employee/emphome/view/emphome_view.dart';
-import 'package:ubivisit/features/empdash/employee/empprofile/view/empprofile_view.dart';
 import 'package:ubivisit/features/empdash/employee/empvisitorlist/view/empvisitorlist_view.dart';
+import 'package:ubivisit/features/showprofile/view/showprofile_view.dart';
 
 class EmpDashController extends GetxController {
   RxInt selectedindex = 0.obs;
@@ -12,6 +12,7 @@ class EmpDashController extends GetxController {
   List adminallpages = [
     const EmpHomeView(),
     const EmpVisitorListView(),
-    const EmpProfileView()
+    // const EmpProfileView(),
+    const ShowProfileView(),
   ];
 }

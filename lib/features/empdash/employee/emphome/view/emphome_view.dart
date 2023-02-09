@@ -28,7 +28,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                 style: TextStyle(fontSize: Get.height*0.03, fontFamily: CustomFonts.alata),
               ),
             ),
-             drawer: Guarddrawer(),
+             drawer: const Guarddrawer(),
 
             body: SizedBox(
               width: Get.width,

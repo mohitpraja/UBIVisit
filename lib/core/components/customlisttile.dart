@@ -18,6 +18,8 @@ class CustomListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: leading,
+      minVerticalPadding: 0,
+      
       horizontalTitleGap: spacing ?? 1,
       title: Text(text ?? ''),
       trailing: trailing,

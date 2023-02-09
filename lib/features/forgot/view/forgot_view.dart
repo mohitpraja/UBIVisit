@@ -6,7 +6,6 @@ import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/components/customtextform.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/validation.dart';
-import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/forgot/controller/forgot_controller.dart';
 
 class ForgotView extends GetView<ForgotController> {
