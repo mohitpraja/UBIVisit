@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/components/customtextform.dart';
 import 'package:ubivisit/core/components/passwordfield.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/validation.dart';
-import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/addguard/controller/addguard_controller.dart';
+
+import '../../../core/components/customappbar.dart';
 
 class AddGuardView extends GetView<AddGuardController> {
   const AddGuardView({super.key});
@@ -17,7 +17,7 @@ class AddGuardView extends GetView<AddGuardController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: Customeappbar(
+      appBar: CustomAppbar(
           color: Colors.transparent,
           colors: Colors.black,
           onPress: (){Get.back();}

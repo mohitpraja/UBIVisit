@@ -17,7 +17,7 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: Customeappbar(
+      appBar: CustomAppbar(
           color: Colors.transparent,
           colors: Colors.black,
           onPress: () {

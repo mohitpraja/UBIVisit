@@ -12,7 +12,7 @@ class AdminVisitorListView extends GetView<AdminVisitorListController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Customeappbar(onPress: (){
+      appBar: CustomAppbar(onPress: (){
         Get.offAllNamed(Routes.admindash);
       },title: "Visitor's List"),
 

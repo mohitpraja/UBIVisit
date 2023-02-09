@@ -23,7 +23,7 @@ class AdminProfileView extends GetView<AdminProfileController> {
         ? const Center(child: CircularProgressIndicator())
         : Scaffold(
             backgroundColor: Colors.white,
-            appBar: Customeappbar(
+            appBar: CustomAppbar(
               title: "Profile",
               onPress: () {
                 Get.offAllNamed(Routes.admindash);

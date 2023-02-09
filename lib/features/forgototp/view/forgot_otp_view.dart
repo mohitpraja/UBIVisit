@@ -14,7 +14,7 @@ class ForgotOtpView extends GetView<ForgotOtpController> {
     return Scaffold(
 
       appBar:
-      Customeappbar(
+      CustomAppbar(
         colors: Colors.black,
         color: Colors.white,
         onPress: () {
