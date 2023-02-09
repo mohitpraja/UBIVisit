@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 
 class WelcomeView extends GetView {
@@ -39,12 +40,7 @@ class WelcomeView extends GetView {
                           children: [
                             Text(
                               'Welcome to',
-                              style: TextStyle(
-                                  fontSize: Get.height*0.04,
-                                  fontWeight: FontWeight.w600,
-                                  fontFamily: CustomFonts.alata,
-                                  color: Colors.white,
-                                  letterSpacing: 1),
+                                style: ThemeText.headingWhite
                             ),
                             Text(
                               'UBIVisit',

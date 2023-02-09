@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/intoduction/controller/introduction_controller.dart';
 
@@ -23,10 +24,7 @@ class IntroductionView extends GetView<IntroductionController> {
                     Text(
                       'You can approve visitors, easy way to meet with just click',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black45,
-                          fontFamily: GoogleFonts.alata().fontFamily),
+                        style: ThemeText.heading2Style
                     ),
                     const SizedBox(
                       height: 20,
@@ -45,10 +43,7 @@ class IntroductionView extends GetView<IntroductionController> {
                     Text(
                       'Smart tool to ensure great experience for visitors with paperless solution',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black45,
-                          fontFamily: GoogleFonts.alata().fontFamily),
+                        style: ThemeText.heading2Style
                     ),
                     const SizedBox(
                       height: 20,
@@ -64,10 +59,7 @@ class IntroductionView extends GetView<IntroductionController> {
                     Text(
                       'You can analyze visitors details in easy way',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black45,
-                          fontFamily: GoogleFonts.alata().fontFamily),
+                        style: ThemeText.heading2Style
                     ),
                     const SizedBox(
                       height: 20,

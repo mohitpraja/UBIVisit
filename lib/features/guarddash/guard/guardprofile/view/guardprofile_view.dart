@@ -10,6 +10,7 @@ import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/guarddash/guard/guardprofile/controller/guardprofile_controller.dart';
 
@@ -108,10 +109,7 @@ class GuardProfileView extends GetView<GuardProfileController> {
                                             const EdgeInsets.only(left: 10),
                                         child: Text(
                                           'Post',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: CustomFonts.alata),
+                                            style: ThemeText.profileHeading
                                         ),
                                       ),
                                     ],
@@ -132,10 +130,7 @@ class GuardProfileView extends GetView<GuardProfileController> {
                                             const EdgeInsets.only(left: 10),
                                         child: Text(
                                           'Name',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: CustomFonts.alata),
+                                            style: ThemeText.profileHeading
                                         ),
                                       ),
                                     ],
@@ -165,10 +160,7 @@ class GuardProfileView extends GetView<GuardProfileController> {
                                             const EdgeInsets.only(left: 10),
                                         child: Text(
                                           'Email',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: CustomFonts.alata),
+                                            style: ThemeText.profileHeading
                                         ),
                                       ),
                                     ],
@@ -197,10 +189,7 @@ class GuardProfileView extends GetView<GuardProfileController> {
                                             const EdgeInsets.only(left: 10),
                                         child: Text(
                                           'Phone',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: CustomFonts.alata),
+                                          style: ThemeText.profileHeading,
                                         ),
                                       ),
                                     ],

@@ -7,6 +7,8 @@ import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/features/otp/controller/otp_controller.dart';
 
+import '../../../core/global/text_style.dart';
+
 class OtpView extends GetView<OtpController> {
   const OtpView({super.key});
 
@@ -41,11 +43,7 @@ class OtpView extends GetView<OtpController> {
                     ),
                     Text(
                       'OTP Verification',
-                      style: TextStyle(
-                          fontSize: Get.height * 0.035,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: CustomFonts.alata),
+                        style: ThemeText.headingWhite
                     ),
                     SizedBox(
                       height: Get.height * 0.002,
@@ -95,10 +93,7 @@ class OtpView extends GetView<OtpController> {
                                       controller.forrebuilt.value == 'ram'
                                           ? ''
                                           : '+91 ${controller.signupData[2]}',
-                                      style: TextStyle(
-                                          fontSize: Get.height * 0.03,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black54),
+                                    style: ThemeText.userHeading
                                     )),
                                 IconButton(
                                   onPressed: () {
@@ -116,20 +111,14 @@ class OtpView extends GetView<OtpController> {
                               onChanged: (value) => controller.otp = value,
                             ),
                             Text(
-                              "Didn't recieve an OTP",
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: Get.height * 0.02,
-                                  fontWeight: FontWeight.w500),
+                              "Didn't receive an OTP",
+                                style: ThemeText.heading2Style
                             ),
                             TextButton(
                                 onPressed: () {},
                                 child: Text(
                                   'Resend OTP',
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      color: GlobalColor.customColor,
-                                      fontWeight: FontWeight.w600),
+                                    style: ThemeText.BlueMinHeading
                                 )),
                             CustomButton(
                               title: 'Verify',

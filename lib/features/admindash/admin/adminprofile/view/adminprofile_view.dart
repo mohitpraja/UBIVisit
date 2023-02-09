@@ -14,6 +14,8 @@ import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/admindash/admin/adminprofile/controller/adminprofile_controller.dart';
 
+import '../../../../../core/global/text_style.dart';
+
 class AdminProfileView extends GetView<AdminProfileController> {
   const AdminProfileView({super.key});
 
@@ -109,10 +111,7 @@ class AdminProfileView extends GetView<AdminProfileController> {
                                             const EdgeInsets.only(left: 10),
                                         child: Text(
                                           'Post',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: CustomFonts.alata),
+                                            style: ThemeText.profileHeading
                                         ),
                                       ),
                                     ],
@@ -158,10 +157,7 @@ class AdminProfileView extends GetView<AdminProfileController> {
                                             const EdgeInsets.only(left: 10),
                                         child: Text(
                                           'Name',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: CustomFonts.alata),
+                                            style: ThemeText.profileHeading
                                         ),
                                       ),
                                     ],
@@ -192,10 +188,7 @@ class AdminProfileView extends GetView<AdminProfileController> {
                                             const EdgeInsets.only(left: 10),
                                         child: Text(
                                           'Email',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: CustomFonts.alata),
+                                            style: ThemeText.profileHeading
                                         ),
                                       ),
                                     ],

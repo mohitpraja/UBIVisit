@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/guarddash/guard/guardvisitorlist/controller/guardvisitorlist_controller.dart';
 
@@ -32,10 +33,10 @@ class GuardVisitorListView extends GetView<GuardVisitorListController> {
             ));
           }
           if (controller.allVisitors.isEmpty) {
-            return const Center(
+            return Center(
                 child: Text(
               'No Visitor added yet',
-              style: TextStyle(fontSize: 16),
+                    style: ThemeText.heading2Style
             ));
           }
           return ListView.builder(

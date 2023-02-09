@@ -7,6 +7,8 @@ import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/features/updatepass/controller/updatepass_controller.dart';
 
+import '../../../core/global/text_style.dart';
+
 class UpdatePass extends GetView<UpdatePassController> {
   const UpdatePass({super.key});
 
@@ -43,10 +45,7 @@ class UpdatePass extends GetView<UpdatePassController> {
                 ),
                 Text(
                   'reset your account password',
-                  style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: Get.height * 0.02,
-                      fontWeight: FontWeight.w500),
+                    style: ThemeText.heading2Style
                 ),
                 SizedBox(
                   height: Get.height * 0.05,

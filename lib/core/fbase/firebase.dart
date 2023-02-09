@@ -22,6 +22,7 @@ class FBase {
 
   static Future addUser(name, email, phone, password, post, role,organization) async {
     log('cld');
+    var capName = FBase.capitalize(name);
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     await fmessaging.requestPermission();
     String pushtoken = '';
@@ -32,13 +33,14 @@ class FBase {
       }
     });
 
+
     return firestore
         .collection('ubivisit')
         .doc('ubivisit')
         .collection('users')
         .doc(id)
         .set({
-      'name': name,
+      'name': capName,
       'email': email,
       'post': post,
       'password': password,
@@ -390,5 +392,19 @@ class FBase {
   static sendMessage(phone, url) async {
     telephony.sendSmsByDefaultApp(
         to: phone, message: "Your visitor pass for UBIVisit - $url");
+  }
+
+  static String capitalize(String value) {
+    var result = value[0].toUpperCase();
+    bool cap = true;
+    for (int i = 1; i < value.length; i++) {
+      if (value[i - 1] == " " && cap == true) {
+        result = result + value[i].toUpperCase();
+      } else {
+        result = result + value[i];
+        cap = false;
+      }
+    }
+    return result;
   }
 }
