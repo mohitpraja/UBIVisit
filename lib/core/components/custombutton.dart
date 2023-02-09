@@ -6,26 +6,31 @@ import 'package:ubivisit/core/global/global.dart';
 class CustomButton extends GetView {
   final String title;
   final VoidCallback onPress;
-  const CustomButton({super.key, required this.title, required this.onPress});
+  final TextStyle? style;
+  final Color? color;
+  final ShapeBorder? shape;
+  final double? width;
+  const CustomButton({super.key, required this.title, required this.onPress, this.style, this.color,this.shape,this.width});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Get.width,
+      width: width??Get.width,
       child: MaterialButton(
         onPressed: onPress,
-        color: GlobalColor.customColor,
-        shape: const StadiumBorder(),
+        color:color??GlobalColor.customColor,
+        shape: shape??StadiumBorder(
+            side:BorderSide(color:color??GlobalColor.customColor)
+        ),
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Text(
             title,
-            style: TextStyle(
-                color: Colors.white,
-                letterSpacing: 1,
-                fontWeight: FontWeight.w600,
-                fontSize: Get.height * 0.02,
-                fontFamily: CustomFonts.alata),
+            style: style?? TextStyle(
+              color: color??Colors.white,
+              letterSpacing: 1,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ),

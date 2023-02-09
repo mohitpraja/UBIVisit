@@ -127,33 +127,9 @@ class AdminHomeView extends GetView<AdminHomeController> {
                               SizedBox(
                                 height: Get.height*0.015,
                               ),
-                              SizedBox(
-                                width: Get.width,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Get.toNamed(Routes.addguard);
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    shape: StadiumBorder(
-                                        side: BorderSide(
-                                            color: GlobalColor.customColor)),
-                                    backgroundColor: Colors.white,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10),
-                                    child: Text(
-                                      'Add Guard',
-                                      style: TextStyle(
-                                          color: GlobalColor.customColor,
-                                          fontWeight: FontWeight.w600,
-                                          letterSpacing: 1,
-                                          fontSize: 17,
-                                          fontFamily: CustomFonts.alata),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              CustomButton(title: 'Add Guard',style: TextStyle(color:GlobalColor.customColor),color: Colors.white, onPress: () {
+                                Get.toNamed(Routes.addguard);
+                              },shape: StadiumBorder(side:BorderSide(color:GlobalColor.customColor)),)
                             ],
                           ),
                         )),
