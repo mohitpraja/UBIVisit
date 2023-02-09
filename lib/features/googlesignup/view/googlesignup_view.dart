@@ -19,7 +19,7 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
     return Scaffold(
       backgroundColor: Colors.white,
         appBar:
-        Customeappbar(
+        CustomAppbar(
           colors: Colors.black,
           color: Colors.white,
           onPress: () {
