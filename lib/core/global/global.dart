@@ -5,5 +5,4 @@ class GlobalColor{
   static Color black = Colors.black;
   static Color white = Colors.white;
   static Color black54 = Colors.black54;
-
 }
