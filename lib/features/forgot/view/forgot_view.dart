@@ -9,6 +9,8 @@ import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/forgot/controller/forgot_controller.dart';
 
+import '../../../core/global/text_style.dart';
+
 class ForgotView extends GetView<ForgotController> {
   const ForgotView({super.key});
 
@@ -49,11 +51,7 @@ class ForgotView extends GetView<ForgotController> {
                         Text(
                           'Forgot Password ?',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: Get.height * 0.035,
-                              fontFamily: CustomFonts.alata,
-                              color: Colors.black54),
+                            style: ThemeText.userHeading
                         ),
                         SizedBox(
                           height: Get.height * 0.01,
@@ -61,11 +59,7 @@ class ForgotView extends GetView<ForgotController> {
                         Text(
                           'Enter your phone number to retrieve your password',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: Get.height * 0.02,
-                              fontFamily: CustomFonts.alata,
-                              color: Colors.black45),
+                            style: ThemeText.heading2Style
                         ),
                       ],
                     ),

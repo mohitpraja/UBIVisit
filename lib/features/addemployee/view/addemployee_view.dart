@@ -6,6 +6,7 @@ import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/components/customtextform.dart';
 import 'package:ubivisit/core/components/passwordfield.dart';
 import 'package:ubivisit/core/global/customfont.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/addemployee/controller/addemployee_controller.dart';
@@ -47,16 +48,12 @@ class AddEmployeeView extends GetView<AddEmployeeController> {
                       Text(
                         "Add new employee",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 26,
-                            fontWeight: FontWeight.normal,
-                            fontFamily: CustomFonts.alata),
+                          style: ThemeText.headingBlack
                       ),
                     ],
                   )),
                   SizedBox(
-                    height: Get.height * 0.75,
+                    height: Get.width * 1.35,
                     child: Form(
                         key: Validation.employeeFormKey,
                         child: Column(

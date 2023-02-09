@@ -10,6 +10,7 @@ import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/empdash/employee/empprofile/controller/empprofile_controller.dart';
 
@@ -113,10 +114,7 @@ class EmpProfileView extends GetView<EmpProfileController> {
                                               const EdgeInsets.only(left: 10),
                                           child: Text(
                                             'Post',
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: CustomFonts.alata),
+                                              style: ThemeText.profileHeading
                                           ),
                                         ),
                                       ],
@@ -137,10 +135,7 @@ class EmpProfileView extends GetView<EmpProfileController> {
                                               const EdgeInsets.only(left: 10),
                                           child: Text(
                                             'Name',
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: CustomFonts.alata),
+                                              style: ThemeText.profileHeading
                                           ),
                                         ),
                                       ],
@@ -170,10 +165,8 @@ class EmpProfileView extends GetView<EmpProfileController> {
                                               const EdgeInsets.only(left: 10),
                                           child: Text(
                                             'Email',
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: CustomFonts.alata),
+                                              style: ThemeText.profileHeading
+
                                           ),
                                         ),
                                       ],
@@ -202,10 +195,7 @@ class EmpProfileView extends GetView<EmpProfileController> {
                                               const EdgeInsets.only(left: 10),
                                           child: Text(
                                             'Phone',
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: CustomFonts.alata),
+                                              style: ThemeText.profileHeading
                                           ),
                                         ),
                                       ],
