@@ -23,7 +23,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
         ? const Center(child: CircularProgressIndicator())
         : Scaffold(
             backgroundColor: Colors.white,
-            appBar: Customeappbar(
+            appBar: CustomAppbar(
                 color: Colors.transparent,
                 colors: Colors.black54,
                 title: "Add Visitor Details",

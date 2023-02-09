@@ -21,7 +21,7 @@ class GuardProfileView extends GetView<GuardProfileController> {
     return Obx(() =>controller.loader.value?const Center(child: CircularProgressIndicator()):Scaffold(
           backgroundColor: Colors.white,
           appBar:
-          Customeappbar(onPress: (){
+          CustomAppbar(onPress: (){
             Get.offAllNamed(Routes.guarddash);
           },title: "Profile",),
 

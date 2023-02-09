@@ -16,12 +16,11 @@ import 'package:ubivisit/features/login/controller/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: Customeappbar(
+      appBar: CustomAppbar(
         colors: Colors.black,
         color: Colors.white,
         onPress: () {

@@ -13,7 +13,7 @@ class GuardVisitorListView extends GetView<GuardVisitorListController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-      Customeappbar(onPress: (){
+      CustomAppbar(onPress: (){
         Get.offAllNamed(Routes.guarddash);
       },title: "Visitor's List",),
 

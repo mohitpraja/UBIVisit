@@ -25,7 +25,7 @@ class EmpProfileView extends GetView<EmpProfileController> {
           : Scaffold(
               backgroundColor: Colors.white,
               appBar:
-              Customeappbar(onPress: (){
+              CustomAppbar(onPress: (){
                 Get.offAllNamed(Routes.guarddash);
               },title: "Profile",),
 
