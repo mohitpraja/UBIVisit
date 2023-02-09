@@ -34,7 +34,6 @@ class Validation {
       return null;
     }
   }
-
   static  passwordValidator(value) {
     if (value!.isEmpty || !RegExp(r'(?=.*?[#?!@$%^&*-]).{6,}$').hasMatch(value)) {
       return 'Passwords must have at least one special character';
