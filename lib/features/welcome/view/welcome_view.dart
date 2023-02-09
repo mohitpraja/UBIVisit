@@ -4,6 +4,8 @@ import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/routes.dart';
 
+import '../../../core/components/custombutton.dart';
+
 class WelcomeView extends GetView {
   const WelcomeView({super.key});
 
@@ -62,58 +64,66 @@ class WelcomeView extends GetView {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              width: Get.width * 0.8,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Get.toNamed(Routes.login);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  shape: const StadiumBorder(),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(
-                                    'Login',
-                                    style: TextStyle(
-                                        color: GlobalColor.customColor,
-                                        fontSize: Get.height*0.02,
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 1,
-                                        fontFamily: CustomFonts.alata),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            CustomButton(title: 'Login',width:Get.width * 0.8,style: TextStyle(color:GlobalColor.customColor),color: Colors.white, onPress: () {
+                              Get.toNamed(Routes.login);
+                            },shape: StadiumBorder(side:BorderSide(color:GlobalColor.customColor)),),
+
+                            // SizedBox(
+                            //   width: Get.width * 0.8,
+                            //   child: ElevatedButton(
+                            //     onPressed: () {
+                            //       Get.toNamed(Routes.login);
+                            //     },
+                            //     style: ElevatedButton.styleFrom(
+                            //       backgroundColor: Colors.white,
+                            //       shape: const StadiumBorder(),
+                            //     ),
+                            //     child: Padding(
+                            //       padding: const EdgeInsets.all(10),
+                            //       child: Text(
+                            //         'Login',
+                            //         style: TextStyle(
+                            //             color: GlobalColor.customColor,
+                            //             fontSize: Get.height*0.02,
+                            //             fontWeight: FontWeight.w600,
+                            //             letterSpacing: 1,
+                            //             fontFamily: CustomFonts.alata),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                             const SizedBox(height: 10,),
-                            SizedBox(
-                              width: Get.width * 0.8,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Get.toNamed(Routes.signup);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  shape: const StadiumBorder(),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(
-                                    'Signup',
-                                    style: TextStyle(
-                                        color: GlobalColor.customColor,
-                                        fontSize: Get.height*0.02,
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 1,
-                                        fontFamily: CustomFonts.alata),
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // SizedBox(
+                            //   width: Get.width * 0.8,
+                            //   child: ElevatedButton(
+                            //     onPressed: () {
+                            //       Get.toNamed(Routes.signup);
+                            //     },
+                            //     style: ElevatedButton.styleFrom(
+                            //       backgroundColor: Colors.white,
+                            //       shape: const StadiumBorder(),
+                            //     ),
+                            //     child: Padding(
+                            //       padding: const EdgeInsets.all(10),
+                            //       child: Text(
+                            //         'Signup',
+                            //         style: TextStyle(
+                            //             color: GlobalColor.customColor,
+                            //             fontSize: Get.height*0.02,
+                            //             fontWeight: FontWeight.w600,
+                            //             letterSpacing: 1,
+                            //             fontFamily: CustomFonts.alata),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+                            CustomButton(title: 'Signup',width:Get.width * 0.8,style: TextStyle(color:GlobalColor.customColor),color: Colors.white, onPress: () {
+                              Get.toNamed(Routes.signup);
+                            },shape: StadiumBorder(side:BorderSide(color:GlobalColor.customColor)),),
+
                           ],
-                        ),
-                      )
+
+                        ),                      )
                     ],
                   )))
         ],
