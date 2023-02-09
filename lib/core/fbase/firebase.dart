@@ -20,7 +20,8 @@ class FBase {
   static FirebaseMessaging fmessaging = FirebaseMessaging.instance;
   static Telephony telephony = Telephony.instance;
 
-  static Future addUser(name, email, phone, password, post, role,organization) async {
+  static Future addUser(
+      name, email, phone, password, post, role, organization) async {
     log('cld');
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     await fmessaging.requestPermission();
@@ -65,16 +66,6 @@ class FBase {
         .snapshots();
   }
 
-  static Stream collectionPathEmp = firestore
-      .collection('ubivisit/ubivisit/users')
-      .where('role', isEqualTo: 'employee')
-      .where('organization',isEqualTo:userInfo['organization'])
-      .snapshots();
-  static Stream collectionPathGuard = firestore
-      .collection('ubivisit/ubivisit/users')
-      .where('post', isEqualTo: 'Guard')
-      .where('organization',isEqualTo:userInfo['organization'])
-      .snapshots();
   static bool isMatch = false;
   static RxMap userInfo = {}.obs;
 
@@ -289,7 +280,7 @@ class FBase {
   }
 
   static Future addVisitor(
-      name, phone, address, purpose, tomeet, image, qr,organization) async {
+      name, phone, address, purpose, tomeet, image, qr, organization) async {
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     final imgId = image.path.split('/').last;
     final qrId = qr.path.split('/').last;

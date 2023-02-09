@@ -10,6 +10,11 @@ import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/validation.dart';
 
 class AllGuardDataController extends GetxController {
+   Stream collectionPathGuard = FBase.firestore
+      .collection('ubivisit/ubivisit/users')
+      .where('post', isEqualTo: 'Guard')
+      .where('organization', isEqualTo: FBase.userInfo['organization'])
+      .snapshots();
   List userInfo = [];
   showDetails(user) {
     Get.defaultDialog(
