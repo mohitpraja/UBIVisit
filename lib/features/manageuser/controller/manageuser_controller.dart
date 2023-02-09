@@ -23,7 +23,7 @@ class ManageUserController extends GetxController {
           ),
           Text(
             'Employees',
-            style: TextStyle(fontSize: 16, color: GlobalColor.customColor),
+            style: TextStyle(fontSize: Get.width*0.05, color: GlobalColor.customColor),
           )
         ],
       ),
@@ -41,7 +41,7 @@ class ManageUserController extends GetxController {
           ),
           Text(
             'Guard',
-            style: TextStyle(fontSize: 16, color: GlobalColor.customColor),
+            style: TextStyle(fontSize: Get.width*0.05, color: GlobalColor.customColor),
           )
         ],
       ),

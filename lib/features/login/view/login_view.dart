@@ -10,18 +10,18 @@ import 'package:ubivisit/core/components/customtextform.dart';
 import 'package:ubivisit/core/components/passwordfield.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/login/controller/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: Customeappbar(
+      appBar: CustomAppbar(
         colors: Colors.black,
         color: Colors.white,
         onPress: () {
@@ -54,17 +54,11 @@ class LoginView extends GetView<LoginController> {
                           children: [
                             Text(
                               "Welcome !!!",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: Get.height * 0.035,
-                                  fontFamily: CustomFonts.alata),
+                                style: ThemeText.headingBlack
                             ),
                             Text(
                               "Login to your existing account",
-                              style: TextStyle(
-                                  fontSize: Get.height * 0.02,
-                                  color: Colors.grey,
-                                  fontFamily: CustomFonts.alata),
+                                style: ThemeText.heading2Style
                             ),
                           ],
                         ),
@@ -121,11 +115,7 @@ class LoginView extends GetView<LoginController> {
                               )),
                               Text(
                                 "  or connnect using  ",
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: CustomFonts.alata,
-                                    fontSize: Get.height * 0.02),
+                                  style: ThemeText.heading2Style
                               ),
                               const Expanded(
                                   child: Divider(
@@ -168,21 +158,13 @@ class LoginView extends GetView<LoginController> {
                           children: [
                             Text(
                               "Don't have an account? ",
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: Get.height * 0.02,
-                                  fontFamily: CustomFonts.alata),
+                                style: ThemeText.heading2Style
                             ),
                             InkWell(
                               onTap: () => Get.toNamed(Routes.signup),
                               child: Text(
                                 'Signup',
-                                style: TextStyle(
-                                    color: Colors.indigo,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: Get.height * 0.021,
-                                    fontFamily: CustomFonts.alata),
+                                  style: ThemeText.BlueMinHeading
                               ),
                             )
                           ],

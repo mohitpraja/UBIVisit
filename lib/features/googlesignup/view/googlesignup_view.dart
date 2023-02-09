@@ -7,6 +7,7 @@ import 'package:ubivisit/core/components/customtextform.dart';
 import 'package:ubivisit/core/components/passwordfield.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/googlesignup/controller/googlesignup_controller.dart';
@@ -19,7 +20,7 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
     return Scaffold(
       backgroundColor: Colors.white,
         appBar:
-        Customeappbar(
+        CustomAppbar(
           colors: Colors.black,
           color: Colors.white,
           onPress: () {
@@ -44,19 +45,12 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
                       Text(
                         "Let's Get Started",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 28,
-                            fontWeight: FontWeight.normal,
-                            fontFamily: CustomFonts.alata),
+                          style: ThemeText.headingBlack
                       ),
                       Text(
                         "create an account to UBIVisit",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 15,
-                            fontFamily: CustomFonts.alata),
+                          style: ThemeText.heading2Style
                       ),
                     ],
                   )),
@@ -129,11 +123,7 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
                               children: [
                                 Text(
                                   'Already have an account? ',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: CustomFonts.alata,
-                                      color: Colors.black54),
+                                    style: ThemeText.heading2Style
                                 ),
                                 InkWell(
                                   onTap: () {
@@ -141,11 +131,7 @@ class GoogleSignupView extends GetView<GoogleSignupController> {
                                   },
                                   child: Text(
                                     'Login here ',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: CustomFonts.alata,
-                                        color: GlobalColor.customColor),
+                                      style: ThemeText.BlueMinHeading
                                   ),
                                 ),
                               ],

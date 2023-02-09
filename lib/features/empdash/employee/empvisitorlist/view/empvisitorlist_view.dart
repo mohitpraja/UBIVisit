@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/empdash/employee/empvisitorlist/controller/empvisitorlist_controller.dart';
 
@@ -14,7 +15,7 @@ class EmpVisitorListView extends GetView<EmpVisitorListController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-      Customeappbar(onPress: (){
+      CustomAppbar(onPress: (){
         Get.offAllNamed(Routes.guarddash);
       },title: "Visitor's List",),
 
@@ -38,10 +39,10 @@ class EmpVisitorListView extends GetView<EmpVisitorListController> {
             ));
           }
           if (controller.allVisitors.isEmpty) {
-            return const Center(
+            return Center(
                 child: Text(
               'No Visitor added yet',
-              style: TextStyle(fontSize: 16),
+                  style: ThemeText.userHeading,
             ));
           }
           return ListView.builder(

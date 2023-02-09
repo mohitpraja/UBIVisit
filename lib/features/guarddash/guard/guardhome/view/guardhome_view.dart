@@ -8,6 +8,7 @@ import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/guarddash/guard/guardhome/controller/guardhome_controller.dart';
 
@@ -29,9 +30,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                 elevation: 0,
                 title: Text(
                   'Dashboard',
-                  style: TextStyle(
-                      fontSize: Get.height * 0.03,
-                      fontFamily: CustomFonts.alata),
+                  style: ThemeText.headingWhite,
                 ),
               ),
               drawer: const Guarddrawer(),
@@ -66,23 +65,15 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            FBase.userInfo['name'],
-                                            style: TextStyle(
-                                                color: Colors.black54,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: Get.height * 0.028,
-                                                fontFamily: CustomFonts.alata),
-                                          ),
+                                            'Hi! ${FBase.userInfo['name'].split(' ').first}',
+                                    style: ThemeText.headingWhite),
+
                                           const SizedBox(
                                             height: 2,
                                           ),
                                           Text(
                                             FBase.userInfo['post'],
-                                            style: TextStyle(
-                                                color: Colors.black54,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: Get.height * 0.022,
-                                                fontFamily: CustomFonts.alata),
+                                            style: ThemeText.heading2Style,
                                           )
                                         ],
                                       ),
@@ -179,10 +170,10 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                         ));
                                       }
                                       if (controller.allVisitors.isEmpty) {
-                                        return const Center(
+                                        return Center(
                                             child: Text(
                                           'No Recent Updates',
-                                          style: TextStyle(fontSize: 16),
+                                                style: ThemeText.heading2Style
                                         ));
                                       }
                                       return ListView.builder(

@@ -20,11 +20,9 @@ class FBase {
   static FirebaseMessaging fmessaging = FirebaseMessaging.instance;
   static Telephony telephony = Telephony.instance;
 
-  static Future addUser(
-      name, email, phone, password, post, role, organization) async {
-    var currDate = DateTime.now();
-    String time = DateFormat('jm').format(currDate);
-    String date = '${currDate.day}-${currDate.month}-${currDate.year}';
+  static Future addUser(name, email, phone, password, post, role,organization) async {
+    log('cld');
+    var capName = FBase.capitalize(name);
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     await fmessaging.requestPermission();
     String pushtoken = '';
@@ -35,13 +33,14 @@ class FBase {
       }
     });
 
+
     return firestore
         .collection('ubivisit')
         .doc('ubivisit')
         .collection('users')
         .doc(id)
         .set({
-      'name': name,
+      'name': capName,
       'email': email,
       'post': post,
       'password': password,
@@ -50,9 +49,7 @@ class FBase {
       'role': role,
       'id': id,
       'pushtoken': pushtoken,
-      'organization': organization,
-      'time': time,
-      'date': date
+      'organization': organization
     });
   }
 
@@ -70,6 +67,16 @@ class FBase {
         .snapshots();
   }
 
+  static Stream collectionPathEmp = firestore
+      .collection('ubivisit/ubivisit/users')
+      .where('role', isEqualTo: 'employee')
+      .where('organization',isEqualTo:userInfo['organization'])
+      .snapshots();
+  static Stream collectionPathGuard = firestore
+      .collection('ubivisit/ubivisit/users')
+      .where('post', isEqualTo: 'Guard')
+      .where('organization',isEqualTo:userInfo['organization'])
+      .snapshots();
   static bool isMatch = false;
   static RxMap userInfo = {}.obs;
 
@@ -108,8 +115,6 @@ class FBase {
               'phone': data['phone'],
               'pushtoken': data['pushtoken'],
               'organization': data['organization'],
-              'date': data['date'],
-              'time': data['time'],
             });
 
             await prefs.setBool('isLogin', true);
@@ -184,7 +189,7 @@ class FBase {
     });
   }
 
-  static Future updateUserInfo(context, updateField, value, id, route) async {
+  static updateUserInfo(context, updateField, value, id, route) async {
     await Hive.deleteBoxFromDisk('ubivisit');
     var db = await Hive.openBox('ubivisit');
     CustomLoader.showLoader(context);
@@ -192,24 +197,29 @@ class FBase {
         .collection('ubivisit/ubivisit/users')
         .doc(id)
         .update({updateField: value}).then((val) {
-      firestore
-          .collection('ubivisit/ubivisit/users')
-          .doc(id)
-          .get()
-          .then((data) {
-        db.put('userInfo', {
-          'name': data['name'],
-          'email': data['email'],
-          'password': data['password'],
-          'post': data['post'],
-          'id': data['id'],
-          'image': data['image'],
-          'phone': data['phone'],
-          'pushtoken': data['pushtoken'],
-          'organization': data['organization'],
-        }).then((value) {
-          Get.offAllNamed(route);
-        });
+      firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
+        // ignore: avoid_function_literals_in_foreach_calls
+        snapshot.docs.forEach(
+          (e) async {
+            var data = e.data();
+            if (data['id'] == id) {
+              isMatch = true;
+              db.put('userInfo', {
+                'name': data['name'],
+                'email': data['email'],
+                'password': data['password'],
+                'post': data['post'],
+                'id': data['id'],
+                'image': data['image'],
+                'phone': data['phone'],
+                'pushtoken': data['pushtoken'],
+              }).then((value) {
+                Get.back();
+                Get.offAllNamed(route);
+              });
+            }
+          },
+        );
       });
     });
   }
@@ -269,7 +279,7 @@ class FBase {
                     'pushtoken': data['pushtoken'],
                   }).then((value) {
                     Get.back();
-                    Get.toNamed(route);
+                    Get.offAllNamed(route);
                   });
                 }
               },
@@ -281,7 +291,7 @@ class FBase {
   }
 
   static Future addVisitor(
-      name, phone, address, purpose, tomeet, image, qr, organization) async {
+      name, phone, address, purpose, tomeet, image, qr,organization) async {
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     final imgId = image.path.split('/').last;
     final qrId = qr.path.split('/').last;
@@ -382,5 +392,19 @@ class FBase {
   static sendMessage(phone, url) async {
     telephony.sendSmsByDefaultApp(
         to: phone, message: "Your visitor pass for UBIVisit - $url");
+  }
+
+  static String capitalize(String value) {
+    var result = value[0].toUpperCase();
+    bool cap = true;
+    for (int i = 1; i < value.length; i++) {
+      if (value[i - 1] == " " && cap == true) {
+        result = result + value[i].toUpperCase();
+      } else {
+        result = result + value[i];
+        cap = false;
+      }
+    }
+    return result;
   }
 }

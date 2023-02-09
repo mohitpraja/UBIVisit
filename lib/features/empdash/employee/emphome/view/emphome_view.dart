@@ -6,6 +6,7 @@ import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
+import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/empdash/employee/emphome/controller/emphome_controller.dart';
 
@@ -25,7 +26,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
               elevation: 0,
               title: Text(
                 'Dashboard',
-                style: TextStyle(fontSize: Get.height*0.03, fontFamily: CustomFonts.alata),
+                  style: ThemeText.headingWhite
               ),
             ),
              drawer: const Guarddrawer(),
@@ -63,22 +64,14 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                       children: [
                                         Text(
                                           FBase.userInfo['name'],
-                                          style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: Get.height*0.028,
-                                              fontFamily: CustomFonts.alata),
+                                            style: ThemeText.whiteMinHeading
                                         ),
                                         const SizedBox(
                                           height: 2,
                                         ),
                                         Text(
                                           FBase.userInfo['post'],
-                                          style: TextStyle(
-                                              color: Colors.black54,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize:  Get.height*0.022,
-                                              fontFamily: CustomFonts.alata),
+                                            style: ThemeText.whiteMinHeading
                                         )
                                       ],
                                     ),

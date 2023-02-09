@@ -6,6 +6,8 @@ import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/features/visitorotp/controller/visitorotp_controller.dart';
 
+import '../../../core/global/text_style.dart';
+
 class VisitorOtpView extends GetView<VisitorOtpController> {
   const VisitorOtpView({super.key});
   @override
@@ -91,10 +93,7 @@ class VisitorOtpView extends GetView<VisitorOtpController> {
                                       controller.forrebuilt.value == 'ram'
                                           ? ''
                                           : '+91 ${controller.signupData[2]}',
-                                      style: TextStyle(
-                                          fontSize: Get.height * 0.03,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black54),
+                                    style: ThemeText.userHeading
                                     )),
                                 IconButton(
                                   onPressed: () {
@@ -112,20 +111,14 @@ class VisitorOtpView extends GetView<VisitorOtpController> {
                               onChanged: (value) => controller.otp = value,
                             ),
                             Text(
-                              "Didn't recieve an OTP",
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: Get.height * 0.02,
-                                  fontWeight: FontWeight.w500),
+                              "Didn't receive an OTP",
+                                style: ThemeText.heading2Style
                             ),
                             TextButton(
                                 onPressed: () {},
                                 child: Text(
                                   'Resend OTP',
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      color: GlobalColor.customColor,
-                                      fontWeight: FontWeight.w600),
+                                    style: ThemeText.BlueMinHeading
                                 )),
                             CustomButton(
                               title: 'Verify',
