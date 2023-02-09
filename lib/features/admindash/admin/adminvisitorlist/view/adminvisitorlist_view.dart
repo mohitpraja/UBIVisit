@@ -8,6 +8,7 @@ import 'package:ubivisit/features/admindash/admin/adminvisitorlist/controller/ad
 
 class AdminVisitorListView extends GetView<AdminVisitorListController> {
   const AdminVisitorListView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
