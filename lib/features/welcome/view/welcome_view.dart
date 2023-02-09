@@ -4,7 +4,7 @@ import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
-
+import 'package:ubivisit/core/components/custombutton.dart';
 class WelcomeView extends GetView {
   const WelcomeView({super.key});
 
