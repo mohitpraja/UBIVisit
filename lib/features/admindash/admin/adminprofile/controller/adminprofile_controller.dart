@@ -169,7 +169,7 @@ class AdminProfileController extends GetxController {
       } else {
         Get.back();
         FBase.uploadImage(File(imagePath.value), FBase.userInfo['id'], context,
-            Routes.admindash);
+            );
         Get.back();
       }
     }

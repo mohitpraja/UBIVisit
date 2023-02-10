@@ -20,12 +20,9 @@ class FBase {
   static FirebaseMessaging fmessaging = FirebaseMessaging.instance;
   static Telephony telephony = Telephony.instance;
 
-  static Future addUser(name, email, phone, password, post, role,organization) async {
+  static Future addUser(
+      name, email, phone, password, post, role, organization) async {
     log('cld');
-    var currDate = DateTime.now();
-    String time = DateFormat('jm').format(currDate);
-    String date = '${currDate.day}-${currDate.month}-${currDate.year}';
-
     var capName = FBase.capitalize(name);
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     await fmessaging.requestPermission();
@@ -36,7 +33,6 @@ class FBase {
         pushtoken = token;
       }
     });
-
 
     return firestore
         .collection('ubivisit')
@@ -53,9 +49,7 @@ class FBase {
       'role': role,
       'id': id,
       'pushtoken': pushtoken,
-      'organization': organization,
-      'time': time,
-      'date': date
+      'organization': organization
     });
   }
 
@@ -76,12 +70,12 @@ class FBase {
   static Stream collectionPathEmp = firestore
       .collection('ubivisit/ubivisit/users')
       .where('role', isEqualTo: 'employee')
-      .where('organization',isEqualTo:userInfo['organization'])
+      .where('organization', isEqualTo: userInfo['organization'])
       .snapshots();
   static Stream collectionPathGuard = firestore
       .collection('ubivisit/ubivisit/users')
       .where('post', isEqualTo: 'Guard')
-      .where('organization',isEqualTo:userInfo['organization'])
+      .where('organization', isEqualTo: userInfo['organization'])
       .snapshots();
   static bool isMatch = false;
   static RxMap userInfo = {}.obs;
@@ -121,8 +115,6 @@ class FBase {
               'phone': data['phone'],
               'pushtoken': data['pushtoken'],
               'organization': data['organization'],
-              'date': data['date'],
-              'time': data['time'],
             });
 
             await prefs.setBool('isLogin', true);
@@ -143,7 +135,7 @@ class FBase {
           Get.offAllNamed(Routes.empdash);
         }
       } else {
-        const CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
+         CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
             .show1();
       }
     });
@@ -241,7 +233,11 @@ class FBase {
     }).then((value) => Get.back());
   }
 
-  static uploadImage(file, id, context, route) async {
+  static Future uploadImage(
+    file,
+    id,
+    context,
+  ) async {
     await Hive.deleteBoxFromDisk('ubivisit');
     var db = await Hive.openBox('ubivisit');
     CustomLoader.showLoader(context);
@@ -274,9 +270,6 @@ class FBase {
                     'image': data['image'],
                     'phone': data['phone'],
                     'pushtoken': data['pushtoken'],
-                  }).then((value) {
-                    Get.back();
-                    Get.offAllNamed(route);
                   });
                 }
               },
@@ -287,9 +280,10 @@ class FBase {
     });
   }
 
-  static Future addVisitor(
-      name, phone, address, purpose, tomeet, image, qr,organization) async {
-    var id = DateTime.now().millisecondsSinceEpoch.toString();
+  static Future addVisitor(name, phone, address, purpose, tomeet, image, qr,
+      organization, id) async {
+    // var id = DateTime.now().millisecondsSinceEpoch.toString();
+    print('firebase id :$id');
     final imgId = image.path.split('/').last;
     final qrId = qr.path.split('/').last;
 
@@ -377,14 +371,13 @@ class FBase {
         .update({'status': status}).then((value) => Get.back());
   }
 
-  static timeOut(id) {
+  static Future timeOut(id) async{
     var currDate = DateTime.now();
     String time = DateFormat('jm').format(currDate);
     firestore
         .collection('ubivisit/ubivisit/visitors')
         .doc(id)
         .update({'timeout': time});
-    return true;
   }
 
   static sendMessage(phone, url) async {

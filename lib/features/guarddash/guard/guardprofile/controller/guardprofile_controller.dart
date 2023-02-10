@@ -184,7 +184,7 @@ class GuardProfileController extends GetxController {
       } else {
         Get.back();
         FBase.uploadImage(File(imagePath.value), FBase.userInfo['id'], context,
-            Routes.guarddash);
+            );
         Get.back();
       }
     }

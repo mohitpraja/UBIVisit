@@ -45,6 +45,7 @@ dependencies:
   firebase_storage: ^11.0.10
   flutter:
     sdk: flutter
+  flutter_barcode_scanner: ^2.0.0
   flutter_launcher_icons: ^0.11.0
   flutter_sms: ^2.3.3
   form_field_validator: ^1.1.0
