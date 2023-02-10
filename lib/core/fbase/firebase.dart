@@ -22,6 +22,10 @@ class FBase {
 
   static Future addUser(name, email, phone, password, post, role,organization) async {
     log('cld');
+    var currDate = DateTime.now();
+    String time = DateFormat('jm').format(currDate);
+    String date = '${currDate.day}-${currDate.month}-${currDate.year}';
+
     var capName = FBase.capitalize(name);
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     await fmessaging.requestPermission();
@@ -49,7 +53,9 @@ class FBase {
       'role': role,
       'id': id,
       'pushtoken': pushtoken,
-      'organization': organization
+      'organization': organization,
+      'time': time,
+      'date': date
     });
   }
 
@@ -115,6 +121,8 @@ class FBase {
               'phone': data['phone'],
               'pushtoken': data['pushtoken'],
               'organization': data['organization'],
+              'date': data['date'],
+              'time': data['time'],
             });
 
             await prefs.setBool('isLogin', true);
@@ -196,32 +204,21 @@ class FBase {
     firestore
         .collection('ubivisit/ubivisit/users')
         .doc(id)
-        .update({updateField: value}).then((val) {
-      firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
-        // ignore: avoid_function_literals_in_foreach_calls
-        snapshot.docs.forEach(
-          (e) async {
-            var data = e.data();
-            if (data['id'] == id) {
-              isMatch = true;
-              db.put('userInfo', {
-                'name': data['name'],
-                'email': data['email'],
-                'password': data['password'],
-                'post': data['post'],
-                'id': data['id'],
-                'image': data['image'],
-                'phone': data['phone'],
-                'pushtoken': data['pushtoken'],
-              }).then((value) {
-                Get.back();
-                Get.offAllNamed(route);
-              });
-            }
-          },
-        );
+        .get()
+        .then((data) {
+      db.put('userInfo', {
+        'name': data['name'],
+        'email': data['email'],
+        'password': data['password'],
+        'post': data['post'],
+        'id': data['id'],
+        'image': data['image'],
+        'phone': data['phone'],
+        'pushtoken': data['pushtoken'],
+        'organization': data['organization'],
+      }).then((value) {
+        Get.offAllNamed(route);
       });
-    });
   }
 
   static deleteUser(id, context) {
