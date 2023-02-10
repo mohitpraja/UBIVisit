@@ -135,7 +135,9 @@ class FBase {
           Get.offAllNamed(Routes.empdash);
         }
       } else {
-        CustomSnackbar(title: 'Warning', msg: 'Invalid credentials').show1();
+
+         CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
+            .show1();
       }
     });
   }
@@ -220,8 +222,10 @@ class FBase {
           },
         );
       });
+
     });
   }
+
 
   static deleteUser(id, context) {
     CustomLoader.showLoader(context);

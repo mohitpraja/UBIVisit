@@ -124,7 +124,9 @@ class VisitorOtpController extends GetxController {
       }
     } on FirebaseAuthException {
       Get.back();
-      CustomSnackbar(msg: 'Invalid OTP', title: 'Warning').show();
+
+       CustomSnackbar(msg: 'Invalid OTP', title: 'Warning').show();
+
     }
   }
 }

@@ -52,6 +52,7 @@ class AddEmployeeController extends GetxController {
         } else if (FBase.isEmailExist) {
           Get.back();
           CustomSnackbar(title: 'Warning', msg: 'This mail already ').show1();
+
         } else {
       Get.back();
       FBase.addUser(name,email, phone, password,post,'employee',FBase.userInfo['organization']).then((value){

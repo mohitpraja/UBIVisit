@@ -53,7 +53,9 @@ class GoogleSignupController extends GetxController {
            CustomSnackbar(title: 'Warning', msg: 'This phone already ').show1();
         } else if (FBase.isEmailExist) {
           Get.back();
-          CustomSnackbar(title: 'Warning', msg: 'This mail already ').show1();
+
+           CustomSnackbar(title: 'Warning', msg: 'This mail already ').show1();
+
         } else {
       Get.back();
       FBase.addUser(name, signupEmail, phone, password,'Admin','',organization).then((value){

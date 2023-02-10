@@ -52,7 +52,9 @@ class LoginController extends GetxController {
         Get.back();
         Get.toNamed(Routes.googlesignup, arguments: result.email);
       } catch (e) {
-        CustomSnackbar(title: 'Error', msg: 'something went wrong')
+
+         CustomSnackbar(title: 'Error', msg: 'something went wrong')
+
             .show1();
       }
     }
