@@ -10,7 +10,6 @@ import 'package:ubivisit/core/components/customloader.dart';
 import 'package:ubivisit/core/components/underlinetextfield.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
-import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 
 class AdminProfileController extends GetxController {

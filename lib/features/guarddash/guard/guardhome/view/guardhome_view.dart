@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customdrawer.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
-import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/text_style.dart';
@@ -33,7 +32,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                   style: ThemeText.headingWhite,
                 ),
               ),
-              drawer: Guarddrawer(),
+              drawer: const Guarddrawer(),
               body: SizedBox(
                 height: Get.height,
                 child: Stack(

@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/customlisttile.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
-import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/text_style.dart';

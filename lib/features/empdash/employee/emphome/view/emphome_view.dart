@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/customdrawer.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
-import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/text_style.dart';
@@ -29,7 +28,7 @@ class EmpHomeView extends GetView<EmpHomeController> {
                   style: ThemeText.headingWhite
               ),
             ),
-             drawer: Guarddrawer(),
+             drawer: const Guarddrawer(),
 
             body: SizedBox(
               width: Get.width,

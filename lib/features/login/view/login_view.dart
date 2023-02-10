@@ -164,7 +164,7 @@ class LoginView extends GetView<LoginController> {
                               onTap: () => Get.toNamed(Routes.signup),
                               child: Text(
                                 'Signup',
-                                  style: ThemeText.BlueMinHeading
+                                  style: ThemeText.blueMinHeading
                               ),
                             )
                           ],
