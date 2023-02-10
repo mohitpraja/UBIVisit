@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
-import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/features/forgototp/controller/forgot_otp_controller.dart';
@@ -114,7 +113,7 @@ class ForgotOtpView extends GetView<ForgotOtpController> {
                                 onPressed: () {},
                                 child: Text(
                                   'Resend OTP',
-                                    style: ThemeText.BlueMinHeading
+                                    style: ThemeText.blueMinHeading
                                 )),
                             CustomButton(
                               title: 'Verify',

@@ -10,7 +10,6 @@ import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
-import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/admindash/admin/adminprofile/controller/adminprofile_controller.dart';
 

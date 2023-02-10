@@ -118,7 +118,7 @@ class VisitorOtpView extends GetView<VisitorOtpController> {
                                 onPressed: () {},
                                 child: Text(
                                   'Resend OTP',
-                                    style: ThemeText.BlueMinHeading
+                                    style: ThemeText.blueMinHeading
                                 )),
                             CustomButton(
                               title: 'Verify',
