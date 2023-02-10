@@ -158,7 +158,7 @@ class EmpProfileController extends GetxController{
       ).show();
     } else {
       Get.back();
-    FBase.uploadImage(File(imagePath.value), FBase.userInfo['id'],context,Routes.empdash);
+    FBase.uploadImage(File(imagePath.value), FBase.userInfo['id'],context,);
     Get.back();
     }
     

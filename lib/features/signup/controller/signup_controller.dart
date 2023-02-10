@@ -52,11 +52,11 @@ class SignupController extends GetxController {
         FBase.checkUser(phone, email).then((value) {
           if (FBase.isPhoneExist) {
             Get.back();
-            const CustomSnackbar(title: 'Warning', msg: 'This phone already ')
+            CustomSnackbar(title: 'Warning', msg: 'This phone already ')
                 .show1();
           } else if (FBase.isEmailExist) {
             Get.back();
-            const CustomSnackbar(title: 'Warning', msg: 'This mail already ')
+            CustomSnackbar(title: 'Warning', msg: 'This mail already ')
                 .show1();
           } else {
             Get.back();

@@ -8,8 +8,6 @@ import 'package:ubivisit/features/addguard/binding/addguard_binding.dart';
 import 'package:ubivisit/features/addguard/view/addguard_view.dart';
 import 'package:ubivisit/features/addvisitor/binding/addvisitor_binding.dart';
 import 'package:ubivisit/features/addvisitor/view/addvisitor_view.dart';
-import 'package:ubivisit/features/admindash/admin/adminprofile/binding/adminprofile_binding.dart';
-import 'package:ubivisit/features/admindash/admin/adminprofile/view/adminprofile_view.dart';
 import 'package:ubivisit/features/admindash/binding/admindash_binding.dart';
 import 'package:ubivisit/features/admindash/admin/adminvisitorlist/binding/adminvisitorlist_binding.dart';
 import 'package:ubivisit/features/admindash/admin/adminvisitorlist/view/adminvisitorlist_view.dart';
@@ -106,11 +104,7 @@ List<GetPage> allpage = [
     page: () => const GoogleSignupView(),
     binding: GoogleSignupBinding(),
   ),
-  GetPage(
-    name: Routes.adminprofile,
-    page: () => const AdminProfileView(),
-    binding: AdminProfileBinding(),
-  ),
+  
   GetPage(
     name: Routes.addemployee,
     page: () => const AddEmployeeView(),
