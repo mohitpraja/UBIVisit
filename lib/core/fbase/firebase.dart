@@ -135,7 +135,8 @@ class FBase {
           Get.offAllNamed(Routes.empdash);
         }
       } else {
-        CustomSnackbar(title: 'Warning', msg: 'Invalid credentials').show1();
+         CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
+            .show1();
       }
     });
   }
@@ -195,32 +196,21 @@ class FBase {
     firestore
         .collection('ubivisit/ubivisit/users')
         .doc(id)
-        .update({updateField: value}).then((val) {
-      firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
-        // ignore: avoid_function_literals_in_foreach_calls
-        snapshot.docs.forEach(
-          (e) async {
-            var data = e.data();
-            if (data['id'] == id) {
-              isMatch = true;
-              db.put('userInfo', {
-                'name': data['name'],
-                'email': data['email'],
-                'password': data['password'],
-                'post': data['post'],
-                'id': data['id'],
-                'image': data['image'],
-                'phone': data['phone'],
-                'pushtoken': data['pushtoken'],
-              }).then((value) {
-                Get.back();
-                Get.offAllNamed(route);
-              });
-            }
-          },
-        );
+        .get()
+        .then((data) {
+      db.put('userInfo', {
+        'name': data['name'],
+        'email': data['email'],
+        'password': data['password'],
+        'post': data['post'],
+        'id': data['id'],
+        'image': data['image'],
+        'phone': data['phone'],
+        'pushtoken': data['pushtoken'],
+        'organization': data['organization'],
+      }).then((value) {
+        Get.offAllNamed(route);
       });
-    });
   }
 
   static deleteUser(id, context) {
