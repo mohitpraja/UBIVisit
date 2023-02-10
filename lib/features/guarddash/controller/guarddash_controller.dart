@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:ubivisit/features/guarddash/guard/guardhome/view/guardhome_view.dart';
-import 'package:ubivisit/features/guarddash/guard/guardprofile/view/guardprofile_view.dart';
 import 'package:ubivisit/features/guarddash/guard/guardvisitorlist/view/guardvisitorlist_view.dart';
+import 'package:ubivisit/features/showprofile/view/showprofile_view.dart';
 
 class GuardDashController extends GetxController {
   var indexFromDash = Get.arguments;
@@ -14,6 +14,6 @@ class GuardDashController extends GetxController {
   List adminallpages = [
     const GuardHomeView(),
     const GuardVisitorListView(),
-    const GuardProfileView()
+    const ShowProfileView()
   ];
 }

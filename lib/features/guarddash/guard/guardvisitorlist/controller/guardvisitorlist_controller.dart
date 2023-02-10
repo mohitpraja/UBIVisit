@@ -8,10 +8,7 @@ import 'package:ubivisit/core/global/globalfunction.dart';
 
 class GuardVisitorListController extends GetxController {
   List allVisitors = [];
-  final Stream visitorStream = FirebaseFirestore.instance
-      .collection('ubivisit/ubivisit/visitors')
-      .where('organization', isEqualTo: FBase.userInfo['organization'])
-      .snapshots();
+
   showDetails(user) {
     Get.defaultDialog(
         title: '',

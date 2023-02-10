@@ -63,14 +63,14 @@ class EmpHomeView extends GetView<EmpHomeController> {
                                       children: [
                                         Text(
                                           FBase.userInfo['name'],
-                                            style: ThemeText.whiteMinHeading
+                                            style: ThemeText.userHeading
                                         ),
                                         const SizedBox(
                                           height: 2,
                                         ),
                                         Text(
                                           FBase.userInfo['post'],
-                                            style: ThemeText.whiteMinHeading
+                                            style: ThemeText.heading2Style
                                         )
                                       ],
                                     ),

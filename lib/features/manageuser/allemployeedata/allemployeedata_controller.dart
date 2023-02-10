@@ -10,6 +10,11 @@ import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/validation.dart';
 
 class AllEmployeeDataController extends GetxController {
+  Stream collectionPathEmp = FBase.firestore
+      .collection('ubivisit/ubivisit/users')
+      .where('role', isEqualTo: 'employee')
+      .where('organization', isEqualTo: FBase.userInfo['organization'])
+      .snapshots();
   List userInfo = [];
   showDetails(user) {
     Get.defaultDialog(
