@@ -259,6 +259,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                                                 ),
                                                               ],
                                                             ),
+
                                                             const SizedBox(
                                                               height: 3,
                                                             ),
