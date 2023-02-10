@@ -63,7 +63,7 @@ class AddvisitorController extends GetxController {
 
   saveVisitor(context) async {
     if (imagePath.value == '') {
-      const CustomSnackbar(msg: 'Image required', title: 'Warning').show1();
+       CustomSnackbar(msg: 'Image required', title: 'Warning').show1();
     } else {
       CustomLoader.showLoader(context);
       if (!(await InternetConnectionChecker().hasConnection)) {

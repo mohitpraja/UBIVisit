@@ -27,7 +27,7 @@ class ForgotController extends GetxController {
         if (FBase.isPhoneExist) {
           sendOtp(context, phone.text);
         } else {
-          const CustomSnackbar(msg: 'Phone number not registered', title: 'Warning')
+           CustomSnackbar(msg: 'Phone number not registered', title: 'Warning')
               .show1();
         }
       });

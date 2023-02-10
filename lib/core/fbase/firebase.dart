@@ -143,7 +143,7 @@ class FBase {
           Get.offAllNamed(Routes.empdash);
         }
       } else {
-        const CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
+         CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
             .show1();
       }
     });
@@ -219,7 +219,7 @@ class FBase {
       }).then((value) {
         Get.offAllNamed(route);
       });
-  }
+  });}
 
   static deleteUser(id, context) {
     CustomLoader.showLoader(context);
