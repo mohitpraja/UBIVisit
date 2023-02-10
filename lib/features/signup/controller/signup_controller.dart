@@ -19,6 +19,9 @@ class SignupController extends GetxController {
   var post = '';
   var organization = '';
 
+  var countryCode = '91';
+  var contryCodeNumber;
+
   RxBool isPass = true.obs;
   RxBool isConfirmPass = true.obs;
   showPass() {
@@ -60,7 +63,7 @@ class SignupController extends GetxController {
                 .show1();
           } else {
             Get.back();
-            sendOtp(context, phone);
+            sendOtp(context, phone: phone);
           }
         });
       }
@@ -68,10 +71,12 @@ class SignupController extends GetxController {
   }
 
   String verificationID = "";
-  sendOtp(context, phone) async {
+  int? resendsToken;
+
+  sendOtp(context, {phone, countryCode, resendToken}) async {
     CustomLoader.showLoader(context);
     await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: '+91$phone',
+      phoneNumber: '$contryCodeNumber',
       verificationCompleted: (PhoneAuthCredential credential) {},
       verificationFailed: (FirebaseAuthException e) {
         Get.back();
@@ -85,11 +90,14 @@ class SignupController extends GetxController {
       codeSent: (String verificationId, int? resendToken) {
         Get.back();
         verificationID = verificationId;
+        resendsToken = resendToken;
         GlobalFunction.checkInternet(
-            context, Routes.otp, [name, email, phone, password]);
+            context, Routes.otp, [name, email, contryCodeNumber, password]);
       },
+      timeout: const Duration(seconds: 30),
+      forceResendingToken: resendsToken,
       codeAutoRetrievalTimeout: (String verificationId) {
-       
+        verificationId = verificationID;
       },
     );
   }
@@ -127,4 +135,5 @@ class SignupController extends GetxController {
       // Get.back();
     }
   }
+
 }

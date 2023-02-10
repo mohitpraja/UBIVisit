@@ -92,7 +92,7 @@ class OtpView extends GetView<OtpController> {
                                 Obx(() => Text(
                                       controller.forrebuilt.value == 'ram'
                                           ? ''
-                                          : '+91 ${controller.signupData[2]}',
+                                          : '${controller.signupData[2]}',
                                     style: ThemeText.userHeading
                                     )),
                                 IconButton(
@@ -116,10 +116,62 @@ class OtpView extends GetView<OtpController> {
                             ),
                             TextButton(
                                 onPressed: () {},
-                                child: Text(
-                                  'Resend OTP',
-                                    style: ThemeText.blueMinHeading
-                                )),
+                                child:
+                                Obx(() => Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      controller.wait == true
+                                          ? RichText(
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: "Send OTP again in ",
+                                                style: TextStyle(
+                                                    color: Colors.black54,
+                                                    fontSize: Get.height * 0.02,
+                                                    fontWeight:
+                                                    FontWeight.w500),
+                                              ),
+                                              TextSpan(
+                                                text: "00:${controller.start}",
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.pinkAccent),
+                                              ),
+                                              TextSpan(
+                                                text: " sec ",
+                                                style: TextStyle(
+                                                    color: Colors.black54,
+                                                    fontSize: Get.height * 0.02,
+                                                    fontWeight:
+                                                    FontWeight.w500),
+                                              ),
+                                            ],
+                                          ))
+                                          : InkWell(
+                                        onTap: controller.wait.value
+                                            ? null
+                                            : () async {
+                                          controller.reSendOtp(context);
+                                        },
+                                        child: Padding(
+                                          padding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 20,
+                                              horizontal: 15),
+                                          child: Text(
+                                            controller.buttonName.value,
+                                            style: TextStyle(
+                                              color: GlobalColor.customColor,
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+
+                                ))),
                             CustomButton(
                               title: 'Verify',
                               onPress: () {
