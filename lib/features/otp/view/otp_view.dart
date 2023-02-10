@@ -95,7 +95,6 @@ class OtpView extends GetView<OtpController> {
                                           : '${controller.signupData[2]}',
                                     style: ThemeText.userHeading
                                     )),
-
                                 IconButton(
                                   onPressed: () {
                                     controller.showBottomSheet(context);
