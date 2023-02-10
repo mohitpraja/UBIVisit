@@ -11,6 +11,7 @@ class Validation {
   static final updatepassFormKey = GlobalKey<FormState>();
   static final googleSignupFormKey = GlobalKey<FormState>();
   static final adminProfileFormKey = GlobalKey<FormState>();
+  static final editProfileFormKey = GlobalKey<FormState>();
 
   static isValid(val,msg) {
     if (val == null || val.isEmpty) {

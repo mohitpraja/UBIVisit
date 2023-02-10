@@ -18,7 +18,7 @@ class AllEmployeeDataView extends GetView<AllEmployeeDataController> {
         children: [
           Expanded(
             child: StreamBuilder(
-              stream: FBase.collectionPathEmp,
+              stream: controller.collectionPathEmp,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final data = snapshot.data?.docs;

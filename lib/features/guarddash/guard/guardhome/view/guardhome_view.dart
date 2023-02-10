@@ -5,15 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customdrawer.dart';
-import 'package:ubivisit/core/components/customsnackbar.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/guarddash/guard/guardhome/controller/guardhome_controller.dart';
-
-import '../../../../../core/components/customsnackbar.dart';
 
 class GuardHomeView extends GetView<GuardHomeController> {
   const GuardHomeView({super.key});
@@ -67,9 +64,8 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                              'Hi! ${FBase.userInfo['name'].split(' ').first}',
-                                              style: ThemeText.headingWhite),
+                                          Text(FBase.userInfo['name'],
+                                              style: ThemeText.userHeading),
                                           const SizedBox(
                                             height: 2,
                                           ),

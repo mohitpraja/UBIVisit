@@ -25,6 +25,8 @@ class FBase {
     log('cld');
     var capName = capitalize(name);
     var id = DateTime.now().millisecondsSinceEpoch.toString();
+    var currDate = DateTime.now();
+    String date = DateFormat('dd-MM-yyyy').format(currDate);
     await fmessaging.requestPermission();
     String pushtoken = '';
     await fmessaging.getToken().then((token) {
@@ -49,7 +51,8 @@ class FBase {
       'role': role,
       'id': id,
       'pushtoken': pushtoken,
-      'organization': organization
+      'organization': organization,
+      'date': date
     });
   }
 
@@ -67,20 +70,11 @@ class FBase {
         .snapshots();
   }
 
-  static Stream collectionPathEmp = firestore
-      .collection('ubivisit/ubivisit/users')
-      .where('role', isEqualTo: 'employee')
-      .where('organization', isEqualTo: userInfo['organization'])
-      .snapshots();
-  static Stream collectionPathGuard = firestore
-      .collection('ubivisit/ubivisit/users')
-      .where('post', isEqualTo: 'Guard')
-      .where('organization', isEqualTo: userInfo['organization'])
-      .snapshots();
   static bool isMatch = false;
   static RxMap userInfo = {}.obs;
 
   static Future getData(context, phone, pass) async {
+    await Hive.deleteBoxFromDisk('ubivisit');
     final prefs = await SharedPreferences.getInstance();
     var db = await Hive.openBox('ubivisit');
     var post = '';
@@ -100,6 +94,9 @@ class FBase {
           if ((data['phone'] == phone || data['eamil'] == phone) &&
               data['password'] == pass) {
             isMatch = true;
+            print(data);
+            print(data['organization']);
+
             firestore
                 .collection('ubivisit/ubivisit/users')
                 .doc(data['id'])
@@ -115,6 +112,7 @@ class FBase {
               'phone': data['phone'],
               'pushtoken': data['pushtoken'],
               'organization': data['organization'],
+              'date': data['date'],
             });
 
             await prefs.setBool('isLogin', true);
@@ -126,6 +124,7 @@ class FBase {
       if (isMatch) {
         if (post == 'Admin') {
           isMatch = false;
+          print(db.get('userInfo'));
           Get.offAllNamed(Routes.admindash);
         } else if (post == 'Guard') {
           isMatch = false;
@@ -188,23 +187,33 @@ class FBase {
     });
   }
 
-  static updateUserInfo(context, updateField, value, id, route) async {
+  static Future updateUserInfo(context, updateField, value, id, route) async {
     await Hive.deleteBoxFromDisk('ubivisit');
     var db = await Hive.openBox('ubivisit');
     CustomLoader.showLoader(context);
-    firestore.collection('ubivisit/ubivisit/users').doc(id).get().then((data) {
-      db.put('userInfo', {
-        'name': data['name'],
-        'email': data['email'],
-        'password': data['password'],
-        'post': data['post'],
-        'id': data['id'],
-        'image': data['image'],
-        'phone': data['phone'],
-        'pushtoken': data['pushtoken'],
-        'organization': data['organization'],
-      }).then((value) {
-        Get.offAllNamed(route);
+    firestore
+        .collection('ubivisit/ubivisit/users')
+        .doc(id)
+        .update({updateField: value}).then((val) {
+      firestore
+          .collection('ubivisit/ubivisit/users')
+          .doc(id)
+          .get()
+          .then((data) {
+        db.put('userInfo', {
+          'name': data['name'],
+          'email': data['email'],
+          'password': data['password'],
+          'post': data['post'],
+          'id': data['id'],
+          'image': data['image'],
+          'phone': data['phone'],
+          'pushtoken': data['pushtoken'],
+          'organization': data['organization'],
+          'date': data['date'],
+        }).then((value) {
+          Get.offAllNamed(route);
+        });
       });
     });
   }
@@ -279,7 +288,6 @@ class FBase {
   static Future addVisitor(name, phone, address, purpose, tomeet, image, qr,
       organization, id) async {
     // var id = DateTime.now().millisecondsSinceEpoch.toString();
-    print('firebase id :$id');
     final imgId = image.path.split('/').last;
     final qrId = qr.path.split('/').last;
 
@@ -291,7 +299,7 @@ class FBase {
       qrRef.putFile(qr).then((p0) async {
         var currDate = DateTime.now();
         String time = DateFormat('jm').format(currDate);
-        String date = '${currDate.day}-${currDate.month}-${currDate.year}';
+        String date = DateFormat('dd-MM-yyyy').format(currDate);
 
         final imgUrl = await ref.getDownloadURL();
         final qrUrl = await qrRef.getDownloadURL();

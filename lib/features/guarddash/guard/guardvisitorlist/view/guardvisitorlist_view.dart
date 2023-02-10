@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/customappbar.dart';
+import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/routes.dart';
@@ -19,7 +21,10 @@ class GuardVisitorListView extends GetView<GuardVisitorListController> {
       },title: "Visitor's List",),
 
       body: StreamBuilder(
-        stream: controller.visitorStream,
+         stream: FirebaseFirestore.instance
+            .collection('ubivisit/ubivisit/visitors')
+            .where('organization', isEqualTo: FBase.userInfo['organization'])
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final data = snapshot.data?.docs;

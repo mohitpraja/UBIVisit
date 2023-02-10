@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
 
-class AdminHomeController extends GetxController {
+class ShowProfileController extends GetxController {
   @override
   Future<void> onInit() async {
     var db = await Hive.openBox('ubivisit');
@@ -13,4 +13,5 @@ class AdminHomeController extends GetxController {
   }
 
   RxBool loader = true.obs;
+ 
 }
