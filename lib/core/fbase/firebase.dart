@@ -23,7 +23,7 @@ class FBase {
   static Future addUser(
       name, email, phone, password, post, role, organization) async {
     log('cld');
-    var capName = FBase.capitalize(name);
+    var capName = capitalize(name);
     var id = DateTime.now().millisecondsSinceEpoch.toString();
     await fmessaging.requestPermission();
     String pushtoken = '';
@@ -135,8 +135,7 @@ class FBase {
           Get.offAllNamed(Routes.empdash);
         }
       } else {
-         CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
-            .show1();
+        CustomSnackbar(title: 'Warning', msg: 'Invalid credentials').show1();
       }
     });
   }
@@ -193,11 +192,7 @@ class FBase {
     await Hive.deleteBoxFromDisk('ubivisit');
     var db = await Hive.openBox('ubivisit');
     CustomLoader.showLoader(context);
-    firestore
-        .collection('ubivisit/ubivisit/users')
-        .doc(id)
-        .get()
-        .then((data) {
+    firestore.collection('ubivisit/ubivisit/users').doc(id).get().then((data) {
       db.put('userInfo', {
         'name': data['name'],
         'email': data['email'],
@@ -211,6 +206,7 @@ class FBase {
       }).then((value) {
         Get.offAllNamed(route);
       });
+    });
   }
 
   static deleteUser(id, context) {
@@ -371,7 +367,7 @@ class FBase {
         .update({'status': status}).then((value) => Get.back());
   }
 
-  static Future timeOut(id) async{
+  static Future timeOut(id) async {
     var currDate = DateTime.now();
     String time = DateFormat('jm').format(currDate);
     firestore
