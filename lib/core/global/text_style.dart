@@ -57,5 +57,4 @@ abstract class ThemeText {
       fontWeight: fontWeight5,
       fontFamily: GoogleFonts.alata().fontFamily);
 
-
 }

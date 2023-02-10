@@ -148,7 +148,7 @@ class AllGuardDataController extends GetxController {
             'Update User',
             textAlign: TextAlign.center,
           ),
-          titlePadding: const EdgeInsets.only(top: 15),
+          titlePadding: const EdgeInsets.only(top: 10),
           contentPadding: const EdgeInsets.all(0),
           content: SingleChildScrollView(
             child: Container(
@@ -157,7 +157,7 @@ class AllGuardDataController extends GetxController {
               child: Form(
                   key: Validation.guardFormKey,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                      CustomTextFormField(
                         hintText: 'Enter Name',

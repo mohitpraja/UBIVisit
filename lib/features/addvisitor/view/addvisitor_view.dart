@@ -39,7 +39,7 @@ class AddvisitorView extends GetView<AddvisitorController> {
                   child: Center(
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 15),
-                      height: Get.height * 0.9,
+                      height: Get.height * 0.87,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [

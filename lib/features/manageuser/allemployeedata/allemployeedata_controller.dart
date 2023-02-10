@@ -148,16 +148,16 @@ class AllEmployeeDataController extends GetxController {
             'Update User',
             textAlign: TextAlign.center,
           ),
-          titlePadding: const EdgeInsets.only(top: 15),
+          titlePadding: const EdgeInsets.only(top: 10),
           contentPadding: const EdgeInsets.all(0),
           content: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.all(10),
-              height: Get.height * 0.6,
+              height: Get.height * 0.65,
               child: Form(
                   key: Validation.employeeFormKey,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomTextFormField(
                         hintText: 'Enter Name',

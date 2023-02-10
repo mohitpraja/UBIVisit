@@ -273,10 +273,14 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                                                               .customColor),
                                                                       onPressed:
                                                                           () {
-                                                                        FBase.timeOut(controller.allVisitors[index]
-                                                                            [
-                                                                            'id']);
-                                                                      },
+                                                                            if(FBase.timeOut(controller.allVisitors[index]['id'])){
+                                                                              CustomSnackbar(title: 'success', msg: 'successfully Timeout ')
+                                                                                  .show();
+                                                                            }else{
+                                                                              return  CustomSnackbar(title: 'sorry', msg: "Couldn't Timeout ")
+                                                                                  .show();
+                                                                            };
+                                                                          },
                                                                       child:
                                                                           const Text(
                                                                         'Time out',

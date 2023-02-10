@@ -29,7 +29,7 @@ class AddGuardView extends GetView<AddGuardController> {
           child: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 12),
-              height: Get.height * 0.85,
+              height: Get.height * 0.87,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

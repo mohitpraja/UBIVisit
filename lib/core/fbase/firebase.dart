@@ -387,6 +387,7 @@ class FBase {
         .collection('ubivisit/ubivisit/visitors')
         .doc(id)
         .update({'timeout': time});
+    return true;
   }
 
   static sendMessage(phone, url) async {
