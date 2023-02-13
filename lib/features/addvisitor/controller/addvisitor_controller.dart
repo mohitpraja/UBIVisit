@@ -30,12 +30,13 @@ class AddvisitorController extends GetxController {
   ScreenshotController screenshotController = ScreenshotController();
 
   RxBool loader = true.obs;
+  RxBool isShow = false.obs;
 
   List<String> purposeList = [
     'For interview',
     'For personal work',
     'For internship',
-    'other'
+    'Other'
   ];
   List<String> toMeetList = [
     'Mohit kumar',
@@ -60,7 +61,6 @@ class AddvisitorController extends GetxController {
       imagePath.value = img.path;
     }
   }
-
   saveVisitor(context) async {
     if (imagePath.value == '') {
       const CustomSnackbar(msg: 'Image required', title: 'Warning').show1();

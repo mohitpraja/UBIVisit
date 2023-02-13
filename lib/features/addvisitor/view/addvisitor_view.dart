@@ -91,33 +91,61 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   CustomTextFormField(
-                                    hintText: 'Enter Name',
-                                    icon: const Icon(Icons.person),
-                                    onchanged: (value) =>
-                                        controller.name = value,
-                                        validator: (value){
-                                          return  Validation.nameValidator(value);
-                                        }
-                                  ),
+                                      hintText: 'Enter Name',
+                                      icon: const Icon(Icons.person),
+                                      onchanged: (value) =>
+                                          controller.name = value,
+                                      validator: (value) {
+                                        return Validation.nameValidator(value);
+                                      }
+                                      ),
                                   CustomTextFormField(
-                                    hintText: 'Enter Phone Number',
-                                    icon: const Icon(Icons.phone),
+                                      hintText: 'Enter Phone Number',
+                                      icon: const Icon(Icons.phone),
                                       inputType: TextInputType.number,
-                                    onchanged: (value) =>
-                                        controller.phone = value,
-                                    maxLength: 10,
-                                     validator:(value){
-                                       return  Validation.phoneValidator(value);
-                                     }
-                                  ),
+                                      onchanged: (value) =>
+                                          controller.phone = value,
+                                      maxLength: 10,
+                                      validator: (value) {
+                                        return Validation.phoneValidator(value);
+                                      }),
                                   CustomTextFormField(
                                     hintText: 'Enter Address',
                                     icon: const Icon(
                                         Icons.calendar_view_day_outlined),
                                     onchanged: (value) =>
                                         controller.address = value,
-                                        validator: (value) => Validation.isValid(value, 'Address required'),
+                                    validator: (value) => Validation.isValid(
+                                        value, 'Address required'),
                                   ),
+                                  DropdownSearch(
+                                    items: controller.getSenderInfo
+                                        .map(
+                                          (e) => e['name'],
+                                    )
+                                        .toList(),
+                                    onChanged: (value) {
+                                      controller.tomeet = value;
+                                      controller.tempSender = value;
+                                    },
+                                    dropdownDecoratorProps:
+                                    const DropDownDecoratorProps(
+                                      dropdownSearchDecoration: InputDecoration(
+                                          hintStyle: TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.black54),
+                                          filled: true,
+                                          contentPadding: EdgeInsets.symmetric(
+                                              horizontal: 15, vertical: 0),
+                                          hintText: "To Meet",
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10)))),
+                                    ),
+                                    validator: (value) => Validation.isValid(
+                                        value, 'To Meet required'),
+                                  ),
+
                                   DropdownButtonFormField2(
                                     itemPadding: EdgeInsets.zero,
                                     decoration: InputDecoration(
@@ -125,7 +153,8 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                       isDense: true,
                                       contentPadding: EdgeInsets.zero,
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
+                                        borderRadius:
+                                            BorderRadius.circular(10),
                                       ),
                                     ),
                                     isExpanded: true,
@@ -144,7 +173,8 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                     items: controller.purposeList
-                                        .map((item) => DropdownMenuItem<String>(
+                                        .map((item) =>
+                                            DropdownMenuItem<String>(
                                               value: item,
                                               child: Container(
                                                 margin:
@@ -158,48 +188,35 @@ class AddvisitorView extends GetView<AddvisitorController> {
                                               ),
                                             ))
                                         .toList(),
-                                    validator: (value) {
-                                      if (value == null) {
-                                        return 'Purpose required';
-                                      }
-                                      return null;
-                                    },
+                                    validator: (value) => Validation.isValid(
+                                        value, 'Purpose required'),
                                     onChanged: (value) {
-                                      controller.purpose = value!;
+                                      if (value == 'Other') {
+                                        controller.isShow.value=true;
+
+                                      } else {
+                                        controller.isShow.value=false;
+
+                                        controller.purpose = value!;
+
+                                      }
+
                                       //Do something when changing the item if you want.
                                     },
                                   ),
-                                  DropdownSearch(
-                                    items: controller.getSenderInfo
-                                        .map(
-                                          (e) => e['name'],
-                                        )
-                                        .toList(),
-                                    onChanged: (value) {
-                                      controller.tomeet = value;
-                                      controller.tempSender = value;
-                                    },
-                                    dropdownDecoratorProps:
-                                        const DropDownDecoratorProps(
-                                      dropdownSearchDecoration: InputDecoration(
-                                          hintStyle: TextStyle(
-                                              fontSize: 15,
-                                              color: Colors.black54),
-                                          filled: true,
-                                          contentPadding: EdgeInsets.symmetric(
-                                              horizontal: 15, vertical: 0),
-                                          hintText: "To Meet",
-                                          border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(10)))),
-                                    ),
-                                    validator: (value) {
-                                      if (value == null) {
-                                        return 'To Meet required';
-                                      }
-                                      return null;
-                                    },
-                                  ),
+                                  Visibility(
+                                    visible: controller.isShow.value,
+                                      child: CustomTextFormField(hintText: 'Enter Reason',icon: Icon(Icons.add),
+                                          onchanged: (value) =>
+                                          controller.purpose = value,
+                                          validator: (value) {
+                                            return Validation.isValid(value,'Other reason is required');
+                                          }
+                                  )
+                            ),
+
+
+
                                 ],
                               ),
                             ),
