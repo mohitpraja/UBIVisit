@@ -13,8 +13,8 @@ class GuardHomeController extends GetxController {
   @override
   Future<void> onInit() async {
     var db = await Hive.openBox('ubivisit');
-    FBase.userInfo.value = db.get('userInfo');
     loader.value = false;
+    FBase.userInfo.value = db.get('userInfo');
     super.onInit();
   }
 
