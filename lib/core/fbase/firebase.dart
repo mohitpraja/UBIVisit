@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -94,8 +95,6 @@ class FBase {
           if ((data['phone'] == phone || data['eamil'] == phone) &&
               data['password'] == pass) {
             isMatch = true;
-            print(data);
-            print(data['organization']);
 
             firestore
                 .collection('ubivisit/ubivisit/users')
@@ -124,7 +123,6 @@ class FBase {
       if (isMatch) {
         if (post == 'Admin') {
           isMatch = false;
-          print(db.get('userInfo'));
           Get.offAllNamed(Routes.admindash);
         } else if (post == 'Guard') {
           isMatch = false;
@@ -255,30 +253,56 @@ class FBase {
           .collection('ubivisit/ubivisit/users')
           .doc(id)
           .update({'image': imgUrl}).then(
-        (value) {
-          firestore
+        (value) async {
+          await firestore
               .collection('ubivisit/ubivisit/users')
+              .doc(id)
               .get()
-              .then((snapshot) {
-            // ignore: avoid_function_literals_in_foreach_calls
-            snapshot.docs.forEach(
-              (e) async {
-                var data = e.data();
-                if (data['id'] == id) {
-                  isMatch = true;
-                  db.put('userInfo', {
-                    'name': data['name'],
-                    'email': data['email'],
-                    'password': data['password'],
-                    'post': data['post'],
-                    'id': data['id'],
-                    'image': data['image'],
-                    'phone': data['phone'],
-                    'pushtoken': data['pushtoken'],
-                  });
-                }
-              },
-            );
+              .then((data) {
+            db.put('userInfo', {
+              'name': data['name'],
+              'email': data['email'],
+              'password': data['password'],
+              'post': data['post'],
+              'id': data['id'],
+              'image': data['image'],
+              'phone': data['phone'],
+              'pushtoken': data['pushtoken'],
+              'organization': data['organization'],
+              'date': data['date'],
+            }).then((value) {
+              AwesomeDialog(
+                context: context,
+                dialogType: DialogType.success,
+                title: 'Success',
+                desc: 'Image Updated Successfully',
+                dismissOnTouchOutside: false,
+                btnOkOnPress: () => Get.back(),
+              ).show();
+              // Get.offAllNamed(route);
+            });
+            // firestore
+            //     .collection('ubivisit/ubivisit/users')
+            //     .get()
+            //     .then((snapshot) {
+            //   // ignore: avoid_function_literals_in_foreach_calls
+            //   snapshot.docs.forEach(
+            //     (e) async {
+            //       var data = e.data();
+            //       if (data['id'] == id) {
+            //         isMatch = true;
+            //         db.put('userInfo', {
+            //           'name': data['name'],
+            //           'email': data['email'],
+            //           'password': data['password'],
+            //           'post': data['post'],
+            //           'id': data['id'],
+            //           'image': data['image'],
+            //           'phone': data['phone'],
+            //           'pushtoken': data['pushtoken'],
+            //           'organization': data['organization'],
+            //           'date': data['date'],
+            //         });
           });
         },
       );

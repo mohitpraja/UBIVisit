@@ -13,11 +13,11 @@ class VisitorOtpView extends GetView<VisitorOtpController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   leading: IconButton(
-      //       onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back)),
-      // ),
+      appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+            onPressed: () => Get.back(), icon: const Icon(Icons.arrow_back)),
+      ),
       body: GestureDetector(
         onTap: () => Get.focusScope!.unfocus(),
         child: Stack(

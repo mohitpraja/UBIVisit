@@ -219,16 +219,7 @@ class EditProfileController extends GetxController {
           File(imagePath.value),
           FBase.userInfo['id'],
           context,
-        ).then((value) {
-          AwesomeDialog(
-            context: context,
-            dialogType: DialogType.success,
-            title: 'Success',
-            desc: 'Image Updated Successfully',
-            dismissOnTouchOutside: false,
-            btnOkOnPress: () => Get.back(),
-          ).show();
-        });
+        );
         Get.back();
       }
     }

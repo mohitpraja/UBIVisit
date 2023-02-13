@@ -134,7 +134,7 @@ class OtpView extends GetView<OtpController> {
                                               ),
                                               TextSpan(
                                                 text: "00:${controller.start}",
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     fontSize: 16,
                                                     color: Colors.pinkAccent),
                                               ),
