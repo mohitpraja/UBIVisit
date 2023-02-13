@@ -8,12 +8,10 @@ import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/routes.dart';
 
-
 class Admindrawer extends GetView {
   const Admindrawer({
     super.key,
   });
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +39,14 @@ class Admindrawer extends GetView {
                           'Hi! ${FBase.userInfo['name'].split(' ').first}',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: Get.height*0.035,
+                              fontSize: Get.height * 0.035,
                               fontFamily: CustomFonts.alata),
                         ),
                         Text(
                           FBase.userInfo['phone'],
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: Get.height*0.02,
+                              fontSize: Get.height * 0.02,
                               fontFamily: CustomFonts.alata),
                         ),
                       ],
@@ -59,16 +57,14 @@ class Admindrawer extends GetView {
                         width: 60,
                         height: 60,
                         fit: BoxFit.cover,
-                        imageUrl:FBase.userInfo['image'],
-                        errorWidget: (context, url, error) =>
-                            CircleAvatar(
-                                backgroundColor:
-                                GlobalColor.customColor,
-                                child: const Icon(
-                                  Icons.person,
-                                  size: 35,
-                                  color: Colors.white,
-                                )),
+                        imageUrl: FBase.userInfo['image'],
+                        errorWidget: (context, url, error) => CircleAvatar(
+                            backgroundColor: GlobalColor.customColor,
+                            child: const Icon(
+                              Icons.person,
+                              size: 35,
+                              color: Colors.white,
+                            )),
                       ),
                     ),
                   ],
@@ -76,21 +72,28 @@ class Admindrawer extends GetView {
               ),
             ),
           ),
-
-          ListTile(
-            leading: const Icon(Icons.person_add_alt_1),
-            horizontalTitleGap: 0,
-            title: Text(
-              'Edit Profile',
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: CustomFonts.alata),
+          InkWell(
+            onTap: () {
+              Get.back();
+              Get.toNamed(Routes.editprofile);
+            },
+            child: ListTile(
+              leading: const Icon(Icons.person_add_alt_1),
+              horizontalTitleGap: 0,
+              title: Text(
+                'Edit Profile',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: CustomFonts.alata),
+              ),
             ),
           ),
-
           GestureDetector(
-            onTap: () => Get.toNamed(Routes.manageuser),
+            onTap: () {
+              Get.back();
+              Get.toNamed(Routes.manageuser);
+            },
             child: ListTile(
               leading: const Icon(Icons.people),
               horizontalTitleGap: 0,
@@ -132,14 +135,12 @@ class Admindrawer extends GetView {
                         height: 10,
                       ),
                       Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           InkWell(
                             onTap: () {
                               GlobalColor.customColor = Colors.teal;
-                              GlobalColor.customMaterialColor =
-                                  Colors.teal;
+                              GlobalColor.customMaterialColor = Colors.teal;
                               Get.back();
                               Get.offAllNamed(Routes.admindash);
                             },
@@ -147,14 +148,12 @@ class Admindrawer extends GetView {
                               width: 30,
                               height: 30,
                               decoration: const BoxDecoration(
-                                  color: Colors.teal,
-                                  shape: BoxShape.circle),
+                                  color: Colors.teal, shape: BoxShape.circle),
                             ),
                           ),
                           InkWell(
                             onTap: () {
-                              GlobalColor.customColor =
-                                  Colors.deepOrange;
+                              GlobalColor.customColor = Colors.deepOrange;
                               GlobalColor.customMaterialColor =
                                   Colors.deepOrange;
                               Get.back();
@@ -171,8 +170,7 @@ class Admindrawer extends GetView {
                           InkWell(
                             onTap: () {
                               GlobalColor.customColor = Colors.blue;
-                              GlobalColor.customMaterialColor =
-                                  Colors.blue;
+                              GlobalColor.customMaterialColor = Colors.blue;
                               Get.back();
                               Get.offAllNamed(Routes.admindash);
                             },
@@ -180,15 +178,13 @@ class Admindrawer extends GetView {
                               width: 30,
                               height: 30,
                               decoration: const BoxDecoration(
-                                  color: Colors.blue,
-                                  shape: BoxShape.circle),
+                                  color: Colors.blue, shape: BoxShape.circle),
                             ),
                           ),
                           InkWell(
                             onTap: () {
                               GlobalColor.customColor = Colors.green;
-                              GlobalColor.customMaterialColor =
-                                  Colors.green;
+                              GlobalColor.customMaterialColor = Colors.green;
                               Get.back();
                               Get.offAllNamed(Routes.admindash);
                             },
@@ -196,15 +192,13 @@ class Admindrawer extends GetView {
                               width: 30,
                               height: 30,
                               decoration: const BoxDecoration(
-                                  color: Colors.green,
-                                  shape: BoxShape.circle),
+                                  color: Colors.green, shape: BoxShape.circle),
                             ),
                           ),
                           InkWell(
                             onTap: () {
                               GlobalColor.customColor = Colors.pink;
-                              GlobalColor.customMaterialColor =
-                                  Colors.pink;
+                              GlobalColor.customMaterialColor = Colors.pink;
                               Get.back();
                               Get.offAllNamed(Routes.admindash);
                             },
@@ -212,8 +206,7 @@ class Admindrawer extends GetView {
                               width: 30,
                               height: 30,
                               decoration: const BoxDecoration(
-                                  color: Colors.pink,
-                                  shape: BoxShape.circle),
+                                  color: Colors.pink, shape: BoxShape.circle),
                             ),
                           ),
                         ],
@@ -242,15 +235,13 @@ class Admindrawer extends GetView {
               await pref.setBool('isLogin', false);
               pref.clear();
               Hive.deleteBoxFromDisk('ubivisit');
-              GlobalColor.customColor=Colors.indigo;
-              GlobalColor.customMaterialColor=Colors.indigo;
+              GlobalColor.customColor = Colors.indigo;
+              GlobalColor.customMaterialColor = Colors.indigo;
               Get.offAllNamed(Routes.welcome);
             },
           ),
         ],
       ),
     );
-
   }
 }
-

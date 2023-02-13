@@ -48,10 +48,10 @@ class AddEmployeeController extends GetxController {
       FBase.checkUser(phone, email).then((value) {
          if (FBase.isPhoneExist) {
           Get.back();
-          const CustomSnackbar(title: 'Warning', msg: 'This phone already ').show1();
+           CustomSnackbar(title: 'Warning', msg: 'This phone already ').show1();
         } else if (FBase.isEmailExist) {
           Get.back();
-          const CustomSnackbar(title: 'Warning', msg: 'This mail already ').show1();
+          CustomSnackbar(title: 'Warning', msg: 'This mail already ').show1();
         } else {
       Get.back();
       FBase.addUser(name,email, phone, password,post,'employee',FBase.userInfo['organization']).then((value){

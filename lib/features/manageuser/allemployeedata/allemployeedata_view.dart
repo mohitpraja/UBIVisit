@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/features/manageuser/allemployeedata/allemployeedata_controller.dart';
 
@@ -18,7 +17,7 @@ class AllEmployeeDataView extends GetView<AllEmployeeDataController> {
         children: [
           Expanded(
             child: StreamBuilder(
-              stream: FBase.collectionPathEmp,
+              stream: controller.collectionPathEmp,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final data = snapshot.data?.docs;

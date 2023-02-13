@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/components/customtextform.dart';
 import 'package:ubivisit/core/components/passwordfield.dart';
-import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/features/addguard/controller/addguard_controller.dart';
 
-import '../../../core/components/customappbar.dart';
 
 class AddGuardView extends GetView<AddGuardController> {
   const AddGuardView({super.key});
@@ -30,7 +29,7 @@ class AddGuardView extends GetView<AddGuardController> {
           child: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 12),
-              height: Get.height * 0.85,
+              height: Get.height * 0.87,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

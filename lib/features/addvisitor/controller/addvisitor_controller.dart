@@ -51,6 +51,7 @@ class AddvisitorController extends GetxController {
   var purpose = '';
   var address = '';
   var tomeet = '';
+   var id = DateTime.now().millisecondsSinceEpoch.toString();
   final ImagePicker picker = ImagePicker();
   RxString imagePath = ''.obs;
   RxString qrPath = ''.obs;
@@ -63,7 +64,7 @@ class AddvisitorController extends GetxController {
   }
   saveVisitor(context) async {
     if (imagePath.value == '') {
-      const CustomSnackbar(msg: 'Image required', title: 'Warning').show1();
+      CustomSnackbar(msg: 'Image required', title: 'Warning').show1();
     } else {
       CustomLoader.showLoader(context);
       if (!(await InternetConnectionChecker().hasConnection)) {
@@ -100,7 +101,8 @@ class AddvisitorController extends GetxController {
               File(imagePath.value),
               verificationId,
               finalSender,
-              File(qrPath.value)
+              File(qrPath.value),
+              id
             ]);
           },
           codeAutoRetrievalTimeout: (String verificationId) {},
@@ -146,7 +148,8 @@ class AddvisitorController extends GetxController {
       'phone': phone,
       'address': address,
       'purpose': purpose,
-      'tomeet': tomeet
+      'tomeet': tomeet,
+      'id':id
     };
 
     screenshotController

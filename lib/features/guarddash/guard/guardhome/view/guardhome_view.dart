@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customdrawer.dart';
 import 'package:ubivisit/core/fbase/firebase.dart';
-import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/text_style.dart';
@@ -33,7 +33,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                   style: ThemeText.headingWhite,
                 ),
               ),
-              drawer: Guarddrawer(),
+              drawer: const Guarddrawer(),
               body: SizedBox(
                 height: Get.height,
                 child: Stack(
@@ -64,10 +64,8 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'Hi! ${FBase.userInfo['name'].split(' ').first}',
-                                    style: ThemeText.headingWhite),
-
+                                          Text(FBase.userInfo['name'],
+                                              style: ThemeText.userHeading),
                                           const SizedBox(
                                             height: 2,
                                           ),
@@ -171,10 +169,9 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                       }
                                       if (controller.allVisitors.isEmpty) {
                                         return Center(
-                                            child: Text(
-                                          'No Recent Updates',
-                                                style: ThemeText.heading2Style
-                                        ));
+                                            child: Text('No Recent Updates',
+                                                style:
+                                                    ThemeText.heading2Style));
                                       }
                                       return ListView.builder(
                                         itemCount:
@@ -262,6 +259,7 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                                                 ),
                                                               ],
                                                             ),
+
                                                             const SizedBox(
                                                               height: 3,
                                                             ),
@@ -274,9 +272,18 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                                                               .customColor),
                                                                       onPressed:
                                                                           () {
-                                                                        FBase.timeOut(controller.allVisitors[index]
+                                                                        FBase.timeOut(FBase.timeOut(controller.allVisitors[index]
                                                                             [
-                                                                            'id']);
+                                                                            'id']));
+                                                                        // if (FBase.timeOut(controller.allVisitors[index]
+                                                                        //     [
+                                                                        //     'id'])) {
+                                                                        //   CustomSnackbar(title: 'success', msg: 'successfully Timeout ')
+                                                                        //       .show();
+                                                                        // } else {
+                                                                        //   return CustomSnackbar(title: 'sorry', msg: "Couldn't Timeout ")
+                                                                        //       .show();
+                                                                        // }
                                                                       },
                                                                       child:
                                                                           const Text(
@@ -292,6 +299,17 @@ class GuardHomeView extends GetView<GuardHomeController> {
                                                         ),
                                                       )),
                                                 ),
+                                                Positioned(
+                                                    right: Get.width * 0.05,
+                                                    top: Get.width * 0.05,
+                                                    child: GestureDetector(
+                                                      onTap: () => controller
+                                                          .scanTimeOut(),
+                                                      child: const CircleAvatar(
+                                                        child: Icon(CupertinoIcons
+                                                            .camera_viewfinder),
+                                                      ),
+                                                    )),
                                               ],
                                             ),
                                           );

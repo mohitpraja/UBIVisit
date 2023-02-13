@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:ubivisit/core/components/customappbar.dart';
 import 'package:ubivisit/core/components/custombutton.dart';
 import 'package:ubivisit/core/components/customscroll.dart';
 import 'package:ubivisit/core/components/customtextform.dart';
 import 'package:ubivisit/core/components/passwordfield.dart';
-import 'package:ubivisit/core/global/customfont.dart';
-import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/core/routes.dart';
@@ -86,14 +85,23 @@ class SignupView extends GetView<SignupController> {
                                 return  Validation.emailValidator(value);
                               },
                             ),
-                            CustomTextFormField(
-                              hintText: 'Enter Phone Number',
-                              inputType: TextInputType.number,
-                              icon: const Icon(Icons.phone),
-                              onchanged: (value) => controller.phone = value,
-                              maxLength: 10,
-                              validator:(value){
-                                return  Validation.phoneValidator(value);
+                            IntlPhoneField(
+                              decoration:  InputDecoration(
+                                  contentPadding: EdgeInsets.zero,
+                                  filled: true,
+                                  counterText: '',
+                                  hintText: 'Phone Number',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10))
+                              ),
+                              dropdownIconPosition: IconPosition.trailing,
+                              flagsButtonMargin: const EdgeInsets.all(10),
+                              initialCountryCode: 'IN',
+                              onChanged: (phone) {
+                                // controller.phone = phone.countryCode+phone.number;
+                                controller.phone = phone.number;
+                                controller.countryCode = phone.countryCode;
+                                controller.contryCodeNumber = phone.countryCode+phone.number;
                               },
                             ),
                             PasswordField(
@@ -126,7 +134,7 @@ class SignupView extends GetView<SignupController> {
                                   },
                                   child: Text(
                                     'Login here ',
-                                      style: ThemeText.BlueMinHeading
+                                      style: ThemeText.blueMinHeading
                                   ),
                                 ),
                               ],

@@ -1,18 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/globalfunction.dart';
 
-class AdminVisitorListController extends GetxController{
-   List allVisitors = [];
-  final Stream visitorStream = FirebaseFirestore.instance
-      .collection('ubivisit/ubivisit/visitors')
-      .where('organization',isEqualTo: FBase.userInfo['organization'])
-      .snapshots();
- showDetails(user) {
+class AdminVisitorListController extends GetxController {
+  RxBool loader = true.obs;
+  List allVisitors = [];
+
+  showDetails(user) {
     Get.defaultDialog(
         title: '',
         contentPadding: const EdgeInsets.all(0),
@@ -27,7 +23,7 @@ class AdminVisitorListController extends GetxController{
                 Row(
                   children: [
                     InkWell(
-                       onTap: () => GlobalFunction.showImg(user['image']),
+                      onTap: () => GlobalFunction.showImg(user['image']),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(75),
                         child: CachedNetworkImage(
@@ -159,9 +155,4 @@ class AdminVisitorListController extends GetxController{
           ),
         ));
   }
-
-
-
-
-
 }

@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ubivisit/core/fbase/firebase.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/features/manageuser/allguarddata/allguarddata_controller.dart';
 
@@ -19,7 +18,7 @@ class AllGuardDataView extends GetView<AllGuardDataController>{
         children: [
           Expanded(
             child: StreamBuilder(
-              stream: FBase.collectionPathGuard,
+              stream: controller.collectionPathGuard,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final data = snapshot.data?.docs;

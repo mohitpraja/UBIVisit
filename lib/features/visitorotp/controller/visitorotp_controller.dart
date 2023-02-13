@@ -109,7 +109,7 @@ class VisitorOtpController extends GetxController {
         Get.back();
 
         FBase.addVisitor(signupData[0], signupData[2], signupData[1],
-                signupData[3], signupData[4], signupData[5], signupData[8],FBase.userInfo['organization'])
+                signupData[3], signupData[4], signupData[5], signupData[8],FBase.userInfo['organization'],signupData[9])
             .then((value) {
           FBase.sendNotification(signupData[7], signupData);
           AwesomeDialog(
@@ -124,7 +124,7 @@ class VisitorOtpController extends GetxController {
       }
     } on FirebaseAuthException {
       Get.back();
-      const CustomSnackbar(msg: 'Invalid OTP', title: 'Warning').show();
+       CustomSnackbar(msg: 'Invalid OTP', title: 'Warning').show();
     }
   }
 }

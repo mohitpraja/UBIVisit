@@ -12,7 +12,6 @@ import 'package:ubivisit/core/components/customtextform.dart';
 import 'package:ubivisit/core/global/global.dart';
 import 'package:ubivisit/core/global/text_style.dart';
 import 'package:ubivisit/core/global/validation.dart';
-import 'package:ubivisit/core/routes.dart';
 import 'package:ubivisit/features/addvisitor/controller/addvisitor_controller.dart';
 
 class AddvisitorView extends GetView<AddvisitorController> {
@@ -20,63 +19,70 @@ class AddvisitorView extends GetView<AddvisitorController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => controller.loader.value
-        ? const Center(child: CircularProgressIndicator())
-        : Scaffold(
-            backgroundColor: Colors.white,
-            appBar: CustomAppbar(
-                color: Colors.transparent,
-                colors: Colors.black54,
-                title: "Add Visitor Details",
-                style: ThemeText.userHeading,
-                onPress: () {
-                  Get.back();
-                }),
-            body: GestureDetector(
-              onTap: () => Get.focusScope!.unfocus(),
-              child: ScrollConfiguration(
-                behavior: CustomScroll(),
-                child: SingleChildScrollView(
-                  child: Center(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 15),
-                      height: Get.height * 0.9,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          InkWell(
-                            onTap: () => controller.selectImage(context),
-                            child: controller.imagePath.value != ''
-                                ? Material(
-                                    shape: CircleBorder(
-                                        side: BorderSide(
-                                            color: GlobalColor.customColor)),
-                                    child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(75),
-                                        child: Image.file(
-                                          File(controller.imagePath.value),
-                                          width: 120,
-                                          height: 120,
-                                          fit: BoxFit.cover,
-                                        )),
-                                  )
-                                : Material(
-                                    shape: CircleBorder(
-                                        side: BorderSide(
-                                            color: GlobalColor.customColor)),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(75),
-                                      child: CachedNetworkImage(
-                                        width: 120,
-                                        height: 120,
-                                        fit: BoxFit.cover,
-                                        imageUrl: '',
-                                        errorWidget: (context, url, error) =>
-                                            CircleAvatar(
-                                          backgroundColor:
-                                              Colors.indigo.shade100,
-                                          backgroundImage: const AssetImage(
-                                              'assets/images/camera.jpg'),
+    return Obx(() => Scaffold(
+          backgroundColor: Colors.white,
+          appBar: CustomAppbar(
+              color: Colors.transparent,
+              colors: Colors.black54,
+              title: "Add Visitor Details",
+              style: ThemeText.userHeading,
+              onPress: () {
+                Get.back();
+              }),
+          body: controller.loader.value
+              ? const Center(child: CircularProgressIndicator())
+              : GestureDetector(
+                  onTap: () => Get.focusScope!.unfocus(),
+                  child: ScrollConfiguration(
+                    behavior: CustomScroll(),
+                    child: SingleChildScrollView(
+                      child: Center(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 15),
+                          height: Get.height * 0.87,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              InkWell(
+                                onTap: () => controller.selectImage(context),
+                                child: controller.imagePath.value != ''
+                                    ? Material(
+                                        shape: CircleBorder(
+                                            side: BorderSide(
+                                                color:
+                                                    GlobalColor.customColor)),
+                                        child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(75),
+                                            child: Image.file(
+                                              File(controller.imagePath.value),
+                                              width: 120,
+                                              height: 120,
+                                              fit: BoxFit.cover,
+                                            )),
+                                      )
+                                    : Material(
+                                        shape: CircleBorder(
+                                            side: BorderSide(
+                                                color:
+                                                    GlobalColor.customColor)),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(75),
+                                          child: CachedNetworkImage(
+                                            width: 120,
+                                            height: 120,
+                                            fit: BoxFit.cover,
+                                            imageUrl: '',
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    CircleAvatar(
+                                              backgroundColor:
+                                                  Colors.indigo.shade100,
+                                              backgroundImage: const AssetImage(
+                                                  'assets/images/camera.jpg'),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -218,30 +224,29 @@ class AddvisitorView extends GetView<AddvisitorController> {
 
 
                                 ],
+
                               ),
-                            ),
+                              CustomButton(
+                                title: "Submit",
+                                onPress: () {
+                                  if (Validation.addvisitor.currentState!
+                                      .validate()) {
+                                    controller.getSenderToken();
+                                    controller.generateSS().then((value) {
+                                      controller.saveVisitor(
+                                        context,
+                                      );
+                                    });
+                                  }
+                                },
+                              ),
+                            ],
                           ),
-                          CustomButton(
-                            title: "Submit",
-                            onPress: () {
-                              if (Validation.addvisitor.currentState!
-                                  .validate()) {
-                                controller.getSenderToken();
-                                controller.generateSS().then((value) {
-                                  controller.saveVisitor(
-                                    context,
-                                  );
-                                });
-                              }
-                            },
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          ));
+        ));
   }
 }

@@ -5,12 +5,15 @@ import 'package:ubivisit/core/global/global.dart';
 class CustomSnackbar {
   final String title;
   final String msg;
-
-  const CustomSnackbar({required this.title, required this.msg});
+ 
+  
+  CustomSnackbar({required this.title, required this.msg});
 
   show() {
     Get.snackbar(title, msg,
-        backgroundColor: Colors.white, colorText: GlobalColor.customColor);
+        backgroundColor: Colors.white,
+        colorText: GlobalColor.customColor,
+        );
   }
 
   show1() {

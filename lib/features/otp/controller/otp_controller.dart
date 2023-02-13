@@ -5,9 +5,46 @@ import 'package:ubivisit/core/components/underlinetextfield.dart';
 import 'package:ubivisit/core/global/customfont.dart';
 import 'package:ubivisit/core/global/validation.dart';
 import 'package:ubivisit/features/signup/controller/signup_controller.dart';
+import 'dart:async';
 
 class OtpController extends GetxController {
   SignupController signupController = Get.find();
+
+  RxInt start = 30.obs;
+  RxBool wait = true.obs;
+  RxString buttonName = "Resend".obs;
+  TextEditingController phoneController = TextEditingController();
+  String verificationIdFinal = "";
+  String smsCode = "";
+
+  Future reSendOtp(context) async {
+    start.value = 30;
+    wait.value = true;
+    //Resend fun here
+    await signupController.sendOtp(context,
+        resendToken: signupController.resendsToken,
+        phone: signupController.phone);
+    startTimer();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    startTimer();
+  }
+
+  void startTimer() {
+    const onsec = Duration(seconds: 1);
+    Timer _timer = Timer.periodic(onsec, (timer) {
+      if (start == 0) {
+        wait.value = false;
+        timer.cancel();
+      } else {
+        start--;
+      }
+    });
+  }
+
 
   final defaultPinTheme = PinTheme(
     width: 42,

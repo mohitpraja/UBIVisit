@@ -51,11 +51,10 @@ abstract class ThemeText {
       letterSpacing: 1);
 
 
-  static TextStyle BlueMinHeading = TextStyle(
+  static TextStyle blueMinHeading = TextStyle(
       color: GlobalColor.customColor,
       fontSize: Get.width * 0.05,
       fontWeight: fontWeight5,
       fontFamily: GoogleFonts.alata().fontFamily);
-
 
 }

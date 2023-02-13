@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -20,10 +21,13 @@ class FBase {
   static FirebaseMessaging fmessaging = FirebaseMessaging.instance;
   static Telephony telephony = Telephony.instance;
 
-  static Future addUser(name, email, phone, password, post, role,organization) async {
+  static Future addUser(
+      name, email, phone, password, post, role, organization) async {
     log('cld');
-    var capName = FBase.capitalize(name);
+    var capName = capitalize(name);
     var id = DateTime.now().millisecondsSinceEpoch.toString();
+    var currDate = DateTime.now();
+    String date = DateFormat('dd-MM-yyyy').format(currDate);
     await fmessaging.requestPermission();
     String pushtoken = '';
     await fmessaging.getToken().then((token) {
@@ -32,7 +36,6 @@ class FBase {
         pushtoken = token;
       }
     });
-
 
     return firestore
         .collection('ubivisit')
@@ -49,7 +52,8 @@ class FBase {
       'role': role,
       'id': id,
       'pushtoken': pushtoken,
-      'organization': organization
+      'organization': organization,
+      'date': date
     });
   }
 
@@ -67,20 +71,11 @@ class FBase {
         .snapshots();
   }
 
-  static Stream collectionPathEmp = firestore
-      .collection('ubivisit/ubivisit/users')
-      .where('role', isEqualTo: 'employee')
-      .where('organization',isEqualTo:userInfo['organization'])
-      .snapshots();
-  static Stream collectionPathGuard = firestore
-      .collection('ubivisit/ubivisit/users')
-      .where('post', isEqualTo: 'Guard')
-      .where('organization',isEqualTo:userInfo['organization'])
-      .snapshots();
   static bool isMatch = false;
   static RxMap userInfo = {}.obs;
 
   static Future getData(context, phone, pass) async {
+    await Hive.deleteBoxFromDisk('ubivisit');
     final prefs = await SharedPreferences.getInstance();
     var db = await Hive.openBox('ubivisit');
     var post = '';
@@ -100,6 +95,7 @@ class FBase {
           if ((data['phone'] == phone || data['eamil'] == phone) &&
               data['password'] == pass) {
             isMatch = true;
+
             firestore
                 .collection('ubivisit/ubivisit/users')
                 .doc(data['id'])
@@ -115,6 +111,7 @@ class FBase {
               'phone': data['phone'],
               'pushtoken': data['pushtoken'],
               'organization': data['organization'],
+              'date': data['date'],
             });
 
             await prefs.setBool('isLogin', true);
@@ -135,8 +132,7 @@ class FBase {
           Get.offAllNamed(Routes.empdash);
         }
       } else {
-        const CustomSnackbar(title: 'Warning', msg: 'Invalid credentials')
-            .show1();
+        CustomSnackbar(title: 'Warning', msg: 'Invalid credentials').show1();
       }
     });
   }
@@ -189,7 +185,7 @@ class FBase {
     });
   }
 
-  static updateUserInfo(context, updateField, value, id, route) async {
+  static Future updateUserInfo(context, updateField, value, id, route) async {
     await Hive.deleteBoxFromDisk('ubivisit');
     var db = await Hive.openBox('ubivisit');
     CustomLoader.showLoader(context);
@@ -197,29 +193,25 @@ class FBase {
         .collection('ubivisit/ubivisit/users')
         .doc(id)
         .update({updateField: value}).then((val) {
-      firestore.collection('ubivisit/ubivisit/users').get().then((snapshot) {
-        // ignore: avoid_function_literals_in_foreach_calls
-        snapshot.docs.forEach(
-          (e) async {
-            var data = e.data();
-            if (data['id'] == id) {
-              isMatch = true;
-              db.put('userInfo', {
-                'name': data['name'],
-                'email': data['email'],
-                'password': data['password'],
-                'post': data['post'],
-                'id': data['id'],
-                'image': data['image'],
-                'phone': data['phone'],
-                'pushtoken': data['pushtoken'],
-              }).then((value) {
-                Get.back();
-                Get.offAllNamed(route);
-              });
-            }
-          },
-        );
+      firestore
+          .collection('ubivisit/ubivisit/users')
+          .doc(id)
+          .get()
+          .then((data) {
+        db.put('userInfo', {
+          'name': data['name'],
+          'email': data['email'],
+          'password': data['password'],
+          'post': data['post'],
+          'id': data['id'],
+          'image': data['image'],
+          'phone': data['phone'],
+          'pushtoken': data['pushtoken'],
+          'organization': data['organization'],
+          'date': data['date'],
+        }).then((value) {
+          Get.offAllNamed(route);
+        });
       });
     });
   }
@@ -244,7 +236,11 @@ class FBase {
     }).then((value) => Get.back());
   }
 
-  static uploadImage(file, id, context, route) async {
+  static Future uploadImage(
+    file,
+    id,
+    context,
+  ) async {
     await Hive.deleteBoxFromDisk('ubivisit');
     var db = await Hive.openBox('ubivisit');
     CustomLoader.showLoader(context);
@@ -257,42 +253,65 @@ class FBase {
           .collection('ubivisit/ubivisit/users')
           .doc(id)
           .update({'image': imgUrl}).then(
-        (value) {
-          firestore
+        (value) async {
+          await firestore
               .collection('ubivisit/ubivisit/users')
+              .doc(id)
               .get()
-              .then((snapshot) {
-            // ignore: avoid_function_literals_in_foreach_calls
-            snapshot.docs.forEach(
-              (e) async {
-                var data = e.data();
-                if (data['id'] == id) {
-                  isMatch = true;
-                  db.put('userInfo', {
-                    'name': data['name'],
-                    'email': data['email'],
-                    'password': data['password'],
-                    'post': data['post'],
-                    'id': data['id'],
-                    'image': data['image'],
-                    'phone': data['phone'],
-                    'pushtoken': data['pushtoken'],
-                  }).then((value) {
-                    Get.back();
-                    Get.offAllNamed(route);
-                  });
-                }
-              },
-            );
+              .then((data) {
+            db.put('userInfo', {
+              'name': data['name'],
+              'email': data['email'],
+              'password': data['password'],
+              'post': data['post'],
+              'id': data['id'],
+              'image': data['image'],
+              'phone': data['phone'],
+              'pushtoken': data['pushtoken'],
+              'organization': data['organization'],
+              'date': data['date'],
+            }).then((value) {
+              AwesomeDialog(
+                context: context,
+                dialogType: DialogType.success,
+                title: 'Success',
+                desc: 'Image Updated Successfully',
+                dismissOnTouchOutside: false,
+                btnOkOnPress: () => Get.back(),
+              ).show();
+              // Get.offAllNamed(route);
+            });
+            // firestore
+            //     .collection('ubivisit/ubivisit/users')
+            //     .get()
+            //     .then((snapshot) {
+            //   // ignore: avoid_function_literals_in_foreach_calls
+            //   snapshot.docs.forEach(
+            //     (e) async {
+            //       var data = e.data();
+            //       if (data['id'] == id) {
+            //         isMatch = true;
+            //         db.put('userInfo', {
+            //           'name': data['name'],
+            //           'email': data['email'],
+            //           'password': data['password'],
+            //           'post': data['post'],
+            //           'id': data['id'],
+            //           'image': data['image'],
+            //           'phone': data['phone'],
+            //           'pushtoken': data['pushtoken'],
+            //           'organization': data['organization'],
+            //           'date': data['date'],
+            //         });
           });
         },
       );
     });
   }
 
-  static Future addVisitor(
-      name, phone, address, purpose, tomeet, image, qr,organization) async {
-    var id = DateTime.now().millisecondsSinceEpoch.toString();
+  static Future addVisitor(name, phone, address, purpose, tomeet, image, qr,
+      organization, id) async {
+    // var id = DateTime.now().millisecondsSinceEpoch.toString();
     final imgId = image.path.split('/').last;
     final qrId = qr.path.split('/').last;
 
@@ -304,7 +323,7 @@ class FBase {
       qrRef.putFile(qr).then((p0) async {
         var currDate = DateTime.now();
         String time = DateFormat('jm').format(currDate);
-        String date = '${currDate.day}-${currDate.month}-${currDate.year}';
+        String date = DateFormat('dd-MM-yyyy').format(currDate);
 
         final imgUrl = await ref.getDownloadURL();
         final qrUrl = await qrRef.getDownloadURL();
@@ -380,7 +399,7 @@ class FBase {
         .update({'status': status}).then((value) => Get.back());
   }
 
-  static timeOut(id) {
+  static Future timeOut(id) async {
     var currDate = DateTime.now();
     String time = DateFormat('jm').format(currDate);
     firestore

@@ -10,6 +10,11 @@ import 'package:ubivisit/core/global/globalfunction.dart';
 import 'package:ubivisit/core/global/validation.dart';
 
 class AllGuardDataController extends GetxController {
+   Stream collectionPathGuard = FBase.firestore
+      .collection('ubivisit/ubivisit/users')
+      .where('post', isEqualTo: 'Guard')
+      .where('organization', isEqualTo: FBase.userInfo['organization'])
+      .snapshots();
   List userInfo = [];
   showDetails(user) {
     Get.defaultDialog(
@@ -148,7 +153,7 @@ class AllGuardDataController extends GetxController {
             'Update User',
             textAlign: TextAlign.center,
           ),
-          titlePadding: const EdgeInsets.only(top: 15),
+          titlePadding: const EdgeInsets.only(top: 10),
           contentPadding: const EdgeInsets.all(0),
           content: SingleChildScrollView(
             child: Container(
@@ -157,7 +162,7 @@ class AllGuardDataController extends GetxController {
               child: Form(
                   key: Validation.guardFormKey,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                      CustomTextFormField(
                         hintText: 'Enter Name',

@@ -7,6 +7,7 @@ import 'package:ubivisit/core/routes.dart';
 
 import '../../../core/components/custombutton.dart';
 
+import 'package:ubivisit/core/components/custombutton.dart';
 class WelcomeView extends GetView {
   const WelcomeView({super.key});
 

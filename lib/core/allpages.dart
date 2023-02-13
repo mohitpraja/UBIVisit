@@ -8,12 +8,12 @@ import 'package:ubivisit/features/addguard/binding/addguard_binding.dart';
 import 'package:ubivisit/features/addguard/view/addguard_view.dart';
 import 'package:ubivisit/features/addvisitor/binding/addvisitor_binding.dart';
 import 'package:ubivisit/features/addvisitor/view/addvisitor_view.dart';
-import 'package:ubivisit/features/admindash/admin/adminprofile/binding/adminprofile_binding.dart';
-import 'package:ubivisit/features/admindash/admin/adminprofile/view/adminprofile_view.dart';
 import 'package:ubivisit/features/admindash/binding/admindash_binding.dart';
 import 'package:ubivisit/features/admindash/admin/adminvisitorlist/binding/adminvisitorlist_binding.dart';
 import 'package:ubivisit/features/admindash/admin/adminvisitorlist/view/adminvisitorlist_view.dart';
 import 'package:ubivisit/features/admindash/view/admindash_view.dart';
+import 'package:ubivisit/features/editprofile/binding/editprofile_binding.dart';
+import 'package:ubivisit/features/editprofile/view/editprofile_view.dart';
 import 'package:ubivisit/features/empdash/binding/empdash_binding.dart';
 import 'package:ubivisit/features/empdash/view/empdash_view.dart';
 import 'package:ubivisit/features/forgot/binding/forgot_binding.dart';
@@ -32,6 +32,10 @@ import 'package:ubivisit/features/manageuser/binding/manageuser_binding.dart';
 import 'package:ubivisit/features/manageuser/view/manageuser_view.dart';
 import 'package:ubivisit/features/otp/binding/otp_binding.dart';
 import 'package:ubivisit/features/otp/view/otp_view.dart';
+import 'package:ubivisit/features/profileotp/binding/profileotp_binding.dart';
+import 'package:ubivisit/features/profileotp/view/profileotp_view.dart';
+import 'package:ubivisit/features/showprofile/binding/showprofile_binding.dart';
+import 'package:ubivisit/features/showprofile/view/showprofile_view.dart';
 import 'package:ubivisit/features/signup/binding/signup_binding.dart';
 import 'package:ubivisit/features/signup/view/signup_view.dart';
 import 'package:ubivisit/features/splash/binding/splash_binding.dart';
@@ -106,11 +110,7 @@ List<GetPage> allpage = [
     page: () => const GoogleSignupView(),
     binding: GoogleSignupBinding(),
   ),
-  GetPage(
-    name: Routes.adminprofile,
-    page: () => const AdminProfileView(),
-    binding: AdminProfileBinding(),
-  ),
+ 
   GetPage(
     name: Routes.addemployee,
     page: () => const AddEmployeeView(),
@@ -150,5 +150,20 @@ List<GetPage> allpage = [
     name: Routes.updatepass,
     page: () => const UpdatePass(),
     binding: UpdatePassBinding(),
+  ),
+  GetPage(
+    name: Routes.showprofile,
+    page: () => const ShowProfileView(),
+    binding: ShowProfileBinding(),
+  ),
+  GetPage(
+    name: Routes.editprofile,
+    page: () => const EditProfileView(),
+    binding: EditProfileBinding(),
+  ),
+  GetPage(
+    name: Routes.profileotp,
+    page: () => const ProfileOtpView(),
+    binding: ProfileOtpBinding(),
   ),
 ];
